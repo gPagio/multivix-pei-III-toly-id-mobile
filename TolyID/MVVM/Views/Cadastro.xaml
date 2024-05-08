@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TolyID.MVVM.Views.Cadastro"
+             Shell.BackgroundColor="{StaticResource Primary}"
+             Shell.TitleColor="White"
+             Title="Cadastro">
+
+    <ContentPage.Resources>
+
+        <Style x:Key="FrameTitulo" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+            <Setter Property="HeightRequest" Value="30"/>
+            <Setter Property="WidthRequest" Value="150"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        <Style x:Key="LabelTitulo" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+
+        <Style x:Key="FrameEntradaDeDados" TargetType="Frame">
+            <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
+            <Setter Property="Padding" Value="5,0,5,0"/>
+        </Style>
+
+    </ContentPage.Resources>
+      
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            
+            <!-- FOTOS -->
+            <Frame HeightRequest="180"
+                   BorderColor="{StaticResource Primary}">
+
+                <Label Text="Toque para adicionar fotos"
+                       FontSize="18"
+                       TextColor="{StaticResource Primary}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+            </Frame>
+            
+            <!-- DADOS GERAIS -->
+            <Frame HeightRequest="400"
+                   BorderColor="{StaticResource Primary}">
+
+                <StackLayout Spacing="10">
+
+                    <!-- TÍTULO -->
+                    <Frame Style="{StaticResource FrameTitulo}">
+                        <Label Text="Dados gerais"
+                               Style="{StaticResource LabelTitulo}"/>
+                    </Frame>
+
+                    <!-- ID ANIMAL -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="ID Animal"/>
+                    </Frame>
+
+                    <!-- Nº IDENTIFICAÇÃO -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="Nº Identificação"
+                               Keyboard="Numeric"/>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
