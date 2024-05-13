@@ -74,6 +74,35 @@
                 </StackLayout>
             </Frame>
 
+            <!-- BIOMETRIA -->
+            <Frame HeightRequest="790"
+                   BorderColor="{StaticResource Primary}">
+
+                <StackLayout Spacing="10">
+
+                    <!-- TÍTULO -->
+                    <Frame Style="{StaticResource FrameTitulo}">
+                        <Label Text="Biometria"
+                               Style="{StaticResource LabelTitulo}"/>
+                    </Frame>
+
+                    <ListView ItemsSource="{Binding Biometria}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                                        <Entry Placeholder="{Binding Nome}"
+                                               Text="{Binding Valor}"
+                                               Keyboard="{Binding TipoTeclado}"/>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackLayout>
+            </Frame>
+
         </VerticalStackLayout>
     </ScrollView>
     
