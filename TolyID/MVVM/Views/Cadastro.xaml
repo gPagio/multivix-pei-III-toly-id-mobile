@@ -26,6 +26,7 @@
         <Style x:Key="FrameEntradaDeDados" TargetType="Frame">
             <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
             <Setter Property="Padding" Value="5,0,5,0"/>
+            <Setter Property="HeightRequest" Value="40"/>
         </Style>
 
     </ContentPage.Resources>
@@ -45,7 +46,7 @@
             </Frame>
             
             <!-- DADOS GERAIS -->
-            <Frame HeightRequest="400"
+            <Frame HeightRequest="790"
                    BorderColor="{StaticResource Primary}">
 
                 <StackLayout Spacing="10">
@@ -58,14 +59,64 @@
 
                     <!-- ID ANIMAL -->
                     <Frame Style="{StaticResource FrameEntradaDeDados}">
-                        <Entry Placeholder="ID Animal"/>
+                        <Entry Placeholder="ID ANIMAL"/>
                     </Frame>
 
                     <!-- Nº IDENTIFICAÇÃO -->
                     <Frame Style="{StaticResource FrameEntradaDeDados}">
-                        <Entry Placeholder="Nº Identificação"
+                        <Entry Placeholder="Nº IDENTIFICAÇÃO"
                                Keyboard="Numeric"/>
                     </Frame>
+
+                    <!-- LOCAL DE CAPTURA -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="LOCAL DE CAPTURA"/>
+                    </Frame>
+
+                    <!-- EQUIPE RESPONSÁVEL -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="EQUIPE RESPONSÁVEL"/>
+                    </Frame>
+
+                    <!-- INSTITUIÇÃO -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="INSTITUIÇÃO"/>
+                    </Frame>
+
+                    <!-- PESO -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="PESO (G)"
+                               Keyboard="Numeric"/>
+                    </Frame>
+
+                    <!-- Nº MICROCHIP -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="Nº MICROCHIP"
+                               Keyboard="Numeric"/>
+                    </Frame>
+
+                    <!-- DATA CAPTURA -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="DATA CAPTURA"/>
+                    </Frame>
+
+                    <!-- HORÁRIO CAPTURA-->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="HORÁRIO CAPTURA"/>
+                    </Frame>
+
+                    <!-- CONTATO RESPONSÁVEL -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <Entry Placeholder="CONTATO DO RESPONSÁVEL"/>
+                    </Frame>
+
+                    <!-- OBSERVAÇÕES -->
+                    <Frame Style="{StaticResource FrameEntradaDeDados}"
+                           HeightRequest="200">
+                        <Entry Placeholder="OBSERVAÇÕES"/>
+                    </Frame>
+
+
                 </StackLayout>
             </Frame>
 
