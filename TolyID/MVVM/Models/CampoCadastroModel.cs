@@ -7,6 +7,7 @@ public class CampoCadastroModel : ObservableObject
     private string _nome;
     private object _valor;
     private Keyboard _tipoTeclado;
+    private DatePicker _datePicker;
 
     public string Nome
     {
@@ -23,24 +24,32 @@ public class CampoCadastroModel : ObservableObject
     public Keyboard TipoTeclado
     {
         get => _tipoTeclado;
+        set => SetProperty(ref _tipoTeclado, value);
     }
 
-    public CampoCadastroModel(string nome, object valor)
+    public DatePicker DatePicker
+    {
+        get => _datePicker;
+        set => SetProperty(ref _datePicker, value);
+    }
+
+    public object EntradaDeDado
+    {
+        get
+        {
+            if (DatePicker == null)
+            {
+                return TipoTeclado;
+            }
+                        
+            return DatePicker;                   
+        }        
+    }
+
+    public CampoCadastroModel(string nome, Keyboard? tipoTeclado, DatePicker? datePicker = null)
     {
         Nome = nome;
-        Valor = valor;  
-        DefineTipoTeclado(valor);
-    }
-
-    private void DefineTipoTeclado(object valor)
-    {
-        if (valor is int || valor is double)
-        {
-            _tipoTeclado = Keyboard.Numeric;
-        }
-        else
-        {
-            _tipoTeclado = Keyboard.Default; 
-        }
+        TipoTeclado = tipoTeclado;
+        DatePicker = datePicker;
     }
 }

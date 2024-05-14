@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TolyID.MVVM.Views.Cadastro"
+             xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
              Title="Cadastro">
 
     <ContentPage.Resources>
-
+       
         <Style x:Key="FrameTitulo" TargetType="Frame">
             <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
             <Setter Property="HeightRequest" Value="30"/>
@@ -26,9 +27,24 @@
         <Style x:Key="FrameEntradaDeDados" TargetType="Frame">
             <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
             <Setter Property="Padding" Value="5,0,5,0"/>
+            <Setter Property="Margin" Value="0, 0, 0, 5"/>
             <Setter Property="HeightRequest" Value="40"/>
         </Style>
 
+        <DataTemplate x:Key="TemplateCampos">
+            <StackLayout>
+
+                <Label Text="{Binding Nome}"
+                       TextColor="{StaticResource Primary}"
+                       FontAttributes="Bold"/>
+
+                <Frame Style="{StaticResource FrameEntradaDeDados}">
+                    <ContentView Content="{Binding EntradaDeDado}"/>
+                </Frame>
+
+            </StackLayout>
+        </DataTemplate>
+        
     </ContentPage.Resources>
       
     <ScrollView>
@@ -57,53 +73,15 @@
                                Style="{StaticResource LabelTitulo}"/>
                     </Frame>
 
-                    <ListView ItemsSource="{Binding DadosGerais}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Frame Style="{StaticResource FrameEntradaDeDados}">
-                                        <Entry Placeholder="{Binding Nome}"
-                                               Text="{Binding Valor}"
-                                               Keyboard="{Binding TipoTeclado}"/>
-                                    </Frame>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <StackLayout BindableLayout.ItemsSource="{Binding DadosGerais}"
+                                 BindableLayout.ItemTemplate="{StaticResource TemplateCampos}"/>
                     
-                </StackLayout>
-            </Frame>
-
-            <!-- BIOMETRIA -->
-            <Frame HeightRequest="790"
-                   BorderColor="{StaticResource Primary}">
-
-                <StackLayout Spacing="10">
-
-                    <!-- TÍTULO -->
-                    <Frame Style="{StaticResource FrameTitulo}">
-                        <Label Text="Biometria"
-                               Style="{StaticResource LabelTitulo}"/>
-                    </Frame>
-
-                    <ListView ItemsSource="{Binding Biometria}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Frame Style="{StaticResource FrameEntradaDeDados}">
-                                        <Entry Placeholder="{Binding Nome}"
-                                               Text="{Binding Valor}"
-                                               Keyboard="{Binding TipoTeclado}"/>
-                                    </Frame>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    
 
                 </StackLayout>
             </Frame>
+                                   
 
         </VerticalStackLayout>
-    </ScrollView>
-    
+    </ScrollView>    
 </ContentPage>

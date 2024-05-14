@@ -4,46 +4,46 @@ using TolyID.MVVM.Models;
 namespace TolyID.MVVM.ViewModels;
 
 public class CadastroViewModel
-{
+{    
     public ObservableCollection<CampoCadastroModel> DadosGerais { get; } =
     [
-        new CampoCadastroModel("ID ANIMAL", ""),
-        new CampoCadastroModel("Nº IDENTIFICAÇÃO", 0),
-        new CampoCadastroModel("LOCAL DE CAPTURA", ""),
-        new CampoCadastroModel("EQUIPE RESPONSÁVEL", ""),
-        new CampoCadastroModel("INSTITUIÇÃO", ""),
-        new CampoCadastroModel("PESO", 0.0),
-        new CampoCadastroModel("N° MICROCHIP", 0),
-        new CampoCadastroModel("DATA DE CAPTURA", 0),
-        new CampoCadastroModel("HORARIO DE CAPTURA", 0),
-        new CampoCadastroModel("CONTATO DO RESPONSÁVEL", ""),
-        new CampoCadastroModel("OBSERVAÇÕES", "")
+        new CampoCadastroModel("ID ANIMAL", Keyboard.Default),
+        new CampoCadastroModel("Nº IDENTIFICAÇÃO", Keyboard.Numeric),
+        new CampoCadastroModel("LOCAL DE CAPTURA", Keyboard.Default),
+        new CampoCadastroModel("EQUIPE RESPONSÁVEL", Keyboard.Default),
+        new CampoCadastroModel("INSTITUIÇÃO", Keyboard.Default),
+        new CampoCadastroModel("PESO", Keyboard.Numeric),
+        new CampoCadastroModel("N° MICROCHIP", Keyboard.Numeric),
+        new CampoCadastroModel("DATA DE CAPTURA", Keyboard.Numeric, new DatePicker()),
+        new CampoCadastroModel("HORARIO DE CAPTURA", Keyboard.Numeric, new DatePicker()),
+        new CampoCadastroModel("CONTATO DO RESPONSÁVEL", Keyboard.Default),
+        new CampoCadastroModel("OBSERVAÇÕES", Keyboard.Default)
     ];
 
     public ObservableCollection<CampoCadastroModel> Biometria { get; } =
     [
-        new CampoCadastroModel("COMPRIMENTO TOTAL", 0.0),
-        new CampoCadastroModel("COMPRIMENTO DA CABEÇA", 0.0),
-        new CampoCadastroModel("LARGURA DA CABEÇA", 0.0),
-        new CampoCadastroModel("PADRÃO ESCUDO CEFÁLICO", ""),
-        new CampoCadastroModel("COMPRIMENTO ESCUDO CEFÁLICO", 0.0),
-        new CampoCadastroModel("LARGURA ESCUDO CEFÁLICO", 0.0),
-        new CampoCadastroModel("LARGURA INTER-ORBITAL", 0.0),
-        new CampoCadastroModel("COMPRIMENTO DA ORELHA", 0.0),
-        new CampoCadastroModel("COMPRIMENTO DA CAUDA", 0.0),
-        new CampoCadastroModel("LARGURA DA CAUDA", 0.0),
-        new CampoCadastroModel("COMPRIMENTO ESCUDO ESCAPULAR", 0.0),
-        new CampoCadastroModel("SEMICIRCUNFERÊNCIA ESCUDO ESCAPULAR", 0.0),
-        new CampoCadastroModel("COMPRIMENTO ESCUDO PÉLVICO", 0.0),
-        new CampoCadastroModel("SEMICIRCUNFERÊNCIA ESCUDO PÉLVICO", 0.0),
-        new CampoCadastroModel("LARGURA NA 2ª CINTA", 0.0),
-        new CampoCadastroModel("NÚMERO DE CINTAS", 0),
-        new CampoCadastroModel("COMPRIMENTO MÃO SEM UNHA", 0.0),
-        new CampoCadastroModel("COMPRIMENTO UNHA DA MÃO", 0.0),
-        new CampoCadastroModel("COMPRIMENTO PÉ SEM UNHA", 0.0),
-        new CampoCadastroModel("COMPRIMENTO UNHA DO PÉ", 0.0),
-        new CampoCadastroModel("COMPRIMENTO DO PÊNIS", 0.0),
-        new CampoCadastroModel("LARGURA BASE DO PÊNIS", 0.0),
-        new CampoCadastroModel("COMPRIMENTO DO CLITÓRIS", 0.0)
+        new CampoCadastroModel("COMPRIMENTO TOTAL", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO DA CABEÇA", Keyboard.Numeric),
+        new CampoCadastroModel("LARGURA DA CABEÇA", Keyboard.Numeric),
+        new CampoCadastroModel("PADRÃO ESCUDO CEFÁLICO", Keyboard.Default),
+        new CampoCadastroModel("COMPRIMENTO ESCUDO CEFÁLICO", Keyboard.Numeric),
+        new CampoCadastroModel("LARGURA ESCUDO CEFÁLICO", Keyboard.Numeric),
+        new CampoCadastroModel("LARGURA INTER-ORBITAL", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO DA ORELHA", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO DA CAUDA", Keyboard.Numeric),
+        new CampoCadastroModel("LARGURA DA CAUDA", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO ESCUDO ESCAPULAR", Keyboard.Numeric),
+        new CampoCadastroModel("SEMICIRCUNFERÊNCIA ESCUDO ESCAPULAR", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO ESCUDO PÉLVICO", Keyboard.Numeric),
+        new CampoCadastroModel("SEMICIRCUNFERÊNCIA ESCUDO PÉLVICO", Keyboard.Numeric),
+        new CampoCadastroModel("LARGURA NA 2ª CINTA", Keyboard.Numeric),
+        new CampoCadastroModel("NÚMERO DE CINTAS", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO MÃO SEM UNHA", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO UNHA DA MÃO", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO PÉ SEM UNHA", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO UNHA DO PÉ", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO DO PÊNIS", Keyboard.Numeric),
+        new CampoCadastroModel("LARGURA BASE DO PÊNIS", Keyboard.Numeric),
+        new CampoCadastroModel("COMPRIMENTO DO CLITÓRIS", Keyboard.Numeric)
     ];
 }
