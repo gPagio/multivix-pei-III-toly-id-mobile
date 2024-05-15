@@ -48,7 +48,7 @@
         
     </ContentPage.Resources>
       
-    <ScrollView>
+    <ScrollView Padding="10">
         <VerticalStackLayout Padding="10" Spacing="10">
             
             <!-- FOTOS -->
@@ -74,30 +74,29 @@
                                Style="{StaticResource LabelTitulo}"/>
                     </Frame>
 
-                    <StackLayout BindableLayout.ItemsSource="{Binding DadosGerais}"
-                                 BindableLayout.ItemTemplate="{StaticResource TemplateCampos}"/>
-                                       
+                    <CollectionView ItemsSource="{Binding DadosGerais}"
+                                    ItemTemplate="{StaticResource TemplateCampos}"/>
+
                 </StackLayout>
             </Frame>
 
-            <!-- BIOMETRIA -->
-            <Frame HeightRequest="790"
+             <!--BIOMETRIA-->
+            <Frame HeightRequest="1570"
                    BorderColor="{StaticResource Primary}">
 
                 <StackLayout Spacing="10">
 
-                    <!-- TÍTULO -->
+                    <!--TÍTULO-->
                     <Frame Style="{StaticResource FrameTitulo}">
                         <Label Text="Biometria"
                                Style="{StaticResource LabelTitulo}"/>
                     </Frame>
 
-                    <StackLayout BindableLayout.ItemsSource="{Binding Biometria}"
-                                 BindableLayout.ItemTemplate="{StaticResource TemplateCampos}"/>
+                    <CollectionView ItemsSource="{Binding Biometria}"
+                                    ItemTemplate="{StaticResource TemplateCampos}"/>
 
                 </StackLayout>
             </Frame>
-
 
         </VerticalStackLayout>
     </ScrollView>    
