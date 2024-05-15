@@ -6,7 +6,7 @@ public class CampoCadastroModel : ObservableObject
 {    
     private string _nome;
     private object _valor;
-    private object _entradaDeDado;
+    private View _entradaDeDado;
 
     public string Nome
     {
@@ -20,13 +20,13 @@ public class CampoCadastroModel : ObservableObject
         set => SetProperty(ref _valor, value);
     }
 
-    public object EntradaDeDado
+    public View EntradaDeDado
     {
         get => _entradaDeDado;
         set => SetProperty(ref _entradaDeDado, value);         
     }
 
-    public CampoCadastroModel(string nome, object entradaDeDado)
+    public CampoCadastroModel(string nome, View entradaDeDado)
     {
         Nome = nome;
         EntradaDeDado = entradaDeDado;
