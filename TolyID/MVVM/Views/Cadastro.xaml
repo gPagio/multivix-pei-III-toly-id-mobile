@@ -75,12 +75,28 @@
 
                     <StackLayout BindableLayout.ItemsSource="{Binding DadosGerais}"
                                  BindableLayout.ItemTemplate="{StaticResource TemplateCampos}"/>
-                    
-                    
+                                       
+                </StackLayout>
+            </Frame>
+
+            <!-- BIOMETRIA -->
+            <Frame HeightRequest="790"
+                   BorderColor="{StaticResource Primary}">
+
+                <StackLayout Spacing="10">
+
+                    <!-- TÍTULO -->
+                    <Frame Style="{StaticResource FrameTitulo}">
+                        <Label Text="Biometria"
+                               Style="{StaticResource LabelTitulo}"/>
+                    </Frame>
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding Biometria}"
+                                 BindableLayout.ItemTemplate="{StaticResource TemplateCampos}"/>
 
                 </StackLayout>
             </Frame>
-                                   
+
 
         </VerticalStackLayout>
     </ScrollView>    
