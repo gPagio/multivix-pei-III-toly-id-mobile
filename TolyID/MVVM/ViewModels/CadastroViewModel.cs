@@ -4,20 +4,20 @@ using TolyID.MVVM.Models;
 namespace TolyID.MVVM.ViewModels;
 
 public class CadastroViewModel
-{    
+{
     public ObservableCollection<CampoCadastroModel> DadosGerais { get; } =
     [
-        new CampoCadastroModel("ID ANIMAL", Keyboard.Default),
-        new CampoCadastroModel("Nº IDENTIFICAÇÃO", Keyboard.Numeric),
-        new CampoCadastroModel("LOCAL DE CAPTURA", Keyboard.Default),
-        new CampoCadastroModel("EQUIPE RESPONSÁVEL", Keyboard.Default),
-        new CampoCadastroModel("INSTITUIÇÃO", Keyboard.Default),
-        new CampoCadastroModel("PESO", Keyboard.Numeric),
-        new CampoCadastroModel("N° MICROCHIP", Keyboard.Numeric),
-        new CampoCadastroModel("DATA DE CAPTURA", Keyboard.Numeric, new DatePicker()),
-        new CampoCadastroModel("HORARIO DE CAPTURA", Keyboard.Numeric, new DatePicker()),
-        new CampoCadastroModel("CONTATO DO RESPONSÁVEL", Keyboard.Default),
-        new CampoCadastroModel("OBSERVAÇÕES", Keyboard.Default)
+        new CampoCadastroModel("ID ANIMAL", new Entry(){Keyboard = Keyboard.Default}),
+        new CampoCadastroModel("Nº IDENTIFICAÇÃO", new Entry(){Keyboard = Keyboard.Numeric}),
+        new CampoCadastroModel("LOCAL DE CAPTURA", new Entry(){Keyboard = Keyboard.Default}),
+        new CampoCadastroModel("EQUIPE RESPONSÁVEL", new Entry(){Keyboard = Keyboard.Default}),
+        new CampoCadastroModel("INSTITUIÇÃO", new Entry(){Keyboard = Keyboard.Default}),
+        new CampoCadastroModel("PESO", new Entry(){Keyboard = Keyboard.Numeric}),
+        new CampoCadastroModel("N° MICROCHIP", new Entry(){Keyboard = Keyboard.Numeric}),
+        new CampoCadastroModel("DATA DE CAPTURA", new DatePicker()),
+        new CampoCadastroModel("HORARIO DE CAPTURA", new TimePicker()),
+        new CampoCadastroModel("CONTATO DO RESPONSÁVEL", new Entry(){Keyboard = Keyboard.Default}),
+        new CampoCadastroModel("OBSERVAÇÕES", new Entry(){Keyboard = Keyboard.Default})
     ];
 
     public ObservableCollection<CampoCadastroModel> Biometria { get; } =

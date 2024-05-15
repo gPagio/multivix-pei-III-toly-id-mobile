@@ -6,8 +6,7 @@ public class CampoCadastroModel : ObservableObject
 {    
     private string _nome;
     private object _valor;
-    private Keyboard _tipoTeclado;
-    private DatePicker _datePicker;
+    private object _entradaDeDado;
 
     public string Nome
     {
@@ -21,35 +20,15 @@ public class CampoCadastroModel : ObservableObject
         set => SetProperty(ref _valor, value);
     }
 
-    public Keyboard TipoTeclado
-    {
-        get => _tipoTeclado;
-        set => SetProperty(ref _tipoTeclado, value);
-    }
-
-    public DatePicker DatePicker
-    {
-        get => _datePicker;
-        set => SetProperty(ref _datePicker, value);
-    }
-
     public object EntradaDeDado
     {
-        get
-        {
-            if (DatePicker == null)
-            {
-                return TipoTeclado;
-            }
-                        
-            return DatePicker;                   
-        }        
+        get => _entradaDeDado;
+        set => SetProperty(ref _entradaDeDado, value);         
     }
 
-    public CampoCadastroModel(string nome, Keyboard? tipoTeclado, DatePicker? datePicker = null)
+    public CampoCadastroModel(string nome, object entradaDeDado)
     {
         Nome = nome;
-        TipoTeclado = tipoTeclado;
-        DatePicker = datePicker;
+        EntradaDeDado = entradaDeDado;
     }
 }
