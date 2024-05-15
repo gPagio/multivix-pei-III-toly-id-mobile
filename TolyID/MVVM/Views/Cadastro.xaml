@@ -5,6 +5,7 @@
              xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
+             BackgroundColor="White"
              Title="Cadastro">
 
     <ContentPage.Resources>
