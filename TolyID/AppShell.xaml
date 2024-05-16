@@ -10,12 +10,12 @@
     <TabBar Shell.TabBarUnselectedColor="White">
 
         <ShellContent
-            Title="Capturas"
-            ContentTemplate="{DataTemplate views:Capturas}"/>
+            Title="Cadastro"
+            ContentTemplate="{DataTemplate views:Cadastro}"/>
 
         <ShellContent
-            Title="Cadastro"
-            ContentTemplate="{DataTemplate views:Cadastro}"/> 
+            Title="Capturas"
+            ContentTemplate="{DataTemplate views:Capturas}"/>   
 
     </TabBar>
 
