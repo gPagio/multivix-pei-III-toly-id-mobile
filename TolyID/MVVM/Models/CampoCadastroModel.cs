@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Diagnostics;
 
 namespace TolyID.MVVM.Models;
 
@@ -6,7 +7,7 @@ public class CampoCadastroModel : ObservableObject
 {    
     private string _nome;
     private object _valor;
-    private View _entradaDeDado;
+    private View _entradaDeDado;    // Define qual View usar para capturar dados digitados pelo usuário (Entry, DatePicker etc.)
 
     public string Nome
     {
@@ -30,5 +31,29 @@ public class CampoCadastroModel : ObservableObject
     {
         Nome = nome;
         EntradaDeDado = entradaDeDado;
+        ConfigurarBinding();
+    }
+
+    private void ConfigurarBinding()
+    {
+        if (EntradaDeDado is Entry entry)
+        {
+            entry.SetBinding(Entry.TextProperty, new Binding(nameof(Valor), source: this));
+        } 
+        else if (EntradaDeDado is DatePicker datePicker)
+        {
+            datePicker.SetBinding(DatePicker.DateProperty, new Binding(nameof(Valor), source: this));
+        } 
+        else if (EntradaDeDado is TimePicker timePicker)
+        {
+            timePicker.SetBinding(TimePicker.TimeProperty, new Binding(nameof(Valor), source: this));
+        }
+        else
+        {
+            CheckBox checkBox = (CheckBox)EntradaDeDado;
+            checkBox.SetBinding(CheckBox.IsCheckedProperty, new Binding(nameof(Valor), source: this));
+        }
+
+        Debug.WriteLine($"&*&*&*&*&*& {Valor} &*&*&*&*&*&*");
     }
 }

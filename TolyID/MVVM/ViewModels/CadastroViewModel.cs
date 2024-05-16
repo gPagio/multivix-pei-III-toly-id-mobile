@@ -5,6 +5,7 @@ namespace TolyID.MVVM.ViewModels;
 
 public class CadastroViewModel
 {
+    // DADOS GERAIS
     public ObservableCollection<CampoCadastroModel> DadosGerais { get; } =
     [
         new CampoCadastroModel("ID ANIMAL", CriaEntryComTecladoNormal()),
@@ -20,6 +21,7 @@ public class CadastroViewModel
         new CampoCadastroModel("OBSERVAÇÕES", CriaEntryComTecladoNormal())
     ];
 
+    // BIOMETRIA
     public ObservableCollection<CampoCadastroModel> Biometria { get; } =
     [
         new CampoCadastroModel("COMPRIMENTO TOTAL", CriaEntryComTecladoNumerico()),
@@ -46,6 +48,26 @@ public class CadastroViewModel
         new CampoCadastroModel("LARGURA BASE DO PÊNIS", CriaEntryComTecladoNumerico()),
         new CampoCadastroModel("COMPRIMENTO DO CLITÓRIS", CriaEntryComTecladoNumerico())
     ];
+
+    // AMOSTRAS
+    public ObservableCollection<CampoCadastroModel> AmostrasColunaZero { get; } =
+    [
+        new CampoCadastroModel("SANGUE", new CheckBox()),
+        new CampoCadastroModel("FEZES", new CheckBox()),
+        new CampoCadastroModel("PELO", new CheckBox())
+    ];
+
+    public ObservableCollection<CampoCadastroModel> AmostrasColunaUm { get; } =
+    [
+        new CampoCadastroModel("EXTOPARASITOS", new CheckBox()),
+        new CampoCadastroModel("SWAB", new CheckBox()),
+        new CampoCadastroModel("LOCAL", new CheckBox())
+    ];
+
+    public CampoCadastroModel Outros { get; } = new("OUTROS", CriaEntryComTecladoNormal());
+
+
+    //MÉTODOS
 
     private static Entry CriaEntryComTecladoNormal()
     {

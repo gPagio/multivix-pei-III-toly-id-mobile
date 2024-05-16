@@ -17,6 +17,7 @@
             <Setter Property="WidthRequest" Value="150"/>
             <Setter Property="CornerRadius" Value="20"/>
             <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderColor" Value="Transparent"/>
         </Style>
 
         <Style x:Key="LabelTitulo" TargetType="Label">
@@ -33,7 +34,7 @@
             <Setter Property="HeightRequest" Value="40"/>
         </Style>
 
-        <DataTemplate x:Key="TemplateCampos">
+        <DataTemplate x:Key="TemplateCamposDigitados">
             <StackLayout>
 
                 <Label Text="{Binding Nome}"
@@ -46,7 +47,25 @@
 
             </StackLayout>
         </DataTemplate>
-        
+
+        <DataTemplate x:Key="TemplateCamposSelecionaveis">
+            <StackLayout>
+                <HorizontalStackLayout>
+                    <ContentView Content="{Binding EntradaDeDado}"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"/>
+
+                    <Label Text="{Binding Nome}"
+                           TextColor="{StaticResource Primary}"
+                           FontAttributes="Bold"
+                           Grid.Column="1"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"/>
+
+                </HorizontalStackLayout>
+            </StackLayout>
+        </DataTemplate>
+
     </ContentPage.Resources>
       
     <ScrollView Padding="10">
@@ -76,7 +95,7 @@
                     </Frame>
 
                     <CollectionView ItemsSource="{Binding DadosGerais}"
-                                    ItemTemplate="{StaticResource TemplateCampos}"/>
+                                    ItemTemplate="{StaticResource TemplateCamposDigitados}"/>
 
                 </StackLayout>
             </Frame>
@@ -94,9 +113,33 @@
                     </Frame>
 
                     <CollectionView ItemsSource="{Binding Biometria}"
-                                    ItemTemplate="{StaticResource TemplateCampos}"/>
+                                    ItemTemplate="{StaticResource TemplateCamposDigitados}"/>
 
                 </StackLayout>
+            </Frame>
+
+            <Frame HeightRequest="1570"
+                   BorderColor="{StaticResource Primary}">
+
+                <StackLayout>
+                    <Grid ColumnDefinitions="*, *">
+
+                        <HorizontalStackLayout>
+                            
+                            <CheckBox HorizontalOptions="Start"
+                                      VerticalOptions="Center"/>
+
+                            <Label Text="SANGUE"
+                                   TextColor="{StaticResource Primary}"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"/>
+
+                        </HorizontalStackLayout> 
+            
+                    </Grid>
+                </StackLayout>
+
             </Frame>
 
         </VerticalStackLayout>
