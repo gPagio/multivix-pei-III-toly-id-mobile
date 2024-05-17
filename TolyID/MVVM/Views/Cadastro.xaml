@@ -137,8 +137,9 @@
                                Style="{StaticResource LabelTitulo}"/>
                     </Frame>
 
+                    <!-- CHECKBOXES -->
                     <Grid ColumnDefinitions="*, *">
-                        
+
                         <!-- PRIMEIRA COLUNA -->
                         <CollectionView ItemsSource="{Binding AmostrasColunaZero}"
                                         ItemTemplate="{StaticResource TemplateCamposSelecionaveis}"/>
@@ -150,6 +151,7 @@
 
                     </Grid>
 
+                    <!-- OUTROS -->
                     <Label Text="{Binding Outros.Nome}"
                            Style="{StaticResource LabelNomeCampo}"/>
 
@@ -157,8 +159,9 @@
                         <ContentView Content="{Binding Outros.EntradaDeDado}"/>
                     </Frame>
 
-                </StackLayout>
 
+
+                </StackLayout>
             </Frame>
 
         </VerticalStackLayout>

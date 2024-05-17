@@ -13,4 +13,8 @@ public partial class Cadastro : ContentPage
         BindingContext = viewModel;
     }
 
+    //private void Button_Clicked(object sender, EventArgs e)
+    //{
+    //    viewModel.Teste();
+    //}
 }

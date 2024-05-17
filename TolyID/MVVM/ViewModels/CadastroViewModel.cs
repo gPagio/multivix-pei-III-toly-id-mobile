@@ -50,7 +50,7 @@ public class CadastroViewModel
         new CampoCadastroModel("COMPRIMENTO DO CLITÓRIS", CriaEntryComTecladoNumerico())
     ];
 
-    // AMOSTRAS
+    // AMOSTRAS 
     public ObservableCollection<CampoCadastroModel> AmostrasColunaZero { get; } =
     [
         new CampoCadastroModel("SANGUE", new CheckBox()),
@@ -88,6 +88,6 @@ public class CadastroViewModel
 
     //public void Teste()
     //{
-    //    Debug.WriteLine($"%&%&%&%&% {DadosGerais[0].Valor} %&%&%&%&%&  ");
+    //    Debug.WriteLine($"%&%&%&%&% {AmostrasColunaUm[0].Valor} %&%&%&%&%&  ");
     //}
 }
