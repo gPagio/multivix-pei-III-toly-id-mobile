@@ -54,6 +54,6 @@ public class CampoCadastroModel : ObservableObject
             checkBox.SetBinding(CheckBox.IsCheckedProperty, new Binding(nameof(Valor), source: this));
         }
 
-        Debug.WriteLine($"&*&*&*&*&*& {Valor} &*&*&*&*&*&*");
+        //Debug.WriteLine($"&*&*&*&*&*& {Valor} &*&*&*&*&*&*");
     }
 }
