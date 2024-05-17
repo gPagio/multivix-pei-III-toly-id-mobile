@@ -34,12 +34,16 @@
             <Setter Property="HeightRequest" Value="40"/>
         </Style>
 
+        <Style x:Key="LabelNomeCampo" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
         <DataTemplate x:Key="TemplateCamposDigitados">
             <StackLayout>
 
                 <Label Text="{Binding Nome}"
-                       TextColor="{StaticResource Primary}"
-                       FontAttributes="Bold"/>
+                       Style="{StaticResource LabelNomeCampo}"/>
 
                 <Frame Style="{StaticResource FrameEntradaDeDados}">
                     <ContentView Content="{Binding EntradaDeDado}"/>
@@ -94,13 +98,15 @@
                                Style="{StaticResource LabelTitulo}"/>
                     </Frame>
 
+                    <!-- CAMPOS -->
                     <CollectionView ItemsSource="{Binding DadosGerais}"
                                     ItemTemplate="{StaticResource TemplateCamposDigitados}"/>
 
                 </StackLayout>
+
             </Frame>
 
-             <!--BIOMETRIA-->
+            <!--BIOMETRIA-->
             <Frame HeightRequest="1570"
                    BorderColor="{StaticResource Primary}">
 
@@ -111,33 +117,46 @@
                         <Label Text="Biometria"
                                Style="{StaticResource LabelTitulo}"/>
                     </Frame>
-
+                    
+                    <!-- CAMPOS -->
                     <CollectionView ItemsSource="{Binding Biometria}"
                                     ItemTemplate="{StaticResource TemplateCamposDigitados}"/>
 
                 </StackLayout>
             </Frame>
-
-            <Frame HeightRequest="1570"
+            
+            <!-- AMOSTRAS -->
+            <Frame HeightRequest="300"
                    BorderColor="{StaticResource Primary}">
 
-                <StackLayout>
+                <StackLayout Spacing="10">
+
+                    <!--TÍTULO-->
+                    <Frame Style="{StaticResource FrameTitulo}">
+                        <Label Text="Amostras"
+                               Style="{StaticResource LabelTitulo}"/>
+                    </Frame>
+
                     <Grid ColumnDefinitions="*, *">
+                        
+                        <!-- PRIMEIRA COLUNA -->
+                        <CollectionView ItemsSource="{Binding AmostrasColunaZero}"
+                                        ItemTemplate="{StaticResource TemplateCamposSelecionaveis}"/>
 
-                        <HorizontalStackLayout>
-                            
-                            <CheckBox HorizontalOptions="Start"
-                                      VerticalOptions="Center"/>
+                        <!-- SEGUNDA COLUNA -->
+                        <CollectionView Grid.Column="1"
+                                        ItemsSource="{Binding AmostrasColunaUm}"
+                                        ItemTemplate="{StaticResource TemplateCamposSelecionaveis}"/>
 
-                            <Label Text="SANGUE"
-                                   TextColor="{StaticResource Primary}"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Start"/>
-
-                        </HorizontalStackLayout> 
-            
                     </Grid>
+
+                    <Label Text="{Binding Outros.Nome}"
+                           Style="{StaticResource LabelNomeCampo}"/>
+
+                    <Frame Style="{StaticResource FrameEntradaDeDados}">
+                        <ContentView Content="{Binding Outros.EntradaDeDado}"/>
+                    </Frame>
+
                 </StackLayout>
 
             </Frame>

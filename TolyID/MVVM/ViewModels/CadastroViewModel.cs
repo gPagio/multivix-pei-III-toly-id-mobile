@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using TolyID.MVVM.Models;
 
 namespace TolyID.MVVM.ViewModels;
@@ -59,15 +60,21 @@ public class CadastroViewModel
 
     public ObservableCollection<CampoCadastroModel> AmostrasColunaUm { get; } =
     [
-        new CampoCadastroModel("EXTOPARASITOS", new CheckBox()),
+        new CampoCadastroModel("ECTOPARASITOS", new CheckBox()),
         new CampoCadastroModel("SWAB", new CheckBox()),
         new CampoCadastroModel("LOCAL", new CheckBox())
     ];
 
     public CampoCadastroModel Outros { get; } = new("OUTROS", CriaEntryComTecladoNormal());
 
-
     //MÉTODOS
+    private static void CriaCadastroTatu()
+    {
+        // Criar a lógica de cadastro de captura de tatu. Envolverá juntar todas as 
+        // ObservableCollections para formar o cadastro. 
+        // A fazer: criar classes DadosGerais, Biometria e Amostras, além de entender
+        // como armazenar a ficha anestésica.
+    }
 
     private static Entry CriaEntryComTecladoNormal()
     {
@@ -78,4 +85,9 @@ public class CadastroViewModel
     {
         return new Entry() { Keyboard = Keyboard.Numeric, ReturnType = ReturnType.Next };
     }
+
+    //public void Teste()
+    //{
+    //    Debug.WriteLine($"%&%&%&%&% {DadosGerais[0].Valor} %&%&%&%&%&  ");
+    //}
 }
