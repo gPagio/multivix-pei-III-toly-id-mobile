@@ -4,7 +4,7 @@ namespace TolyID.MVVM.Views;
 
 public partial class Cadastro : ContentPage
 {
-    CadastroViewModel viewModel = new();
+    private CadastroViewModel viewModel = new();
 
 	public Cadastro()
 	{

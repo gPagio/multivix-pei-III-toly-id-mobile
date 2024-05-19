@@ -159,10 +159,15 @@
                         <ContentView Content="{Binding Outros.EntradaDeDado}"/>
                     </Frame>
 
-
-
                 </StackLayout>
             </Frame>
+
+            <Button Command="{Binding CriaTatuCapturadoCommand}"
+                    Text="Finalizar"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="20"/>
 
         </VerticalStackLayout>
     </ScrollView>    

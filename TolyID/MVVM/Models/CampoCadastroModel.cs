@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-//using System.Diagnostics;
 
 namespace TolyID.MVVM.Models;
 
@@ -12,7 +11,7 @@ public class CampoCadastroModel : ObservableObject
     public string Nome
     {
         get => _nome; 
-        set => SetProperty(ref _nome, value); //SetProperty notifica a interface
+        set => SetProperty(ref _nome, value); // SetProperty notifica a interface
     }
 
     public object Valor
@@ -52,8 +51,6 @@ public class CampoCadastroModel : ObservableObject
         {
             CheckBox checkBox = (CheckBox)EntradaDeDado;
             checkBox.SetBinding(CheckBox.IsCheckedProperty, new Binding(nameof(Valor), source: this));
-        }
-
-        //Debug.WriteLine($"&*&*&*&*&*& {Valor} &*&*&*&*&*&*");
+        }        
     }
 }

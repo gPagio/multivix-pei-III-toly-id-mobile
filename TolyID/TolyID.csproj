@@ -75,9 +75,6 @@
 	  <MauiXaml Update="MVVM\Views\Capturas.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\PopupCadastro.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

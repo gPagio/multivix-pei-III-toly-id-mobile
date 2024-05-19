@@ -1,12 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using TolyID.MVVM.Models;
+//using System.Diagnostics;
 
 namespace TolyID.MVVM.ViewModels;
 
-public class CadastroViewModel
+public partial class CadastroViewModel
 {
-    // DADOS GERAIS
+    // ================================= DADOS GERAIS ===============================================
     public ObservableCollection<CampoCadastroModel> DadosGerais { get; } =
     [
         new CampoCadastroModel("ID ANIMAL", CriaEntryComTecladoNormal()),
@@ -17,12 +19,12 @@ public class CadastroViewModel
         new CampoCadastroModel("PESO", CriaEntryComTecladoNumerico()),
         new CampoCadastroModel("N° MICROCHIP", CriaEntryComTecladoNumerico()),
         new CampoCadastroModel("DATA DE CAPTURA", new DatePicker()),
-        new CampoCadastroModel("HORARIO DE CAPTURA", new TimePicker()),
+        new CampoCadastroModel("HORÁRIO DE CAPTURA", new TimePicker()),
         new CampoCadastroModel("CONTATO DO RESPONSÁVEL", CriaEntryComTecladoNormal()),
         new CampoCadastroModel("OBSERVAÇÕES", CriaEntryComTecladoNormal())
     ];
 
-    // BIOMETRIA
+    // ================================= BIOMETRIA ===============================================
     public ObservableCollection<CampoCadastroModel> Biometria { get; } =
     [
         new CampoCadastroModel("COMPRIMENTO TOTAL", CriaEntryComTecladoNumerico()),
@@ -50,7 +52,7 @@ public class CadastroViewModel
         new CampoCadastroModel("COMPRIMENTO DO CLITÓRIS", CriaEntryComTecladoNumerico())
     ];
 
-    // AMOSTRAS 
+    // ================================= AMOSTRAS ===============================================
     public ObservableCollection<CampoCadastroModel> AmostrasColunaZero { get; } =
     [
         new CampoCadastroModel("SANGUE", new CheckBox()),
@@ -67,14 +69,77 @@ public class CadastroViewModel
 
     public CampoCadastroModel Outros { get; } = new("OUTROS", CriaEntryComTecladoNormal());
 
-    //MÉTODOS
-    private static void CriaCadastroTatu()
+    // ================================= COMANDOS ===============================================
+
+    [RelayCommand]
+    void CriaTatuCapturado()
     {
-        // Criar a lógica de cadastro de captura de tatu. Envolverá juntar todas as 
-        // ObservableCollections para formar o cadastro. 
-        // A fazer: criar classes DadosGerais, Biometria e Amostras, além de entender
-        // como armazenar a ficha anestésica.
+        TatuCapturadoModel tatu = new();
+
+        foreach (CampoCadastroModel campo in DadosGerais)
+        {
+            switch (campo.Nome)
+            {
+                case "ID ANIMAL":
+                    tatu.DadosGerais.IdAnimal = campo.Valor.ToString();
+                    break;
+                case "N° IDENTIFICAÇÃO":
+                    tatu.DadosGerais.NumeroIdentificacao = Convert.ToInt32(campo.Valor);
+                    break;
+                case "LOCAL DE CAPTURA":
+                    tatu.DadosGerais.LocalDeCaptura = campo.Valor.ToString();
+                    break;
+                case "EQUIPE RESPONSÁVEL":
+                    tatu.DadosGerais.EquipeResponsavel = campo.Valor.ToString();
+                    break;
+                case "INSTITUIÇÃO":
+                    tatu.DadosGerais.Instituicao = campo.Valor.ToString();
+                    break;
+                case "PESO":
+                    tatu.DadosGerais.Peso = Convert.ToDouble(campo.Valor);
+                    break;
+                case "N° MICROCHIP":
+                    tatu.DadosGerais.NumeroMicrochip = Convert.ToInt32(campo.Valor);
+                    break;
+                case "DATA DE CAPTURA":
+                    tatu.DadosGerais.DataDeCaptura = Convert.ToDateTime(campo.Valor);
+                    break;
+                case "HORÁRIO DE CAPTURA":
+                    tatu.DadosGerais.HorarioDeCaptura = TimeSpan.Parse(campo.Valor.ToString());
+                    break;
+                case "CONTATO DO RESPONSÁVEL":
+                    tatu.DadosGerais.ContatoDoResponsavel = campo.Valor.ToString();
+                    break;
+                case "OBSERVAÇÕES":
+                    tatu.DadosGerais.Observacoes = campo.Valor.ToString();
+                    break;
+            }
+        }
+
+        foreach (CampoCadastroModel campo in Biometria)
+        {
+            switch (campo.Nome)
+            {
+
+            }
+        }
+
+        foreach (CampoCadastroModel campo in AmostrasColunaZero)
+        {
+
+        }
+
+        foreach (CampoCadastroModel campo in AmostrasColunaUm)
+        {
+
+        }
+
+        tatu.Amostras.Outros = Outros.Valor.ToString();
+
+        Debug.WriteLine($"%&%&%& {tatu.Amostras.Outros} %&%&%&%");
     }
+
+    // ================================= MÉTODOS ===============================================
 
     private static Entry CriaEntryComTecladoNormal()
     {
@@ -88,6 +153,6 @@ public class CadastroViewModel
 
     //public void Teste()
     //{
-    //    Debug.WriteLine($"%&%&%&%&% {AmostrasColunaUm[0].Valor} %&%&%&%&%&  ");
+    //    Debug.WriteLine($"%&%&%&%&% {DadosGerais[8].Valor} %&%&%&%&%&  ");
     //}
 }
