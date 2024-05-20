@@ -8,5 +8,5 @@ public class AmostrasModel
     public bool Ectoparasitos { get; set; }
     public bool Swab {  get; set; }
     public bool Local {  get; set; }
-    public string Outros { get; set; }
+    public string? Outros { get; set; }
 }
