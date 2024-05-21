@@ -1,276 +1,150 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Reflection;
 using TolyID.MVVM.Models;
-//using System.Diagnostics;
 
 namespace TolyID.MVVM.ViewModels;
 
 public partial class CadastroViewModel
 {
+    public static TatuCapturadoModel Tatu { get; set; } = new();
+    
     // ================================= DADOS GERAIS ===============================================
     public ObservableCollection<CampoCadastroModel> DadosGerais { get; } =
     [
-        new CampoCadastroModel("ID ANIMAL", CriaEntryComTecladoNormal()),
-        new CampoCadastroModel("Nº IDENTIFICAÇÃO", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("LOCAL DE CAPTURA", CriaEntryComTecladoNormal()),
-        new CampoCadastroModel("EQUIPE RESPONSÁVEL", CriaEntryComTecladoNormal()),
-        new CampoCadastroModel("INSTITUIÇÃO", CriaEntryComTecladoNormal()),
-        new CampoCadastroModel("PESO", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("N° MICROCHIP", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("DATA DE CAPTURA", new DatePicker()),
-        new CampoCadastroModel("HORÁRIO DE CAPTURA", new TimePicker()),
-        new CampoCadastroModel("CONTATO DO RESPONSÁVEL", CriaEntryComTecladoNormal()),
-        new CampoCadastroModel("OBSERVAÇÕES", CriaEntryComTecladoNormal())
+        new CampoCadastroModel("ID ANIMAL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.IdAnimal))),
+        new CampoCadastroModel("Nº IDENTIFICAÇÃO", CriaEntryComTecladoNumerico(Tatu.DadosGerais, nameof(Tatu.DadosGerais.NumeroIdentificacao))),
+        new CampoCadastroModel("LOCAL DE CAPTURA", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.LocalDeCaptura))),
+        new CampoCadastroModel("EQUIPE RESPONSÁVEL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.EquipeResponsavel))),
+        new CampoCadastroModel("INSTITUIÇÃO", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.Instituicao))),
+        new CampoCadastroModel("PESO", CriaEntryComTecladoNumerico(Tatu.DadosGerais, nameof(Tatu.DadosGerais.Peso))),
+        new CampoCadastroModel("N° MICROCHIP", CriaEntryComTecladoNumerico(Tatu.DadosGerais, nameof(Tatu.DadosGerais.NumeroMicrochip))),
+        new CampoCadastroModel("DATA DE CAPTURA", CriaDatePicker(Tatu.DadosGerais, nameof(Tatu.DadosGerais.DataDeCaptura))),
+        new CampoCadastroModel("HORÁRIO DE CAPTURA", CriaTimePicker(Tatu.DadosGerais, nameof(Tatu.DadosGerais.HorarioDeCaptura))),
+        new CampoCadastroModel("CONTATO DO RESPONSÁVEL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.ContatoDoResponsavel))),
+        new CampoCadastroModel("OBSERVAÇÕES", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.Observacoes)))
     ];
 
     // ================================= BIOMETRIA ===============================================
     public ObservableCollection<CampoCadastroModel> Biometria { get; } =
     [
-        new CampoCadastroModel("COMPRIMENTO TOTAL", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO DA CABEÇA", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("LARGURA DA CABEÇA", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("PADRÃO ESCUDO CEFÁLICO", CriaEntryComTecladoNormal()),
-        new CampoCadastroModel("COMPRIMENTO ESCUDO CEFÁLICO", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("LARGURA ESCUDO CEFÁLICO", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("LARGURA INTER-ORBITAL", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO DA ORELHA", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO DA CAUDA", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("LARGURA DA CAUDA", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO ESCUDO ESCAPULAR", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("SEMICIRCUNFERÊNCIA ESCUDO ESCAPULAR", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO ESCUDO PÉLVICO", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("SEMICIRCUNFERÊNCIA ESCUDO PÉLVICO", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("LARGURA NA 2ª CINTA", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("NÚMERO DE CINTAS", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO MÃO SEM UNHA", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO UNHA DA MÃO", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO PÉ SEM UNHA", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO UNHA DO PÉ", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO DO PÊNIS", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("LARGURA BASE DO PÊNIS", CriaEntryComTecladoNumerico()),
-        new CampoCadastroModel("COMPRIMENTO DO CLITÓRIS", CriaEntryComTecladoNumerico())
+        new CampoCadastroModel("COMPRIMENTO TOTAL", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoTotal))),
+        new CampoCadastroModel("COMPRIMENTO DA CABEÇA", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoDaCabeca))),
+        new CampoCadastroModel("LARGURA DA CABEÇA", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.LarguraDaCabeca))),
+        new CampoCadastroModel("PADRÃO ESCUDO CEFÁLICO", CriaEntryComTecladoNormal(Tatu.Biometria, nameof(Tatu.Biometria.PadraoEscudoCefalico))),
+        new CampoCadastroModel("COMPRIMENTO ESCUDO CEFÁLICO", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoEscudoCefalico))),
+        new CampoCadastroModel("LARGURA ESCUDO CEFÁLICO", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.LarguraEscudoCefalico))),
+        new CampoCadastroModel("LARGURA INTER-ORBITAL", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.LarguraInterOrbital))),
+        new CampoCadastroModel("COMPRIMENTO DA ORELHA", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoDaOrelha))),
+        new CampoCadastroModel("COMPRIMENTO DA CAUDA", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoDaCauda))),
+        new CampoCadastroModel("LARGURA DA CAUDA", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.LarguraDaCauda))),
+        new CampoCadastroModel("COMPRIMENTO ESCUDO ESCAPULAR", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoEscudoEscapular))),
+        new CampoCadastroModel("SEMICIRCUNFERÊNCIA ESCUDO ESCAPULAR", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.SemicircunferenciaEscudoEscapular))),
+        new CampoCadastroModel("COMPRIMENTO ESCUDO PÉLVICO", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoEscudoPelvico))),
+        new CampoCadastroModel("SEMICIRCUNFERÊNCIA ESCUDO PÉLVICO", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.SemicircunferenciaEscudoPelvico))),
+        new CampoCadastroModel("LARGURA NA 2ª CINTA", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.LarguraNaSegundaCinta))),
+        new CampoCadastroModel("NÚMERO DE CINTAS", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.NumeroDeCintas))),
+        new CampoCadastroModel("COMPRIMENTO MÃO SEM UNHA", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoMaoSemUnha))),
+        new CampoCadastroModel("COMPRIMENTO UNHA DA MÃO", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoUnhaDaMao))),
+        new CampoCadastroModel("COMPRIMENTO PÉ SEM UNHA", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoPeSemUnha))),
+        new CampoCadastroModel("COMPRIMENTO UNHA DO PÉ", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoUnhaDoPe))),
+        new CampoCadastroModel("COMPRIMENTO DO PÊNIS", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoDoPenis))),
+        new CampoCadastroModel("LARGURA BASE DO PÊNIS", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.LarguraBasePenis))),
+        new CampoCadastroModel("COMPRIMENTO DO CLITÓRIS", CriaEntryComTecladoNumerico(Tatu.Biometria, nameof(Tatu.Biometria.ComprimentoDoClitoris)))
     ];
 
     // ================================= AMOSTRAS ===============================================
     public ObservableCollection<CampoCadastroModel> AmostrasColunaZero { get; } =
     [
-        new CampoCadastroModel("SANGUE", new CheckBox()),
-        new CampoCadastroModel("FEZES", new CheckBox()),
-        new CampoCadastroModel("PELO", new CheckBox())
+        new CampoCadastroModel("SANGUE", CriaCheckBox(Tatu.Amostras, nameof(Tatu.Amostras.Sangue))),
+        new CampoCadastroModel("FEZES", CriaCheckBox(Tatu.Amostras, nameof(Tatu.Amostras.Fezes))),
+        new CampoCadastroModel("PELO", CriaCheckBox(Tatu.Amostras, nameof(Tatu.Amostras.Pelo)))
     ];
 
     public ObservableCollection<CampoCadastroModel> AmostrasColunaUm { get; } =
     [
-        new CampoCadastroModel("ECTOPARASITOS", new CheckBox()),
-        new CampoCadastroModel("SWAB", new CheckBox()),
-        new CampoCadastroModel("LOCAL", new CheckBox())
+        new CampoCadastroModel("ECTOPARASITOS", CriaCheckBox(Tatu.Amostras, nameof(Tatu.Amostras.Ectoparasitos))),
+        new CampoCadastroModel("SWAB", CriaCheckBox(Tatu.Amostras, nameof(Tatu.Amostras.Swab))),
+        new CampoCadastroModel("LOCAL", CriaCheckBox(Tatu.Amostras, nameof(Tatu.Amostras.Local)))
     ];
 
-    public CampoCadastroModel Outros { get; } = new("OUTROS", CriaEntryComTecladoNormal());
+    public CampoCadastroModel Outros { get; } = new("OUTROS", CriaEntryComTecladoNormal(Tatu.Amostras, nameof(Tatu.Amostras.Outros)));
 
     // ================================= COMANDOS ===============================================
 
     [RelayCommand]
     async void CriaTatuCapturado()
     {   
-        TatuCapturadoModel tatu = new();
+        TatuCapturadoModel novoTatu = new();
 
-        //foreach (CampoCadastroModel campo in DadosGerais)
-        //{
-        //    if (campo.Valor == null || string.IsNullOrEmpty(campo.Valor.ToString()))
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("Campo obrigatório", $"O campo {campo.Nome} deve ser preenchido", "OK");
-        //        return;
-        //    }
-
-        //    switch (campo.Nome)
-        //    {
-        //        case "ID ANIMAL":
-        //            tatu.DadosGerais.IdAnimal = campo.Valor.ToString();
-        //            break;
-        //        case "N° IDENTIFICAÇÃO":
-        //            tatu.DadosGerais.NumeroIdentificacao = Convert.ToInt32(campo.Valor);
-        //            break;
-        //        case "LOCAL DE CAPTURA":
-        //            tatu.DadosGerais.LocalDeCaptura = campo.Valor.ToString();
-        //            break;
-        //        case "EQUIPE RESPONSÁVEL":
-        //            tatu.DadosGerais.EquipeResponsavel = campo.Valor.ToString();
-        //            break;
-        //        case "INSTITUIÇÃO":
-        //            tatu.DadosGerais.Instituicao = campo.Valor.ToString();
-        //            break;
-        //        case "PESO":
-        //            tatu.DadosGerais.Peso = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "N° MICROCHIP":
-        //            tatu.DadosGerais.NumeroMicrochip = Convert.ToInt32(campo.Valor);
-        //            break;
-        //        case "DATA DE CAPTURA":
-        //            tatu.DadosGerais.DataDeCaptura = Convert.ToDateTime(campo.Valor);
-        //            break;
-        //        case "HORÁRIO DE CAPTURA":
-        //            tatu.DadosGerais.HorarioDeCaptura = TimeSpan.Parse(campo.Valor.ToString());
-        //            break;
-        //        case "CONTATO DO RESPONSÁVEL":
-        //            tatu.DadosGerais.ContatoDoResponsavel = campo.Valor.ToString();
-        //            break;
-        //        case "OBSERVAÇÕES":
-        //            tatu.DadosGerais.Observacoes = campo.Valor.ToString();
-        //            break;
-        //    }
-        //}
-
-        //foreach (CampoCadastroModel campo in Biometria)
-        //{
-        //    if (campo.Valor == null || string.IsNullOrEmpty(campo.Valor.ToString()))
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("Campo obrigatório", $"O campo {campo.Nome} deve ser preenchido", "OK");
-        //        return;
-        //    }
-
-        //    switch (campo.Nome)
-        //    {
-        //        case "COMPRIMENTO TOTAL":
-        //            tatu.Biometria.ComprimentoTotal = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO DA CABEÇA":
-        //            tatu.Biometria.ComprimentoDaCabeca = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "LARGURA DA CABEÇA":
-        //            tatu.Biometria.LarguraDaCabeca = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "PADRÃO ESCUDO CEFÁLICO":
-        //            tatu.Biometria.PadraoEscudoCefalico = campo.Valor.ToString()!;
-        //            break;
-        //        case "COMPRIMENTO ESCUDO CEFÁLICO":
-        //            tatu.Biometria.ComprimentoEscudoCefalico = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "LARGURA ESCUDO CEFÁLICO":
-        //            tatu.Biometria.LarguraEscudoCefalico = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "LARGURA INTER-ORBITAL":
-        //            tatu.Biometria.LarguraInterOrbital = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO DA ORELHA":
-        //            tatu.Biometria.ComprimentoDaOrelha = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO DA CAUDA":
-        //            tatu.Biometria.ComprimentoDaCauda = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "LARGURA DA CAUDA":
-        //            tatu.Biometria.LarguraDaCauda = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO ESCUDO ESCAPULAR":
-        //            tatu.Biometria.ComprimentoEscudoEscapular = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "SEMICIRCUNFERÊNCIA ESCUDO ESCAPULAR":
-        //            tatu.Biometria.SemicircunferenciaEscudoEscapular = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO ESCUDO PÉLVICO":
-        //            tatu.Biometria.ComprimentoEscudoPelvico = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "SEMICIRCUNFERÊNCIA ESCUDO PÉLVICO":
-        //            tatu.Biometria.SemicircunferenciaEscudoPelvico = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "LARGURA NA 2ª CINTA":
-        //            tatu.Biometria.LarguraNaSegundaCinta = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "NÚMERO DE CINTAS":
-        //            tatu.Biometria.NumeroDeCintas = Convert.ToInt32(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO MÃO SEM UNHA":
-        //            tatu.Biometria.ComprimentoMaoSemUnha = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO UNHA DA MÃO":
-        //            tatu.Biometria.ComprimentoUnhaDaMao = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO PÉ SEM UNHA":
-        //            tatu.Biometria.ComprimentoPeSemUnha = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO UNHA DO PÉ":
-        //            tatu.Biometria.ComprimentoUnhaDoPe = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO DO PÊNIS":
-        //            tatu.Biometria.ComprimentoDoPenis = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "LARGURA BASE DO PÊNIS":
-        //            tatu.Biometria.LarguraBasePenis = Convert.ToDouble(campo.Valor);
-        //            break;
-        //        case "COMPRIMENTO DO CLITÓRIS":
-        //            tatu.Biometria.ComprimentoDoClitoris = Convert.ToDouble(campo.Valor);
-        //            break;
-        //    }
-        //}
-
-        foreach (CampoCadastroModel campo in AmostrasColunaZero)
-        {
-            if (campo.Valor == null)
-            {
-                campo.Valor = false; 
-            }
-
-            switch (campo.Nome)
-            {
-                case "SANGUE":
-                    tatu.Amostras.Sangue = Convert.ToBoolean(campo.Valor); 
-                    break;
-                case "FEZES":
-                    tatu.Amostras.Fezes = Convert.ToBoolean(campo.Valor);
-                    break;
-                case "PELO":
-                    tatu.Amostras.Pelo = Convert.ToBoolean(campo.Valor);
-                    break;
-            }
-        }
-
-        foreach (CampoCadastroModel campo in AmostrasColunaUm)
-        {
-            if (campo.Valor == null)
-            {
-                campo.Valor = false;
-            }
-
-            switch (campo.Nome)
-            {
-                case "ECTOPARASITOS":
-                    tatu.Amostras.Ectoparasitos = Convert.ToBoolean(campo.Valor);
-                    break;
-                case "SWAB":
-                    tatu.Amostras.Swab = Convert.ToBoolean(campo.Valor);
-                    break;
-                case "LOCAL":
-                    tatu.Amostras.Local = Convert.ToBoolean(campo.Valor);
-                    break;
-            }
-        }
-
-        if (Outros.Valor == null) 
-        {
-            tatu.Amostras.Outros = "";
-        }
-        else
-        {
-            tatu.Amostras.Outros = Outros.Valor.ToString();
-        }
+        // Implementar lógica de criação de um novo tatu a partir
+        // do tatu estático da classe. Após a criação e armazenamento
+        // no banco de dados, deve-se limpar todos os dados do tatu
+        // estático.
     }
 
     // ================================= MÉTODOS ===============================================
 
-    private static Entry CriaEntryComTecladoNormal()
+    private static Entry CriaEntryComTecladoNormal(object bindingContext, string caminhoDeBinding)
     {
-        return new Entry() { Keyboard = Keyboard.Default, ReturnType = ReturnType.Next };
+        Entry entry = new Entry
+        {
+            Keyboard = Keyboard.Default,
+            ReturnType = ReturnType.Next
+        };
+
+        entry.BindingContext = bindingContext;
+        entry.SetBinding(Entry.TextProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
+
+        return entry;
     }
 
-    private static Entry CriaEntryComTecladoNumerico()
+    private static Entry CriaEntryComTecladoNumerico(object bindingContext, string caminhoDeBinding)
     {
-        return new Entry() { Keyboard = Keyboard.Numeric, ReturnType = ReturnType.Next };
+        Entry entry = new Entry
+        {
+            Keyboard = Keyboard.Numeric,
+            ReturnType = ReturnType.Next
+        };
+
+        entry.BindingContext = bindingContext;
+        entry.SetBinding(Entry.TextProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
+
+        return entry;
     }
 
-    //public void Teste()
-    //{
-    //    Debug.WriteLine($"%&%&%&%&% {DadosGerais[8].Valor} %&%&%&%&%&  ");
-    //}
+    private static DatePicker CriaDatePicker (object bindingContext, string caminhoDeBinding)
+    {
+        DatePicker datePicker = new();
+        datePicker.BindingContext = bindingContext;
+        datePicker.SetBinding(DatePicker.DateProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
+        return datePicker;
+    }
+
+    private static TimePicker CriaTimePicker(object bindingContext, string caminhoDeBinding)
+    {
+        TimePicker timePicker = new();
+        timePicker.BindingContext = bindingContext;
+        timePicker.SetBinding(TimePicker.TimeProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
+        return timePicker;
+    }
+
+    private static CheckBox CriaCheckBox (object bindingContext, string caminhoDeBinding)
+    {
+        CheckBox checkBox = new();
+        checkBox.BindingContext = bindingContext;
+        checkBox.SetBinding(CheckBox.IsCheckedProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
+        return checkBox;
+    }
+
+    public static void Teste()
+    {
+        Debug.WriteLine($"%&%&%&%&% {Tatu.DadosGerais.IdAnimal} %&%&%&%&%&  ");
+        Debug.WriteLine($"%&%&%&%&% {Tatu.Biometria.ComprimentoDaCabeca} %&%&%&%&%&  ");
+        Debug.WriteLine($"%&%&%&%&% {Tatu.DadosGerais.HorarioDeCaptura} %&%&%&%&%&  ");
+        Debug.WriteLine($"%&%&%&%&% {Tatu.DadosGerais.DataDeCaptura} %&%&%&%&%&  ");
+        Debug.WriteLine($"%&%&%&%&% {Tatu.Amostras.Fezes} %&%&%&%&%&  ");
+        Debug.WriteLine($"%&%&%&%&% {Tatu.Amostras.Sangue} %&%&%&%&%&  ");
+        Debug.WriteLine($"%&%&%&%&% {Tatu.Amostras.Ectoparasitos} %&%&%&%&%&  ");
+    }
 }

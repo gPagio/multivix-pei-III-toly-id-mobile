@@ -106,6 +106,8 @@
 
             </Frame>
 
+            <Button Clicked="Button_Clicked"/>
+
             <!--BIOMETRIA-->
             <Frame HeightRequest="1570"
                    BorderColor="{StaticResource Primary}">

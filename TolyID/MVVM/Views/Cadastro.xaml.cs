@@ -4,17 +4,14 @@ namespace TolyID.MVVM.Views;
 
 public partial class Cadastro : ContentPage
 {
-    private CadastroViewModel viewModel = new();
-
 	public Cadastro()
 	{
 		InitializeComponent();
-        //BindingContext = new CadastroViewModel();
-        BindingContext = viewModel;
+        BindingContext = new CadastroViewModel();
     }
 
-    //private void Button_Clicked(object sender, EventArgs e)
-    //{
-    //    viewModel.Teste();
-    //}
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        CadastroViewModel.Teste();
+    }
 }

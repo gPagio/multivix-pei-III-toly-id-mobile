@@ -30,27 +30,27 @@ public class CampoCadastroModel : ObservableObject
     {
         Nome = nome;
         EntradaDeDado = entradaDeDado;
-        ConfigurarBinding();
+        //ConfigurarBinding();
     }
 
-    private void ConfigurarBinding()
-    {
-        if (EntradaDeDado is Entry entry)
-        {
-            entry.SetBinding(Entry.TextProperty, new Binding(nameof(Valor), source: this));
-        } 
-        else if (EntradaDeDado is DatePicker datePicker)
-        {
-            datePicker.SetBinding(DatePicker.DateProperty, new Binding(nameof(Valor), source: this));
-        } 
-        else if (EntradaDeDado is TimePicker timePicker)
-        {
-            timePicker.SetBinding(TimePicker.TimeProperty, new Binding(nameof(Valor), source: this));
-        }
-        else
-        {
-            CheckBox checkBox = (CheckBox)EntradaDeDado;
-            checkBox.SetBinding(CheckBox.IsCheckedProperty, new Binding(nameof(Valor), source: this));
-        }        
-    }
+    //private void ConfigurarBinding()
+    //{
+    //    if (EntradaDeDado is Entry entry)
+    //    {
+    //        entry.SetBinding(Entry.TextProperty, new Binding(nameof(Valor), source: this));
+    //    } 
+    //    else if (EntradaDeDado is DatePicker datePicker)
+    //    {
+    //        datePicker.SetBinding(DatePicker.DateProperty, new Binding(nameof(Valor), source: this));
+    //    } 
+    //    else if (EntradaDeDado is TimePicker timePicker)
+    //    {
+    //        timePicker.SetBinding(TimePicker.TimeProperty, new Binding(nameof(Valor), source: this));
+    //    }
+    //    else
+    //    {
+    //        CheckBox checkBox = (CheckBox)EntradaDeDado;
+    //        checkBox.SetBinding(CheckBox.IsCheckedProperty, new Binding(nameof(Valor), source: this));
+    //    }        
+    //}
 }
