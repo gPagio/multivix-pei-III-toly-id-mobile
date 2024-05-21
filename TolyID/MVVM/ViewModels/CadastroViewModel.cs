@@ -136,15 +136,4 @@ public partial class CadastroViewModel
         checkBox.SetBinding(CheckBox.IsCheckedProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
         return checkBox;
     }
-
-    public static void Teste()
-    {
-        Debug.WriteLine($"%&%&%&%&% {Tatu.DadosGerais.IdAnimal} %&%&%&%&%&  ");
-        Debug.WriteLine($"%&%&%&%&% {Tatu.Biometria.ComprimentoDaCabeca} %&%&%&%&%&  ");
-        Debug.WriteLine($"%&%&%&%&% {Tatu.DadosGerais.HorarioDeCaptura} %&%&%&%&%&  ");
-        Debug.WriteLine($"%&%&%&%&% {Tatu.DadosGerais.DataDeCaptura} %&%&%&%&%&  ");
-        Debug.WriteLine($"%&%&%&%&% {Tatu.Amostras.Fezes} %&%&%&%&%&  ");
-        Debug.WriteLine($"%&%&%&%&% {Tatu.Amostras.Sangue} %&%&%&%&%&  ");
-        Debug.WriteLine($"%&%&%&%&% {Tatu.Amostras.Ectoparasitos} %&%&%&%&%&  ");
-    }
 }
