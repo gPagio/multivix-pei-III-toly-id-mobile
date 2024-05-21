@@ -5,7 +5,7 @@ public class BiometriaModel
     public double ComprimentoTotal { get; set; }
     public double ComprimentoDaCabeca { get; set; }
     public double LarguraDaCabeca { get; set; }
-    public string PadraoEscudoCefalico { get; set; }
+    public string? PadraoEscudoCefalico { get; set; }
     public double ComprimentoEscudoCefalico { get; set; }
     public double LarguraEscudoCefalico { get; set; }
     public double LarguraInterOrbital { get; set; }

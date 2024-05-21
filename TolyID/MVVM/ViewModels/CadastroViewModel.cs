@@ -22,7 +22,7 @@ public partial class CadastroViewModel
         new CampoCadastroModel("DATA DE CAPTURA", CriaDatePicker(Tatu.DadosGerais, nameof(Tatu.DadosGerais.DataDeCaptura))),
         new CampoCadastroModel("HORÁRIO DE CAPTURA", CriaTimePicker(Tatu.DadosGerais, nameof(Tatu.DadosGerais.HorarioDeCaptura))),
         new CampoCadastroModel("CONTATO DO RESPONSÁVEL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.ContatoDoResponsavel))),
-        new CampoCadastroModel("OBSERVAÇÕES", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.Observacoes)))
+        new CampoCadastroModel("OBSERVAÇÕES", CriaEditor(Tatu.DadosGerais, nameof(Tatu.DadosGerais.Observacoes)))
     ];
 
     // ================================= BIOMETRIA ===============================================
@@ -68,12 +68,12 @@ public partial class CadastroViewModel
         new CampoCadastroModel("LOCAL", CriaCheckBox(Tatu.Amostras, nameof(Tatu.Amostras.Local)))
     ];
 
-    public CampoCadastroModel Outros { get; } = new("OUTROS", CriaEntryComTecladoNormal(Tatu.Amostras, nameof(Tatu.Amostras.Outros)));
+    public CampoCadastroModel Outros { get; } = new("OUTROS", CriaEditor(Tatu.Amostras, nameof(Tatu.Amostras.Outros)));
 
     // ================================= COMANDOS ===============================================
 
-    [RelayCommand]
-    async void CriaTatuCapturado()
+    [RelayCommand]  // Ligado ao botão "Finalizar"
+    void CriaTatuCapturado()
     {   
         TatuCapturadoModel novoTatu = new();
 
@@ -95,7 +95,6 @@ public partial class CadastroViewModel
 
         entry.BindingContext = bindingContext;
         entry.SetBinding(Entry.TextProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
-
         return entry;
     }
 
@@ -105,12 +104,20 @@ public partial class CadastroViewModel
         {
             Keyboard = Keyboard.Numeric,
             ReturnType = ReturnType.Next
+            
         };
 
         entry.BindingContext = bindingContext;
         entry.SetBinding(Entry.TextProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
-
         return entry;
+    }
+
+    private static Editor CriaEditor(object bindingContext, string caminhoDeBinding)
+    {
+        Editor editor = new();
+        editor.BindingContext = bindingContext;
+        editor.SetBinding(Editor.TextProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
+        return editor;
     }
 
     private static DatePicker CriaDatePicker (object bindingContext, string caminhoDeBinding)
@@ -136,4 +143,9 @@ public partial class CadastroViewModel
         checkBox.SetBinding(CheckBox.IsCheckedProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
         return checkBox;
     }
+
+    //public static void Teste()
+    //{
+    //    Debug.WriteLine($"%&%&%& {Tatu.DadosGerais.IdAnimal} %&%&&%&&%");
+    //}
 }

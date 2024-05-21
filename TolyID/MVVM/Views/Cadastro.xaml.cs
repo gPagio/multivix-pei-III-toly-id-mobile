@@ -9,4 +9,9 @@ public partial class Cadastro : ContentPage
 		InitializeComponent();
         BindingContext = new CadastroViewModel();
     }
+
+    //private void Button_Clicked(object sender, EventArgs e)
+    //{
+    //    CadastroViewModel.Teste();
+    //}
 }
