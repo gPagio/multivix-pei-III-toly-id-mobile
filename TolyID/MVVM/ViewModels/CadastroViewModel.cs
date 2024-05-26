@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using TolyID.MVVM.Models;
+using TolyID.Services;
 
 namespace TolyID.MVVM.ViewModels;
 
@@ -73,14 +74,9 @@ public partial class CadastroViewModel
     // ================================= COMANDOS ===============================================
 
     [RelayCommand]  // Ligado ao botão "Finalizar"
-    void CriaTatuCapturado()
-    {   
-        TatuCapturadoModel novoTatu = new();
-
-        // Implementar lógica de criação de um novo tatu a partir
-        // do tatu estático da classe. Após a criação e armazenamento
-        // no banco de dados, deve-se limpar todos os dados do tatu
-        // estático.
+    async Task CriaTatuCapturado()
+    {
+        await BancoDeDadosService.SalvaTatuAsync(Tatu);       
     }
 
     // ================================= MÉTODOS ===============================================

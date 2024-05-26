@@ -1,7 +1,11 @@
-﻿namespace TolyID.MVVM.Models;
+﻿using SQLite;
+
+namespace TolyID.MVVM.Models;
 
 public class BiometriaModel
 {
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
     public double ComprimentoTotal { get; set; }
     public double ComprimentoDaCabeca { get; set; }
     public double LarguraDaCabeca { get; set; }
