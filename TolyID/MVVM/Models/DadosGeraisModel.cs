@@ -2,6 +2,7 @@
 
 namespace TolyID.MVVM.Models;
 
+[Table("DadosGerais")]
 public class DadosGeraisModel
 {
     [PrimaryKey, AutoIncrement]

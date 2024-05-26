@@ -25,15 +25,15 @@ public static class BancoDeDadosService
     {
         await Init();
 
-        await _bancoDeDados.InsertAsync(tatu.DadosGerais);
-        await _bancoDeDados.InsertAsync(tatu.Biometria);
-        await _bancoDeDados.InsertAsync(tatu.Amostras);
         await _bancoDeDados.InsertAsync(tatu);
 
-        await _bancoDeDados.UpdateAsync(tatu.DadosGerais);
-        await _bancoDeDados.UpdateAsync(tatu.Biometria);
-        await _bancoDeDados.UpdateAsync(tatu.Amostras);
-        await _bancoDeDados.UpdateAsync(tatu);
+        //await _bancoDeDados.InsertAsync(tatu.DadosGerais);
+        //await _bancoDeDados.InsertAsync(tatu.Biometria);
+        //await _bancoDeDados.InsertAsync(tatu.Amostras);
+        //await _bancoDeDados.UpdateAsync(tatu.DadosGerais);
+        //await _bancoDeDados.UpdateAsync(tatu.Biometria);
+        //await _bancoDeDados.UpdateAsync(tatu.Amostras);
+        //await _bancoDeDados.UpdateAsync(tatu);
     }
 
     public static async Task DeletaTatuAsync(int id)

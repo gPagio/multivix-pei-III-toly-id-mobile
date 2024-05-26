@@ -2,6 +2,7 @@
 
 namespace TolyID.MVVM.Models;
 
+[Table("Amostras")]
 public class AmostrasModel
 {
     [PrimaryKey, AutoIncrement]

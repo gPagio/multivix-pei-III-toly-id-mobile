@@ -25,7 +25,9 @@
     <StackLayout>
 
         <CollectionView ItemsSource="{Binding Tatus}" ItemTemplate="{StaticResource TatusCapturadosTemplate}"/>
-        <Button Command="{Binding CarregaTatusCommand}"/>
+        <Button Text="Atualizar"
+                WidthRequest="200"
+                Command="{Binding CarregaTatusCommand}"/>
         
     </StackLayout>
     

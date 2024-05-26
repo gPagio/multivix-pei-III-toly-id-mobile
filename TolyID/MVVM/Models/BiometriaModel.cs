@@ -2,6 +2,7 @@
 
 namespace TolyID.MVVM.Models;
 
+[Table("Biometrias")]
 public class BiometriaModel
 {
     [PrimaryKey, AutoIncrement]
