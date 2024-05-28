@@ -5,6 +5,33 @@
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
              Title="Capturas">
+
+    <ContentPage.Resources>
+
+        <DataTemplate x:Key="TatusCapturadosTemplate">
+
+            <StackLayout HeightRequest="50">
+                <Label Text="{Binding Id}"/>
+                <Label Text="{Binding DadosGerais.DataDeCaptura}"/>
+            </StackLayout>
+            
+            
+        </DataTemplate>
+
+    </ContentPage.Resources>
+    
+    
+    
+    <StackLayout>
+
+        <CollectionView ItemsSource="{Binding Tatus}" ItemTemplate="{StaticResource TatusCapturadosTemplate}"/>
+        <Button Text="Atualizar"
+                WidthRequest="200"
+                Command="{Binding CarregaTatusCommand}"/>
+        
+    </StackLayout>
+    
+    
     
     
 </ContentPage>
