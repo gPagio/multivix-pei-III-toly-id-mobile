@@ -10,28 +10,22 @@
 
         <DataTemplate x:Key="TatusCapturadosTemplate">
 
-            <StackLayout HeightRequest="50">
+            <StackLayout HeightRequest="50" Padding="10">
                 <Label Text="{Binding Id}"/>
                 <Label Text="{Binding DadosGerais.DataDeCaptura}"/>
             </StackLayout>
-            
-            
+                     
         </DataTemplate>
 
     </ContentPage.Resources>
-    
-    
-    
+
     <StackLayout>
 
         <CollectionView ItemsSource="{Binding Tatus}" ItemTemplate="{StaticResource TatusCapturadosTemplate}"/>
         <Button Text="Atualizar"
                 WidthRequest="200"
                 Command="{Binding CarregaTatusCommand}"/>
-        
+
     </StackLayout>
-    
-    
-    
-    
+
 </ContentPage>

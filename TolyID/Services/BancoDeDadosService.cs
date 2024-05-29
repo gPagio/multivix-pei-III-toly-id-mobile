@@ -1,23 +1,25 @@
 ﻿using SQLite;
+using SQLiteNetExtensions.Extensions;
+using System.Diagnostics;
 using TolyID.MVVM.Models;
 
 namespace TolyID.Services;
 
 public static class BancoDeDadosService
 {
-    static SQLiteAsyncConnection _bancoDeDados;
+    static SQLiteConnection _bancoDeDados;
 
     static async Task Init()
     {
         if (_bancoDeDados != null) { return; }
-
+       
         var caminhoDoBanco = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "tatu.db3");
-        _bancoDeDados = new SQLiteAsyncConnection(caminhoDoBanco);
+        _bancoDeDados = new SQLiteConnection(caminhoDoBanco);
 
-        await _bancoDeDados.CreateTableAsync<DadosGeraisModel>();
-        await _bancoDeDados.CreateTableAsync<BiometriaModel>();
-        await _bancoDeDados.CreateTableAsync<AmostrasModel>();
-        await _bancoDeDados.CreateTableAsync<TatuCapturadoModel>();
+        _bancoDeDados.CreateTable<DadosGeraisModel>();
+        _bancoDeDados.CreateTable<BiometriaModel>();
+        _bancoDeDados.CreateTable<AmostrasModel>();
+        _bancoDeDados.CreateTable<TatuCapturadoModel>();
     }
 
     //CRUD
@@ -25,28 +27,42 @@ public static class BancoDeDadosService
     {
         await Init();
 
-        await _bancoDeDados.InsertAsync(tatu);
+        DadosGeraisModel dadosGerais = tatu.DadosGerais;
+        BiometriaModel biometria = tatu.Biometria;
+        AmostrasModel amostras = tatu.Amostras;
+        TatuCapturadoModel novoTatu = new();
 
-        //await _bancoDeDados.InsertAsync(tatu.DadosGerais);
-        //await _bancoDeDados.InsertAsync(tatu.Biometria);
-        //await _bancoDeDados.InsertAsync(tatu.Amostras);
-        //await _bancoDeDados.UpdateAsync(tatu.DadosGerais);
-        //await _bancoDeDados.UpdateAsync(tatu.Biometria);
-        //await _bancoDeDados.UpdateAsync(tatu.Amostras);
-        //await _bancoDeDados.UpdateAsync(tatu);
+        _bancoDeDados.Insert(dadosGerais);
+        _bancoDeDados.Insert(biometria);
+        _bancoDeDados.Insert(amostras);
+        _bancoDeDados.Insert(novoTatu);
+
+        novoTatu.DadosGerais = dadosGerais;
+        novoTatu.Biometria = biometria;
+        novoTatu.Amostras = amostras;
+
+        _bancoDeDados.UpdateWithChildren(novoTatu);
+
+        //_bancoDeDados.InsertWithChildren(tatu);
+        //_bancoDeDados.UpdateWithChildren(tatu);
     }
 
     public static async Task DeletaTatuAsync(int id)
     {
         await Init();
-        await _bancoDeDados.DeleteAsync<TatuCapturadoModel>(id);
+        _bancoDeDados.Delete<TatuCapturadoModel>(id);
     }
 
     public static async Task<IEnumerable<TatuCapturadoModel>> GetTatusAsync()
     {
         await Init();
-        var tatus = await _bancoDeDados.Table<TatuCapturadoModel>().ToListAsync();
-        return tatus;
-    }
+        var tatus = _bancoDeDados.Table<TatuCapturadoModel>().ToList();
 
+        foreach (var tatu in tatus)
+        {
+            _bancoDeDados.GetChildren(tatu);
+        }
+
+        return tatus;   
+    }
 }

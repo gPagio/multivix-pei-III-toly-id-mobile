@@ -19,7 +19,7 @@ public partial class CapturasViewModel : ObservableObject
         
         foreach (var tatu in tatus)
         {
-            Debug.WriteLine($"{tatu.Id} - {tatu.DadosGerais.DataDeCaptura} - {tatu.DadosGerais.Id}");
+            Debug.WriteLine($"{tatu.Id} - {tatu.DadosGerais.DataDeCaptura} - {tatu.DadosGerais.IdAnimal}");
             Tatus.Add(tatu);
         }
     }
