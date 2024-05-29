@@ -42,9 +42,6 @@ public static class BancoDeDadosService
         novoTatu.Amostras = amostras;
 
         _bancoDeDados.UpdateWithChildren(novoTatu);
-
-        //_bancoDeDados.InsertWithChildren(tatu);
-        //_bancoDeDados.UpdateWithChildren(tatu);
     }
 
     public static async Task DeletaTatuAsync(int id)
