@@ -2,9 +2,9 @@ using TolyID.MVVM.ViewModels;
 
 namespace TolyID.MVVM.Views;
 
-public partial class Cadastro : ContentPage
+public partial class CadastroCapturaView : ContentPage
 {
-	public Cadastro()
+	public CadastroCapturaView()
 	{
 		InitializeComponent();
         BindingContext = new CadastroViewModel();

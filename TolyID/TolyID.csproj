@@ -62,6 +62,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.40" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
@@ -75,10 +76,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MVVM\Views\Cadastro.xaml">
+	  <Compile Update="MVVM\Views\CadastroCapturaView.xaml.cs">
+	    <DependentUpon>CadastroCapturaView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MVVM\Views\CapturasView.xaml.cs">
+	    <DependentUpon>CapturasView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MVVM\Views\TatusCadastradosView.xaml.cs">
+	    <DependentUpon>TatusCadastradosView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="MVVM\Views\CadastroCapturaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\Capturas.xaml">
+	  <MauiXaml Update="MVVM\Views\CadastroTatuPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CapturasView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\TatusCadastradosView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\TatuView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -1,14 +1,16 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Attributes;
-using SQLiteNetExtensions;
 
 namespace TolyID.MVVM.Models;
 
-[Table("TatusCapturados")]
-public class TatuCapturadoModel
+[Table("Capturas")]
+public class CapturaModel
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
+
+    [ForeignKey(typeof(TatuModel))]
+    public int TatuId { get; set; } // CHAVE ESTRANGEIRA DO TATU
 
     [ForeignKey(typeof(DadosGeraisModel))]
     public int DadosGeraisId { get; set; }

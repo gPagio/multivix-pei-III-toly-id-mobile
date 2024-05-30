@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TolyID.MVVM.Views.TatusCadastradosView"
+             xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
+             Title="Tatus"
+             Shell.BackgroundColor="{StaticResource Primary}"
+             Shell.TitleColor="White"
+             BackgroundColor="White">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*, *">
+            <Label Text="Tatus" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+            <Button Grid.Column="1" ImageSource="icone_tela_cadastro.png" HorizontalOptions="End" Clicked="AdicionarTatu_Clicked"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
+
+        <DataTemplate x:Key="ListaDeTatusTemplate">
+            <Frame Margin="0, 10, 0, 10" HeightRequest="150" BorderColor="{StaticResource Primary}" InputTransparent="True">
+                <Grid RowDefinitions="*, *" ColumnDefinitions="4*, 6*"
+                      RowSpacing="10" ColumnSpacing="10">
+                    <Frame Grid.RowSpan="2" BorderColor="{StaticResource Primary}">
+                        <Image Source="icone_tatu.png" Scale="1"/>
+                    </Frame>
+                    <Label Text="{Binding IdentificacaoAnimal, StringFormat='ID: {0}'}" 
+                           TextColor="{StaticResource Primary}"
+                           FontAttributes="Bold"
+                           Grid.Column="1" 
+                           FontSize="20" 
+                           VerticalOptions="Center"/>
+                    <Label Text="{Binding NumeroMicrochip, StringFormat='CHIP: {0}'}"
+                           TextColor="{StaticResource Primary}"
+                           FontAttributes="Bold"
+                           Grid.Column="1" 
+                           Grid.Row="1" 
+                           FontSize="20" 
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+              
+    </ContentPage.Resources>
+
+    <ScrollView Padding="15">
+        <CollectionView ItemsSource="{Binding Tatus}" 
+                        ItemTemplate="{StaticResource ListaDeTatusTemplate}"
+                        SelectionMode="Single"
+                        SelectionChanged="Tatus_SelectionChanged"/>
+    </ScrollView>
+    
+</ContentPage>

@@ -9,19 +9,19 @@ namespace TolyID.MVVM.ViewModels;
 
 public partial class CapturasViewModel : ObservableObject
 {
-    public ObservableCollection<TatuCapturadoModel> Tatus { get; } = new();
+    public ObservableCollection<CapturaModel> Tatus { get; } = new();
 
     [RelayCommand]
     public async Task CarregaTatus()
     {
-        var tatus = await BancoDeDadosService.GetTatusAsync();
-        Tatus.Clear();
-        
-        foreach (var tatu in tatus)
-        {
-            Debug.WriteLine($"{tatu.Id} - {tatu.DadosGerais.DataDeCaptura} - {tatu.DadosGerais.IdAnimal}");
-            Tatus.Add(tatu);
-        }
+        //var tatus = await BancoDeDadosService.GetTatusAsync();
+        //Tatus.Clear();
+
+        //foreach (var tatu in tatus)
+        //{
+        //    Debug.WriteLine($"{tatu.Id} - {tatu.DadosGerais.DataDeCaptura}");
+        //    Tatus.Add(tatu);
+        //}
     }
 
 }

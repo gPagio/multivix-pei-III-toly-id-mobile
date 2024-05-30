@@ -8,18 +8,18 @@ namespace TolyID.MVVM.ViewModels;
 
 public partial class CadastroViewModel
 {
-    public static TatuCapturadoModel Tatu { get; set; } = new();
+    public static CapturaModel Tatu { get; set; } = new();
     
     // ================================= DADOS GERAIS ===============================================
     public ObservableCollection<CampoCadastroModel> DadosGerais { get; } =
     [
-        new CampoCadastroModel("ID ANIMAL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.IdAnimal))),
+        //new CampoCadastroModel("ID ANIMAL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.IdAnimal))),
         new CampoCadastroModel("Nº IDENTIFICAÇÃO", CriaEntryComTecladoNumerico(Tatu.DadosGerais, nameof(Tatu.DadosGerais.NumeroIdentificacao))),
         new CampoCadastroModel("LOCAL DE CAPTURA", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.LocalDeCaptura))),
         new CampoCadastroModel("EQUIPE RESPONSÁVEL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.EquipeResponsavel))),
         new CampoCadastroModel("INSTITUIÇÃO", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.Instituicao))),
         new CampoCadastroModel("PESO", CriaEntryComTecladoNumerico(Tatu.DadosGerais, nameof(Tatu.DadosGerais.Peso))),
-        new CampoCadastroModel("N° MICROCHIP", CriaEntryComTecladoNumerico(Tatu.DadosGerais, nameof(Tatu.DadosGerais.NumeroMicrochip))),
+        //new CampoCadastroModel("N° MICROCHIP", CriaEntryComTecladoNumerico(Tatu.DadosGerais, nameof(Tatu.DadosGerais.NumeroMicrochip))),
         new CampoCadastroModel("DATA DE CAPTURA", CriaDatePicker(Tatu.DadosGerais, nameof(Tatu.DadosGerais.DataDeCaptura))),
         new CampoCadastroModel("HORÁRIO DE CAPTURA", CriaTimePicker(Tatu.DadosGerais, nameof(Tatu.DadosGerais.HorarioDeCaptura))),
         new CampoCadastroModel("CONTATO DO RESPONSÁVEL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.ContatoDoResponsavel))),
@@ -76,7 +76,7 @@ public partial class CadastroViewModel
     [RelayCommand]  // Ligado ao botão "Finalizar"
     async Task CriaTatuCapturado()
     {
-        await BancoDeDadosService.SalvaTatuAsync(Tatu);       
+        //await BancoDeDadosService.SalvaTatuAsync(Tatu);       
     }
 
     // ================================= MÉTODOS ===============================================

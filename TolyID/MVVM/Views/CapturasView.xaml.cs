@@ -2,11 +2,11 @@ using TolyID.MVVM.ViewModels;
 
 namespace TolyID.MVVM.Views;
 
-public partial class Capturas : ContentPage
+public partial class CapturasView : ContentPage
 {
     CapturasViewModel viewModel = new();
     
-	public Capturas()
+	public CapturasView()
 	{
 		InitializeComponent();
         BindingContext = viewModel;

@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Extensions;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using TolyID.MVVM.Models;
 
 namespace TolyID.Services;
@@ -16,50 +17,54 @@ public static class BancoDeDadosService
         var caminhoDoBanco = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "tatu.db3");
         _bancoDeDados = new SQLiteConnection(caminhoDoBanco);
 
+        _bancoDeDados.CreateTable<TatuModel>();
+        _bancoDeDados.CreateTable<CapturaModel>();
         _bancoDeDados.CreateTable<DadosGeraisModel>();
         _bancoDeDados.CreateTable<BiometriaModel>();
         _bancoDeDados.CreateTable<AmostrasModel>();
-        _bancoDeDados.CreateTable<TatuCapturadoModel>();
     }
 
-    //CRUD
-    public static async Task SalvaTatuAsync(TatuCapturadoModel tatu)
+    // ========================  CRUD TATUS ======================== 
+
+    public static async Task SalvaTatuAsync(TatuModel tatu)
     {
         await Init();
 
-        DadosGeraisModel dadosGerais = tatu.DadosGerais;
-        BiometriaModel biometria = tatu.Biometria;
-        AmostrasModel amostras = tatu.Amostras;
-        TatuCapturadoModel novoTatu = new();
+        _bancoDeDados.Insert(tatu);
+    }
 
-        _bancoDeDados.Insert(dadosGerais);
-        _bancoDeDados.Insert(biometria);
-        _bancoDeDados.Insert(amostras);
-        _bancoDeDados.Insert(novoTatu);
+    public static async Task<IEnumerable<TatuModel>> GetTatusAsync()
+    {
+        await Init();
+        var tatus = _bancoDeDados.Table<TatuModel>().ToList();
 
-        novoTatu.DadosGerais = dadosGerais;
-        novoTatu.Biometria = biometria;
-        novoTatu.Amostras = amostras;
+        //foreach (var tatu in tatus)
+        //{
+        //    _bancoDeDados.GetChildren(tatu);
+        //}
 
-        _bancoDeDados.UpdateWithChildren(novoTatu);
+        return tatus;
     }
 
     public static async Task DeletaTatuAsync(int id)
     {
         await Init();
-        _bancoDeDados.Delete<TatuCapturadoModel>(id);
+        _bancoDeDados.Delete<CapturaModel>(id);
     }
 
-    public static async Task<IEnumerable<TatuCapturadoModel>> GetTatusAsync()
-    {
-        await Init();
-        var tatus = _bancoDeDados.Table<TatuCapturadoModel>().ToList();
+    // ======================== CRUD CAPTURAS ======================== 
 
-        foreach (var tatu in tatus)
-        {
-            _bancoDeDados.GetChildren(tatu);
-        }
+    //public static async Task<IEnumerable<CapturaModel>> GetCapturasAsync(TatuModel tatu)
+    //{
+    //    //await Init();
+    //    ////var capturas = _bancoDeDados.Table<CapturaModel>().ToList();
+    //    //var capturas = _bancoDeDados.GetWithChildren<TatuModel>(tatu.Id);
 
-        return tatus;   
-    }
+    //    ////foreach (var captura in capturas)
+    //    ////{
+    //    ////    _bancoDeDados.GetChildren(captura);
+    //    ////}
+
+    //    //return capturas;
+    //}
 }

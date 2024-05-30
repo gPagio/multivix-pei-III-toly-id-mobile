@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TolyID.MVVM.Views.TatuView"
+             Title="{Binding IdentificacaoAnimal}"           
+             Shell.BackgroundColor="{StaticResource Primary}"
+             Shell.TitleColor="White"
+             BackgroundColor="White">
+
+
+    <ScrollView Padding="10">
+        <StackLayout>
+            <Frame Style="{StaticResource FrameTitulo}" >
+                <Label Text="CAPTURAS" Style="{StaticResource LabelTitulo}"/>
+            </Frame>
+
+            <CollectionView/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
