@@ -7,16 +7,23 @@ namespace TolyID.MVVM.ViewModels;
 
 public partial class TatuViewModel : ObservableObject
 {
-    public ObservableCollection<CapturaModel> Capturas { get; } = new();
-
-    public async Task BuscaCapturasNoBanco()
+    private TatuModel _tatu;
+    public TatuModel Tatu
     {
-        var capturas = await BancoDeDadosService.GetCapturasAsync();
-        Capturas.Clear();
+        get => _tatu;
+        set => SetProperty(ref _tatu, value);
+    }
 
-        foreach (var captura in capturas)
-        {
-            Capturas.Add(captura);
-        }
+    public ObservableCollection<CapturaModel> Capturas { get; set; } = new();
+
+    public TatuViewModel(TatuModel tatu)
+    {
+        Tatu = tatu;
+        AtualizaCapturas(tatu);
+    }
+
+    private void AtualizaCapturas(TatuModel tatu)
+    {
+        Capturas = new ObservableCollection<CapturaModel>(tatu.Capturas);
     }
 }

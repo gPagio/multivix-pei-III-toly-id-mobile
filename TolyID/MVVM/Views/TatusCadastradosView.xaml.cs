@@ -1,5 +1,4 @@
 using CommunityToolkit.Maui.Views;
-using Java.Lang;
 using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.ViewModels;

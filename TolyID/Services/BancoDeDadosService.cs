@@ -29,19 +29,13 @@ public static class BancoDeDadosService
     public static async Task SalvaTatuAsync(TatuModel tatu)
     {
         await Init();
-
         _bancoDeDados.Insert(tatu);
     }
 
     public static async Task<IEnumerable<TatuModel>> GetTatusAsync()
     {
         await Init();
-        var tatus = _bancoDeDados.Table<TatuModel>().ToList();
-
-        //foreach (var tatu in tatus)
-        //{
-        //    _bancoDeDados.GetChildren(tatu);
-        //}
+        var tatus = _bancoDeDados.GetAllWithChildren<TatuModel>().ToList();
 
         return tatus;
     }
@@ -53,18 +47,17 @@ public static class BancoDeDadosService
     }
 
     // ======================== CRUD CAPTURAS ======================== 
+    public static async Task SalvaCapturaAsync(CapturaModel captura)
+    {
+        await Init();
 
-    //public static async Task<IEnumerable<CapturaModel>> GetCapturasAsync(TatuModel tatu)
-    //{
-    //    //await Init();
-    //    ////var capturas = _bancoDeDados.Table<CapturaModel>().ToList();
-    //    //var capturas = _bancoDeDados.GetWithChildren<TatuModel>(tatu.Id);
+    }
 
-    //    ////foreach (var captura in capturas)
-    //    ////{
-    //    ////    _bancoDeDados.GetChildren(captura);
-    //    ////}
+    public static async Task<IEnumerable<CapturaModel>> GetCapturasAsync(TatuModel tatu)
+    {
+        await Init();
+        var capturas = _bancoDeDados.GetAllWithChildren<CapturaModel>().ToList();
 
-    //    //return capturas;
-    //}
+        return capturas;
+    }
 }
