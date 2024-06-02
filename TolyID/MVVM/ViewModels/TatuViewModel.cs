@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.Services;
 
@@ -22,8 +23,14 @@ public partial class TatuViewModel : ObservableObject
         AtualizaCapturas(tatu);
     }
 
-    private void AtualizaCapturas(TatuModel tatu)
+    public async Task AtualizaCapturas(TatuModel tatu)
     {
-        Capturas = new ObservableCollection<CapturaModel>(tatu.Capturas);
+        Capturas.Clear();
+        var tatuBanco = await BancoDeDadosService.GetTatuAsync(tatu.Id);
+
+        foreach (CapturaModel captura in tatuBanco.Capturas)
+        {
+            Capturas.Add(captura);
+        }
     }
 }

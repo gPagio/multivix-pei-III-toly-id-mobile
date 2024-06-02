@@ -20,17 +20,17 @@
 
         <Label Text="IDENTIFICAÇÃO DO ANIMAL" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
         <Frame CornerRadius="20" BorderColor="{StaticResource Primary}" Padding="15, 0, 15, 0">
-            <Entry x:Name="IdEntry" Text="{Binding Tatu.IdentificacaoAnimal}"/>
+            <Entry x:Name="IdEntry" Text="{Binding Tatu.IdentificacaoAnimal}" TextColor="Black"/>
         </Frame>
 
         <Label Text="NÚMERO DO MICROCHIP" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
         <Frame CornerRadius="20" BorderColor="{StaticResource Primary}" Padding="15, 0, 15, 0">
-            <Entry x:Name="MicrochipEntry" Keyboard="Numeric" Text="{Binding Tatu.NumeroMicrochip}"/>
+            <Entry x:Name="MicrochipEntry" Keyboard="Numeric" Text="{Binding Tatu.NumeroMicrochip}" TextColor="Black"/>
         </Frame>
 
         <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Padding="10">
-            <Button CornerRadius="20" Text="Adicionar" Clicked="Adicionar_Clicked"/>
-            <Button CornerRadius="20" Grid.Column="1" Text="Cancelar" Clicked="Cancelar_Clicked"/>
+            <Button CornerRadius="20" Text="Adicionar" TextColor="White" Clicked="Adicionar_Clicked" BackgroundColor="{StaticResource Primary}"/>
+            <Button CornerRadius="20" Grid.Column="1" Text="Cancelar" TextColor="White" Clicked="Cancelar_Clicked" BackgroundColor="{StaticResource Primary}"/>
         </Grid>
 
     </VerticalStackLayout>

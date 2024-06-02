@@ -11,7 +11,7 @@
     <Shell.TitleView>
         <Grid ColumnDefinitions="*, *">
             <Label Text="Tatus" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
-            <Button Grid.Column="1" ImageSource="icone_tela_cadastro.png" HorizontalOptions="End" Clicked="AdicionarTatu_Clicked"/>
+            <Button Grid.Column="1" ImageSource="icone_mais_branco.png" HorizontalOptions="End" Clicked="AdicionarTatu_Clicked" BackgroundColor="Transparent"/>
         </Grid>
     </Shell.TitleView>
 

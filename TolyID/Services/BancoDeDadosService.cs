@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Extensions;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using TolyID.MVVM.Models;
@@ -20,6 +21,8 @@ public static class BancoDeDadosService
         _bancoDeDados.CreateTable<TatuModel>();
         _bancoDeDados.CreateTable<CapturaModel>();
         _bancoDeDados.CreateTable<DadosGeraisModel>();
+        _bancoDeDados.CreateTable<FichaAnestesicaModel>();
+        _bancoDeDados.CreateTable<ParametroFisiologicoModel>();
         _bancoDeDados.CreateTable<BiometriaModel>();
         _bancoDeDados.CreateTable<AmostrasModel>();
     }
@@ -40,6 +43,24 @@ public static class BancoDeDadosService
         return tatus;
     }
 
+    public static async Task<TatuModel> GetTatuAsync(int tatuId)
+    {
+        await Init();
+        var tatu = _bancoDeDados.GetWithChildren<TatuModel>(tatuId);
+
+        foreach(var captura in tatu.Capturas)
+        {
+            _bancoDeDados.GetChildren(captura);
+            _bancoDeDados.GetChildren(captura.DadosGerais);
+            _bancoDeDados.GetChildren(captura.Biometria);
+            _bancoDeDados.GetChildren(captura.Amostras);
+            _bancoDeDados.GetChildren(captura.FichaAnestesica);
+            _bancoDeDados.GetChildren(captura.FichaAnestesica.ParametrosFisiologicos);
+        }
+
+        return tatu;
+    }
+
     public static async Task DeletaTatuAsync(int id)
     {
         await Init();
@@ -47,17 +68,22 @@ public static class BancoDeDadosService
     }
 
     // ======================== CRUD CAPTURAS ======================== 
-    public static async Task SalvaCapturaAsync(CapturaModel captura)
+    public static async Task SalvaCapturaAsync(CapturaModel novaCaptura, TatuModel tatu)
     {
         await Init();
+        _bancoDeDados.InsertWithChildren(novaCaptura);
+        _bancoDeDados.InsertWithChildren(novaCaptura.FichaAnestesica);
+        _bancoDeDados.InsertAllWithChildren(novaCaptura.FichaAnestesica.ParametrosFisiologicos);
 
-    }
+        if (tatu.Capturas == null) 
+        {
+            tatu.Capturas = new List<CapturaModel>();
+        }
 
-    public static async Task<IEnumerable<CapturaModel>> GetCapturasAsync(TatuModel tatu)
-    {
-        await Init();
-        var capturas = _bancoDeDados.GetAllWithChildren<CapturaModel>().ToList();
+        tatu.Capturas.Add(novaCaptura);
 
-        return capturas;
+        //Debug.WriteLine($"%&%%&%&&%&% {novaCaptura.FichaAnestesica.ParametrosFisiologicos[0].FichaAnestesicaId} ¨*¨**¨*¨*%&%&%&%&");
+
+        _bancoDeDados.UpdateWithChildren(tatu);
     }
 }

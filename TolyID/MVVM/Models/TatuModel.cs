@@ -13,5 +13,5 @@ public class TatuModel : ObservableObject
     public int NumeroMicrochip { get; set; }
 
     [OneToMany(CascadeOperations = CascadeOperation.All)]
-    public List<CapturaModel> Capturas { get; set; } = new();
+    public List<CapturaModel> Capturas { get; set; }
 }

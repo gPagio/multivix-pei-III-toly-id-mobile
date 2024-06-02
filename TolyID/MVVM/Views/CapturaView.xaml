@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TolyID.MVVM.Views.CapturaView"
+             Title="{Binding Captura.Id, StringFormat='Captura n° {0}'}"           
+             Shell.BackgroundColor="{StaticResource Primary}"
+             Shell.TitleColor="White"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="TemplateInformacoes">
+            <Frame Padding="9" Margin="0, 0, 0, 10" BorderColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Label Text="{Binding Key}" 
+                           TextColor="{StaticResource Primary}" 
+                           FontAttributes="Bold" 
+                           FontSize="15"/>
+                    <Label Text="{Binding Value}"
+                           TextColor="Black"
+                           FontSize="18"
+                           HorizontalTextAlignment="Start" />
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateParametrosFisiologicos">
+
+            <Frame BorderColor="{StaticResource Primary}">
+                
+            </Frame>
+            
+            
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ScrollView Padding="10">
+        <StackLayout Spacing="10">
+
+            <Frame BorderColor="{StaticResource Primary}">
+                <StackLayout Spacing="10">
+                    <Frame Style="{StaticResource FrameTitulo}">
+                        <Label Text="Dados Gerais" Style="{StaticResource LabelTitulo}"/>
+                    </Frame>
+                    <CollectionView ItemsSource="{Binding DadosGerais}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame BorderColor="{StaticResource Primary}">
+                <StackLayout Spacing="10">
+                    <Frame Style="{StaticResource FrameTitulo}">
+                        <Label Text="Ficha Anestésica" Style="{StaticResource LabelTitulo}"/>
+                    </Frame>
+                    <CollectionView ItemsSource="{Binding FichaAnestesica}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+                    <CollectionView ItemsSource="{Binding ParametrosFisiologicos}" ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame BorderColor="{StaticResource Primary}">
+                <StackLayout Spacing="10">
+                    <Frame Style="{StaticResource FrameTitulo}">
+                        <Label Text="Biometria" Style="{StaticResource LabelTitulo}"/>
+                    </Frame>
+                    <CollectionView ItemsSource="{Binding Biometria}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame BorderColor="{StaticResource Primary}">
+                <StackLayout Spacing="10">
+                    <Frame Style="{StaticResource FrameTitulo}">
+                        <Label Text="Amostras" Style="{StaticResource LabelTitulo}"/>
+                    </Frame>
+                    <CollectionView ItemsSource="{Binding Amostras}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

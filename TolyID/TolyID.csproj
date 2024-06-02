@@ -79,9 +79,6 @@
 	  <Compile Update="MVVM\Views\CadastroCapturaView.xaml.cs">
 	    <DependentUpon>CadastroCapturaView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="MVVM\Views\CapturasView.xaml.cs">
-	    <DependentUpon>CapturasView.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="MVVM\Views\TatusCadastradosView.xaml.cs">
 	    <DependentUpon>TatusCadastradosView.xaml</DependentUpon>
 	  </Compile>
@@ -94,7 +91,7 @@
 	  <MauiXaml Update="MVVM\Views\CadastroTatuPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\CapturasView.xaml">
+	  <MauiXaml Update="MVVM\Views\CapturaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\TatusCadastradosView.xaml">
