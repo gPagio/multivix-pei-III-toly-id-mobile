@@ -7,18 +7,9 @@
     Shell.FlyoutBehavior="Disabled"
     Title="TolyID">
 
-    <TabBar Shell.TabBarUnselectedColor="White">
-
-        <ShellContent
-            Title="Cadastro"
-            Icon="icone_tela_cadastro.png"
-            ContentTemplate="{DataTemplate views:Cadastro}"/>
-
-        <ShellContent
-            Title="Capturas"
-            Icon="icone_tela_capturas.png"
-            ContentTemplate="{DataTemplate views:Capturas}"/>   
-
-    </TabBar>
+    <ShellContent
+        Title="Cadastro"
+        Icon="icone_tela_cadastro.png"
+        ContentTemplate="{DataTemplate views:TatusCadastradosView}"/>
 
 </Shell>

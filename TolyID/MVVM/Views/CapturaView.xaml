@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TolyID.MVVM.Views.CapturaView"
+             Title="{Binding Captura.Id, StringFormat='Captura n° {0}'}"           
+             Shell.BackgroundColor="{StaticResource Primary}"
+             Shell.TitleColor="White"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="TemplateInformacoes">
+            <Frame Padding="10, 2, 10, 2" Margin="0, 0, 0, 10" BorderColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Key, StringFormat='{0}:'}" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
+                                <Span Text="{Binding Value, StringFormat=' &#x0a;{0}'}" FontSize="20"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateParametrosFisiologicos">
+            <Grid RowDefinitions="*, *" ColumnDefinitions="35*, 65*"
+                  Margin="10" 
+                  RowSpacing="10" 
+                  ColumnSpacing="10">
+
+                <Frame BorderColor="{StaticResource Primary}">
+                    <Label Text="{Binding Fc, StringFormat='FC: {0}'}" FontSize="20"/>
+                </Frame>
+
+                <Frame BorderColor="{StaticResource Primary}" Grid.Row="1">
+                    <Label Text="{Binding Fr, StringFormat='FR: {0}'}" FontSize="20"/>
+                </Frame>
+
+                <Frame BorderColor="{StaticResource Primary}" Grid.Column="1">
+                    <Label Text="{Binding Oximetria, StringFormat='Oximetria: {0}'}" FontSize="20"/>
+                </Frame>
+
+                <Frame BorderColor="{StaticResource Primary}" Grid.Row="1" Grid.Column="1">
+                    <Label Text="{Binding Temperatura, StringFormat='Temperatura: {0}'}" FontSize="20"/>
+                </Frame>
+                
+            </Grid>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ScrollView Padding="10">
+        <Grid Padding="10" RowSpacing="5" RowDefinitions="*, *, *, *">
+            
+            <StackLayout Spacing="10">
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Dados Gerais" Style="{StaticResource LabelTitulo}"/>
+                </Frame>
+                <CollectionView ItemsSource="{Binding DadosGerais}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+            </StackLayout>
+            
+            <StackLayout Spacing="10" Grid.Row="1">
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Ficha Anestésica" Style="{StaticResource LabelTitulo}"/>
+                </Frame>
+                <CollectionView ItemsSource="{Binding FichaAnestesica}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+
+                <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Bold"
+                       FontSize="16"
+                       TextColor="{StaticResource Primary}"/>
+
+                <CollectionView ItemsSource="{Binding ParametrosFisiologicos}" ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>
+            </StackLayout>
+
+            <StackLayout Spacing="10" Grid.Row="2">
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Biometria" Style="{StaticResource LabelTitulo}"/>
+                </Frame>
+                <CollectionView ItemsSource="{Binding Biometria}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+            </StackLayout>
+
+            <StackLayout Spacing="10" Grid.Row="3">
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Amostras" Style="{StaticResource LabelTitulo}"/>
+                </Frame>
+                <CollectionView ItemsSource="{Binding Amostras}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+            </StackLayout>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>
