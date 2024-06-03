@@ -78,7 +78,7 @@ public static class BancoDeDadosService
             {
                 // Inserir a FichaAnestesica antes para garantir que temos um ID para os parâmetros
                 _bancoDeDados.Insert(ficha);
-                Console.WriteLine($"FichaAnestesica inserida com ID: {ficha.Id}");
+                Debug.WriteLine($"FichaAnestesica inserida com ID: {ficha.Id}");
 
                 foreach (var parametro in ficha.ParametrosFisiologicos)
                 {
@@ -93,7 +93,7 @@ public static class BancoDeDadosService
                     }
                     else
                     {
-                        Console.WriteLine($"Parâmetro fisiológico inserido: {parametro.Id}");
+                        Debug.WriteLine($"Parâmetro fisiológico inserido: {parametro.Id}");
                     }
                 }
 
@@ -105,18 +105,18 @@ public static class BancoDeDadosService
                 }
                 else
                 {
-                    Console.WriteLine("Todos os parâmetros fisiológicos foram inseridos corretamente.");
+                    Debug.WriteLine("Todos os parâmetros fisiológicos foram inseridos corretamente.");
                 }
             }
             else
             {
-                Console.WriteLine("Nenhum parâmetro fisiológico para inserir.");
+                Debug.WriteLine("Nenhum parâmetro fisiológico para inserir.");
             }
 
             // Inserir a Captura com a ficha e outros modelos associados
             novaCaptura.FichaAnestesicaId = ficha.Id;
             _bancoDeDados.InsertWithChildren(novaCaptura, true);
-            Console.WriteLine($"Captura inserida com ID: {novaCaptura.Id}");
+            Debug.WriteLine($"Captura inserida com ID: {novaCaptura.Id}");
 
             // Atualizar o Tatu com a nova Captura
             if (tatu.Capturas == null)
@@ -125,7 +125,7 @@ public static class BancoDeDadosService
             }
             tatu.Capturas.Add(novaCaptura);
             _bancoDeDados.UpdateWithChildren(tatu);
-            Console.WriteLine($"Tatu atualizado com a nova captura ID: {novaCaptura.Id}");
+            Debug.WriteLine($"Tatu atualizado com a nova captura ID: {novaCaptura.Id}");
 
             // Verificar se a captura foi adicionada corretamente ao Tatu
             var tatuVerificado = _bancoDeDados.GetWithChildren<TatuModel>(tatu.Id, true);
@@ -135,13 +135,13 @@ public static class BancoDeDadosService
             }
             else
             {
-                Console.WriteLine("Tatu atualizado corretamente com a nova captura.");
+                Debug.WriteLine("Tatu atualizado corretamente com a nova captura.");
             }
         }
         catch (Exception ex)
         {
             // Adicionar log ou mensagem de erro detalhada
-            Console.WriteLine($"Erro ao salvar a captura: {ex.Message}");
+            Debug.WriteLine($"Erro ao salvar a captura: {ex.Message}");
             throw;
         }
 

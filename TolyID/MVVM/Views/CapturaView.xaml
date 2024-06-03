@@ -9,37 +9,40 @@
 
     <ContentPage.Resources>
         <DataTemplate x:Key="TemplateInformacoes">
-            <Frame Padding="9" Margin="0, 0, 0, 10" BorderColor="{StaticResource Primary}">
+            <Frame Padding="10, 2, 10, 2" Margin="0, 0, 0, 10" BorderColor="{StaticResource Primary}">
                 <StackLayout>
-                    <Label Text="{Binding Key}" 
-                           TextColor="{StaticResource Primary}" 
-                           FontAttributes="Bold" 
-                           FontSize="15"/>
-                    <Label Text="{Binding Value}"
-                           TextColor="Black"
-                           FontSize="18"
-                           HorizontalTextAlignment="Start" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Key, StringFormat='{0}:'}" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
+                                <Span Text="{Binding Value, StringFormat=' &#x0a;{0}'}" FontSize="20"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </StackLayout>
             </Frame>
         </DataTemplate>
 
         <DataTemplate x:Key="TemplateParametrosFisiologicos">
-            <Grid RowDefinitions="*, *" ColumnDefinitions="*, *" Margin="10" RowSpacing="10" ColumnSpacing="10">
+            <Grid RowDefinitions="*, *" ColumnDefinitions="35*, 65*"
+                  Margin="10" 
+                  RowSpacing="10" 
+                  ColumnSpacing="10">
 
                 <Frame BorderColor="{StaticResource Primary}">
-                    <Label Text="{Binding Fc}"/>
+                    <Label Text="{Binding Fc, StringFormat='FC: {0}'}" FontSize="20"/>
                 </Frame>
 
                 <Frame BorderColor="{StaticResource Primary}" Grid.Row="1">
-                    <Label Text="{Binding Fr}"/>
+                    <Label Text="{Binding Fr, StringFormat='FR: {0}'}" FontSize="20"/>
                 </Frame>
 
                 <Frame BorderColor="{StaticResource Primary}" Grid.Column="1">
-                    <Label Text="{Binding Oximetria}"/>
+                    <Label Text="{Binding Oximetria, StringFormat='Oximetria: {0}'}" FontSize="20"/>
                 </Frame>
 
                 <Frame BorderColor="{StaticResource Primary}" Grid.Row="1" Grid.Column="1">
-                    <Label Text="{Binding Temperatura}"/>
+                    <Label Text="{Binding Temperatura, StringFormat='Temperatura: {0}'}" FontSize="20"/>
                 </Frame>
                 
             </Grid>
@@ -62,7 +65,7 @@
                 </Frame>
                 <CollectionView ItemsSource="{Binding FichaAnestesica}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
 
-                <Label Text="Parâmetros Fisiológicos" 
+                <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
                        HorizontalTextAlignment="Center"
                        FontAttributes="Bold"
                        FontSize="16"

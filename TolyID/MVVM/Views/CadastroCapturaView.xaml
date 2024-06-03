@@ -10,34 +10,6 @@
              Title="Cadastro">
 
     <ContentPage.Resources>
-       
-        <Style x:Key="FrameTitulo" TargetType="Frame">
-            <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
-            <Setter Property="HeightRequest" Value="30"/>
-            <Setter Property="WidthRequest" Value="150"/>
-            <Setter Property="CornerRadius" Value="20"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="BorderColor" Value="Transparent"/>
-        </Style>
-
-        <Style x:Key="LabelTitulo" TargetType="Label">
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="HorizontalTextAlignment" Value="Center"/>
-            <Setter Property="VerticalTextAlignment" Value="Center"/>
-        </Style>
-
-        <Style x:Key="FrameEntradaDeDados" TargetType="Frame">
-            <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
-            <Setter Property="Padding" Value="5,0,5,0"/>
-            <Setter Property="Margin" Value="0, 0, 0, 5"/>
-            <Setter Property="HeightRequest" Value="40"/>
-        </Style>
-
-        <Style x:Key="LabelNomeCampo" TargetType="Label">
-            <Setter Property="TextColor" Value="{StaticResource Primary}"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-        </Style>
 
         <DataTemplate x:Key="TemplateCamposDigitados">
             <Grid RowDefinitions="*, *">
@@ -50,6 +22,7 @@
                 </Frame>
 
             </Grid>
+            
         </DataTemplate>
 
         <DataTemplate x:Key="TemplateCamposSelecionaveis">
@@ -228,7 +201,6 @@
                 </Frame>
 
             </StackLayout>
-
 
             <Button Command="{Binding AdicionaCapturaNoBancoCommand}"
                     Text="Finalizar"
