@@ -17,12 +17,10 @@
                 <Label Text="{Binding Nome}"
                        Style="{StaticResource LabelNomeCampo}"/>
 
-                <Frame Grid.Row="1" Style="{StaticResource FrameEntradaDeDados}">
-                    <ContentView Content="{Binding EntradaDeDado}"/>
-                </Frame>
+                <ContentView Grid.Row="1"
+                             Content="{Binding EntradaDeDado}"/>
 
             </Grid>
-            
         </DataTemplate>
 
         <DataTemplate x:Key="TemplateCamposSelecionaveis">

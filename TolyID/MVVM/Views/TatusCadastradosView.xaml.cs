@@ -34,6 +34,11 @@ public partial class TatusCadastradosView : ContentPage
         }
     }
 
+    private async void Atualizar_Clicked(object sender, EventArgs e)
+    {
+        await viewModel.BuscaTatusNoBanco();
+    }
+
     protected override void OnAppearing()
     {
         viewModel.BuscaTatusNoBanco();
