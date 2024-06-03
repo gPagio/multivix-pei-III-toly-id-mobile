@@ -24,55 +24,67 @@
         </DataTemplate>
 
         <DataTemplate x:Key="TemplateParametrosFisiologicos">
+            <Grid RowDefinitions="*, *" ColumnDefinitions="*, *" Margin="10" RowSpacing="10" ColumnSpacing="10">
 
-            <Frame BorderColor="{StaticResource Primary}">
+                <Frame BorderColor="{StaticResource Primary}">
+                    <Label Text="{Binding Fc}"/>
+                </Frame>
+
+                <Frame BorderColor="{StaticResource Primary}" Grid.Row="1">
+                    <Label Text="{Binding Fr}"/>
+                </Frame>
+
+                <Frame BorderColor="{StaticResource Primary}" Grid.Column="1">
+                    <Label Text="{Binding Oximetria}"/>
+                </Frame>
+
+                <Frame BorderColor="{StaticResource Primary}" Grid.Row="1" Grid.Column="1">
+                    <Label Text="{Binding Temperatura}"/>
+                </Frame>
                 
-            </Frame>
-            
-            
+            </Grid>
         </DataTemplate>
     </ContentPage.Resources>
 
     <ScrollView Padding="10">
-        <StackLayout Spacing="10">
+        <Grid Padding="10" RowSpacing="5" RowDefinitions="*, *, *, *">
+            
+            <StackLayout Spacing="10">
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Dados Gerais" Style="{StaticResource LabelTitulo}"/>
+                </Frame>
+                <CollectionView ItemsSource="{Binding DadosGerais}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+            </StackLayout>
+            
+            <StackLayout Spacing="10" Grid.Row="1">
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Ficha Anestésica" Style="{StaticResource LabelTitulo}"/>
+                </Frame>
+                <CollectionView ItemsSource="{Binding FichaAnestesica}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
 
-            <Frame BorderColor="{StaticResource Primary}">
-                <StackLayout Spacing="10">
-                    <Frame Style="{StaticResource FrameTitulo}">
-                        <Label Text="Dados Gerais" Style="{StaticResource LabelTitulo}"/>
-                    </Frame>
-                    <CollectionView ItemsSource="{Binding DadosGerais}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
-                </StackLayout>
-            </Frame>
+                <Label Text="Parâmetros Fisiológicos" 
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Bold"
+                       FontSize="16"
+                       TextColor="{StaticResource Primary}"/>
 
-            <Frame BorderColor="{StaticResource Primary}">
-                <StackLayout Spacing="10">
-                    <Frame Style="{StaticResource FrameTitulo}">
-                        <Label Text="Ficha Anestésica" Style="{StaticResource LabelTitulo}"/>
-                    </Frame>
-                    <CollectionView ItemsSource="{Binding FichaAnestesica}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
-                    <CollectionView ItemsSource="{Binding ParametrosFisiologicos}" ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>
-                </StackLayout>
-            </Frame>
+                <CollectionView ItemsSource="{Binding ParametrosFisiologicos}" ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>
+            </StackLayout>
 
-            <Frame BorderColor="{StaticResource Primary}">
-                <StackLayout Spacing="10">
-                    <Frame Style="{StaticResource FrameTitulo}">
-                        <Label Text="Biometria" Style="{StaticResource LabelTitulo}"/>
-                    </Frame>
-                    <CollectionView ItemsSource="{Binding Biometria}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
-                </StackLayout>
-            </Frame>
+            <StackLayout Spacing="10" Grid.Row="2">
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Biometria" Style="{StaticResource LabelTitulo}"/>
+                </Frame>
+                <CollectionView ItemsSource="{Binding Biometria}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+            </StackLayout>
 
-            <Frame BorderColor="{StaticResource Primary}">
-                <StackLayout Spacing="10">
-                    <Frame Style="{StaticResource FrameTitulo}">
-                        <Label Text="Amostras" Style="{StaticResource LabelTitulo}"/>
-                    </Frame>
-                    <CollectionView ItemsSource="{Binding Amostras}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
-                </StackLayout>
-            </Frame>
+            <StackLayout Spacing="10" Grid.Row="3">
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Amostras" Style="{StaticResource LabelTitulo}"/>
+                </Frame>
+                <CollectionView ItemsSource="{Binding Amostras}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+            </StackLayout>
 
-        </StackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

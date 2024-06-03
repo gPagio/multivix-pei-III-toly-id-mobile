@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
 using TolyID.MVVM.Models;
+using TolyID.Services;
 
 namespace TolyID.MVVM.ViewModels;
 
@@ -18,19 +19,24 @@ public class CapturaViewModel : ObservableObject
 
     public CapturaViewModel(CapturaModel captura)
     {
-        Captura = captura;
+        CarregaCaptura(captura.Id);
         PreencherPropriedades(Captura.DadosGerais, DadosGerais);
         PreencherPropriedades(Captura.Biometria, Biometria);
         PreencherPropriedades(Captura.Amostras, Amostras);
         PreencherPropriedades(Captura.FichaAnestesica, FichaAnestesica);
-        //PreencherParametrosFisiologicos();
+        PreencherParametrosFisiologicos();
     }
 
     public Dictionary<string, string> DadosGerais { get; } = new();
     public Dictionary<string, string> Biometria { get; } = new();
     public Dictionary<string, string> Amostras { get; } = new();
     public Dictionary<string, string> FichaAnestesica { get; } = new();
-    //public ObservableCollection<ParametroFisiologicoModel> ParametrosFisiologicos { get; } = new();
+    public ObservableCollection<ParametroFisiologicoModel> ParametrosFisiologicos { get; } = new();
+
+    private async void CarregaCaptura(int id)
+    {
+        Captura = await BancoDeDadosService.GetCapturaAsync(id);
+    }
 
     private void PreencherPropriedades(object fonte, Dictionary<string, string> alvo)
     {
@@ -41,10 +47,7 @@ public class CapturaViewModel : ObservableObject
         foreach ( var prop in propriedades)
         {
             if (prop.Name == "Id") continue;
-            if (prop.Name == "ParametrosFisiologicos")
-            {
-                Debug.WriteLine($"{Captura.FichaAnestesica.ParametrosFisiologicos.Count}");
-            }
+            if (prop.Name == "ParametrosFisiologicos") continue;
 
             var displayNameAttribute = prop.GetCustomAttribute<DisplayNameAttribute>();
             var displayName = displayNameAttribute?.DisplayName ?? prop.Name;   // se displayNameAttribute for nulo, displayName será igual ao nome de prop
@@ -64,12 +67,12 @@ public class CapturaViewModel : ObservableObject
         }
     }
 
-    //private void PreencherParametrosFisiologicos()
-    //{
-    //    foreach (var parametro in Captura.FichaAnestesica.ParametrosFisiologicos)
-    //    {
-    //        ParametrosFisiologicos.Add(parametro);
-    //        Debug.WriteLine(Captura.FichaAnestesica.ParametrosFisiologicos.Count);
-    //    }
-    //}
+    private void PreencherParametrosFisiologicos()
+    {
+        Debug.WriteLine(Captura.FichaAnestesica.ParametrosFisiologicos.Count);
+        foreach (var parametro in Captura.FichaAnestesica.ParametrosFisiologicos)
+        {
+            ParametrosFisiologicos.Add(parametro);
+        }
+    }
 }

@@ -27,7 +27,7 @@ public class DadosGeraisModel
     //public int NumeroMicrochip { get; set; }
 
     [DisplayName("Data de Captura")]
-    public DateTime DataDeCaptura { get; set; }
+    public DateTime DataDeCaptura { get; set; } = DateTime.Now;
 
     [DisplayName("Horário de Captura")]
     public TimeSpan HorarioDeCaptura { get; set; }

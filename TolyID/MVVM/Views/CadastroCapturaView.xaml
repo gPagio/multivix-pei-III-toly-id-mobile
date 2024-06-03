@@ -23,8 +23,8 @@
         <Style x:Key="LabelTitulo" TargetType="Label">
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="FrameEntradaDeDados" TargetType="Frame">
@@ -40,16 +40,16 @@
         </Style>
 
         <DataTemplate x:Key="TemplateCamposDigitados">
-            <StackLayout>
+            <Grid RowDefinitions="*, *">
 
                 <Label Text="{Binding Nome}"
                        Style="{StaticResource LabelNomeCampo}"/>
 
-                <Frame Style="{StaticResource FrameEntradaDeDados}">
+                <Frame Grid.Row="1" Style="{StaticResource FrameEntradaDeDados}">
                     <ContentView Content="{Binding EntradaDeDado}"/>
                 </Frame>
 
-            </StackLayout>
+            </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="TemplateCamposSelecionaveis">
@@ -63,8 +63,8 @@
                            TextColor="{StaticResource Primary}"
                            FontAttributes="Bold"
                            Grid.Column="1"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Start"/>
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Start"/>
 
                 </HorizontalStackLayout>
             </StackLayout>
@@ -108,7 +108,7 @@
     </ContentPage.Resources>
       
     <ScrollView Padding="10">
-        <VerticalStackLayout Padding="10" Spacing="10">
+        <StackLayout Padding="10" Spacing="10">
             
             <!-- FOTOS -->
             <Frame HeightRequest="180"
@@ -117,131 +117,118 @@
                 <Label Text="Toque para adicionar fotos"
                        FontSize="18"
                        TextColor="{StaticResource Primary}"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"/>
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"/>
             </Frame>
 
             <!-- ==================== DADOS GERAIS ==================== -->
-            
-            <Frame HeightRequest="790"
-                   BorderColor="{StaticResource Primary}">
 
-                <StackLayout Spacing="10">
+            <Grid RowSpacing="10" RowDefinitions="*, *">
 
-                    <!-- TÍTULO -->
-                    <Frame Style="{StaticResource FrameTitulo}">
-                        <Label Text="Dados gerais"
-                               Style="{StaticResource LabelTitulo}"/>
-                    </Frame>
+                <!-- TÍTULO -->
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Dados gerais"
+                           Style="{StaticResource LabelTitulo}"/>
+                </Frame>
 
-                    <!-- CAMPOS -->
-                    <CollectionView ItemsSource="{Binding DadosGerais}"
-                                    ItemTemplate="{StaticResource TemplateCamposDigitados}"/>
+                <!-- CAMPOS -->
+                <CollectionView ItemsSource="{Binding DadosGerais}"
+                                ItemTemplate="{StaticResource TemplateCamposDigitados}"
+                                Grid.Row="1"/>
 
-                </StackLayout>
-
-            </Frame>
+            </Grid>
 
             <!-- ==================== FICHA ANESTÉSICA ==================== -->
 
-            <Frame HeightRequest="1000"
-                   BorderColor="{StaticResource Primary}">
+            <StackLayout Spacing="10">
 
-                <StackLayout Spacing="10">
-                    
-                    <!-- TÍTULO -->
-                    <Frame Style="{StaticResource FrameTitulo}">
-                        <Label Text="Ficha Anestésica"
-                               Style="{StaticResource LabelTitulo}"/>
-                    </Frame>
-                    
-                    <!-- CAMPOS -->
-                    <CollectionView ItemsSource="{Binding FichaAnestesica}"
-                                    ItemTemplate="{StaticResource TemplateCamposDigitados}"/>
+                <!-- TÍTULO -->
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Ficha Anestésica"
+                           Style="{StaticResource LabelTitulo}"/>
+                </Frame>
 
-                    <Grid ColumnDefinitions="8*, 2*">
-                        
-                        <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
-                               TextColor="{StaticResource Primary}"
-                               FontAttributes="Bold"
-                               HorizontalOptions="Center"/>
+                <!-- CAMPOS -->
+                <CollectionView ItemsSource="{Binding FichaAnestesica}"
+                                ItemTemplate="{StaticResource TemplateCamposDigitados}"/>
 
-                        <Button Grid.Column="1" 
-                                CornerRadius="30"
-                                WidthRequest="45" 
-                                Scale=".8"
-                                BackgroundColor="{StaticResource Primary}"
-                                ImageSource="icone_mais_branco.png"
-                                Command="{Binding AdicionarParametrosFisiologicosCommand}"/>
-                    </Grid>
-                  
-                    <!-- PARÂMETROS FISIOLÓGICOS -->
+                <!-- PARÂMETROS FISIOLÓGICOS -->
+                
+                <Grid ColumnDefinitions="8*, 2*">
+
+                    <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
+                           TextColor="{StaticResource Primary}"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+
+                    <Button Grid.Column="1" 
+                            CornerRadius="30"
+                            WidthRequest="45" 
+                            Scale=".8"
+                            BackgroundColor="{StaticResource Primary}"
+                            ImageSource="icone_mais_branco.png"
+                            Command="{Binding AdicionaParametrosFisiologicosCommand}"/>
+                </Grid>
+               
+                <Frame BorderColor="{StaticResource Primary}">
                     <ScrollView HeightRequest="500">
                         <CollectionView ItemsSource="{Binding ParametrosFisiologicos}" 
                                         ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>
                     </ScrollView>
+                </Frame>
 
-                </StackLayout>
-                
-            </Frame>
+            </StackLayout>
 
             <!-- ==================== BIOMETRIA ==================== -->
-            
-            <Frame HeightRequest="1570"
-                   BorderColor="{StaticResource Primary}">
 
-                <StackLayout Spacing="10">
+            <StackLayout Spacing="10">
 
-                    <!--TÍTULO-->
-                    <Frame Style="{StaticResource FrameTitulo}">
-                        <Label Text="Biometria"
-                               Style="{StaticResource LabelTitulo}"/>
-                    </Frame>
-                    
-                    <!-- CAMPOS -->
-                    <CollectionView ItemsSource="{Binding Biometria}"
-                                    ItemTemplate="{StaticResource TemplateCamposDigitados}"/>
+                <!--TÍTULO-->
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Biometria"
+                           Style="{StaticResource LabelTitulo}"/>
+                </Frame>
 
-                </StackLayout>
-            </Frame>
+                <!-- CAMPOS -->
+                <CollectionView ItemsSource="{Binding Biometria}"
+                                ItemTemplate="{StaticResource TemplateCamposDigitados}"/>
 
+            </StackLayout>
+                
             <!-- ==================== AMOSTRAS ==================== --> 
-            
-            <Frame HeightRequest="300"
-                   BorderColor="{StaticResource Primary}">
 
-                <StackLayout Spacing="10">
+            <StackLayout Spacing="10">
 
-                    <!--TÍTULO-->
-                    <Frame Style="{StaticResource FrameTitulo}">
-                        <Label Text="Amostras"
-                               Style="{StaticResource LabelTitulo}"/>
-                    </Frame>
+                <!--TÍTULO-->
+                <Frame Style="{StaticResource FrameTitulo}">
+                    <Label Text="Amostras"
+                            Style="{StaticResource LabelTitulo}"/>
+                </Frame>
 
-                    <!-- CHECKBOXES -->
-                    <Grid ColumnDefinitions="*, *">
+                <!-- CHECKBOXES -->
+                <Grid ColumnDefinitions="*, *">
 
-                        <!-- PRIMEIRA COLUNA -->
-                        <CollectionView ItemsSource="{Binding AmostrasColunaZero}"
-                                        ItemTemplate="{StaticResource TemplateCamposSelecionaveis}"/>
+                    <!-- PRIMEIRA COLUNA -->
+                    <CollectionView ItemsSource="{Binding AmostrasColunaZero}"
+                                    ItemTemplate="{StaticResource TemplateCamposSelecionaveis}"/>
 
-                        <!-- SEGUNDA COLUNA -->
-                        <CollectionView Grid.Column="1"
-                                        ItemsSource="{Binding AmostrasColunaUm}"
-                                        ItemTemplate="{StaticResource TemplateCamposSelecionaveis}"/>
+                    <!-- SEGUNDA COLUNA -->
+                    <CollectionView Grid.Column="1"
+                                    ItemsSource="{Binding AmostrasColunaUm}"
+                                    ItemTemplate="{StaticResource TemplateCamposSelecionaveis}"/>
 
-                    </Grid>
+                </Grid>
 
-                    <!-- OUTROS -->
-                    <Label Text="{Binding Outros.Nome}"
-                           Style="{StaticResource LabelNomeCampo}"/>
+                <!-- OUTROS -->
+                <Label Text="{Binding Outros.Nome}"
+                        Style="{StaticResource LabelNomeCampo}"/>
 
-                    <Frame Style="{StaticResource FrameEntradaDeDados}">
-                        <ContentView Content="{Binding Outros.EntradaDeDado}"/>
-                    </Frame>
+                <Frame Style="{StaticResource FrameEntradaDeDados}">
+                    <ContentView Content="{Binding Outros.EntradaDeDado}"/>
+                </Frame>
 
-                </StackLayout>
-            </Frame>
+            </StackLayout>
+
 
             <Button Command="{Binding AdicionaCapturaNoBancoCommand}"
                     Text="Finalizar"
@@ -250,6 +237,6 @@
                     BackgroundColor="{StaticResource Primary}"
                     CornerRadius="20"/>
 
-        </VerticalStackLayout>
+        </StackLayout>
     </ScrollView>    
 </ContentPage>

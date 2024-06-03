@@ -1,6 +1,5 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Extensions;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using TolyID.MVVM.Models;
@@ -32,14 +31,13 @@ public static class BancoDeDadosService
     public static async Task SalvaTatuAsync(TatuModel tatu)
     {
         await Init();
-        _bancoDeDados.Insert(tatu);
+        _bancoDeDados.InsertWithChildren(tatu);
     }
 
     public static async Task<IEnumerable<TatuModel>> GetTatusAsync()
     {
         await Init();
         var tatus = _bancoDeDados.GetAllWithChildren<TatuModel>().ToList();
-
         return tatus;
     }
 
@@ -48,14 +46,13 @@ public static class BancoDeDadosService
         await Init();
         var tatu = _bancoDeDados.GetWithChildren<TatuModel>(tatuId);
 
-        foreach(var captura in tatu.Capturas)
+        foreach (var captura in tatu.Capturas)
         {
             _bancoDeDados.GetChildren(captura);
             _bancoDeDados.GetChildren(captura.DadosGerais);
             _bancoDeDados.GetChildren(captura.Biometria);
             _bancoDeDados.GetChildren(captura.Amostras);
             _bancoDeDados.GetChildren(captura.FichaAnestesica);
-            _bancoDeDados.GetChildren(captura.FichaAnestesica.ParametrosFisiologicos);
         }
 
         return tatu;
@@ -71,19 +68,137 @@ public static class BancoDeDadosService
     public static async Task SalvaCapturaAsync(CapturaModel novaCaptura, TatuModel tatu)
     {
         await Init();
-        _bancoDeDados.InsertWithChildren(novaCaptura);
-        _bancoDeDados.InsertWithChildren(novaCaptura.FichaAnestesica);
-        _bancoDeDados.InsertAllWithChildren(novaCaptura.FichaAnestesica.ParametrosFisiologicos);
 
-        if (tatu.Capturas == null) 
+        try
         {
-            tatu.Capturas = new List<CapturaModel>();
+            FichaAnestesicaModel ficha = novaCaptura.FichaAnestesica;
+
+            // Verificar se a lista de parâmetros fisiológicos não é nula e contém itens
+            if (ficha.ParametrosFisiologicos != null && ficha.ParametrosFisiologicos.Count > 0)
+            {
+                // Inserir a FichaAnestesica antes para garantir que temos um ID para os parâmetros
+                _bancoDeDados.Insert(ficha);
+                Console.WriteLine($"FichaAnestesica inserida com ID: {ficha.Id}");
+
+                foreach (var parametro in ficha.ParametrosFisiologicos)
+                {
+                    parametro.FichaAnestesicaId = ficha.Id;
+                    _bancoDeDados.Insert(parametro);
+
+                    // Verificar se o parâmetro foi inserido corretamente
+                    var parametroVerificado = _bancoDeDados.Find<ParametroFisiologicoModel>(parametro.Id);
+                    if (parametroVerificado == null)
+                    {
+                        throw new Exception($"Erro ao inserir o parâmetro fisiológico: {parametro.Id}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Parâmetro fisiológico inserido: {parametro.Id}");
+                    }
+                }
+
+                // Carregar a ficha com os parâmetros inseridos
+                var fichaVerificada = _bancoDeDados.GetWithChildren<FichaAnestesicaModel>(ficha.Id, true);
+                if (fichaVerificada.ParametrosFisiologicos.Count != ficha.ParametrosFisiologicos.Count)
+                {
+                    throw new Exception("Erro ao inserir os parâmetros fisiológicos na ficha anestésica.");
+                }
+                else
+                {
+                    Console.WriteLine("Todos os parâmetros fisiológicos foram inseridos corretamente.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Nenhum parâmetro fisiológico para inserir.");
+            }
+
+            // Inserir a Captura com a ficha e outros modelos associados
+            novaCaptura.FichaAnestesicaId = ficha.Id;
+            _bancoDeDados.InsertWithChildren(novaCaptura, true);
+            Console.WriteLine($"Captura inserida com ID: {novaCaptura.Id}");
+
+            // Atualizar o Tatu com a nova Captura
+            if (tatu.Capturas == null)
+            {
+                tatu.Capturas = new List<CapturaModel>();
+            }
+            tatu.Capturas.Add(novaCaptura);
+            _bancoDeDados.UpdateWithChildren(tatu);
+            Console.WriteLine($"Tatu atualizado com a nova captura ID: {novaCaptura.Id}");
+
+            // Verificar se a captura foi adicionada corretamente ao Tatu
+            var tatuVerificado = _bancoDeDados.GetWithChildren<TatuModel>(tatu.Id, true);
+            if (tatuVerificado == null || !tatuVerificado.Capturas.Any(c => c.Id == novaCaptura.Id))
+            {
+                throw new Exception("Erro ao atualizar o tatu com a nova captura.");
+            }
+            else
+            {
+                Console.WriteLine("Tatu atualizado corretamente com a nova captura.");
+            }
+        }
+        catch (Exception ex)
+        {
+            // Adicionar log ou mensagem de erro detalhada
+            Console.WriteLine($"Erro ao salvar a captura: {ex.Message}");
+            throw;
         }
 
-        tatu.Capturas.Add(novaCaptura);
 
-        //Debug.WriteLine($"%&%%&%&&%&% {novaCaptura.FichaAnestesica.ParametrosFisiologicos[0].FichaAnestesicaId} ¨*¨**¨*¨*%&%&%&%&");
 
-        _bancoDeDados.UpdateWithChildren(tatu);
+
+
+
+
+
+
+
+        //FichaAnestesicaModel ficha = novaCaptura.FichaAnestesica;
+
+        //foreach(var parametro in ficha.ParametrosFisiologicos)
+        //{
+        //    Debug.WriteLine(parametro.Fc);
+        //    _bancoDeDados.InsertWithChildren(parametro);
+        //}
+
+        //_bancoDeDados.Insert(ficha);
+        //_bancoDeDados.UpdateWithChildren(ficha);
+
+        //novaCaptura.FichaAnestesica = ficha;
+
+        //_bancoDeDados.InsertWithChildren(novaCaptura);
+        //_bancoDeDados.UpdateWithChildren(novaCaptura);
+
+        //if (tatu.Capturas == null) 
+        //{
+        //    tatu.Capturas = new List<CapturaModel>();
+        //}
+
+        //tatu.Capturas.Add(novaCaptura);
+        //_bancoDeDados.UpdateWithChildren(tatu);
+    }
+
+    public static async Task<CapturaModel> GetCapturaAsync(int capturaId)
+    {
+        await Init();
+        var captura = _bancoDeDados.GetWithChildren<CapturaModel>(capturaId);
+
+        _bancoDeDados.GetChildren(captura.DadosGerais);
+        _bancoDeDados.GetChildren(captura.Biometria);
+        _bancoDeDados.GetChildren(captura.FichaAnestesica);
+        _bancoDeDados.GetChildren(captura.Amostras);
+
+        foreach (var parametro in captura.FichaAnestesica.ParametrosFisiologicos)
+        {
+            _bancoDeDados.GetChildren(parametro);
+        }
+
+        foreach (var x in captura.FichaAnestesica.ParametrosFisiologicos)
+        {
+            Debug.WriteLine($"%&%&%%&%&%& {x.Fc} %&%&%&%&%&%");
+        }
+
+        return captura;
     }
 }
