@@ -20,13 +20,21 @@
     </ContentPage.Resources>
 
     <Grid Padding="20">
-
-                  
+                
         <ScrollView>
             <CollectionView ItemsSource="{Binding Capturas}" 
                             ItemTemplate="{StaticResource CapturasTemplate}"
                             SelectionMode="Single"
-                            SelectionChanged="Capturas_SelectionChanged"/>
+                            SelectionChanged="Capturas_SelectionChanged">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2"
+                                     HorizontalItemSpacing="20"
+                                     VerticalItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+
+            </CollectionView>
         </ScrollView>
 
         <Button HorizontalOptions="End" 

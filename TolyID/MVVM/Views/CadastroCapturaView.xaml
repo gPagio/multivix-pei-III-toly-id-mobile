@@ -46,33 +46,26 @@
                 <Grid RowDefinitions="*, *" ColumnDefinitions="*, *"
                       RowSpacing="10" ColumnSpacing="10">
 
-                    <StackLayout Spacing="2">
+                    <StackLayout>
                         <Label Text="FC" Style="{StaticResource LabelNomeCampo}"/>
-                        <Frame Style="{StaticResource FrameEntradaDeDados}">
-                            <Entry Text="{Binding Fc}" Keyboard="Numeric" />
-                        </Frame>
+                        <Entry Text="{Binding Fc}" Keyboard="Numeric" />
                     </StackLayout>
 
-                    <StackLayout Spacing="2" Grid.Row="1" >
+                    <StackLayout Grid.Row="1" >
                         <Label Text="FR" Style="{StaticResource LabelNomeCampo}"/>
-                        <Frame Style="{StaticResource FrameEntradaDeDados}">
-                            <Entry Text="{Binding Fr}" Keyboard="Numeric" />
-                        </Frame>
+                        <Entry Text="{Binding Fr}" Keyboard="Numeric" />
                     </StackLayout>
 
-                    <StackLayout Spacing="2" Grid.Column="1">
+                    <StackLayout Grid.Column="1">
                         <Label Text="OXIMETRIA" Style="{StaticResource LabelNomeCampo}"/>
-                        <Frame Style="{StaticResource FrameEntradaDeDados}">
-                            <Entry Text="{Binding Oximetria}" Keyboard="Numeric" />
-                        </Frame>
+                        <Entry Text="{Binding Oximetria}" Keyboard="Numeric" />
                     </StackLayout>
 
-                    <StackLayout Spacing="2" Grid.Column="1" Grid.Row="1">
+                    <StackLayout Grid.Column="1" Grid.Row="1">
                         <Label Text="TEMPERATURA" Style="{StaticResource LabelNomeCampo}"/>
-                        <Frame Style="{StaticResource FrameEntradaDeDados}">
-                            <Entry Text="{Binding Temperatura}" Keyboard="Numeric" />
-                        </Frame>
+                        <Entry Text="{Binding Temperatura}" Keyboard="Numeric" />
                     </StackLayout>
+                    
                 </Grid>
             </Frame>
         </DataTemplate>
@@ -193,10 +186,8 @@
                 <!-- OUTROS -->
                 <Label Text="{Binding Outros.Nome}"
                         Style="{StaticResource LabelNomeCampo}"/>
-
-                <Frame Style="{StaticResource FrameEntradaDeDados}">
-                    <ContentView Content="{Binding Outros.EntradaDeDado}"/>
-                </Frame>
+  
+                <ContentView Content="{Binding Outros.EntradaDeDado}"/>
 
             </StackLayout>
 

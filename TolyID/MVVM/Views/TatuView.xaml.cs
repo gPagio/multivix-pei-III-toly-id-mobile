@@ -41,4 +41,9 @@ public partial class TatuView : ContentPage
             }
         }
     }
+
+    protected async override void OnAppearing()
+    {
+        await _tatuViewModel.AtualizaCapturas(_tatu);
+    }
 }
