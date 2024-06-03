@@ -1,7 +1,6 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Extensions;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 using TolyID.MVVM.Models;
 
 namespace TolyID.Services;
@@ -144,39 +143,6 @@ public static class BancoDeDadosService
             Debug.WriteLine($"Erro ao salvar a captura: {ex.Message}");
             throw;
         }
-
-
-
-
-
-
-
-
-
-
-        //FichaAnestesicaModel ficha = novaCaptura.FichaAnestesica;
-
-        //foreach(var parametro in ficha.ParametrosFisiologicos)
-        //{
-        //    Debug.WriteLine(parametro.Fc);
-        //    _bancoDeDados.InsertWithChildren(parametro);
-        //}
-
-        //_bancoDeDados.Insert(ficha);
-        //_bancoDeDados.UpdateWithChildren(ficha);
-
-        //novaCaptura.FichaAnestesica = ficha;
-
-        //_bancoDeDados.InsertWithChildren(novaCaptura);
-        //_bancoDeDados.UpdateWithChildren(novaCaptura);
-
-        //if (tatu.Capturas == null) 
-        //{
-        //    tatu.Capturas = new List<CapturaModel>();
-        //}
-
-        //tatu.Capturas.Add(novaCaptura);
-        //_bancoDeDados.UpdateWithChildren(tatu);
     }
 
     public static async Task<CapturaModel> GetCapturaAsync(int capturaId)
@@ -189,15 +155,10 @@ public static class BancoDeDadosService
         _bancoDeDados.GetChildren(captura.FichaAnestesica);
         _bancoDeDados.GetChildren(captura.Amostras);
 
-        foreach (var parametro in captura.FichaAnestesica.ParametrosFisiologicos)
-        {
-            _bancoDeDados.GetChildren(parametro);
-        }
-
-        foreach (var x in captura.FichaAnestesica.ParametrosFisiologicos)
-        {
-            Debug.WriteLine($"%&%&%%&%&%& {x.Fc} %&%&%&%&%&%");
-        }
+        //foreach (var parametro in captura.FichaAnestesica.ParametrosFisiologicos)
+        //{
+        //    _bancoDeDados.GetChildren(parametro);
+        //}
 
         return captura;
     }
