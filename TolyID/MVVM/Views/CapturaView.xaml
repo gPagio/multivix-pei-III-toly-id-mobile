@@ -15,7 +15,7 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="{Binding Key, StringFormat='{0}:'}" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
-                                <Span Text="{Binding Value, StringFormat=' &#x0a;{0}'}" FontSize="20"/>
+                                <Span Text="{Binding Value, StringFormat=' &#x0a;{0}'}" FontSize="20" TextColor="Black"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>

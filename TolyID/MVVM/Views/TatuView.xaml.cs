@@ -1,7 +1,5 @@
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.ViewModels;
-using TolyID.Services;
 
 namespace TolyID.MVVM.Views;
 
@@ -20,7 +18,7 @@ public partial class TatuView : ContentPage
 
     private async void AdicionarCaptura_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new CadastroCapturaView(_tatu));
+        await Shell.Current.Navigation.PushModalAsync(new CadastroCapturaTabbedView(_tatu), true);
     }
 
     private async void Button_Clicked(object sender, EventArgs e)

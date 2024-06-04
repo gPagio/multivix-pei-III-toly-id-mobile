@@ -44,7 +44,7 @@ public class CapturaViewModel : ObservableObject
 
         var propriedades = fonte.GetType().GetProperties();
 
-        foreach ( var prop in propriedades)
+        foreach (var prop in propriedades)
         {
             if (prop.Name == "Id") continue;
             if (prop.Name == "ParametrosFisiologicos") continue;

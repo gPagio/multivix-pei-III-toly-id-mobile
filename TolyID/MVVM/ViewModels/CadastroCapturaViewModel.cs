@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using Android.Hardware.Camera2.Params;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Graphics.Text;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using TolyID.MVVM.Models;
@@ -67,15 +69,11 @@ public partial class CadastroCapturaViewModel
             new CampoCadastroModel("COMPRIMENTO DO CLITÓRIS", CriaEntryComTecladoNumerico(Captura.Biometria, nameof(Captura.Biometria.ComprimentoDoClitoris)))
         };
 
-        AmostrasColunaZero = new List<CampoCadastroModel>
+        Amostras = new List<CampoCadastroModel>
         {
             new CampoCadastroModel("SANGUE", CriaCheckBox(Captura.Amostras, nameof(Captura.Amostras.Sangue))),
             new CampoCadastroModel("FEZES", CriaCheckBox(Captura.Amostras, nameof(Captura.Amostras.Fezes))),
-            new CampoCadastroModel("PELO", CriaCheckBox(Captura.Amostras, nameof(Captura.Amostras.Pelo)))
-        };
-
-        AmostrasColunaUm = new List<CampoCadastroModel>
-        {
+            new CampoCadastroModel("PELO", CriaCheckBox(Captura.Amostras, nameof(Captura.Amostras.Pelo))),
             new CampoCadastroModel("ECTOPARASITOS", CriaCheckBox(Captura.Amostras, nameof(Captura.Amostras.Ectoparasitos))),
             new CampoCadastroModel("SWAB", CriaCheckBox(Captura.Amostras, nameof(Captura.Amostras.Swab))),
             new CampoCadastroModel("LOCAL", CriaCheckBox(Captura.Amostras, nameof(Captura.Amostras.Local)))
@@ -84,8 +82,7 @@ public partial class CadastroCapturaViewModel
     
     public List<CampoCadastroModel> DadosGerais { get; }
     public List<CampoCadastroModel> Biometria { get; }
-    public List<CampoCadastroModel> AmostrasColunaZero { get; }
-    public List<CampoCadastroModel> AmostrasColunaUm { get; } 
+    public List<CampoCadastroModel> Amostras { get; }
     public CampoCadastroModel Outros { get; } = new("OUTROS", CriaEditor(Captura.Amostras, nameof(Captura.Amostras.Outros)));
     
     public List<CampoCadastroModel> FichaAnestesica { get; }
@@ -116,6 +113,8 @@ public partial class CadastroCapturaViewModel
         {
             Keyboard = Keyboard.Default,
             ReturnType = ReturnType.Next,
+            TextColor = Color.FromArgb("#000000"),
+            Placeholder = "Digite",
             BindingContext = bindingContext
         };
 
@@ -129,6 +128,7 @@ public partial class CadastroCapturaViewModel
         {
             Keyboard = Keyboard.Numeric,
             ReturnType = ReturnType.Next,
+            TextColor = Color.FromArgb("#000000"),
             BindingContext = bindingContext
         };
  
@@ -140,6 +140,8 @@ public partial class CadastroCapturaViewModel
     {
         Editor editor = new();
         editor.BindingContext = bindingContext;
+        editor.TextColor = Color.FromArgb("#000000");
+        editor.Placeholder = "Digite";
         editor.SetBinding(Editor.TextProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
         return editor;
     }
@@ -148,6 +150,7 @@ public partial class CadastroCapturaViewModel
     {
         DatePicker datePicker = new();
         datePicker.BindingContext = bindingContext;
+        datePicker.TextColor = Color.FromArgb("#000000");
         datePicker.SetBinding(DatePicker.DateProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
         return datePicker;
     }
@@ -156,6 +159,7 @@ public partial class CadastroCapturaViewModel
     {
         TimePicker timePicker = new();
         timePicker.BindingContext = bindingContext;
+        timePicker.TextColor = Color.FromArgb("#000000");
         timePicker.SetBinding(TimePicker.TimeProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
         return timePicker;
     }

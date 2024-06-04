@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TolyID.MVVM.Views.CadastroCapturaTabbedView"
+             xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
+             xmlns:model="clr-namespace:TolyID.MVVM.Models"
+             x:DataType="viewmodel:CadastroCapturaViewModel"
+             Title="CadastroCapturaTabbedView"
+             BarBackgroundColor="{StaticResource Primary}"
+             UnselectedTabColor="White"
+             SelectedTabColor="{StaticResource Secondary}">
+
+    <ContentPage Title="Dados Gerais" Padding="20" BackgroundColor="White">
+
+        <CollectionView ItemsSource="{Binding DadosGerais}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:CampoCadastroModel">
+                    <VerticalStackLayout>
+                        
+                        <Label Text="{Binding Nome}"
+                               Style="{StaticResource LabelNomeCampo}"/>
+
+                        <ContentView Content="{Binding EntradaDeDado}"/>
+                        
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ContentPage>
+
+    <ContentPage Title="Ficha&#x0a;Anestés." Padding="20" BackgroundColor="White">
+        <ScrollView>
+            <StackLayout Spacing="10">
+                <CollectionView ItemsSource="{Binding FichaAnestesica}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:CampoCadastroModel">
+                            <VerticalStackLayout>
+
+                                <Label Text="{Binding Nome}"
+                                        Style="{StaticResource LabelNomeCampo}"/>
+
+                                <ContentView Content="{Binding EntradaDeDado}"/>
+
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Grid ColumnDefinitions="8*, 2*">
+
+                    <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
+                           TextColor="{StaticResource Primary}"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+
+                    <Button Grid.Column="1" 
+                            CornerRadius="30"
+                            WidthRequest="45" 
+                            Scale=".8"
+                            BackgroundColor="{StaticResource Primary}"
+                            ImageSource="icone_mais_branco.png"
+                            Command="{Binding AdicionaParametrosFisiologicosCommand}"/>
+                </Grid>
+
+                <CollectionView Grid.Row="1" ItemsSource="{Binding ParametrosFisiologicos}" ItemsUpdatingScrollMode="KeepLastItemInView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:ParametroFisiologicoModel">
+                            <Frame BorderColor="{StaticResource Primary}" Margin="0, 0, 0, 10">
+                                <Grid RowDefinitions="*, *" ColumnDefinitions="*, *"
+                                        RowSpacing="10" ColumnSpacing="10">
+
+                                    <StackLayout>
+                                        <Label Text="FC" Style="{StaticResource LabelNomeCampo}"/>
+                                        <Entry Text="{Binding Fc}" Keyboard="Numeric" />
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="1" >
+                                        <Label Text="FR" Style="{StaticResource LabelNomeCampo}"/>
+                                        <Entry Text="{Binding Fr}" Keyboard="Numeric" />
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Column="1">
+                                        <Label Text="OXIMETRIA" Style="{StaticResource LabelNomeCampo}"/>
+                                        <Entry Text="{Binding Oximetria}" Keyboard="Numeric" />
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Column="1" Grid.Row="1">
+                                        <Label Text="TEMPERATURA" Style="{StaticResource LabelNomeCampo}"/>
+                                        <Entry Text="{Binding Temperatura}" Keyboard="Numeric" />
+                                    </StackLayout>
+
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+
+    <ContentPage Title="Biometria" Padding="20" BackgroundColor="White">
+
+        <CollectionView ItemsSource="{Binding Biometria}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:CampoCadastroModel">
+                    <VerticalStackLayout>
+
+                        <Label Text="{Binding Nome}"
+                               Style="{StaticResource LabelNomeCampo}"/>
+
+                        <ContentView Content="{Binding EntradaDeDado}"/>
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+                
+    </ContentPage>
+
+    <ContentPage Title="Amostras" Padding="20" BackgroundColor="White">
+        <StackLayout>
+
+            <CollectionView ItemsSource="{Binding Amostras}" Margin="0, 0, 0, 20">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                         Span="2"
+                         HorizontalItemSpacing="20"
+                         VerticalItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:CampoCadastroModel">
+                        <HorizontalStackLayout>
+                            <ContentView Content="{Binding EntradaDeDado}"
+                                          HorizontalOptions="Start"
+                                          VerticalOptions="Center"/>
+
+                            <Label Text="{Binding Nome}"
+                                   TextColor="{StaticResource Primary}"
+                                   FontAttributes="Bold"
+                                   Grid.Column="1"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Start"/>
+
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="{Binding Outros.Nome}"
+            Style="{StaticResource LabelNomeCampo}"/>
+
+            <ContentView Content="{Binding Outros.EntradaDeDado}"/>
+
+            <Button Command="{Binding AdicionaCapturaNoBancoCommand}"
+                    Clicked="Finalizar_Clicked"
+                    Text="Finalizar"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="20"
+                    WidthRequest="200"
+                    Margin="0, 50, 0, 0"/>
+        </StackLayout>
+    </ContentPage>
+
+</TabbedPage>

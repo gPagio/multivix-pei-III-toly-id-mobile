@@ -4,6 +4,8 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="TolyID.MVVM.Views.CadastroCapturaView"
              xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
+             x:DataType="viewmodel:CadastroCapturaViewModel"
+             xmlns:model="clr-namespace:TolyID.MVVM.Models"
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
              BackgroundColor="White"
@@ -11,7 +13,7 @@
 
     <ContentPage.Resources>
 
-        <DataTemplate x:Key="TemplateCamposDigitados">
+        <DataTemplate x:Key="TemplateCamposDigitados" x:DataType="model:CampoCadastroModel">
             <Grid RowDefinitions="*, *">
 
                 <Label Text="{Binding Nome}"
@@ -23,7 +25,7 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="TemplateCamposSelecionaveis">
+        <DataTemplate x:Key="TemplateCamposSelecionaveis" x:DataType="model:CampoCadastroModel">
             <StackLayout>
                 <HorizontalStackLayout>
                     <ContentView Content="{Binding EntradaDeDado}"
@@ -41,7 +43,7 @@
             </StackLayout>
         </DataTemplate>
 
-        <DataTemplate x:Key="TemplateParametrosFisiologicos">
+        <DataTemplate x:Key="TemplateParametrosFisiologicos" x:DataType="model:ParametroFisiologicoModel">
             <Frame BorderColor="{StaticResource Primary}" Margin="0, 0, 0, 10">
                 <Grid RowDefinitions="*, *" ColumnDefinitions="*, *"
                       RowSpacing="10" ColumnSpacing="10">
@@ -161,35 +163,35 @@
                 
             <!-- ==================== AMOSTRAS ==================== --> 
 
-            <StackLayout Spacing="10">
+            <!--<StackLayout Spacing="10">
 
-                <!--TÍTULO-->
+                --><!--TÍTULO--><!--
                 <Frame Style="{StaticResource FrameTitulo}">
                     <Label Text="Amostras"
                             Style="{StaticResource LabelTitulo}"/>
                 </Frame>
 
-                <!-- CHECKBOXES -->
+                --><!-- CHECKBOXES --><!--
                 <Grid ColumnDefinitions="*, *">
 
-                    <!-- PRIMEIRA COLUNA -->
+                    --><!-- PRIMEIRA COLUNA --><!--
                     <CollectionView ItemsSource="{Binding AmostrasColunaZero}"
                                     ItemTemplate="{StaticResource TemplateCamposSelecionaveis}"/>
 
-                    <!-- SEGUNDA COLUNA -->
+                    --><!-- SEGUNDA COLUNA --><!--
                     <CollectionView Grid.Column="1"
                                     ItemsSource="{Binding AmostrasColunaUm}"
                                     ItemTemplate="{StaticResource TemplateCamposSelecionaveis}"/>
 
                 </Grid>
 
-                <!-- OUTROS -->
+                --><!-- OUTROS --><!--
                 <Label Text="{Binding Outros.Nome}"
                         Style="{StaticResource LabelNomeCampo}"/>
   
                 <ContentView Content="{Binding Outros.EntradaDeDado}"/>
 
-            </StackLayout>
+            </StackLayout>-->
 
             <Button Command="{Binding AdicionaCapturaNoBancoCommand}"
                     Text="Finalizar"

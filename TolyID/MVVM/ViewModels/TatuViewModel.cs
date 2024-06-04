@@ -19,7 +19,7 @@ public partial class TatuViewModel : ObservableObject
     public TatuViewModel(TatuModel tatu)
     {
         Tatu = tatu;
-        AtualizaCapturas(tatu);
+        _ = AtualizaCapturas(tatu);
     }
 
     public async Task AtualizaCapturas(TatuModel tatu)

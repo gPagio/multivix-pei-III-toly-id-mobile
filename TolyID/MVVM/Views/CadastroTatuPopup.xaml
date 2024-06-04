@@ -19,7 +19,7 @@
         </Frame>
 
         <Label Text="IDENTIFICAÇÃO DO ANIMAL" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <Entry x:Name="IdEntry" Text="{Binding Tatu.IdentificacaoAnimal}" TextColor="Black"/>
+        <Entry x:Name="IdEntry" Text="{Binding Tatu.IdentificacaoAnimal}" Placeholder="Digite" TextColor="Black"/>
 
         <Label Text="NÚMERO DO MICROCHIP" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
         <Entry x:Name="MicrochipEntry" Keyboard="Numeric" Text="{Binding Tatu.NumeroMicrochip}" TextColor="Black"/>
