@@ -76,28 +76,32 @@
                                     <StackLayout Spacing="5">
                                         <Label Text="FC" Style="{StaticResource LabelNomeCampo}"/>
                                         <Frame Style="{StaticResource FrameEntradaDeDados}" WidthRequest="140" HorizontalOptions="Start">
-                                            <Entry Text="{Binding Fc}" Style="{StaticResource EntryNumerico}" />
+                                            <Entry Text="{Binding Fc}" Style="{StaticResource EntryNumerico}" 
+                                                   TextChanged="EntryParametros_TextChanged" ReturnType="Next" />
                                         </Frame>
                                     </StackLayout>
 
                                     <StackLayout Grid.Row="1" Spacing="5" >
                                         <Label Text="FR" Style="{StaticResource LabelNomeCampo}"/>
                                         <Frame Style="{StaticResource FrameEntradaDeDados}" WidthRequest="140" HorizontalOptions="Start">
-                                            <Entry Text="{Binding Fr}" Style="{StaticResource EntryNumerico}"/>
+                                            <Entry Text="{Binding Fr}" Style="{StaticResource EntryNumerico}" 
+                                                   TextChanged="EntryParametros_TextChanged" ReturnType="Next" />
                                         </Frame>
                                     </StackLayout>
 
                                     <StackLayout Grid.Column="1" Spacing="5">
                                         <Label Text="OXIMETRIA" Style="{StaticResource LabelNomeCampo}"/>
                                         <Frame Style="{StaticResource FrameEntradaDeDados}" WidthRequest="140" HorizontalOptions="Start">
-                                            <Entry Text="{Binding Oximetria}" Style="{StaticResource EntryNumerico}"/>
+                                            <Entry Text="{Binding Oximetria}" Style="{StaticResource EntryNumerico}" 
+                                                   TextChanged="EntryParametros_TextChanged" ReturnType="Next" />
                                         </Frame>
                                     </StackLayout>
 
                                     <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5">
                                         <Label Text="TEMPERATURA" Style="{StaticResource LabelNomeCampo}"/>
                                         <Frame Style="{StaticResource FrameEntradaDeDados}" WidthRequest="140" HorizontalOptions="Start">
-                                            <Entry Text="{Binding Temperatura}" Style="{StaticResource EntryNumerico}"/>
+                                            <Entry Text="{Binding Temperatura}" Style="{StaticResource EntryNumerico}" 
+                                                   TextChanged="EntryParametros_TextChanged" ReturnType="Next" />
                                         </Frame>
                                     </StackLayout>
 

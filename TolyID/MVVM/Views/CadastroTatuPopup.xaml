@@ -22,7 +22,7 @@
         <Entry x:Name="IdEntry" Text="{Binding Tatu.IdentificacaoAnimal}" Placeholder="Digite" TextColor="Black"/>
 
         <Label Text="NÚMERO DO MICROCHIP" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <Entry x:Name="MicrochipEntry" Keyboard="Numeric" Text="{Binding Tatu.NumeroMicrochip}" TextColor="Black"/>
+        <Entry x:Name="MicrochipEntry" Keyboard="Numeric" Text="{Binding Tatu.NumeroMicrochip}" TextColor="Black" TextChanged="MicrochipEntry_TextChanged"/>
 
         <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Padding="10">
             <Button CornerRadius="20" Text="Adicionar" TextColor="White" Clicked="Adicionar_Clicked" BackgroundColor="{StaticResource Primary}"/>
