@@ -26,23 +26,23 @@
         <DataTemplate x:Key="TemplateParametrosFisiologicos">
             <Grid RowDefinitions="*, *" ColumnDefinitions="35*, 65*"
                   Margin="10" 
-                  RowSpacing="10" 
-                  ColumnSpacing="10">
+                  RowSpacing="2" 
+                  ColumnSpacing="5">
 
-                <Frame BorderColor="{StaticResource Primary}">
-                    <Label Text="{Binding Fc, StringFormat='FC: {0}'}" FontSize="20"/>
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}">
+                    <Label Text="{Binding Fc, StringFormat='FC: {0}'}" Style="{StaticResource LabelParametrosFisiologicos}"/>
                 </Frame>
 
-                <Frame BorderColor="{StaticResource Primary}" Grid.Row="1">
-                    <Label Text="{Binding Fr, StringFormat='FR: {0}'}" FontSize="20"/>
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Row="1">
+                    <Label Text="{Binding Fr, StringFormat='FR: {0}'}" Style="{StaticResource LabelParametrosFisiologicos}"/>
                 </Frame>
 
-                <Frame BorderColor="{StaticResource Primary}" Grid.Column="1">
-                    <Label Text="{Binding Oximetria, StringFormat='Oximetria: {0}'}" FontSize="20"/>
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="1">
+                    <Label Text="{Binding Oximetria, StringFormat='Oximetria: {0}'}" Style="{StaticResource LabelParametrosFisiologicos}"/>
                 </Frame>
 
-                <Frame BorderColor="{StaticResource Primary}" Grid.Row="1" Grid.Column="1">
-                    <Label Text="{Binding Temperatura, StringFormat='Temperatura: {0}'}" FontSize="20"/>
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Row="1" Grid.Column="1">
+                    <Label Text="{Binding Temperatura, StringFormat='Temperatura: {0}'}" Style="{StaticResource LabelParametrosFisiologicos}"/>
                 </Frame>
                 
             </Grid>

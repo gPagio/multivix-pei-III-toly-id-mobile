@@ -1,8 +1,5 @@
-﻿using Android.Hardware.Camera2.Params;
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Graphics.Text;
+﻿using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.Services;
 
@@ -18,7 +15,7 @@ public partial class CadastroCapturaViewModel
         _tatu = tatu;
         AdicionaParametrosFisiologicos();
 
-        DadosGerais = new List<CampoCadastroModel> 
+        DadosGerais = new List<CampoCadastroModel>
         {
            //new CampoCadastroModel("ID ANIMAL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.IdAnimal))),
             new CampoCadastroModel("Nº IDENTIFICAÇÃO", CriaEntryComTecladoNumerico(Captura.DadosGerais, nameof(Captura.DadosGerais.NumeroIdentificacao))),
@@ -131,9 +128,23 @@ public partial class CadastroCapturaViewModel
             TextColor = Color.FromArgb("#000000"),
             BindingContext = bindingContext
         };
- 
+
+        entry.TextChanged += EntryNumericoTextChanged;
+
         entry.SetBinding(Entry.TextProperty, new Binding(caminhoDeBinding, mode: BindingMode.TwoWay));
         return entry;
+    }
+
+    private static void EntryNumericoTextChanged(object sender, TextChangedEventArgs e)
+    {
+        Entry entry = (Entry)sender;
+
+        if (e.NewTextValue != string.Empty && e.OldTextValue == 0.ToString() && Convert.ToDouble(entry.Text) % 10 == 0)
+        {
+            double numeroDigitado = Convert.ToDouble(entry.Text);
+            numeroDigitado /= 10;
+            entry.Text = numeroDigitado.ToString();
+        }
     }
 
     private static Editor CriaEditor(object bindingContext, string caminhoDeBinding)

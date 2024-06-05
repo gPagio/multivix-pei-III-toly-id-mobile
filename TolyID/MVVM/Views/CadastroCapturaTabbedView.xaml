@@ -16,12 +16,12 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:CampoCadastroModel">
                     <VerticalStackLayout>
-                        
                         <Label Text="{Binding Nome}"
-                               Style="{StaticResource LabelNomeCampo}"/>
+                                Style="{StaticResource LabelNomeCampo}"/>
 
-                        <ContentView Content="{Binding EntradaDeDado}"/>
-                        
+                        <Frame Style="{StaticResource FrameEntradaDeDados}">
+                            <ContentView Content="{Binding EntradaDeDado}"/>
+                        </Frame>
                     </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -40,7 +40,9 @@
                                 <Label Text="{Binding Nome}"
                                         Style="{StaticResource LabelNomeCampo}"/>
 
-                                <ContentView Content="{Binding EntradaDeDado}"/>
+                                <Frame Style="{StaticResource FrameEntradaDeDados}">
+                                    <ContentView Content="{Binding EntradaDeDado}"/>
+                                </Frame>
 
                             </VerticalStackLayout>
                         </DataTemplate>
@@ -71,24 +73,32 @@
                                 <Grid RowDefinitions="*, *" ColumnDefinitions="*, *"
                                         RowSpacing="10" ColumnSpacing="10">
 
-                                    <StackLayout>
+                                    <StackLayout Spacing="5">
                                         <Label Text="FC" Style="{StaticResource LabelNomeCampo}"/>
-                                        <Entry Text="{Binding Fc}" Keyboard="Numeric" />
+                                        <Frame Style="{StaticResource FrameEntradaDeDados}" WidthRequest="140" HorizontalOptions="Start">
+                                            <Entry Text="{Binding Fc}" Style="{StaticResource EntryNumerico}" />
+                                        </Frame>
                                     </StackLayout>
 
-                                    <StackLayout Grid.Row="1" >
+                                    <StackLayout Grid.Row="1" Spacing="5" >
                                         <Label Text="FR" Style="{StaticResource LabelNomeCampo}"/>
-                                        <Entry Text="{Binding Fr}" Keyboard="Numeric" />
+                                        <Frame Style="{StaticResource FrameEntradaDeDados}" WidthRequest="140" HorizontalOptions="Start">
+                                            <Entry Text="{Binding Fr}" Style="{StaticResource EntryNumerico}"/>
+                                        </Frame>
                                     </StackLayout>
 
-                                    <StackLayout Grid.Column="1">
+                                    <StackLayout Grid.Column="1" Spacing="5">
                                         <Label Text="OXIMETRIA" Style="{StaticResource LabelNomeCampo}"/>
-                                        <Entry Text="{Binding Oximetria}" Keyboard="Numeric" />
+                                        <Frame Style="{StaticResource FrameEntradaDeDados}" WidthRequest="140" HorizontalOptions="Start">
+                                            <Entry Text="{Binding Oximetria}" Style="{StaticResource EntryNumerico}"/>
+                                        </Frame>
                                     </StackLayout>
 
-                                    <StackLayout Grid.Column="1" Grid.Row="1">
+                                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5">
                                         <Label Text="TEMPERATURA" Style="{StaticResource LabelNomeCampo}"/>
-                                        <Entry Text="{Binding Temperatura}" Keyboard="Numeric" />
+                                        <Frame Style="{StaticResource FrameEntradaDeDados}" WidthRequest="140" HorizontalOptions="Start">
+                                            <Entry Text="{Binding Temperatura}" Style="{StaticResource EntryNumerico}"/>
+                                        </Frame>
                                     </StackLayout>
 
                                 </Grid>
@@ -111,7 +121,9 @@
                         <Label Text="{Binding Nome}"
                                Style="{StaticResource LabelNomeCampo}"/>
 
-                        <ContentView Content="{Binding EntradaDeDado}"/>
+                        <Frame Style="{StaticResource FrameEntradaDeDados}">
+                            <ContentView Content="{Binding EntradaDeDado}"/>
+                        </Frame>
 
                     </VerticalStackLayout>
                 </DataTemplate>
@@ -152,9 +164,11 @@
             </CollectionView>
 
             <Label Text="{Binding Outros.Nome}"
-            Style="{StaticResource LabelNomeCampo}"/>
+                   Style="{StaticResource LabelNomeCampo}"/>
 
-            <ContentView Content="{Binding Outros.EntradaDeDado}"/>
+            <Frame Style="{StaticResource FrameEntradaDeDados}">
+                <ContentView Content="{Binding Outros.EntradaDeDado}"/>
+            </Frame>
 
             <Button Command="{Binding AdicionaCapturaNoBancoCommand}"
                     Clicked="Finalizar_Clicked"
