@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using TolyID.MVVM.Models;
 using TolyID.Services;
@@ -90,7 +92,18 @@ public partial class CadastroCapturaViewModel
     [RelayCommand]
     private void AdicionaParametrosFisiologicos()
     {
+        if(ParametrosFisiologicos.Count == 20)
+        {
+            MostraMensagemLimiteDeParametros();
+            return;
+        }
+
         ParametrosFisiologicos.Add(new ParametroFisiologicoModel());
+    }
+
+    private async Task DisplayAlert(string v1, string v2, string v3)
+    {
+        throw new NotImplementedException();
     }
 
     [RelayCommand]  // Ligado ao botão "Finalizar"
@@ -103,6 +116,12 @@ public partial class CadastroCapturaViewModel
     }
 
     // ================================= MÉTODOS ===============================================
+
+    private async void MostraMensagemLimiteDeParametros()
+    {
+        var toast = Toast.Make("Limite de 20 parâmetros atingido!", ToastDuration.Short, 14);
+        await toast.Show();
+    }
 
     private static Entry CriaEntryComTecladoNormal(object bindingContext, string caminhoDeBinding)
     {

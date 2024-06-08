@@ -15,7 +15,7 @@ public partial class CadastroTatuPopup : Popup
     {
         _ = CadastroTatuViewModel.AdicionaTatuNoBanco();
         IdEntry.Text = "";
-        MicrochipEntry.Text = 0.ToString();
+        //MicrochipEntry.Text = 0.ToString();
         Close();
     }
 

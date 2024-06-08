@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TolyID.MVVM.Views.TatusCadastradosView"
              xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
-             Title="Tatus"
+             Title="Animais"
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
-             BackgroundColor="White">
+             BackgroundColor="White"
+             Padding="15">
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="70*, 15*, 15*">
-            <Label Text="Tatus" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+            <Label Text="Animais" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
             <Button Grid.Column="1" ImageSource="icone_atualizar.png" HorizontalOptions="End" Clicked="Atualizar_Clicked" BackgroundColor="Transparent"/>
             <Button Grid.Column="2" Scale=".8" ImageSource="icone_mais_branco.png" HorizontalOptions="End" Clicked="AdicionarTatu_Clicked" BackgroundColor="Transparent"/>
         </Grid>
@@ -44,11 +45,9 @@
               
     </ContentPage.Resources>
 
-    <ScrollView Padding="15">
-        <CollectionView ItemsSource="{Binding Tatus}" 
-                        ItemTemplate="{StaticResource ListaDeTatusTemplate}"
-                        SelectionMode="Single"
-                        SelectionChanged="Tatus_SelectionChanged"/>
-    </ScrollView>
-    
+    <CollectionView ItemsSource="{Binding Tatus}" 
+                    ItemTemplate="{StaticResource ListaDeTatusTemplate}"
+                    SelectionMode="Single"
+                    SelectionChanged="Tatus_SelectionChanged"/>
+
 </ContentPage>

@@ -8,25 +8,21 @@
     <mct:Popup.Resources>
         <Style TargetType="{x:Type views:CadastroTatuPopup}">
             <Setter Property="Color" Value="White"/>
-            <Setter Property="Size" Value="300, 320"/>
+            <Setter Property="Size" Value="300, 180"/>
         </Style>
     </mct:Popup.Resources>
-    
-    <VerticalStackLayout Padding="15" Spacing="10">
 
-        <Frame BorderColor="Transparent" CornerRadius="20" BackgroundColor="{StaticResource Primary}" Padding="10" WidthRequest="100">
-            <Label Text="Novo Tatu" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
-        </Frame>
+    <VerticalStackLayout Padding="20" Spacing="10">
 
         <Label Text="IDENTIFICAÇÃO DO ANIMAL" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
         <Entry x:Name="IdEntry" Text="{Binding Tatu.IdentificacaoAnimal}" Placeholder="Digite" TextColor="Black"/>
 
-        <Label Text="NÚMERO DO MICROCHIP" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <Entry x:Name="MicrochipEntry" Keyboard="Numeric" Text="{Binding Tatu.NumeroMicrochip}" TextColor="Black" TextChanged="MicrochipEntry_TextChanged"/>
+        <!--<Label Text="NÚMERO DO MICROCHIP" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
+        <Entry x:Name="MicrochipEntry" Keyboard="Numeric" Text="{Binding Tatu.NumeroMicrochip}" TextColor="Black" TextChanged="MicrochipEntry_TextChanged"/>-->
 
         <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Padding="10">
-            <Button CornerRadius="20" Text="Adicionar" TextColor="White" Clicked="Adicionar_Clicked" BackgroundColor="{StaticResource Primary}"/>
-            <Button CornerRadius="20" Grid.Column="1" Text="Cancelar" TextColor="White" Clicked="Cancelar_Clicked" BackgroundColor="{StaticResource Primary}"/>
+            <Button CornerRadius="20" Text="Cancelar" TextColor="White" Clicked="Cancelar_Clicked" BackgroundColor="{StaticResource Primary}"/>
+            <Button CornerRadius="20" Grid.Column="1" Text="Adicionar" TextColor="White" Clicked="Adicionar_Clicked" BackgroundColor="{StaticResource Primary}"/>
         </Grid>
 
     </VerticalStackLayout>

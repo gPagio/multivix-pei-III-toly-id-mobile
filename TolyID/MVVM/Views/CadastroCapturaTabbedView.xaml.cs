@@ -27,4 +27,9 @@ public partial class CadastroCapturaTabbedView : TabbedPage
             entry.Text = numeroDigitado.ToString();
         }
     }
+
+    protected override void OnDisappearing()
+    {
+        // LIMPAR CAMPOS DE CADASTRO 
+    }
 }
