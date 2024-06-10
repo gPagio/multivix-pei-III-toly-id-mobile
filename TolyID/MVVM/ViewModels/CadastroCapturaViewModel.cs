@@ -101,11 +101,6 @@ public partial class CadastroCapturaViewModel
         ParametrosFisiologicos.Add(new ParametroFisiologicoModel());
     }
 
-    private async Task DisplayAlert(string v1, string v2, string v3)
-    {
-        throw new NotImplementedException();
-    }
-
     [RelayCommand]  // Ligado ao botão "Finalizar"
     async Task AdicionaCapturaNoBanco()
     {

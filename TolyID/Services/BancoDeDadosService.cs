@@ -57,6 +57,23 @@ public static class BancoDeDadosService
         return tatu;
     }
 
+    public static async Task AtualizaTatuAsync(TatuModel tatuAtualizado)
+    {
+        await Init();
+        var tatu = await GetTatuAsync(tatuAtualizado.Id);
+
+        Debug.WriteLine(tatuAtualizado.NumeroMicrochip);
+        
+        if (tatu != null)
+        {
+            tatu.IdentificacaoAnimal = tatuAtualizado.IdentificacaoAnimal;
+            tatu.NumeroMicrochip = tatuAtualizado.NumeroMicrochip;
+            tatu.Capturas = tatuAtualizado.Capturas;
+        }
+
+        _bancoDeDados.UpdateWithChildren(tatu);
+    }
+
     public static async Task DeletaTatuAsync(int id)
     {
         await Init();

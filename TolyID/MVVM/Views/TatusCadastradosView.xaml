@@ -20,10 +20,10 @@
     <ContentPage.Resources>
 
         <DataTemplate x:Key="ListaDeTatusTemplate">
-            <Frame Margin="0, 10, 0, 10" HeightRequest="150" BorderColor="{StaticResource Primary}" InputTransparent="True">
+            <Frame Margin="0, 10, 0, 10" CornerRadius="20" HeightRequest="150" BorderColor="{StaticResource Primary}" InputTransparent="True">
                 <Grid RowDefinitions="*, *" ColumnDefinitions="4*, 6*"
                       RowSpacing="10" ColumnSpacing="10">
-                    <Frame Grid.RowSpan="2" BorderColor="{StaticResource Primary}">
+                    <Frame Grid.RowSpan="2" CornerRadius="15" BorderColor="{StaticResource Primary}">
                         <Image Source="icone_tatu.png" Scale="1"/>
                     </Frame>
                     <Label Text="{Binding IdentificacaoAnimal, StringFormat='ID: {0}'}" 
@@ -32,13 +32,21 @@
                            Grid.Column="1" 
                            FontSize="20" 
                            VerticalOptions="Center"/>
-                    <Label Text="{Binding NumeroMicrochip, StringFormat='CHIP: {0}'}"
+                    <Label Text="{Binding NumeroMicrochip, StringFormat='Chip: {0}'}"
                            TextColor="{StaticResource Primary}"
                            FontAttributes="Bold"
                            Grid.Column="1" 
                            Grid.Row="1" 
                            FontSize="20" 
-                           VerticalOptions="Center"/>
+                           VerticalOptions="Center">
+
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding NumeroMicrochip}" Value="0">
+                                <Setter Property="Text" Value="Chip: não cadastrado"/>
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
                 </Grid>
             </Frame>
         </DataTemplate>

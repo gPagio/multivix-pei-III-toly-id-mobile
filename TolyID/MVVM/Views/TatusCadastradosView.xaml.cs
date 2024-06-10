@@ -7,16 +7,23 @@ namespace TolyID.MVVM.Views;
 
 public partial class TatusCadastradosView : ContentPage
 {
-    TatusCadastradosViewModel viewModel = new();
+    private TatusCadastradosViewModel _viewModel = new();
 	public TatusCadastradosView()
 	{
 		InitializeComponent();
-        BindingContext = viewModel;
+        BindingContext = _viewModel;
 	}
 
     private void AdicionarTatu_Clicked(object sender, EventArgs e)
     {
-        this.ShowPopup(new CadastroTatuPopup());
+        var popup = new CadastroTatuPopup();
+        popup.TatuAdicionado += Popup_TatuAdicionado;
+        this.ShowPopup(popup);
+    }
+
+    private async void Popup_TatuAdicionado(object sender, EventArgs e)
+    {
+        await _viewModel.BuscaTatusNoBanco();
     }
 
     private async void Tatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -36,11 +43,11 @@ public partial class TatusCadastradosView : ContentPage
 
     private async void Atualizar_Clicked(object sender, EventArgs e)
     {
-        await viewModel.BuscaTatusNoBanco();
+        await _viewModel.BuscaTatusNoBanco();
     }
 
     protected async override void OnAppearing()
     {
-        await viewModel.BuscaTatusNoBanco();
+        await _viewModel.BuscaTatusNoBanco();
     }
 }

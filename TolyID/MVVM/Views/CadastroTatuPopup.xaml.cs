@@ -1,24 +1,37 @@
 using CommunityToolkit.Maui.Views;
 using TolyID.MVVM.ViewModels;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 
 namespace TolyID.MVVM.Views;
 
 public partial class CadastroTatuPopup : Popup
 {
+    public EventHandler TatuAdicionado;
+
 	public CadastroTatuPopup()
 	{
 		InitializeComponent();
         BindingContext = new CadastroTatuViewModel();
-	}
-
-    private void Adicionar_Clicked(object sender, EventArgs e)
-    {
-        _ = CadastroTatuViewModel.AdicionaTatuNoBanco();
         IdEntry.Text = "";
-        //MicrochipEntry.Text = 0.ToString();
-        Close();
     }
 
+    private async void Adicionar_Clicked(object sender, EventArgs e)
+    {
+        if (IdEntry.Text == "")
+        {
+            var toast = Toast.Make("Preencha a identificação!", ToastDuration.Short, 14);
+            await toast.Show();
+            return;
+        }
+
+        _ = CadastroTatuViewModel.AdicionaTatuNoBanco();
+        IdEntry.Text = "";
+
+        TatuAdicionado?.Invoke(this, EventArgs.Empty);
+
+        Close();
+    }
 
     private void Cancelar_Clicked(object sender, EventArgs e)
     {

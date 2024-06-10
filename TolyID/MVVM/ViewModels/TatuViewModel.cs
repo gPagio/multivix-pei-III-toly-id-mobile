@@ -14,22 +14,14 @@ public partial class TatuViewModel : ObservableObject
         set => SetProperty(ref _tatu, value);
     }
 
-    public ObservableCollection<CapturaModel> Capturas { get; set; } = new();
-
     public TatuViewModel(TatuModel tatu)
     {
         Tatu = tatu;
-        _ = AtualizaCapturas(tatu);
+        _ = AtualizaTatu(tatu);
     }
 
-    public async Task AtualizaCapturas(TatuModel tatu)
+    public async Task AtualizaTatu(TatuModel tatu)
     {
-        Capturas.Clear();
-        var tatuBanco = await BancoDeDadosService.GetTatuAsync(tatu.Id);
-
-        foreach (CapturaModel captura in tatuBanco.Capturas)
-        {
-            Capturas.Add(captura);
-        }
+        Tatu = await BancoDeDadosService.GetTatuAsync(tatu.Id);
     }
 }

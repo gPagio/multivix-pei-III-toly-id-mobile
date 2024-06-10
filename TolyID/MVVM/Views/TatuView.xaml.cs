@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Views;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.ViewModels;
 
@@ -21,9 +22,16 @@ public partial class TatuView : ContentPage
         await Shell.Current.Navigation.PushModalAsync(new CadastroCapturaTabbedView(_tatu), true);
     }
 
-    private async void Button_Clicked(object sender, EventArgs e)
+    private void Microchip_Clicked(object sender, EventArgs e)
     {
-        await _tatuViewModel.AtualizaCapturas(_tatu);
+        var popup = new MicrochipPopup(_tatu);
+        popup.MicrochipAdicionado += Popup_MicrochipAdicionado; // CHAMA O EVENTO
+        this.ShowPopup(popup);
+    }
+
+    private async void Popup_MicrochipAdicionado(object sender, EventArgs e)
+    {
+        await _tatuViewModel.AtualizaTatu(_tatu);
     }
 
     private async void Capturas_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,6 +50,6 @@ public partial class TatuView : ContentPage
 
     protected async override void OnAppearing()
     {
-        await _tatuViewModel.AtualizaCapturas(_tatu);
+        await _tatuViewModel.AtualizaTatu(_tatu);
     }
 }

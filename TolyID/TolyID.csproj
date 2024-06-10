@@ -91,6 +91,9 @@
 	  <MauiXaml Update="MVVM\Views\CapturaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\MicrochipPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\TatusCadastradosView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
