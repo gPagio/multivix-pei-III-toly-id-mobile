@@ -38,7 +38,7 @@
             <Label Text="CAPTURAS" 
                    TextColor="{StaticResource Primary}" 
                    FontSize="17" FontAttributes="Bold" 
-                   HorizontalTextAlignment="Center"/>
+                   HorizontalTextAlignment="Start"/>
 
             <CollectionView ItemsSource="{Binding Tatu.Capturas}" 
                 SelectionMode="Single"

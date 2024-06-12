@@ -5,13 +5,20 @@ namespace TolyID.MVVM.Views;
 
 public partial class CadastroCapturaTabbedView : TabbedPage
 {
+    private CadastroCapturaViewModel _viewModel;
 	public CadastroCapturaTabbedView(TatuModel tatu)
 	{
 		InitializeComponent();
-        BindingContext = new CadastroCapturaViewModel(tatu);
+        _viewModel = new CadastroCapturaViewModel(tatu);
+        BindingContext = _viewModel;
 	}
 
     private void Finalizar_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.Navigation.PopModalAsync(true);
+    }
+
+    private void Voltar_Clicked(object sender, EventArgs e)
     {
         Shell.Current.Navigation.PopModalAsync(true);
     }
@@ -30,6 +37,6 @@ public partial class CadastroCapturaTabbedView : TabbedPage
 
     protected override void OnDisappearing()
     {
-        // LIMPAR CAMPOS DE CADASTRO 
+        _viewModel.InicializaListasECampos();
     }
 }

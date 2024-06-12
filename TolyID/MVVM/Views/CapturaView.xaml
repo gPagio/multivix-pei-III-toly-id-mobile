@@ -24,25 +24,24 @@
         </DataTemplate>
 
         <DataTemplate x:Key="TemplateParametrosFisiologicos">
-            <Grid RowDefinitions="*, *" ColumnDefinitions="35*, 65*"
-                  Margin="10" 
-                  RowSpacing="2" 
-                  ColumnSpacing="5">
+            <Grid ColumnDefinitions="*, *, *, *"
+                  ColumnSpacing="10"
+                  Margin="0, 0, 0, 10">
 
                 <Frame Style="{StaticResource FrameParametrosFisiologicos}">
-                    <Label Text="{Binding Fc, StringFormat='FC: {0}'}" Style="{StaticResource LabelParametrosFisiologicos}"/>
-                </Frame>
-
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Row="1">
-                    <Label Text="{Binding Fr, StringFormat='FR: {0}'}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                    <Label Text="{Binding Fc}" Style="{StaticResource LabelParametrosFisiologicos}"/>
                 </Frame>
 
                 <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="1">
-                    <Label Text="{Binding Oximetria, StringFormat='Oximetria: {0}'}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                    <Label Text="{Binding Fr}" Style="{StaticResource LabelParametrosFisiologicos}"/>
                 </Frame>
 
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Row="1" Grid.Column="1">
-                    <Label Text="{Binding Temperatura, StringFormat='Temperatura: {0}'}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="2">
+                    <Label Text="{Binding Oximetria}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                </Frame>
+
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="3">
+                    <Label Text="{Binding Temperatura}" Style="{StaticResource LabelParametrosFisiologicos}"/>
                 </Frame>
                 
             </Grid>
@@ -70,6 +69,13 @@
                        FontAttributes="Bold"
                        FontSize="16"
                        TextColor="{StaticResource Primary}"/>
+
+                <Grid ColumnDefinitions="*, *, *, *">
+                    <Label Text="FC" Style="{StaticResource LabelNomeCampo}" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <Label Text="FR" Style="{StaticResource LabelNomeCampo}" Grid.Column="1" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <Label Text="OXIMETRIA" Style="{StaticResource LabelNomeCampo}" Grid.Column="2" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <Label Text="TEMPERATURA" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Center"/>
+                </Grid>
 
                 <CollectionView ItemsSource="{Binding ParametrosFisiologicos}" ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>
             </StackLayout>

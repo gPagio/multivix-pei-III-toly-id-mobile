@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.Services;
 
@@ -15,17 +16,57 @@ public partial class CadastroCapturaViewModel
     public CadastroCapturaViewModel(TatuModel tatu)
     {
         _tatu = tatu;
+        InicializaListasECampos();
         AdicionaParametrosFisiologicos();
+    }
+    
+    public List<CampoCadastroModel> DadosGerais { get; private set; }
+    public List<CampoCadastroModel> Biometria { get; private set; }
+    public List<CampoCadastroModel> Amostras { get; private set; }
+    public CampoCadastroModel Outros { get; private set; }
+    public List<CampoCadastroModel> FichaAnestesica { get; private set; }
+    public ObservableCollection<ParametroFisiologicoModel> ParametrosFisiologicos { get; private set; }
 
+    // ================================= COMANDOS ===============================================
+
+    [RelayCommand]
+    private void AdicionaParametrosFisiologicos()
+    {
+        if(ParametrosFisiologicos.Count == 20)
+        {
+            MostraMensagemLimiteDeParametros();
+            return;
+        }
+
+        ParametrosFisiologicos.Add(new ParametroFisiologicoModel());
+    }
+
+    [RelayCommand]  // Ligado ao botão "Finalizar"
+    async Task AdicionaCapturaNoBanco()
+    {
+        Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
+
+        await BancoDeDadosService.SalvaCapturaAsync(Captura, _tatu);
+        Captura = new CapturaModel();
+    }
+
+    // ================================= MÉTODOS ===============================================
+
+    private async void MostraMensagemLimiteDeParametros()
+    {
+        var toast = Toast.Make("Limite de 20 parâmetros atingido!", ToastDuration.Short, 14);
+        await toast.Show();
+    }
+
+    public void InicializaListasECampos()
+    {
         DadosGerais = new List<CampoCadastroModel>
         {
-           //new CampoCadastroModel("ID ANIMAL", CriaEntryComTecladoNormal(Tatu.DadosGerais, nameof(Tatu.DadosGerais.IdAnimal))),
             new CampoCadastroModel("Nº IDENTIFICAÇÃO", CriaEntryComTecladoNumerico(Captura.DadosGerais, nameof(Captura.DadosGerais.NumeroIdentificacao))),
             new CampoCadastroModel("LOCAL DE CAPTURA", CriaEntryComTecladoNormal(Captura.DadosGerais, nameof(Captura.DadosGerais.LocalDeCaptura))),
             new CampoCadastroModel("EQUIPE RESPONSÁVEL", CriaEntryComTecladoNormal(Captura.DadosGerais, nameof(Captura.DadosGerais.EquipeResponsavel))),
             new CampoCadastroModel("INSTITUIÇÃO", CriaEntryComTecladoNormal(Captura.DadosGerais, nameof(Captura.DadosGerais.Instituicao))),
             new CampoCadastroModel("PESO", CriaEntryComTecladoNumerico(Captura.DadosGerais, nameof(Captura.DadosGerais.Peso))),
-            //new CampoCadastroModel("N° MICROCHIP", CriaEntryComTecladoNumerico(Tatu.DadosGerais, nameof(Tatu.DadosGerais.NumeroMicrochip))),
             new CampoCadastroModel("DATA DE CAPTURA", CriaDatePicker(Captura.DadosGerais, nameof(Captura.DadosGerais.DataDeCaptura))),
             new CampoCadastroModel("HORÁRIO DE CAPTURA", CriaTimePicker(Captura.DadosGerais, nameof(Captura.DadosGerais.HorarioDeCaptura))),
             new CampoCadastroModel("CONTATO DO RESPONSÁVEL", CriaEntryComTecladoNormal(Captura.DadosGerais, nameof(Captura.DadosGerais.ContatoDoResponsavel))),
@@ -77,45 +118,9 @@ public partial class CadastroCapturaViewModel
             new CampoCadastroModel("SWAB", CriaCheckBox(Captura.Amostras, nameof(Captura.Amostras.Swab))),
             new CampoCadastroModel("LOCAL", CriaCheckBox(Captura.Amostras, nameof(Captura.Amostras.Local)))
         };
-    }
-    
-    public List<CampoCadastroModel> DadosGerais { get; }
-    public List<CampoCadastroModel> Biometria { get; }
-    public List<CampoCadastroModel> Amostras { get; }
-    public CampoCadastroModel Outros { get; } = new("OUTROS", CriaEditor(Captura.Amostras, nameof(Captura.Amostras.Outros)));
-    
-    public List<CampoCadastroModel> FichaAnestesica { get; }
-    public ObservableCollection<ParametroFisiologicoModel> ParametrosFisiologicos { get; set; } = new();
 
-    // ================================= COMANDOS ===============================================
-
-    [RelayCommand]
-    private void AdicionaParametrosFisiologicos()
-    {
-        if(ParametrosFisiologicos.Count == 20)
-        {
-            MostraMensagemLimiteDeParametros();
-            return;
-        }
-
-        ParametrosFisiologicos.Add(new ParametroFisiologicoModel());
-    }
-
-    [RelayCommand]  // Ligado ao botão "Finalizar"
-    async Task AdicionaCapturaNoBanco()
-    {
-        Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
-
-        await BancoDeDadosService.SalvaCapturaAsync(Captura, _tatu);
-        Captura = new CapturaModel();
-    }
-
-    // ================================= MÉTODOS ===============================================
-
-    private async void MostraMensagemLimiteDeParametros()
-    {
-        var toast = Toast.Make("Limite de 20 parâmetros atingido!", ToastDuration.Short, 14);
-        await toast.Show();
+        Outros = new("OUTROS", CriaEditor(Captura.Amostras, nameof(Captura.Amostras.Outros)));
+        ParametrosFisiologicos = new();
     }
 
     private static Entry CriaEntryComTecladoNormal(object bindingContext, string caminhoDeBinding)
