@@ -1,3 +1,5 @@
+using Microsoft.Maui.Platform;
+using System.Collections.Specialized;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.ViewModels;
 
@@ -11,6 +13,8 @@ public partial class CadastroCapturaTabbedView : TabbedPage
 		InitializeComponent();
         _viewModel = new CadastroCapturaViewModel(tatu);
         BindingContext = _viewModel;
+
+        _viewModel.ParametrosFisiologicos.CollectionChanged += ParametrosFisiologicos_CollectionChanged;
 	}
 
     private void Finalizar_Clicked(object sender, EventArgs e)
@@ -32,6 +36,15 @@ public partial class CadastroCapturaTabbedView : TabbedPage
             double numeroDigitado = Convert.ToDouble(entry.Text);
             numeroDigitado /= 10;
             entry.Text = numeroDigitado.ToString();
+        }
+    }
+
+    private async void ParametrosFisiologicos_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        // Se novos itens forem adicionados à coleção, rola para o fim da ScrollView
+        if (e.Action == NotifyCollectionChangedAction.Add)
+        {
+            await FichaAnestesicaScrollView.ScrollToAsync(0, FichaAnestesicaScrollView.ContentSize.Height, true);
         }
     }
 

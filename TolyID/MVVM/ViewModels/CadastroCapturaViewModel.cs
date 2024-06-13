@@ -2,7 +2,6 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.Services;
 
@@ -41,7 +40,7 @@ public partial class CadastroCapturaViewModel
         ParametrosFisiologicos.Add(new ParametroFisiologicoModel());
     }
 
-    [RelayCommand]  // Ligado ao botão "Finalizar"
+    [RelayCommand] 
     async Task AdicionaCapturaNoBanco()
     {
         Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();

@@ -61,8 +61,6 @@ public static class BancoDeDadosService
     {
         await Init();
         var tatu = await GetTatuAsync(tatuAtualizado.Id);
-
-        Debug.WriteLine(tatuAtualizado.NumeroMicrochip);
         
         if (tatu != null)
         {
@@ -171,11 +169,6 @@ public static class BancoDeDadosService
         _bancoDeDados.GetChildren(captura.Biometria);
         _bancoDeDados.GetChildren(captura.FichaAnestesica);
         _bancoDeDados.GetChildren(captura.Amostras);
-
-        //foreach (var parametro in captura.FichaAnestesica.ParametrosFisiologicos)
-        //{
-        //    _bancoDeDados.GetChildren(parametro);
-        //}
 
         return captura;
     }

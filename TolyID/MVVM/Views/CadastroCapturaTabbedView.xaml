@@ -15,33 +15,33 @@
     </TabbedPage.ToolbarItems>
 
     <ContentPage Title="1" Padding="20" BackgroundColor="White">
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Label Text="DADOS GERAIS" 
+                       TextColor="{StaticResource Primary}" 
+                       FontSize="18" FontAttributes="Bold" 
+                       HorizontalTextAlignment="Center"/>   
 
-        <VerticalStackLayout Spacing="20">
-            <Label Text="DADOS GERAIS" 
-                   TextColor="{StaticResource Primary}" 
-                   FontSize="18" FontAttributes="Bold" 
-                   HorizontalTextAlignment="Center"/>
+                <CollectionView ItemsSource="{Binding DadosGerais}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:CampoCadastroModel">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Nome}"
+                                       Style="{StaticResource LabelNomeCampo}"/>
 
-            <CollectionView ItemsSource="{Binding DadosGerais}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:CampoCadastroModel">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Nome}"
-                                   Style="{StaticResource LabelNomeCampo}"/>
-
-                            <Frame Style="{StaticResource FrameEntradaDeDados}">
-                                <ContentView Content="{Binding EntradaDeDado}"/>
-                            </Frame>
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
-             
+                                <Frame Style="{StaticResource FrameEntradaDeDados}">
+                                    <ContentView Content="{Binding EntradaDeDado}"/>
+                                </Frame>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
     </ContentPage>
 
     <ContentPage Title="2" Padding="20" BackgroundColor="White">
-        <ScrollView>
+        <ScrollView x:Name="FichaAnestesicaScrollView">
             <StackLayout Spacing="20">
 
                 <Label Text="FICHA ANESTÉSICA" 
