@@ -31,7 +31,7 @@ public partial class CadastroCapturaViewModel
     [RelayCommand]
     private void AdicionaParametrosFisiologicos()
     {
-        if(ParametrosFisiologicos.Count == 20)
+        if(ParametrosFisiologicos.Count == 10)
         {
             MostraMensagemLimiteDeParametros();
             return;
@@ -153,6 +153,7 @@ public partial class CadastroCapturaViewModel
         return entry;
     }
 
+    // Apaga o número 0 dos Entries numéricos ao digitar um valor. Solução temporária
     private static void EntryNumericoTextChanged(object sender, TextChangedEventArgs e)
     {
         Entry entry = (Entry)sender;

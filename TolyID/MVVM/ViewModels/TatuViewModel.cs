@@ -1,6 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.Services;
 
@@ -15,13 +13,14 @@ public partial class TatuViewModel : ObservableObject
         set => SetProperty(ref _tatu, value);
     }
 
+    // TODO: este campo servirá para mostrar uma Label indicando que não há capturas
+    // feitas para o tatu correspondente. 
     [ObservableProperty]
-    private int numeroDeCapturas;
+    private int numeroDeCapturas;   
 
     public TatuViewModel(TatuModel tatu)
     {
         Tatu = tatu;
-        //_ = AtualizaTatu(tatu);
     }
 
     public async Task AtualizaTatu(TatuModel tatu)

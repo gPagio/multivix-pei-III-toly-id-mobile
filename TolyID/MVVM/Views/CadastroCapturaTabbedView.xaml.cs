@@ -1,4 +1,3 @@
-using Microsoft.Maui.Platform;
 using System.Collections.Specialized;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.ViewModels;
@@ -27,6 +26,8 @@ public partial class CadastroCapturaTabbedView : TabbedPage
         Shell.Current.Navigation.PopModalAsync(true);
     }
 
+    // Apaga o número 0 dos campos ligados a números ao digitar. Solução temporária (apenas para campos 
+    // dos parâmetros fisiológicos da ficha anestésica)
     private void EntryParametros_TextChanged(object sender, TextChangedEventArgs e)
     {
         Entry entry = (Entry)sender;
@@ -39,9 +40,9 @@ public partial class CadastroCapturaTabbedView : TabbedPage
         }
     }
 
+    // Rola para o fim da tela caso novos parâmetros fisiológicos sejam adicionados
     private async void ParametrosFisiologicos_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
-        // Se novos itens forem adicionados à coleção, rola para o fim da ScrollView
         if (e.Action == NotifyCollectionChangedAction.Add)
         {
             await FichaAnestesicaScrollView.ScrollToAsync(0, FichaAnestesicaScrollView.ContentSize.Height, true);

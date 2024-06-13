@@ -20,10 +20,10 @@ public class CapturaViewModel : ObservableObject
     public CapturaViewModel(CapturaModel captura)
     {
         CarregaCaptura(captura.Id);
-        PreencherPropriedades(Captura.DadosGerais, DadosGerais);
-        PreencherPropriedades(Captura.Biometria, Biometria);
-        PreencherPropriedades(Captura.Amostras, Amostras);
-        PreencherPropriedades(Captura.FichaAnestesica, FichaAnestesica);
+        PreenchePropriedades(Captura.DadosGerais, DadosGerais);
+        PreenchePropriedades(Captura.Biometria, Biometria);
+        PreenchePropriedades(Captura.Amostras, Amostras);
+        PreenchePropriedades(Captura.FichaAnestesica, FichaAnestesica);
         PreencherParametrosFisiologicos();
     }
 
@@ -38,7 +38,9 @@ public class CapturaViewModel : ObservableObject
         Captura = await BancoDeDadosService.GetCapturaAsync(id);
     }
 
-    private void PreencherPropriedades(object fonte, Dictionary<string, string> alvo)
+    // Percorre as propriedades de um dado objeto 'fonte', e armazena o DisplayName e o valor de cada
+    // propriedade no dicionário 'alvo'
+    private void PreenchePropriedades(object fonte, Dictionary<string, string> alvo)
     {
         if (fonte == null) return;
 
@@ -50,20 +52,24 @@ public class CapturaViewModel : ObservableObject
             if (prop.Name == "ParametrosFisiologicos") continue;
 
             var displayNameAttribute = prop.GetCustomAttribute<DisplayNameAttribute>();
-            var displayName = displayNameAttribute?.DisplayName ?? prop.Name;   // se displayNameAttribute for nulo, displayName será igual ao nome de prop
 
-            var value = prop.GetValue(fonte)?.ToString() ?? string.Empty;
+            // se displayNameAttribute for nulo, displayName será igual ao nome de prop
+            var displayName = displayNameAttribute?.DisplayName ?? prop.Name;  
+
+            var valor = prop.GetValue(fonte)?.ToString() ?? string.Empty;
             
-            if (value == "True") 
+            // Verificação feita apenas para propriedades cujos valores são booleanos, ou seja,
+            // propriedades de 'AmostrasModel' (exceto 'Outros')
+            if (valor == "True") 
             {
-                value = "Coletado";
+                valor = "Coletado";
             } 
-            else if(value == "False")
+            else if(valor == "False")
             {
-                value = "Não Coletado";
+                valor = "Não Coletado";
             }
 
-            alvo[displayName] = value;
+            alvo[displayName] = valor;
         }
     }
 
