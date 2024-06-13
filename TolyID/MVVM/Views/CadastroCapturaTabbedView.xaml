@@ -162,36 +162,40 @@
             <Label Text="AMOSTRAS" 
                    TextColor="{StaticResource Primary}" 
                    FontSize="18" FontAttributes="Bold" 
-                   HorizontalTextAlignment="Center"/>   
+                   HorizontalTextAlignment="Center"/>
 
-            <CollectionView ItemsSource="{Binding Amostras}">
+            <Frame BorderColor="Transparent">
+                <CollectionView ItemsSource="{Binding Amostras}">
 
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                                     Span="2"
-                                     HorizontalItemSpacing="20"
-                                     VerticalItemSpacing="10"/> 
-                </CollectionView.ItemsLayout>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="2"
+                                         HorizontalItemSpacing="20"
+                                         VerticalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:CampoCadastroModel">
-                        <HorizontalStackLayout>
-                            <ContentView Content="{Binding EntradaDeDado}"
-                                          HorizontalOptions="Start"
-                                          VerticalOptions="Center"/>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:CampoCadastroModel">
+                            <HorizontalStackLayout>
+                                <ContentView Content="{Binding EntradaDeDado}"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center"/>
 
-                            <Label Text="{Binding Nome}"
-                                   TextColor="{StaticResource Primary}"
-                                   FontAttributes="Bold"
-                                   Grid.Column="1"
-                                   VerticalTextAlignment="Center"
-                                   HorizontalTextAlignment="Start"/>
+                                <Label Text="{Binding Nome}"
+                                       TextColor="{StaticResource Primary}"
+                                       FontAttributes="Bold"
+                                       Grid.Column="1"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Start"/>
 
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
+            </Frame>
+
+            
             <Label Text="{Binding Outros.Nome}"
                    Style="{StaticResource LabelNomeCampo}"/>
 
