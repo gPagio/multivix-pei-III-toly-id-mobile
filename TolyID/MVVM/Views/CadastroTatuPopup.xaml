@@ -7,8 +7,8 @@
 
     <mct:Popup.Resources>
         <Style TargetType="{x:Type views:CadastroTatuPopup}">
-            <Setter Property="Color" Value="White"/>
-            <Setter Property="Size" Value="300, 175"/>
+            <Setter Property="Color" Value="{StaticResource Background}"/>
+            <Setter Property="Size" Value="300, 185"/>
         </Style>
     </mct:Popup.Resources>
 

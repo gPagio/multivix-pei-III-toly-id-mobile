@@ -9,8 +9,8 @@
 
     <mct:Popup.Resources>
         <Style TargetType="{x:Type views:MicrochipPopup}">
-            <Setter Property="Color" Value="White"/>
-            <Setter Property="Size" Value="300, 175"/>
+            <Setter Property="Color" Value="{StaticResource Background}"/>
+            <Setter Property="Size" Value="300, 165"/>
         </Style>
     </mct:Popup.Resources>
 

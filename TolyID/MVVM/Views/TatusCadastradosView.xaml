@@ -6,13 +6,12 @@
              Title="Animais"
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
-             BackgroundColor="White"
+             BackgroundColor="{StaticResource Background}"
              Padding="15">
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="70*, 15*, 15*">
+        <Grid ColumnDefinitions="7*, 3*">
             <Label Text="Animais" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
-            <Button Grid.Column="1" ImageSource="icone_atualizar.png" HorizontalOptions="End" Clicked="Atualizar_Clicked" BackgroundColor="Transparent"/>
             <Button Grid.Column="2" Scale=".8" ImageSource="icone_mais_branco.png" HorizontalOptions="End" Clicked="AdicionarTatu_Clicked" BackgroundColor="Transparent"/>
         </Grid>
     </Shell.TitleView>
@@ -20,7 +19,7 @@
     <ContentPage.Resources>
 
         <DataTemplate x:Key="ListaDeTatusTemplate">
-            <Frame Margin="0, 10, 0, 10" CornerRadius="20" HeightRequest="150" BorderColor="{StaticResource Primary}" InputTransparent="True">
+            <Frame Margin="0, 10, 0, 10" CornerRadius="20" HeightRequest="150" BorderColor="Transparent" InputTransparent="True">
                 <Grid RowDefinitions="*, *" ColumnDefinitions="4*, 6*"
                       RowSpacing="10" ColumnSpacing="10">
                     <Frame Grid.RowSpan="2" CornerRadius="15" BorderColor="{StaticResource Primary}">

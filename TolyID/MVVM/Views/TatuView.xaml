@@ -8,7 +8,7 @@
              Title="{Binding Tatu.IdentificacaoAnimal}"           
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
-             BackgroundColor="White">
+             BackgroundColor="{StaticResource Background}">
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="6*, 2*, 2*">
@@ -58,7 +58,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:CapturaModel">
-                        <Frame Padding="10" Margin="0, 0, 0, 10" BorderColor="{StaticResource Primary}" InputTransparent="True">
+                        <Frame Padding="10" Margin="0, 0, 0, 10" BorderColor="Transparent" InputTransparent="True">
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>

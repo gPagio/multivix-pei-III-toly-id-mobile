@@ -5,11 +5,11 @@
              Title="{Binding Captura.Id, StringFormat='Captura n° {0}'}"           
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
-             BackgroundColor="White">
+             BackgroundColor="{StaticResource Background}">
 
     <ContentPage.Resources>
         <DataTemplate x:Key="TemplateInformacoes">
-            <Frame Padding="10, 2, 10, 2" Margin="0, 0, 0, 10" BorderColor="{StaticResource Primary}">
+            <Frame Padding="10, 2, 10, 2" Margin="0, 0, 0, 10" BorderColor="Transparent">
                 <StackLayout>
                     <Label>
                         <Label.FormattedText>
