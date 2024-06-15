@@ -19,7 +19,7 @@ Para realizar os procedimentos em cada indivíduo leva certo tempo, pois para im
 Além do tempo para sedar o animal, para realizar certos exames, intervalos de tempo entre procedimentos é necessário. Além disso, o método atual é invasivo, pois necessita de implantar um microchip no animal para que o mesmo fique `marcado` e possa ser identificado por outros pesquisadores caso o encontrem e realizar a comparação com os dados que já foram anteriormente capturados em outras coletas e tornar possível o acompanhamento do ciclo de vida do indivíduo.
 
 ## 📌 Objetivo Principal
-A ideia inicial do projeto é a construção de uma plataforma onde a porta de entrada seria um smartphone. Com esse dispositivo em mãos, o pesquisador iria capturar o indivíduo e, por mais que o mesmo se feche para se proteger, com uma simples foto do `escudo encefálico` do indivído, já seria o suficiente para identificar o animal, sem a necessidade de um microchip, já que as placas do escuto encefálico formam um padrão único para cada indivíduo de espécie.
+A ideia inicial do projeto é a construção de uma plataforma onde a porta de entrada seria um smartphone. Com esse dispositivo em mãos, o pesquisador iria capturar o indivíduo e, por mais que o mesmo se feche para se proteger, com uma simples foto do `escudo cefálico` do indivído, já seria o suficiente para identificar o animal, sem a necessidade de um microchip, já que as placas do escuto encefálico formam um padrão único para cada indivíduo de espécie.
 
 Após capturar o animal, o mesmo seria sedado e submetido aos procedimentos de exames e medidas. Todas as informações coletadas seriam registradas no aplicativo do smartphone. Com as informações cadastradas na plataforma, seria possível realizar uma comparação no local de captura se o animal já foi capturado anteriormente ou se é a sua primeira vez.
 
@@ -37,3 +37,42 @@ A primeiro momento, os dados estão permanecendo apenas no aplicativo de smartph
 O último ponto a ser mencionado é que o aplicativo foi testado apenas em smartphone `Android`. Por mais que as plataformas `C#` e `MAUI` suportarem desenvolvimento praticamente para qualquer plataforma, devido a carência de equipamento específico, não foi possível realizar os testes em disposivos que rodam `iOS` e `iPad OS`.
 
 ## ⚙️ Funcionalidades
+### 1 - Listagem de Animais Cadastrados
+Essa tela é responsável por listar todos os animais que estão cadastrados no sistema. Durante a operação em campo, os animais recém capturados ficarão salvos somente no smartphone, posteriormente, quando o celular se conectar a internet, os registros locais serão enviados ao servidor da aplicação, realizando uma sincronização.
+<p align="center">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/1-animais-cadastrados-vazio.png" alt="1-animais-cadastrados-vazio">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/3-animais-cadastrados.png" alt="3-animais-cadastrados">
+</p>
+
+### 2 - Cadastro de Animais
+Esta tela é responsável por realizar o cadastro dos animais capturados durante as operações em campo.
+
+Para cada categoria de cadastro existe uma tela específica para tal. Seguem demonstrações:
+
+<p align="center">Adicionar Identificador do Animal e Microchip</p>
+<p align="center">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/2-cadastro-de-tatu.png" alt="2-cadastro-de-tatu">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/5-adição-do-microchip.png" alt="5-adicao-do-microchip">
+</p>
+
+<p align="center">Captura de Dados Gerais, Captura de Dados da Ficha Anestésica</p>
+<p align="center">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/6-captura-dados-gerais.png" alt="6-captura-dados-gerais">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/7-captura (ficha anestésica).png" alt="7-captura (ficha anestésica)">
+</p>
+
+<p align="center">Captura de Dados Biométricos, Captura de Dados de Amostra</p>
+<p align="center">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/8-captura-biometria-.png" alt="8-captura-biometria-">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/9-captura-amostras.png" alt="9-captura-amostras">
+</p>
+
+### 3 - Exibir Ficha do Animal Cadastrado
+Esta tela é responsável por exibir os dados de cada animal cadastrado, ou seja, e cada registro axibido na tela o aplijcativo ira exibir todas as informações pertinentes a ele.
+
+O Toly ID atualmente está montado da seguinte forma. Ao escolher um dos animais da tela, abrirá um menu com todas as capturas que ele já teve. Posteriormente, clicando sober a captura especifica o aplicativo irá exibir todos os dados pertinentes ao animal escolhido, na captura selecionada. Seguem demonstrações:
+<p align="center">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/4-tatu-cadastrado.png" alt="4-tatu-cadastrado">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/10-tatu-com-cadastros-e-chip.png" alt="10-tatu-com-cadastros-e-chip">
+  <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/11 - captura cadastrada.png" alt="11 - captura cadastrada">
+</p>
