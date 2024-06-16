@@ -68,9 +68,9 @@ Para cada categoria de cadastro existe uma tela específica para tal. Seguem dem
 </p>
 
 ### 3 - Exibir Ficha do Animal Cadastrado
-Esta tela é responsável por exibir os dados de cada animal cadastrado, ou seja, e cada registro axibido na tela o aplijcativo ira exibir todas as informações pertinentes a ele.
+Esta tela é responsável por exibir os dados de cada animal cadastrado, ou seja, em cada registro exibido na tela o aplicativo irá exibir todas as informações pertinentes a ele.
 
-O Toly ID atualmente está montado da seguinte forma. Ao escolher um dos animais da tela, abrirá um menu com todas as capturas que ele já teve. Posteriormente, clicando sober a captura especifica o aplicativo irá exibir todos os dados pertinentes ao animal escolhido, na captura selecionada. Seguem demonstrações:
+O Toly ID atualmente está montado da seguinte forma. Ao escolher um dos animais da tela, abrirá um menu com todas as capturas que ele já teve. Posteriormente, clicando sobre a captura específica o aplicativo irá exibir todos os dados pertinentes ao animal escolhido, na captura selecionada. Seguem demonstrações:
 <p align="center">
   <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/4-tatu-cadastrado.png" alt="4-tatu-cadastrado">
   <img height="600" src="https://github.com/gPagio/multivix-pei-III-toly-id-mobile/blob/main/Docs/10-tatu-com-cadastros-e-chip.png" alt="10-tatu-com-cadastros-e-chip">
