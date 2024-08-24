@@ -12,7 +12,7 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="6*, 2*, 2*">
-            <Label Text="{Binding Tatu.IdentificacaoAnimal}" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+            <Label Text="{Binding Tatu.IdentificacaoAnimal}" TextColor="White" FontSize="20" FontFamily="Inter-SemiBold" VerticalOptions="Center"/>
             <Button Grid.Column="1" ImageSource="icone_chip.png" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="Microchip_Clicked"/>
             <Button Grid.Column="2" ImageSource="icone_mais_branco.png" Scale=".7" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="AdicionarCaptura_Clicked" />
         </Grid>
@@ -23,7 +23,7 @@
 
             <Label Text="{Binding Tatu.NumeroMicrochip, StringFormat='Chip: {0}'}" 
                    TextColor="{StaticResource Primary}"
-                   FontAttributes="Bold"
+                   FontFamily="Inter-SemiBold"
                    FontSize="17"
                    HorizontalTextAlignment="Center">
 
@@ -37,7 +37,7 @@
 
             <Label Text="CAPTURAS" 
                    TextColor="{StaticResource Primary}" 
-                   FontSize="17" FontAttributes="Bold" 
+                   FontSize="17" FontFamily="Inter-Bold"
                    HorizontalTextAlignment="Start"/>
 
             <!--<Label Text="Ainda não há capturas feitas!" 
@@ -62,9 +62,9 @@
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="{Binding Id, StringFormat='Captura N° {0}'}" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
-                                        <Span Text="{Binding DadosGerais.DataDeCaptura, StringFormat='&#x0a;{0:dd/MM/yyyy}'}" TextColor="{StaticResource Primary}"/>
-                                        <Span Text="{Binding DadosGerais.HorarioDeCaptura, StringFormat=' - {0:hh\\:mm}'}" TextColor="{StaticResource Primary}"/>
+                                        <Span Text="{Binding Id, StringFormat='Captura N° {0}'}" FontFamily="Inter-SemiBold" TextColor="{StaticResource Primary}"/>
+                                        <Span Text="{Binding DadosGerais.DataDeCaptura, StringFormat='&#x0a;{0:dd/MM/yyyy}'}" FontFamily="Inter-Regular" TextColor="{StaticResource Primary}"/>
+                                        <Span Text="{Binding DadosGerais.HorarioDeCaptura, StringFormat=' - {0:hh\\:mm}'}" FontFamily="Inter-Regular" TextColor="{StaticResource Primary}"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>

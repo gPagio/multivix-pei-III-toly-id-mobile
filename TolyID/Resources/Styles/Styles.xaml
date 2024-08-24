@@ -8,8 +8,8 @@
     
     <Style x:Key="FrameTitulo" TargetType="Frame">
         <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
-        <Setter Property="HeightRequest" Value="30"/>
-        <Setter Property="WidthRequest" Value="150"/>
+        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="WidthRequest" Value="180"/>
         <Setter Property="CornerRadius" Value="20"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderColor" Value="Transparent"/>
@@ -17,9 +17,10 @@
 
     <Style x:Key="LabelTitulo" TargetType="Label">
         <Setter Property="TextColor" Value="White"/>
-        <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="FontFamily" Value="Inter-SemiBold"/>
+        <Setter Property="FontSize" Value="14"/>
     </Style>
 
     <Style x:Key="LabelParametrosFisiologicos" TargetType="Label">

@@ -11,7 +11,7 @@
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="7*, 3*">
-            <Label Text="Animais" TextColor="White" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+            <Label Text="Animais" TextColor="White" FontSize="20" FontFamily="Inter-SemiBold" VerticalOptions="Center"/>
             <Button Grid.Column="2" Scale=".8" ImageSource="icone_mais_branco.png" HorizontalOptions="End" Clicked="AdicionarTatu_Clicked" BackgroundColor="Transparent"/>
         </Grid>
     </Shell.TitleView>
@@ -22,16 +22,15 @@
             <Frame Margin="0, 10, 0, 10" CornerRadius="20" HeightRequest="90" BorderColor="Transparent" InputTransparent="True" Padding="20, 10, 15, 10">
                 <Grid RowDefinitions="*, *" ColumnDefinitions="6*, 4*" ColumnSpacing="10">
 
-
                     <Label Text="{Binding IdentificacaoAnimal, StringFormat='Id: {0}'}" 
                            TextColor="{StaticResource Primary}"
-                           FontAttributes="Bold"
+                           FontFamily="Inter-SemiBold"
                            FontSize="18" 
                            VerticalOptions="Center"/>
 
                     <Label Text="{Binding NumeroMicrochip, StringFormat='Chip: {0}'}"
                            TextColor="{StaticResource Primary}"
-                           FontAttributes="Bold"
+                           FontFamily="InterRegular"
                            Grid.Row="1" 
                            FontSize="18" 
                            VerticalOptions="Center">

@@ -44,6 +44,7 @@ public partial class CadastroCapturaViewModel
     async Task AdicionaCapturaNoBanco()
     {
         Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
+        Captura.DadosGerais.DataDeCaptura = Captura.DadosGerais.DataDeCaptura.Date;
 
         await BancoDeDadosService.SalvaCapturaAsync(Captura, _tatu);
         Captura = new CapturaModel();

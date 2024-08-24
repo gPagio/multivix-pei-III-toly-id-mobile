@@ -56,7 +56,10 @@ public class CapturaViewModel : ObservableObject
             // se displayNameAttribute for nulo, displayName será igual ao nome de prop
             var displayName = displayNameAttribute?.DisplayName ?? prop.Name;  
 
+            // Caso não haja valor preenchido em certo campo, não mostrar na tela
             var valor = prop.GetValue(fonte)?.ToString() ?? string.Empty;
+
+            if (valor == string.Empty) continue;
             
             // Verificação feita apenas para propriedades cujos valores são booleanos, ou seja,
             // propriedades de 'AmostrasModel' (exceto 'Outros')
