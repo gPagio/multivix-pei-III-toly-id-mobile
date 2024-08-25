@@ -75,7 +75,7 @@ public static class BancoDeDadosService
     public static async Task DeletaTatuAsync(int id)
     {
         await Init();
-        _bancoDeDados.Delete<CapturaModel>(id);
+        _bancoDeDados.Delete<TatuModel>(id);
     }
 
     // ======================== CRUD CAPTURAS ======================== 

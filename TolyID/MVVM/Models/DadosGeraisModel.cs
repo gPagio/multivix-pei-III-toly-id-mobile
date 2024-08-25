@@ -24,7 +24,6 @@ public class DadosGeraisModel
 
     [DisplayName("Peso")]
     public double Peso { get; set; }
-    //public int NumeroMicrochip { get; set; }
 
     [DisplayName("Data de Captura")]
     public DateTime DataDeCaptura { get; set; } = DateTime.Now;
