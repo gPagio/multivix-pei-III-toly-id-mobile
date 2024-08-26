@@ -49,15 +49,25 @@ public partial class CapturaViewModel : ObservableObject
         foreach (var prop in propriedades)
         {
             if (prop.Name == "Id") continue;
-            if (prop.Name == "ParametrosFisiologicos") continue;
+            if (prop.Name == "ParametrosFisiologicos") continue;            
 
             var displayNameAttribute = prop.GetCustomAttribute<DisplayNameAttribute>();
 
             // se displayNameAttribute for nulo, displayName será igual ao nome de prop
-            var displayName = displayNameAttribute?.DisplayName ?? prop.Name;  
+            var displayName = displayNameAttribute?.DisplayName ?? prop.Name;
 
             // Caso não haja valor preenchido em certo campo, não mostrar na tela
             var valor = prop.GetValue(fonte)?.ToString() ?? string.Empty;
+
+            // Solução temporária para não mostrar o horário de DateTime
+            // TODO: mudar a forma como a informação é armazenada no banco
+            if (prop.Name == "DataDeCaptura")
+            {
+                if (DateTime.TryParse(prop.GetValue(fonte)?.ToString(), out DateTime dataCaptura))
+                {
+                    valor = dataCaptura.ToString("dd/MM/yyyy");
+                }
+            }
 
             if (valor == string.Empty) continue;
             

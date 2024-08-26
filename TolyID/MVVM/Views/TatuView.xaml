@@ -80,9 +80,8 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding Id, StringFormat='Captura N° {0}'}" FontFamily="Inter-SemiBold" TextColor="{StaticResource Primary}"/>
-                                            <Span Text="{Binding DadosGerais.DataDeCaptura, StringFormat='&#x0a;{0:dd/MM/yyyy}'}" FontFamily="Inter-Regular" TextColor="{StaticResource Primary}"/>
-                                            <Span Text="{Binding DadosGerais.HorarioDeCaptura, StringFormat=' - {0:hh\\:mm}'}" FontFamily="Inter-Regular" TextColor="{StaticResource Primary}"/>
+                                            <Span Text="{Binding DadosGerais.DataDeCaptura, StringFormat='Data: {0:dd/MM/yyyy}'}" FontFamily="Inter-Medium" FontSize="17"  TextColor="{StaticResource Primary}"/>
+                                            <Span Text="{Binding DadosGerais.HorarioDeCaptura, StringFormat='&#x0a;Horário: {0:hh\\:mm}'}" FontFamily="Inter-Regular" FontSize="16" TextColor="{StaticResource Primary}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
