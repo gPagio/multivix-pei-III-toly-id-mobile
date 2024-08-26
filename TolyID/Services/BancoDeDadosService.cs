@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Extensions;
 using System.Diagnostics;
+using System.Reflection.Metadata;
 using TolyID.MVVM.Models;
 
 namespace TolyID.Services;
@@ -129,6 +130,35 @@ public static class BancoDeDadosService
         _bancoDeDados.GetChildren(captura.Amostras);
 
         return captura;
+    }
+
+    public static async Task AtualizaCapturaAsync(CapturaModel capturaAtualizada)
+    {
+        await Init();
+
+        var capturaAntiga = await GetCapturaAsync(capturaAtualizada.Id);
+
+        _bancoDeDados.Update(capturaAtualizada);
+        _bancoDeDados.Update(capturaAtualizada.DadosGerais);
+        _bancoDeDados.Update(capturaAtualizada.Biometria);
+        _bancoDeDados.Update(capturaAtualizada.Amostras);
+        _bancoDeDados.Update(capturaAtualizada.FichaAnestesica);
+
+        // CUIDADO! CRIME GRAVÍSSIMO A SEGUIR!
+        // Gambiarra master para atualizar os parâmetros fisiológicos
+        for (int i = 0; i <= capturaAtualizada.FichaAnestesica.ParametrosFisiologicos.Count - 1; i++)
+        {
+            // Garante que parâmetros presentes anteriormente sejam só atualizados, e não duplicados
+            if (i <= capturaAntiga.FichaAnestesica.ParametrosFisiologicos.Count - 1)
+            {
+                _bancoDeDados.Update(capturaAtualizada.FichaAnestesica.ParametrosFisiologicos[i]);
+                continue;
+            }
+
+            // Adiciona novos parâmetros
+            capturaAtualizada.FichaAnestesica.ParametrosFisiologicos[i].FichaAnestesicaId = capturaAtualizada.FichaAnestesica.Id;
+            _bancoDeDados.Insert(capturaAtualizada.FichaAnestesica.ParametrosFisiologicos[i]);
+        }
     }
 
     public static async Task DeletaCapturaAsync(CapturaModel captura)

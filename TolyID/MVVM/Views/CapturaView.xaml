@@ -7,6 +7,13 @@
              Shell.TitleColor="White"
              BackgroundColor="{StaticResource Background}">
 
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="7*, 3*">
+            <Label Text="{Binding Captura.Id, StringFormat='Captura n° {0}'}" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
+            <Button Grid.Column="2" ImageSource="icone_editar.png" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="EditarCaptura_Clicked"/>
+        </Grid>
+    </Shell.TitleView>
+
     <ContentPage.Resources>
         <DataTemplate x:Key="TemplateInformacoes">
             <Frame Padding="10, 2, 10, 4" Margin="0, 0, 0, 10" BorderColor="Transparent">

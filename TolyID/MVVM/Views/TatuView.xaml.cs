@@ -19,7 +19,6 @@ public partial class TatuView : ContentPage
 
     private async void AdicionarCaptura_Clicked(object sender, EventArgs e)
     {
-        //await Shell.Current.Navigation.PushModalAsync(new CadastroCapturaTabbedView(_tatu), true);
         await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new CadastroCapturaTabbedView(_tatu)), true);
     }
 
