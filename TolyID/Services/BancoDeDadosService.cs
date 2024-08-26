@@ -146,6 +146,7 @@ public static class BancoDeDadosService
 
         // CUIDADO! CRIME GRAVÍSSIMO A SEGUIR!
         // Gambiarra master para atualizar os parâmetros fisiológicos
+        // TODO: exclusão de parâmetros
         for (int i = 0; i <= capturaAtualizada.FichaAnestesica.ParametrosFisiologicos.Count - 1; i++)
         {
             // Garante que parâmetros presentes anteriormente sejam só atualizados, e não duplicados
