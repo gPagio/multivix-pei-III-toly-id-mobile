@@ -26,7 +26,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     async Task DeletaTatu(TatuModel tatu)
     {
-        await BancoDeDadosService.DeletaTatuAsync(tatu.Id);
+        await BancoDeDadosService.DeletaTatuAsync(tatu);
         await BuscaTatusNoBanco();
     }
 

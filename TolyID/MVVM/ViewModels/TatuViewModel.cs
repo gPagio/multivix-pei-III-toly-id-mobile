@@ -40,7 +40,7 @@ public partial class TatuViewModel : ObservableObject
     [RelayCommand]
     async Task DeletaCaptura(CapturaModel captura)
     {
-        await BancoDeDadosService.DeletaCapturaAsync(captura.Id);
+        await BancoDeDadosService.DeletaCapturaAsync(captura);
         await AtualizaTatu(Tatu);
     }
 }

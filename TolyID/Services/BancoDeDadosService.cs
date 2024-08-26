@@ -72,17 +72,17 @@ public static class BancoDeDadosService
         _bancoDeDados.UpdateWithChildren(tatu);
     }
 
-    public static async Task DeletaTatuAsync(int id)
+    public static async Task DeletaTatuAsync(TatuModel tatu)
     {
         await Init();
-        var tatu = _bancoDeDados.GetWithChildren<TatuModel>(id);
+        var tatuSelecionado = _bancoDeDados.GetWithChildren<TatuModel>(tatu.Id);
 
-        foreach (var captura in tatu.Capturas) 
+        foreach (var captura in tatuSelecionado.Capturas) 
         { 
-            await DeletaCapturaAsync(captura.Id);  
+            await DeletaCapturaAsync(captura);  
         }
 
-        _bancoDeDados.Delete<TatuModel>(id);
+        _bancoDeDados.Delete<TatuModel>(tatu.Id);
     }
 
     // ======================== CRUD CAPTURAS ======================== 
@@ -131,9 +131,20 @@ public static class BancoDeDadosService
         return captura;
     }
 
-    public static async Task DeletaCapturaAsync(int capturaId)
+    public static async Task DeletaCapturaAsync(CapturaModel captura)
     { 
         await Init();
-        _bancoDeDados.Delete<CapturaModel>(capturaId);   
+
+        _bancoDeDados.Delete<DadosGeraisModel>(captura.DadosGeraisId);
+        _bancoDeDados.Delete<BiometriaModel>(captura.BiometriaId);
+        _bancoDeDados.Delete<AmostrasModel>(captura.AmostrasId);
+
+        foreach (var parametroFisiologico in captura.FichaAnestesica.ParametrosFisiologicos)
+        {
+            _bancoDeDados.Delete<ParametroFisiologicoModel>(parametroFisiologico.Id);
+        }
+
+        _bancoDeDados.Delete<FichaAnestesicaModel>(captura.FichaAnestesicaId);
+        _bancoDeDados.Delete<CapturaModel>(captura.Id);   
     }
 }
