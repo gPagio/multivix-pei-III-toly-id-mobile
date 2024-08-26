@@ -33,7 +33,7 @@
                     </SwipeItems>
                 </SwipeView.RightItems>
 
-                <Frame Margin="0, 10, 0, 10" CornerRadius="20" HeightRequest="90" BorderColor="Transparent" InputTransparent="True" Padding="20, 10, 15, 10">
+                <Frame Margin="0, 10, 0, 10" CornerRadius="20" HeightRequest="90" BorderColor="Transparent" InputTransparent="False" Padding="20, 10, 15, 10">
 
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=VisualizaTatuCommand}"
@@ -71,8 +71,6 @@
     </ContentPage.Resources>
 
     <CollectionView ItemsSource="{Binding Tatus}" 
-                    ItemTemplate="{StaticResource ListaDeTatusTemplate}"
-                    SelectionMode="Single"
-                    SelectionChanged="Tatus_SelectionChanged"/>
+                    ItemTemplate="{StaticResource ListaDeTatusTemplate}"/>
 
 </ContentPage>

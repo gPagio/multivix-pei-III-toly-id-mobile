@@ -52,27 +52,47 @@
                 </Label.Triggers>
             </Label>-->
 
-            <CollectionView ItemsSource="{Binding Tatu.Capturas}" 
-                SelectionMode="Single"
-                SelectionChanged="Capturas_SelectionChanged">
+            <CollectionView ItemsSource="{Binding Tatu.Capturas}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:CapturaModel">
-                        <Frame Padding="10" Margin="0, 0, 0, 10" BorderColor="Transparent" InputTransparent="True">
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding Id, StringFormat='Captura N° {0}'}" FontFamily="Inter-SemiBold" TextColor="{StaticResource Primary}"/>
-                                        <Span Text="{Binding DadosGerais.DataDeCaptura, StringFormat='&#x0a;{0:dd/MM/yyyy}'}" FontFamily="Inter-Regular" TextColor="{StaticResource Primary}"/>
-                                        <Span Text="{Binding DadosGerais.HorarioDeCaptura, StringFormat=' - {0:hh\\:mm}'}" FontFamily="Inter-Regular" TextColor="{StaticResource Primary}"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </Frame>
+
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems SwipeBehaviorOnInvoked="Close">
+                                    <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatuViewModel}}, Path=DeletaCapturaCommand}" CommandParameter="{Binding .}">
+                                        <Frame BorderColor="Transparent" BackgroundColor="LightPink"
+                                               CornerRadius="15" Margin="5"
+                                               WidthRequest="50" HeightRequest="50" Padding="10">
+                                            <Image Source="icone_apagar.png" Scale=".6"/>
+                                        </Frame>
+                                    </SwipeItemView>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Frame Padding="10" Margin="0, 0, 0, 10" BorderColor="Transparent" InputTransparent="False">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatuViewModel}}, Path=VisualizaCapturaCommand}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Id, StringFormat='Captura N° {0}'}" FontFamily="Inter-SemiBold" TextColor="{StaticResource Primary}"/>
+                                            <Span Text="{Binding DadosGerais.DataDeCaptura, StringFormat='&#x0a;{0:dd/MM/yyyy}'}" FontFamily="Inter-Regular" TextColor="{StaticResource Primary}"/>
+                                            <Span Text="{Binding DadosGerais.HorarioDeCaptura, StringFormat=' - {0:hh\\:mm}'}" FontFamily="Inter-Regular" TextColor="{StaticResource Primary}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Frame>
+
+                        </SwipeView>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
         </StackLayout>
     </ScrollView>
     

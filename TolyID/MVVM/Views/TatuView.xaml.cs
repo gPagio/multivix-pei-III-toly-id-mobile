@@ -35,20 +35,6 @@ public partial class TatuView : ContentPage
         await _tatuViewModel.AtualizaTatu(_tatu);
     }
 
-    private async void Capturas_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
-        {
-            var capturaSelecionada = e.CurrentSelection[0] as CapturaModel;
-
-            if (capturaSelecionada != null)
-            {
-                await Navigation.PushAsync(new CapturaView(capturaSelecionada));
-                ((CollectionView)sender).SelectedItem = null;
-            }
-        }
-    }
-
     protected async override void OnAppearing()
     {
         await _tatuViewModel.AtualizaTatu(_tatu);

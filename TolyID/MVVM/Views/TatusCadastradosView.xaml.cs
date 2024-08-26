@@ -26,26 +26,6 @@ public partial class TatusCadastradosView : ContentPage
         await _viewModel.BuscaTatusNoBanco();
     }
 
-    private async void Tatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
-        {
-            var tatuSelecionado = e.CurrentSelection[0] as TatuModel;
-
-            if(tatuSelecionado != null)
-            {
-                Debug.WriteLine($"{tatuSelecionado.IdentificacaoAnimal}");
-                await Navigation.PushAsync(new TatuView(tatuSelecionado));
-                ((CollectionView)sender).SelectedItem = null;
-            }
-        }
-    }
-
-    private async void Atualizar_Clicked(object sender, EventArgs e)
-    {
-        await _viewModel.BuscaTatusNoBanco();
-    }
-
     protected async override void OnAppearing()
     {
         await _viewModel.BuscaTatusNoBanco();

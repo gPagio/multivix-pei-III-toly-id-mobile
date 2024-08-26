@@ -33,7 +33,6 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     async Task VisualizaTatu(TatuModel tatu)
     {
-        Debug.WriteLine("AOBA");
         await Shell.Current.Navigation.PushAsync(new TatuView(tatu));
     }
 }

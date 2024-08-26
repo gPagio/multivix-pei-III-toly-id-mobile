@@ -30,19 +30,19 @@
                   Margin="0, 0, 0, 10">
 
                 <Frame Style="{StaticResource FrameParametrosFisiologicos}" BorderColor="Transparent">
-                    <Label Text="{Binding Fc}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                    <Label Text="{Binding Fc}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
                 </Frame>
 
                 <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="1" BorderColor="Transparent">
-                    <Label Text="{Binding Fr}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                    <Label Text="{Binding Fr}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
                 </Frame>
 
                 <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="2" BorderColor="Transparent">
-                    <Label Text="{Binding Oximetria}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                    <Label Text="{Binding Oximetria}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
                 </Frame>
 
                 <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="3" BorderColor="Transparent">
-                    <Label Text="{Binding Temperatura}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                    <Label Text="{Binding Temperatura}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
                 </Frame>
                 
             </Grid>

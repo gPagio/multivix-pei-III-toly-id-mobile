@@ -172,4 +172,10 @@ public static class BancoDeDadosService
 
         return captura;
     }
+
+    public static async Task DeletaCapturaAsync(int capturaId)
+    { 
+        await Init();
+        _bancoDeDados.Delete<CapturaModel>(capturaId);   
+    }
 }
