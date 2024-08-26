@@ -75,6 +75,13 @@ public static class BancoDeDadosService
     public static async Task DeletaTatuAsync(int id)
     {
         await Init();
+        var tatu = _bancoDeDados.GetWithChildren<TatuModel>(id);
+
+        foreach (var captura in tatu.Capturas) 
+        { 
+            await DeletaCapturaAsync(captura.Id);  
+        }
+
         _bancoDeDados.Delete<TatuModel>(id);
     }
 
@@ -83,81 +90,32 @@ public static class BancoDeDadosService
     {
         await Init();
 
-        try
+        FichaAnestesicaModel ficha = novaCaptura.FichaAnestesica;
+
+        // Verificar se a lista de parâmetros fisiológicos não é nula e contém itens
+        if (ficha.ParametrosFisiologicos != null && ficha.ParametrosFisiologicos.Count > 0)
         {
-            FichaAnestesicaModel ficha = novaCaptura.FichaAnestesica;
+            // Inserir a FichaAnestesica antes para garantir que temos um ID para os parâmetros
+            _bancoDeDados.Insert(ficha);
 
-            // Verificar se a lista de parâmetros fisiológicos não é nula e contém itens
-            if (ficha.ParametrosFisiologicos != null && ficha.ParametrosFisiologicos.Count > 0)
+            foreach (var parametro in ficha.ParametrosFisiologicos)
             {
-                // Inserir a FichaAnestesica antes para garantir que temos um ID para os parâmetros
-                _bancoDeDados.Insert(ficha);
-                Debug.WriteLine($"FichaAnestesica inserida com ID: {ficha.Id}");
-
-                foreach (var parametro in ficha.ParametrosFisiologicos)
-                {
-                    parametro.FichaAnestesicaId = ficha.Id;
-                    _bancoDeDados.Insert(parametro);
-
-                    // Verificar se o parâmetro foi inserido corretamente
-                    var parametroVerificado = _bancoDeDados.Find<ParametroFisiologicoModel>(parametro.Id);
-                    if (parametroVerificado == null)
-                    {
-                        throw new Exception($"Erro ao inserir o parâmetro fisiológico: {parametro.Id}");
-                    }
-                    else
-                    {
-                        Debug.WriteLine($"Parâmetro fisiológico inserido: {parametro.Id}");
-                    }
-                }
-
-                // Carregar a ficha com os parâmetros inseridos
-                var fichaVerificada = _bancoDeDados.GetWithChildren<FichaAnestesicaModel>(ficha.Id, true);
-                if (fichaVerificada.ParametrosFisiologicos.Count != ficha.ParametrosFisiologicos.Count)
-                {
-                    throw new Exception("Erro ao inserir os parâmetros fisiológicos na ficha anestésica.");
-                }
-                else
-                {
-                    Debug.WriteLine("Todos os parâmetros fisiológicos foram inseridos corretamente.");
-                }
-            }
-            else
-            {
-                Debug.WriteLine("Nenhum parâmetro fisiológico para inserir.");
-            }
-
-            // Inserir a Captura com a ficha e outros modelos associados
-            novaCaptura.FichaAnestesicaId = ficha.Id;
-            _bancoDeDados.InsertWithChildren(novaCaptura, true);
-            Debug.WriteLine($"Captura inserida com ID: {novaCaptura.Id}");
-
-            // Atualizar o Tatu com a nova Captura
-            if (tatu.Capturas == null)
-            {
-                tatu.Capturas = new List<CapturaModel>();
-            }
-            tatu.Capturas.Add(novaCaptura);
-            _bancoDeDados.UpdateWithChildren(tatu);
-            Debug.WriteLine($"Tatu atualizado com a nova captura ID: {novaCaptura.Id}");
-
-            // Verificar se a captura foi adicionada corretamente ao Tatu
-            var tatuVerificado = _bancoDeDados.GetWithChildren<TatuModel>(tatu.Id, true);
-            if (tatuVerificado == null || !tatuVerificado.Capturas.Any(c => c.Id == novaCaptura.Id))
-            {
-                throw new Exception("Erro ao atualizar o tatu com a nova captura.");
-            }
-            else
-            {
-                Debug.WriteLine("Tatu atualizado corretamente com a nova captura.");
+                parametro.FichaAnestesicaId = ficha.Id;
+                _bancoDeDados.Insert(parametro);
             }
         }
-        catch (Exception ex)
+
+        // Inserir a Captura com a ficha e outros modelos associados
+        novaCaptura.FichaAnestesicaId = ficha.Id;
+        _bancoDeDados.InsertWithChildren(novaCaptura, true);
+
+        // Atualizar o Tatu com a nova Captura
+        if (tatu.Capturas == null)
         {
-            // Adicionar log ou mensagem de erro detalhada
-            Debug.WriteLine($"Erro ao salvar a captura: {ex.Message}");
-            throw;
+            tatu.Capturas = new List<CapturaModel>();
         }
+        tatu.Capturas.Add(novaCaptura);
+        _bancoDeDados.UpdateWithChildren(tatu);
     }
 
     public static async Task<CapturaModel> GetCapturaAsync(int capturaId)
