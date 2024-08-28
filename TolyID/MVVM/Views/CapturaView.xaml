@@ -7,15 +7,23 @@
              Shell.TitleColor="White"
              BackgroundColor="{StaticResource Background}">
 
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="7*, 3*">
+            <Label Text="{Binding Captura.Id, StringFormat='Captura n° {0}'}" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
+            <Button Grid.Column="2" ImageSource="icone_editar.png" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="EditarCaptura_Clicked"/>
+        </Grid>
+    </Shell.TitleView>
+
     <ContentPage.Resources>
         <DataTemplate x:Key="TemplateInformacoes">
-            <Frame Padding="10, 2, 10, 2" Margin="0, 0, 0, 10" BorderColor="Transparent">
+            <Frame Padding="10, 2, 10, 4" Margin="0, 0, 0, 10" BorderColor="Transparent">
                 <StackLayout>
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding Key, StringFormat='{0}:'}" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
-                                <Span Text="{Binding Value, StringFormat=' &#x0a;{0}'}" FontSize="20" TextColor="Black"/>
+                                <Span Text="{Binding Key, StringFormat='{0}:'}" FontFamily="Inter-Bold" TextColor="{StaticResource Primary}"/>
+                                <Span Text="{Binding Value, StringFormat=' &#x0a;{0}'}" FontFamily="Inter-Regular" FontSize="20" TextColor="Black"
+                                      LineHeight="2"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -28,27 +36,27 @@
                   ColumnSpacing="10"
                   Margin="0, 0, 0, 10">
 
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}">
-                    <Label Text="{Binding Fc}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}" BorderColor="Transparent">
+                    <Label Text="{Binding Fc}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="1">
-                    <Label Text="{Binding Fr}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="1" BorderColor="Transparent">
+                    <Label Text="{Binding Fr}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="2">
-                    <Label Text="{Binding Oximetria}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="2" BorderColor="Transparent">
+                    <Label Text="{Binding Oximetria}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="3">
-                    <Label Text="{Binding Temperatura}" Style="{StaticResource LabelParametrosFisiologicos}"/>
+                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="3" BorderColor="Transparent">
+                    <Label Text="{Binding Temperatura}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
                 </Frame>
                 
             </Grid>
         </DataTemplate>
     </ContentPage.Resources>
 
-    <ScrollView Padding="10">
+    <ScrollView>
         <Grid Padding="10" RowSpacing="5" RowDefinitions="*, *, *, *">
             
             <StackLayout Spacing="10">
@@ -66,15 +74,15 @@
 
                 <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
                        HorizontalTextAlignment="Center"
-                       FontAttributes="Bold"
+                       FontFamily="Inter-SemiBold"
                        FontSize="16"
                        TextColor="{StaticResource Primary}"/>
 
                 <Grid ColumnDefinitions="*, *, *, *">
-                    <Label Text="FC" Style="{StaticResource LabelNomeCampo}" FontSize="12" HorizontalTextAlignment="Center"/>
-                    <Label Text="FR" Style="{StaticResource LabelNomeCampo}" Grid.Column="1" FontSize="12" HorizontalTextAlignment="Center"/>
-                    <Label Text="OXIMETRIA" Style="{StaticResource LabelNomeCampo}" Grid.Column="2" FontSize="12" HorizontalTextAlignment="Center"/>
-                    <Label Text="TEMPERATURA" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <Label Text="FC" FontFamily="Inter-SemiBold" Style="{StaticResource LabelNomeCampo}" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <Label Text="FR" FontFamily="Inter-SemiBold" Style="{StaticResource LabelNomeCampo}" Grid.Column="1" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <Label Text="OXIMETRIA" FontFamily="Inter-SemiBold" Style="{StaticResource LabelNomeCampo}" Grid.Column="2" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <Label Text="TEMPERATURA" FontFamily="Inter-SemiBold" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Center"/>
                 </Grid>
 
                 <CollectionView ItemsSource="{Binding ParametrosFisiologicos}" ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>

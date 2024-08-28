@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.Services;
 
@@ -12,13 +13,23 @@ public partial class CadastroCapturaViewModel
     private TatuModel _tatu;
     public static CapturaModel Captura { get; set; } = new();
 
+    // Construtor da classe para criação de uma nova captura
     public CadastroCapturaViewModel(TatuModel tatu)
     {
         _tatu = tatu;
         InicializaListasECampos();
         AdicionaParametrosFisiologicos();
     }
-    
+
+    // Construtor da classe para edição de uma captura já existente
+    public CadastroCapturaViewModel(TatuModel tatu, CapturaModel captura)
+    {
+        _tatu = tatu;
+        Captura = captura;
+        InicializaListasECampos();
+        //AdicionaParametrosFisiologicos();
+    }
+
     public List<CampoCadastroModel> DadosGerais { get; private set; }
     public List<CampoCadastroModel> Biometria { get; private set; }
     public List<CampoCadastroModel> Amostras { get; private set; }
@@ -41,11 +52,20 @@ public partial class CadastroCapturaViewModel
     }
 
     [RelayCommand] 
-    async Task AdicionaCapturaNoBanco()
+    async Task SalvaCapturaNoBanco()
     {
         Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
+        Captura.DadosGerais.DataDeCaptura = Captura.DadosGerais.DataDeCaptura.Date;
 
-        await BancoDeDadosService.SalvaCapturaAsync(Captura, _tatu);
+        if (Captura.Id == 0)
+        {
+            await BancoDeDadosService.SalvaCapturaAsync(Captura, _tatu);
+        }
+        else
+        {
+            await BancoDeDadosService.AtualizaCapturaAsync(Captura);    
+        }
+
         Captura = new CapturaModel();
     }
 
@@ -119,7 +139,16 @@ public partial class CadastroCapturaViewModel
         };
 
         Outros = new("Outros", CriaEditor(Captura.Amostras, nameof(Captura.Amostras.Outros)));
+
         ParametrosFisiologicos = new();
+
+        if (Captura.FichaAnestesica.ParametrosFisiologicos.Count != 0)
+        {
+            foreach (var parametro in Captura.FichaAnestesica.ParametrosFisiologicos)
+            {
+                ParametrosFisiologicos.Add(parametro);
+            }
+        }
     }
 
     private static Entry CriaEntryComTecladoNormal(object bindingContext, string caminhoDeBinding)

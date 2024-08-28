@@ -16,6 +16,15 @@ public partial class CadastroCapturaTabbedView : TabbedPage
         _viewModel.ParametrosFisiologicos.CollectionChanged += ParametrosFisiologicos_CollectionChanged;
 	}
 
+    public CadastroCapturaTabbedView(TatuModel tatu, CapturaModel captura)
+    {
+        InitializeComponent();
+        _viewModel = new CadastroCapturaViewModel(tatu, captura);
+        BindingContext = _viewModel;
+
+        _viewModel.ParametrosFisiologicos.CollectionChanged += ParametrosFisiologicos_CollectionChanged;
+    }
+
     private void Finalizar_Clicked(object sender, EventArgs e)
     {
         Shell.Current.Navigation.PopModalAsync(true);

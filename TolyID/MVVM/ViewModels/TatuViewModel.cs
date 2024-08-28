@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using TolyID.MVVM.Models;
+using TolyID.MVVM.Views;
 using TolyID.Services;
 
 namespace TolyID.MVVM.ViewModels;
@@ -27,5 +29,18 @@ public partial class TatuViewModel : ObservableObject
     {
         Tatu = await BancoDeDadosService.GetTatuAsync(tatu.Id);
         NumeroDeCapturas = Tatu.Capturas.Count;
+    }
+
+    [RelayCommand]
+    async Task VisualizaCaptura(CapturaModel captura)
+    {
+        await Shell.Current.Navigation.PushAsync(new CapturaView(captura));
+    }
+
+    [RelayCommand]
+    async Task DeletaCaptura(CapturaModel captura)
+    {
+        await BancoDeDadosService.DeletaCapturaAsync(captura);
+        await AtualizaTatu(Tatu);
     }
 }

@@ -203,7 +203,7 @@
                 <ContentView Content="{Binding Outros.EntradaDeDado}"/>
             </Frame>
 
-            <Button Command="{Binding AdicionaCapturaNoBancoCommand}"
+            <Button Command="{Binding SalvaCapturaNoBancoCommand}"
                     Clicked="Finalizar_Clicked"
                     Text="Finalizar"
                     TextColor="White"

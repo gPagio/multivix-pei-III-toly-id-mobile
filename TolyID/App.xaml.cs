@@ -2,8 +2,6 @@
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 #endif
 
-using TolyID.MVVM.Views;
-
 namespace TolyID;
 
 public partial class App : Application
@@ -32,6 +30,5 @@ public partial class App : Application
         });
 
         MainPage = new AppShell();
-        //MainPage = new CadastroCapturaTabbedView();
     }
 }

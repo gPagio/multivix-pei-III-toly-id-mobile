@@ -59,6 +59,8 @@
 	<ItemGroup>
 	  <None Remove="MVVM\Models\.gitkeep" />
 	  <None Remove="MVVM\ViewModels\.gitkeep" />
+	  <None Remove="Resources\Images\icone_adicionar.svg" />
+	  <None Remove="Resources\Images\icone_editar.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

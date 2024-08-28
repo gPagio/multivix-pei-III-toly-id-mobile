@@ -19,7 +19,6 @@ public partial class TatuView : ContentPage
 
     private async void AdicionarCaptura_Clicked(object sender, EventArgs e)
     {
-        //await Shell.Current.Navigation.PushModalAsync(new CadastroCapturaTabbedView(_tatu), true);
         await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new CadastroCapturaTabbedView(_tatu)), true);
     }
 
@@ -33,20 +32,6 @@ public partial class TatuView : ContentPage
     private async void Popup_MicrochipAdicionado(object sender, EventArgs e)
     {
         await _tatuViewModel.AtualizaTatu(_tatu);
-    }
-
-    private async void Capturas_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
-        {
-            var capturaSelecionada = e.CurrentSelection[0] as CapturaModel;
-
-            if (capturaSelecionada != null)
-            {
-                await Navigation.PushAsync(new CapturaView(capturaSelecionada));
-                ((CollectionView)sender).SelectedItem = null;
-            }
-        }
     }
 
     protected async override void OnAppearing()
