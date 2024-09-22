@@ -23,10 +23,6 @@ namespace TolyID
     		builder.Logging.AddDebug();
 #endif
 
-            // Adicionar o DbContext usando SQLite
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "TolyIdDatabase.db");
-            builder.Services.AddDbContext<TolyIdDbContext>(options => options.UseSqlite($"Data Source={dbPath}"));
-
             return builder.Build();
         }
     }
