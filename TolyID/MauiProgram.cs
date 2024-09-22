@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
-using TolyID.Infraestrutura.Database;
-using Microsoft.EntityFrameworkCore;
 
 namespace TolyID
 {
