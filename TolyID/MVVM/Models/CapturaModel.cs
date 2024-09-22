@@ -11,8 +11,7 @@ public class CapturaModel
 
     
     [ForeignKey(typeof(TatuModel))]
-    public int TatuId { get; set; } // CHAVE ESTRANGEIRA DO TATU
-
+    public int TatuId { get; set; } 
 
     [ForeignKey(typeof(DadosGeraisModel))]
     public int DadosGeraisId { get; set; }
