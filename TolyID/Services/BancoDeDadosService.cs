@@ -1,7 +1,5 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Extensions;
-using System.Diagnostics;
-using System.Reflection.Metadata;
 using TolyID.MVVM.Models;
 
 namespace TolyID.Services;
@@ -10,7 +8,7 @@ public static class BancoDeDadosService
 {
     static SQLiteConnection _bancoDeDados;
 
-    static async Task Init()
+    private static async Task Init()
     {
         if (_bancoDeDados != null) { return; }
        
@@ -28,20 +26,20 @@ public static class BancoDeDadosService
 
     // ========================  CRUD TATUS ======================== 
 
-    public static async Task SalvaTatuAsync(TatuModel tatu)
+    public static async Task SalvaTatu(TatuModel tatu)
     {
         await Init();
         _bancoDeDados.InsertWithChildren(tatu);
     }
 
-    public static async Task<IEnumerable<TatuModel>> GetTatusAsync()
+    public static async Task<IEnumerable<TatuModel>> GetTatus()
     {
         await Init();
         var tatus = _bancoDeDados.GetAllWithChildren<TatuModel>().ToList();
         return tatus;
     }
 
-    public static async Task<TatuModel> GetTatuAsync(int tatuId)
+    public static async Task<TatuModel> GetTatu(int tatuId)
     {
         await Init();
         var tatu = _bancoDeDados.GetWithChildren<TatuModel>(tatuId);
@@ -58,10 +56,10 @@ public static class BancoDeDadosService
         return tatu;
     }
 
-    public static async Task AtualizaTatuAsync(TatuModel tatuAtualizado)
+    public static async Task AtualizaTatu(TatuModel tatuAtualizado)
     {
         await Init();
-        var tatu = await GetTatuAsync(tatuAtualizado.Id);
+        var tatu = await GetTatu(tatuAtualizado.Id);
         
         if (tatu != null)
         {
@@ -73,21 +71,21 @@ public static class BancoDeDadosService
         _bancoDeDados.UpdateWithChildren(tatu);
     }
 
-    public static async Task DeletaTatuAsync(TatuModel tatu)
+    public static async Task DeletaTatu(TatuModel tatu)
     {
         await Init();
         var tatuSelecionado = _bancoDeDados.GetWithChildren<TatuModel>(tatu.Id);
 
         foreach (var captura in tatuSelecionado.Capturas) 
         { 
-            await DeletaCapturaAsync(captura);  
+            await DeletaCaptura(captura);  
         }
 
         _bancoDeDados.Delete<TatuModel>(tatu.Id);
     }
 
     // ======================== CRUD CAPTURAS ======================== 
-    public static async Task SalvaCapturaAsync(CapturaModel novaCaptura, TatuModel tatu)
+    public static async Task SalvaCaptura(CapturaModel novaCaptura, TatuModel tatu)
     {
         await Init();
 
@@ -119,7 +117,7 @@ public static class BancoDeDadosService
         _bancoDeDados.UpdateWithChildren(tatu);
     }
 
-    public static async Task<CapturaModel> GetCapturaAsync(int capturaId)
+    public static async Task<CapturaModel> GetCaptura(int capturaId)
     {
         await Init();
         var captura = _bancoDeDados.GetWithChildren<CapturaModel>(capturaId);
@@ -132,11 +130,11 @@ public static class BancoDeDadosService
         return captura;
     }
 
-    public static async Task AtualizaCapturaAsync(CapturaModel capturaAtualizada)
+    public static async Task AtualizaCaptura(CapturaModel capturaAtualizada)
     {
         await Init();
 
-        var capturaAntiga = await GetCapturaAsync(capturaAtualizada.Id);
+        var capturaAntiga = await GetCaptura(capturaAtualizada.Id);
 
         _bancoDeDados.Update(capturaAtualizada);
         _bancoDeDados.Update(capturaAtualizada.DadosGerais);
@@ -162,7 +160,7 @@ public static class BancoDeDadosService
         }
     }
 
-    public static async Task DeletaCapturaAsync(CapturaModel captura)
+    public static async Task DeletaCaptura(CapturaModel captura)
     { 
         await Init();
 

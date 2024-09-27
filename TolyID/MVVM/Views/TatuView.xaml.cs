@@ -7,13 +7,13 @@ namespace TolyID.MVVM.Views;
 public partial class TatuView : ContentPage
 {
     private TatuModel _tatu;
-    private TatuViewModel _tatuViewModel;
+    private TatuViewModel _viewModel;
 
 	public TatuView(TatuModel tatu)
 	{
 		InitializeComponent();
-        _tatuViewModel = new TatuViewModel(tatu);
-        BindingContext = _tatuViewModel;
+        _viewModel = new TatuViewModel(tatu);
+        BindingContext = _viewModel;
         _tatu = tatu;
 	}
 
@@ -31,11 +31,11 @@ public partial class TatuView : ContentPage
 
     private async void Popup_MicrochipAdicionado(object sender, EventArgs e)
     {
-        await _tatuViewModel.AtualizaTatu(_tatu);
+        await _viewModel.AtualizaTatu(_tatu);
     }
 
     protected async override void OnAppearing()
     {
-        await _tatuViewModel.AtualizaTatu(_tatu);
+        await _viewModel.AtualizaTatu(_tatu);
     }
 }

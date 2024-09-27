@@ -1,11 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Reflection;
 using TolyID.MVVM.Models;
-using TolyID.MVVM.Views;
 using TolyID.Services;
 
 namespace TolyID.MVVM.ViewModels;
@@ -27,7 +24,7 @@ public partial class CapturaViewModel : ObservableObject
 
     public async void CarregaCaptura(int id)
     {
-        Captura = await BancoDeDadosService.GetCapturaAsync(id);
+        Captura = await BancoDeDadosService.GetCaptura(id);
 
         ParametrosFisiologicos.Clear();
 
@@ -35,7 +32,7 @@ public partial class CapturaViewModel : ObservableObject
         PreenchePropriedades(Captura.Biometria, Biometria);
         PreenchePropriedades(Captura.Amostras, Amostras);
         PreenchePropriedades(Captura.FichaAnestesica, FichaAnestesica);
-        PreencherParametrosFisiologicos();
+        PreencheParametrosFisiologicos();
     }
 
     // Percorre as propriedades de um dado objeto 'fonte', e armazena o DisplayName e o valor de cada
@@ -86,7 +83,7 @@ public partial class CapturaViewModel : ObservableObject
         }
     }
 
-    private void PreencherParametrosFisiologicos()
+    private void PreencheParametrosFisiologicos()
     { 
         foreach (var parametro in Captura.FichaAnestesica.ParametrosFisiologicos)
         {

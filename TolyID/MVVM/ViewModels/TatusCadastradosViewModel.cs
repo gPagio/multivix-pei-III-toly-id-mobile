@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
 using TolyID.Services;
@@ -14,7 +13,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
 
     public async Task BuscaTatusNoBanco()
     {
-        var tatus = await BancoDeDadosService.GetTatusAsync();
+        var tatus = await BancoDeDadosService.GetTatus();
         Tatus.Clear();
 
         foreach (var tatu in tatus)
@@ -24,14 +23,14 @@ public partial class TatusCadastradosViewModel : ObservableObject
     }
 
     [RelayCommand]
-    async Task DeletaTatu(TatuModel tatu)
+    private async Task DeletaTatu(TatuModel tatu)
     {
-        await BancoDeDadosService.DeletaTatuAsync(tatu);
+        await BancoDeDadosService.DeletaTatu(tatu);
         await BuscaTatusNoBanco();
     }
 
     [RelayCommand]
-    async Task VisualizaTatu(TatuModel tatu)
+    private async Task VisualizaTatu(TatuModel tatu)
     {
         await Shell.Current.Navigation.PushAsync(new TatuView(tatu));
     }

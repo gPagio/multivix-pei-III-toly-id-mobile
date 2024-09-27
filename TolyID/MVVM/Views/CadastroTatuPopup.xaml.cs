@@ -8,11 +8,13 @@ namespace TolyID.MVVM.Views;
 public partial class CadastroTatuPopup : Popup
 {
     public EventHandler TatuAdicionado;
+    private readonly CadastroTatuViewModel _viewModel;
 
 	public CadastroTatuPopup()
 	{
 		InitializeComponent();
-        BindingContext = new CadastroTatuViewModel();
+        _viewModel = new CadastroTatuViewModel();
+        BindingContext = _viewModel;
         IdEntry.Text = "";
     }
 
@@ -25,7 +27,7 @@ public partial class CadastroTatuPopup : Popup
             return;
         }
 
-        _ = CadastroTatuViewModel.AdicionaTatuNoBanco();
+        await _viewModel.AdicionaTatuNoBanco();
         IdEntry.Text = "";
 
         TatuAdicionado?.Invoke(this, EventArgs.Empty);
@@ -36,17 +38,5 @@ public partial class CadastroTatuPopup : Popup
     private void Cancelar_Clicked(object sender, EventArgs e)
     {
         Close();
-    }
-
-    private void MicrochipEntry_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        Entry entry = (Entry)sender;
-
-        if (e.NewTextValue != string.Empty && e.OldTextValue == 0.ToString() && Convert.ToDouble(entry.Text) % 10 == 0)
-        {
-            double numeroDigitado = Convert.ToDouble(entry.Text);
-            numeroDigitado /= 10;
-            entry.Text = numeroDigitado.ToString();
-        }
     }
 }

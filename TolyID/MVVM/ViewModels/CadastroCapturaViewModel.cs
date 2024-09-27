@@ -2,7 +2,6 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.Services;
 
@@ -52,18 +51,18 @@ public partial class CadastroCapturaViewModel
     }
 
     [RelayCommand] 
-    async Task SalvaCapturaNoBanco()
+    private async Task SalvaCapturaNoBanco()
     {
         Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
         Captura.DadosGerais.DataDeCaptura = Captura.DadosGerais.DataDeCaptura.Date;
 
         if (Captura.Id == 0)
         {
-            await BancoDeDadosService.SalvaCapturaAsync(Captura, _tatu);
+            await BancoDeDadosService.SalvaCaptura(Captura, _tatu);
         }
         else
         {
-            await BancoDeDadosService.AtualizaCapturaAsync(Captura);    
+            await BancoDeDadosService.AtualizaCaptura(Captura);    
         }
 
         Captura = new CapturaModel();

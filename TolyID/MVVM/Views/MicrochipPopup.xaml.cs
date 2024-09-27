@@ -8,14 +8,14 @@ namespace TolyID.MVVM.Views;
 
 public partial class MicrochipPopup : Popup
 {
-    private MicrochipViewModel _microchipViewModel;
+    private MicrochipViewModel _viewModel;
     public event EventHandler MicrochipAdicionado;
 
     public MicrochipPopup(TatuModel tatu)
 	{
 		InitializeComponent();
-        _microchipViewModel = new MicrochipViewModel(tatu);
-        BindingContext = _microchipViewModel;
+        _viewModel = new MicrochipViewModel(tatu);
+        BindingContext = _viewModel;
         ChipEntry.Text = "";
 	}
 
@@ -28,7 +28,7 @@ public partial class MicrochipPopup : Popup
             return;
         }
 
-        await _microchipViewModel.AtualizaMicrochip();
+        await _viewModel.AtualizaMicrochip();
 
         MicrochipAdicionado?.Invoke(this, EventArgs.Empty);
 

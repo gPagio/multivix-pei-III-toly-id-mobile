@@ -1,9 +1,7 @@
 using CommunityToolkit.Maui.Views;
-using System.Diagnostics;
-using TolyID.MVVM.Models;
 using TolyID.MVVM.ViewModels;
 
-namespace TolyID.MVVM.Views;  
+namespace TolyID.MVVM.Views;
 
 public partial class TatusCadastradosView : ContentPage
 {

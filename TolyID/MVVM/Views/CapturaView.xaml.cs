@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.ViewModels;
 using TolyID.Services;
@@ -19,7 +18,7 @@ public partial class CapturaView : ContentPage
 
     private async void EditarCaptura_Clicked(object sender, EventArgs e)
     {
-        var tatu = await BancoDeDadosService.GetTatuAsync(_captura.TatuId);
+        var tatu = await BancoDeDadosService.GetTatu(_captura.TatuId);
         await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new CadastroCapturaTabbedView(tatu, _captura)), true);
     }
 

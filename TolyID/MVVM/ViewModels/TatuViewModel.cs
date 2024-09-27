@@ -27,20 +27,20 @@ public partial class TatuViewModel : ObservableObject
 
     public async Task AtualizaTatu(TatuModel tatu)
     {
-        Tatu = await BancoDeDadosService.GetTatuAsync(tatu.Id);
+        Tatu = await BancoDeDadosService.GetTatu(tatu.Id);
         NumeroDeCapturas = Tatu.Capturas.Count;
     }
 
     [RelayCommand]
-    async Task VisualizaCaptura(CapturaModel captura)
+    private async Task VisualizaCaptura(CapturaModel captura)
     {
         await Shell.Current.Navigation.PushAsync(new CapturaView(captura));
     }
 
     [RelayCommand]
-    async Task DeletaCaptura(CapturaModel captura)
+    private async Task DeletaCaptura(CapturaModel captura)
     {
-        await BancoDeDadosService.DeletaCapturaAsync(captura);
+        await BancoDeDadosService.DeletaCaptura(captura);
         await AtualizaTatu(Tatu);
     }
 }

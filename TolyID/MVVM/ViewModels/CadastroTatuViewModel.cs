@@ -7,10 +7,10 @@ namespace TolyID.MVVM.ViewModels;
 public partial class CadastroTatuViewModel : ObservableObject
 {
     [ObservableProperty]
-    private static TatuModel tatu = new();
+    private TatuModel tatu = new();
 
-    public static async Task AdicionaTatuNoBanco()
+    public async Task AdicionaTatuNoBanco()
     {
-       await BancoDeDadosService.SalvaTatuAsync(tatu);
+       await BancoDeDadosService.SalvaTatu(Tatu);
     }
 }

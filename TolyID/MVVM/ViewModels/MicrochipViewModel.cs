@@ -20,6 +20,6 @@ public class MicrochipViewModel : ObservableObject
 
     public async Task AtualizaMicrochip()
     {
-       await BancoDeDadosService.AtualizaTatuAsync(_tatu);
+       await BancoDeDadosService.AtualizaTatu(_tatu);
     }
 }
