@@ -13,8 +13,8 @@
     <Shell.TitleView>
         <Grid ColumnDefinitions="7*, 1.5*, 1.5*">
             <Label Text="{Binding Tatu.IdentificacaoAnimal}" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
-            <Button Grid.Column="1" ImageSource="icone_editar.png" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="Microchip_Clicked"/>
-            <Button Grid.Column="2" ImageSource="icone_adicionar.png" Scale="1.2" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="AdicionarCaptura_Clicked" />
+            <Button Grid.Column="1" ImageSource="icone_editar.png" HorizontalOptions="End" BackgroundColor="Transparent" Command="{Binding EditaTatuCommand}"/>
+            <Button Grid.Column="2" ImageSource="icone_adicionar.png" Scale="1.2" HorizontalOptions="End" BackgroundColor="Transparent" Command="{Binding AdicionaCapturaCommand}" />
         </Grid>
     </Shell.TitleView>
 
@@ -39,18 +39,6 @@
                    TextColor="{StaticResource Primary}" 
                    FontSize="17" FontFamily="Inter-Bold"
                    HorizontalTextAlignment="Start"/>
-
-            <!--<Label Text="Ainda não há capturas feitas!" 
-                   TextColor="{StaticResource Primary}"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center">
-
-                <Label.Triggers>
-                    <DataTrigger TargetType="Label" Binding="{Binding NumeroDeCapturas}" Value="0">
-                        <Setter Property="Text" Value="Chip: não cadastrado"/>
-                    </DataTrigger>
-                </Label.Triggers>
-            </Label>-->
 
             <CollectionView ItemsSource="{Binding Tatu.Capturas}">
 

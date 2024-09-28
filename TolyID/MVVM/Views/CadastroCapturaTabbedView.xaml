@@ -11,7 +11,7 @@
              SelectedTabColor="{StaticResource Secondary}">
 
     <TabbedPage.ToolbarItems >
-        <ToolbarItem Text="Voltar" Clicked="Voltar_Clicked"/>
+        <ToolbarItem Text="Voltar" Command="{Binding VoltarCommand}"/>
     </TabbedPage.ToolbarItems>
 
     <ContentPage Title="1" Padding="20" BackgroundColor="{StaticResource Background}">
@@ -204,7 +204,6 @@
             </Frame>
 
             <Button Command="{Binding SalvaCapturaNoBancoCommand}"
-                    Clicked="Finalizar_Clicked"
                     Text="Finalizar"
                     TextColor="White"
                     FontAttributes="Bold"

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
@@ -15,11 +16,6 @@ public partial class TatuViewModel : ObservableObject
         set => SetProperty(ref _tatu, value);
     }
 
-    // TODO: este campo servirá para mostrar uma Label indicando que não há capturas
-    // feitas para o tatu correspondente. 
-    [ObservableProperty]
-    private int numeroDeCapturas;   
-
     public TatuViewModel(TatuModel tatu)
     {
         Tatu = tatu;
@@ -28,7 +24,6 @@ public partial class TatuViewModel : ObservableObject
     public async Task AtualizaTatu(TatuModel tatu)
     {
         Tatu = await BancoDeDadosService.GetTatu(tatu.Id);
-        NumeroDeCapturas = Tatu.Capturas.Count;
     }
 
     [RelayCommand]
@@ -42,5 +37,20 @@ public partial class TatuViewModel : ObservableObject
     {
         await BancoDeDadosService.DeletaCaptura(captura);
         await AtualizaTatu(Tatu);
+    }
+
+    [RelayCommand]
+    private async Task EditaTatu()
+    {
+        var viewModel = new MicrochipViewModel(Tatu);
+        var popup = new MicrochipPopup(viewModel);
+        await Shell.Current.CurrentPage.ShowPopupAsync(popup);
+        await AtualizaTatu(Tatu);
+    }
+
+    [RelayCommand]
+    private async Task AdicionaCaptura()
+    {
+        await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new CadastroCapturaTabbedView(Tatu)), true);
     }
 }

@@ -35,9 +35,10 @@
 
             <Button CornerRadius="20" 
             Grid.Column="1" 
-            Text="Adicionar" 
+            Text="Atualizar" 
             TextColor="White" 
-            Clicked="Adicionar_Clicked" 
+            Clicked="Atualizar_Clicked" 
+            Command="{Binding AtualizaCommand}"
             BackgroundColor="{StaticResource Primary}"
             WidthRequest="90"
             HeightRequest="40"/>

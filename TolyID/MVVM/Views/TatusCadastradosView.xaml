@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TolyID.MVVM.Views.TatusCadastradosView"
+             xmlns:models="clr-namespace:TolyID.MVVM.Models"
              xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
-             Title="Animais"
+             x:DataType="viewmodel:TatusCadastradosViewModel"
+             x:Class="TolyID.MVVM.Views.TatusCadastradosView"
+             Title="Início"
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
              BackgroundColor="{StaticResource Background}"
@@ -12,13 +14,13 @@
     <Shell.TitleView>
         <Grid ColumnDefinitions="7*, 3*">
             <Label Text="Início" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
-            <Button Grid.Column="2" ImageSource="icone_adicionar.png" Scale="1.2" HorizontalOptions="End" Clicked="AdicionarTatu_Clicked" BackgroundColor="Transparent"/>
+            <Button Grid.Column="2" ImageSource="icone_adicionar.png" Scale="1.2" HorizontalOptions="End" Command="{Binding NovoTatuCommand}" BackgroundColor="Transparent"/>
         </Grid>
     </Shell.TitleView>
 
     <ContentPage.Resources>
 
-        <DataTemplate x:Key="ListaDeTatusTemplate">
+        <DataTemplate x:Key="ListaDeTatusTemplate" x:DataType="models:TatuModel">
 
             <SwipeView>
                 <SwipeView.RightItems>

@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              xmlns:views="clr-namespace:TolyID.MVVM.Views"
+           xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
+           x:DataType="viewmodels:CadastroTatuViewModel"
              x:Class="TolyID.MVVM.Views.CadastroTatuPopup">
 
     <mct:Popup.Resources>
@@ -19,9 +21,6 @@
             <Entry x:Name="IdEntry" Text="{Binding Tatu.IdentificacaoAnimal}" Placeholder="Digite" TextColor="Black"/>
         </Frame>
 
-        <!--<Label Text="NÚMERO DO MICROCHIP" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <Entry x:Name="MicrochipEntry" Keyboard="Numeric" Text="{Binding Tatu.NumeroMicrochip}" TextColor="Black" TextChanged="MicrochipEntry_TextChanged"/>-->
-
         <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Padding="10">
             <Button CornerRadius="20" 
                     Text="Cancelar" 
@@ -35,6 +34,7 @@
                     Grid.Column="1" 
                     Text="Adicionar" 
                     TextColor="White" 
+                    Command="{Binding AdicionaCommand}"
                     Clicked="Adicionar_Clicked" 
                     BackgroundColor="{StaticResource Primary}"
                     WidthRequest="90"

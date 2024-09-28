@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Extensions;
+using System.Diagnostics;
 using TolyID.MVVM.Models;
 
 namespace TolyID.Services;
@@ -59,6 +60,7 @@ public static class BancoDeDadosService
     public static async Task AtualizaTatu(TatuModel tatuAtualizado)
     {
         await Init();
+
         var tatu = await GetTatu(tatuAtualizado.Id);
         
         if (tatu != null)

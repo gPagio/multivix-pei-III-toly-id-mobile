@@ -25,16 +25,6 @@ public partial class CadastroCapturaTabbedView : TabbedPage
         _viewModel.ParametrosFisiologicos.CollectionChanged += ParametrosFisiologicos_CollectionChanged;
     }
 
-    private void Finalizar_Clicked(object sender, EventArgs e)
-    {
-        Shell.Current.Navigation.PopModalAsync(true);
-    }
-
-    private void Voltar_Clicked(object sender, EventArgs e)
-    {
-        Shell.Current.Navigation.PopModalAsync(true);
-    }
-
     // Apaga o número 0 dos campos ligados a números ao digitar. Solução temporária (apenas para campos 
     // dos parâmetros fisiológicos da ficha anestésica)
     private void EntryParametros_TextChanged(object sender, TextChangedEventArgs e)

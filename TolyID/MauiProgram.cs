@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using TolyID.MVVM.Views;
+using TolyID.MVVM.ViewModels;
 
 namespace TolyID
 {
@@ -10,6 +12,8 @@ namespace TolyID
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .RegisterViewModels()
+                .RegisterViews()
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
@@ -22,6 +26,22 @@ namespace TolyID
 #endif
 
             return builder.Build();
+        }
+
+        // REGISTRO DE VIEWMODELS
+        public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuider)
+        {
+            mauiAppBuider.Services.AddSingleton<TatusCadastradosViewModel>();
+
+            return mauiAppBuider;
+        }
+
+        // REGISTRO DE TELAS
+        public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuider)
+        {
+            mauiAppBuider.Services.AddSingleton<TatusCadastradosView>();
+
+            return mauiAppBuider;
         }
     }
 }
