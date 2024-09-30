@@ -1,8 +1,5 @@
-﻿using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.Services;
 
@@ -10,6 +7,8 @@ namespace TolyID.MVVM.ViewModels;
 
 public partial class MicrochipViewModel : ObservableObject
 {
+    private readonly TatuService _tatuService;
+
     private TatuModel _tatu;
     public TatuModel Tatu
     {
@@ -17,14 +16,15 @@ public partial class MicrochipViewModel : ObservableObject
         set => SetProperty(ref _tatu, value);
     }
 
-    public MicrochipViewModel(TatuModel tatu)
+    public MicrochipViewModel(TatuModel tatu, TatuService tatuService)
     {
         Tatu = tatu;
+        _tatuService = tatuService;
     }
 
     private async Task AtualizaMicrochip()
     {
-       await BaseDatabaseService.AtualizaTatu(Tatu);
+       await _tatuService.AtualizaTatu(Tatu);
     }
 
     [RelayCommand]

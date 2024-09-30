@@ -9,17 +9,19 @@ namespace TolyID.MVVM.ViewModels;
 
 public partial class CadastroTatuViewModel : ObservableObject
 {
+    private readonly TatuService _tatuService;
     [ObservableProperty]
     private TatuModel tatu;
 
-    public CadastroTatuViewModel() 
+    public CadastroTatuViewModel(TatuService tatuService) 
     {
+        _tatuService = tatuService;
         Tatu = new();
     }
 
     public async Task AdicionaTatuNoBanco()
     {
-       await BaseDatabaseService.SalvaTatu(Tatu);
+       await _tatuService.SalvaTatu(Tatu);
     }
 
     [RelayCommand]

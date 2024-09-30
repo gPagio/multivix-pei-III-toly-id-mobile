@@ -1,25 +1,27 @@
 using System.Collections.Specialized;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.ViewModels;
+using TolyID.Services;
 
 namespace TolyID.MVVM.Views;
 
 public partial class CadastroCapturaTabbedView : TabbedPage
 {
     private CadastroCapturaViewModel _viewModel;
-	public CadastroCapturaTabbedView(TatuModel tatu)
+
+	public CadastroCapturaTabbedView(TatuModel tatu, CapturaService capturaService)
 	{
 		InitializeComponent();
-        _viewModel = new CadastroCapturaViewModel(tatu);
+        _viewModel = new CadastroCapturaViewModel(tatu, capturaService);
         BindingContext = _viewModel;
 
         _viewModel.ParametrosFisiologicos.CollectionChanged += ParametrosFisiologicos_CollectionChanged;
 	}
 
-    public CadastroCapturaTabbedView(TatuModel tatu, CapturaModel captura)
+    public CadastroCapturaTabbedView(TatuModel tatu, CapturaModel captura, CapturaService capturaService)
     {
         InitializeComponent();
-        _viewModel = new CadastroCapturaViewModel(tatu, captura);
+        _viewModel = new CadastroCapturaViewModel(tatu, captura, capturaService);
         BindingContext = _viewModel;
 
         _viewModel.ParametrosFisiologicos.CollectionChanged += ParametrosFisiologicos_CollectionChanged;

@@ -9,11 +9,18 @@ namespace TolyID.MVVM.ViewModels;
 
 public partial class CapturaViewModel : ObservableObject
 {
+    private readonly CapturaService _capturaService;
+
     private CapturaModel _captura;
     public CapturaModel Captura
     {
         get => _captura;
         set => SetProperty(ref _captura, value);
+    }
+
+    public CapturaViewModel(CapturaService capturaService)
+    {
+        _capturaService = capturaService;
     }
 
     public ObservableCollection<KeyValuePair<string, string>> DadosGerais { get; } = new();
@@ -24,7 +31,7 @@ public partial class CapturaViewModel : ObservableObject
 
     public async void CarregaCaptura(int id)
     {
-        Captura = await BaseDatabaseService.GetCaptura(id);
+        Captura = await _capturaService.GetCaptura(id);
 
         ParametrosFisiologicos.Clear();
 

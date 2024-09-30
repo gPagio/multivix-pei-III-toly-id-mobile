@@ -10,21 +10,24 @@ namespace TolyID.MVVM.ViewModels;
 
 public partial class CadastroCapturaViewModel
 {
-    private TatuModel _tatu;
+    private readonly TatuModel _tatu;
+    private readonly CapturaService _capturaService;
     public static CapturaModel Captura { get; set; } = new();
 
     // Construtor da classe para criação de uma nova captura
-    public CadastroCapturaViewModel(TatuModel tatu)
+    public CadastroCapturaViewModel(TatuModel tatu, CapturaService capturaService)
     {
         _tatu = tatu;
+        _capturaService = capturaService;
         InicializaListasECampos();
         AdicionaParametrosFisiologicos();
     }
 
     // Construtor da classe para edição de uma captura já existente
-    public CadastroCapturaViewModel(TatuModel tatu, CapturaModel captura)
+    public CadastroCapturaViewModel(TatuModel tatu, CapturaModel captura, CapturaService capturaService)
     {
         _tatu = tatu;
+        _capturaService = capturaService;
         Captura = captura;
         InicializaListasECampos();
     }
@@ -58,11 +61,11 @@ public partial class CadastroCapturaViewModel
 
         if (Captura.Id == 0)
         {
-            await BaseDatabaseService.SalvaCaptura(Captura, _tatu);
+            await _capturaService.SalvaCaptura(Captura, _tatu);
         }
         else
         {
-            await BaseDatabaseService.AtualizaCaptura(Captura);    
+            await _capturaService.AtualizaCaptura(Captura);    
         }
 
         Captura = new CapturaModel();

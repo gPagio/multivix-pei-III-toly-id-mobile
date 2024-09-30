@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
-using CommunityToolkit.Maui;
+﻿using CommunityToolkit.Maui;
 using TolyID.MVVM.Views;
 using TolyID.MVVM.ViewModels;
+using Microsoft.Extensions.Logging;
+using TolyID.Services;
+using TolyID.MVVM.Models;
 
 namespace TolyID
 {
@@ -12,6 +14,7 @@ namespace TolyID
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .RegisterServices()
                 .RegisterViewModels()
                 .RegisterViews()
                 .UseMauiCommunityToolkit()
@@ -26,6 +29,18 @@ namespace TolyID
 #endif
 
             return builder.Build();
+        }
+
+        // REGISTRO DE SERVICES
+        public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
+        {
+            //var caminhoDoBanco = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "tatu.db3");
+
+            mauiAppBuilder.Services.AddSingleton<BaseDatabaseService>();
+            mauiAppBuilder.Services.AddSingleton<TatuService>();
+            mauiAppBuilder.Services.AddSingleton<CapturaService>();
+
+            return mauiAppBuilder;
         }
 
         // REGISTRO DE VIEWMODELS
