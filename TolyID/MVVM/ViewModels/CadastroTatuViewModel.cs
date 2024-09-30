@@ -19,7 +19,7 @@ public partial class CadastroTatuViewModel : ObservableObject
 
     public async Task AdicionaTatuNoBanco()
     {
-       await BancoDeDadosService.SalvaTatu(Tatu);
+       await BaseDatabaseService.SalvaTatu(Tatu);
     }
 
     [RelayCommand]

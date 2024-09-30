@@ -27,5 +27,10 @@ public class FichaAnestesicaModel
 
     [DisplayName("Parâmetros Fisiológicos a cada 10 min")]
     [OneToMany(CascadeOperations = CascadeOperation.All)]
-    public List<ParametroFisiologicoModel> ParametrosFisiologicos { get; set; } = new();
+    public List<ParametroFisiologicoModel> ParametrosFisiologicos { get; set; }
+
+    public FichaAnestesicaModel()
+    {
+        ParametrosFisiologicos = new List<ParametroFisiologicoModel>();
+    }
 }

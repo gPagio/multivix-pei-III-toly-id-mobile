@@ -58,11 +58,11 @@ public partial class CadastroCapturaViewModel
 
         if (Captura.Id == 0)
         {
-            await BancoDeDadosService.SalvaCaptura(Captura, _tatu);
+            await BaseDatabaseService.SalvaCaptura(Captura, _tatu);
         }
         else
         {
-            await BancoDeDadosService.AtualizaCaptura(Captura);    
+            await BaseDatabaseService.AtualizaCaptura(Captura);    
         }
 
         Captura = new CapturaModel();

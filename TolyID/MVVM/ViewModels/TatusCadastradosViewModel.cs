@@ -20,7 +20,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
 
     public async void BuscaTatusNoBanco()
     {
-        var tatus = await BancoDeDadosService.GetTatus();
+        var tatus = await BaseDatabaseService.GetTatus();
         Tatus.Clear();
 
         foreach (var tatu in tatus)
@@ -32,7 +32,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     private async Task DeletaTatu(TatuModel tatu)
     {
-        await BancoDeDadosService.DeletaTatu(tatu);
+        await BaseDatabaseService.DeletaTatu(tatu);
         BuscaTatusNoBanco();
     }
 

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TolyID.MVVM.Models"
+             xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
              x:Class="TolyID.MVVM.Views.CapturaView"
              Title="{Binding Captura.Id, StringFormat='Captura n° {0}'}"           
              Shell.BackgroundColor="{StaticResource Primary}"
@@ -31,7 +33,7 @@
             </Frame>
         </DataTemplate>
 
-        <DataTemplate x:Key="TemplateParametrosFisiologicos">
+        <DataTemplate x:Key="TemplateParametrosFisiologicos" x:DataType="models:ParametroFisiologicoModel">
             <Grid ColumnDefinitions="*, *, *, *"
                   ColumnSpacing="10"
                   Margin="0, 0, 0, 10">
@@ -63,14 +65,14 @@
                 <Frame Style="{StaticResource FrameTitulo}">
                     <Label Text="Dados Gerais" Style="{StaticResource LabelTitulo}"/>
                 </Frame>
-                <CollectionView ItemsSource="{Binding DadosGerais}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding DadosGerais}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
             </StackLayout>
             
             <StackLayout Spacing="10" Grid.Row="1">
                 <Frame Style="{StaticResource FrameTitulo}">
                     <Label Text="Ficha Anestésica" Style="{StaticResource LabelTitulo}"/>
                 </Frame>
-                <CollectionView ItemsSource="{Binding FichaAnestesica}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding FichaAnestesica}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
 
                 <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
                        HorizontalTextAlignment="Center"
@@ -85,21 +87,21 @@
                     <Label Text="TEMPERATURA" FontFamily="Inter-SemiBold" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Center"/>
                 </Grid>
 
-                <CollectionView ItemsSource="{Binding ParametrosFisiologicos}" ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>
+                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding ParametrosFisiologicos}" ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>
             </StackLayout>
 
             <StackLayout Spacing="10" Grid.Row="2">
                 <Frame Style="{StaticResource FrameTitulo}">
                     <Label Text="Biometria" Style="{StaticResource LabelTitulo}"/>
                 </Frame>
-                <CollectionView ItemsSource="{Binding Biometria}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding Biometria}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
             </StackLayout>
 
             <StackLayout Spacing="10" Grid.Row="3">
                 <Frame Style="{StaticResource FrameTitulo}">
                     <Label Text="Amostras" Style="{StaticResource LabelTitulo}"/>
                 </Frame>
-                <CollectionView ItemsSource="{Binding Amostras}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding Amostras}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
             </StackLayout>
 
         </Grid>

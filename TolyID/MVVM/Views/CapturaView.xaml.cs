@@ -6,8 +6,8 @@ namespace TolyID.MVVM.Views;
 
 public partial class CapturaView : ContentPage
 {
-    private CapturaModel _captura;
-    private CapturaViewModel _viewModel;
+    private readonly CapturaModel _captura;
+    private readonly CapturaViewModel _viewModel;
 	public CapturaView(CapturaModel captura)
 	{
 		InitializeComponent();
@@ -18,7 +18,7 @@ public partial class CapturaView : ContentPage
 
     private async void EditarCaptura_Clicked(object sender, EventArgs e)
     {
-        var tatu = await BancoDeDadosService.GetTatu(_captura.TatuId);
+        var tatu = await BaseDatabaseService.GetTatu(_captura.TatuId);
         await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new CadastroCapturaTabbedView(tatu, _captura)), true);
     }
 

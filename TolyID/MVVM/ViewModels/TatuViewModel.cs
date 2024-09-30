@@ -23,7 +23,7 @@ public partial class TatuViewModel : ObservableObject
 
     public async Task AtualizaTatu(TatuModel tatu)
     {
-        Tatu = await BancoDeDadosService.GetTatu(tatu.Id);
+        Tatu = await BaseDatabaseService.GetTatu(tatu.Id);
     }
 
     [RelayCommand]
@@ -35,7 +35,7 @@ public partial class TatuViewModel : ObservableObject
     [RelayCommand]
     private async Task DeletaCaptura(CapturaModel captura)
     {
-        await BancoDeDadosService.DeletaCaptura(captura);
+        await BaseDatabaseService.DeletaCaptura(captura);
         await AtualizaTatu(Tatu);
     }
 

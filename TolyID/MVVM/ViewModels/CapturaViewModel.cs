@@ -16,15 +16,15 @@ public partial class CapturaViewModel : ObservableObject
         set => SetProperty(ref _captura, value);
     }
 
-    public Dictionary<string, string> DadosGerais { get; } = new();
-    public Dictionary<string, string> Biometria { get; } = new();
-    public Dictionary<string, string> Amostras { get; } = new();
-    public Dictionary<string, string> FichaAnestesica { get; } = new();
+    public ObservableCollection<KeyValuePair<string, string>> DadosGerais { get; } = new();
+    public ObservableCollection<KeyValuePair<string, string>> Biometria { get; } = new();
+    public ObservableCollection<KeyValuePair<string, string>> Amostras { get; } = new();
+    public ObservableCollection<KeyValuePair<string, string>> FichaAnestesica { get; } = new();
     public ObservableCollection<ParametroFisiologicoModel> ParametrosFisiologicos { get; } = new();
 
     public async void CarregaCaptura(int id)
     {
-        Captura = await BancoDeDadosService.GetCaptura(id);
+        Captura = await BaseDatabaseService.GetCaptura(id);
 
         ParametrosFisiologicos.Clear();
 
@@ -36,17 +36,19 @@ public partial class CapturaViewModel : ObservableObject
     }
 
     // Percorre as propriedades de um dado objeto 'fonte', e armazena o DisplayName e o valor de cada
-    // propriedade no dicionário 'alvo'
-    private void PreenchePropriedades(object fonte, Dictionary<string, string> alvo)
+    // propriedade na ObservableCollection 'alvo'
+    private void PreenchePropriedades(object fonte, ObservableCollection<KeyValuePair<string, string>> alvo)
     {
         if (fonte == null) return;
+
+        alvo.Clear(); // Limpa antes de preencher com novos valores
 
         var propriedades = fonte.GetType().GetProperties();
 
         foreach (var prop in propriedades)
         {
             if (prop.Name == "Id") continue;
-            if (prop.Name == "ParametrosFisiologicos") continue;            
+            if (prop.Name == "ParametrosFisiologicos") continue;
 
             var displayNameAttribute = prop.GetCustomAttribute<DisplayNameAttribute>();
 
@@ -67,24 +69,24 @@ public partial class CapturaViewModel : ObservableObject
             }
 
             if (valor == string.Empty) continue;
-            
+
             // Verificação feita apenas para propriedades cujos valores são booleanos, ou seja,
             // propriedades de 'AmostrasModel' (exceto 'Outros')
-            if (valor == "True") 
+            if (valor == "True")
             {
                 valor = "Coletado";
-            } 
-            else if(valor == "False")
+            }
+            else if (valor == "False")
             {
                 valor = "Não Coletado";
             }
 
-            alvo[displayName] = valor;
+            alvo.Add(new KeyValuePair<string, string>(displayName, valor));
         }
     }
 
     private void PreencheParametrosFisiologicos()
-    { 
+    {
         foreach (var parametro in Captura.FichaAnestesica.ParametrosFisiologicos)
         {
             ParametrosFisiologicos.Add(parametro);

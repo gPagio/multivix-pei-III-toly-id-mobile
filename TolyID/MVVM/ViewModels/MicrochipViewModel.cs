@@ -24,7 +24,7 @@ public partial class MicrochipViewModel : ObservableObject
 
     private async Task AtualizaMicrochip()
     {
-       await BancoDeDadosService.AtualizaTatu(Tatu);
+       await BaseDatabaseService.AtualizaTatu(Tatu);
     }
 
     [RelayCommand]
