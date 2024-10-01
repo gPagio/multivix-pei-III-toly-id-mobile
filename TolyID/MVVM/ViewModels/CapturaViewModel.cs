@@ -11,8 +11,8 @@ public partial class CapturaViewModel : ObservableObject
 {
     private readonly CapturaService _capturaService;
 
-    private CapturaModel _captura;
-    public CapturaModel Captura
+    private Captura _captura;
+    public Captura Captura
     {
         get => _captura;
         set => SetProperty(ref _captura, value);
@@ -27,7 +27,7 @@ public partial class CapturaViewModel : ObservableObject
     public ObservableCollection<KeyValuePair<string, string>> Biometria { get; } = new();
     public ObservableCollection<KeyValuePair<string, string>> Amostras { get; } = new();
     public ObservableCollection<KeyValuePair<string, string>> FichaAnestesica { get; } = new();
-    public ObservableCollection<ParametroFisiologicoModel> ParametrosFisiologicos { get; } = new();
+    public ObservableCollection<ParametroFisiologico> ParametrosFisiologicos { get; } = new();
 
     public async void CarregaCaptura(int id)
     {

@@ -9,14 +9,14 @@ public partial class MicrochipViewModel : ObservableObject
 {
     private readonly TatuService _tatuService;
 
-    private TatuModel _tatu;
-    public TatuModel Tatu
+    private Tatu _tatu;
+    public Tatu Tatu
     {
         get => _tatu;
         set => SetProperty(ref _tatu, value);
     }
 
-    public MicrochipViewModel(TatuModel tatu, TatuService tatuService)
+    public MicrochipViewModel(Tatu tatu, TatuService tatuService)
     {
         Tatu = tatu;
         _tatuService = tatuService;

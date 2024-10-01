@@ -5,10 +5,10 @@ namespace TolyID.MVVM.Views;
 
 public partial class TatuView : ContentPage
 {
-    private readonly TatuModel _tatu;
+    private readonly Tatu _tatu;
     private readonly TatuViewModel _viewModel;
 
-    public TatuView(TatuViewModel viewModel, TatuModel tatu)
+    public TatuView(TatuViewModel viewModel, Tatu tatu)
 	{
 		InitializeComponent();
         BindingContext = viewModel;

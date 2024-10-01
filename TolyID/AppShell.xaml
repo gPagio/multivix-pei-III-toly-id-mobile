@@ -9,7 +9,6 @@
 
     <ShellContent
         Title="Cadastro"
-        Icon="icone_tela_cadastro.png"
         ContentTemplate="{DataTemplate views:TatusCadastradosView}"/>
 
 </Shell>

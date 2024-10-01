@@ -43,7 +43,7 @@
             <CollectionView ItemsSource="{Binding Tatu.Capturas}">
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:CapturaModel">
+                    <DataTemplate x:DataType="model:Captura">
 
                         <SwipeView>
                             <SwipeView.RightItems>

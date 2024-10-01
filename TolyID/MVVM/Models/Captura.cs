@@ -4,39 +4,39 @@ using SQLiteNetExtensions.Attributes;
 namespace TolyID.MVVM.Models;
 
 [Table("Capturas")]
-public class CapturaModel
+public class Captura
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
     
-    [ForeignKey(typeof(TatuModel))]
+    [ForeignKey(typeof(Tatu))]
     public int TatuId { get; set; } 
 
-    [ForeignKey(typeof(DadosGeraisModel))]
+    [ForeignKey(typeof(DadosGerais))]
     public int DadosGeraisId { get; set; }
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public DadosGeraisModel DadosGerais { get; set; } = new();
+    public DadosGerais DadosGerais { get; set; } = new();
 
 
-    [ForeignKey(typeof(FichaAnestesicaModel))]
+    [ForeignKey(typeof(FichaAnestesica))]
     public int FichaAnestesicaId { get; set; }
     [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public FichaAnestesicaModel FichaAnestesica { get; set; } = new();
+    public FichaAnestesica FichaAnestesica { get; set; } = new();
 
 
-    [ForeignKey(typeof(BiometriaModel))]
+    [ForeignKey(typeof(Biometria))]
     public int BiometriaId { get; set; }
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public BiometriaModel Biometria { get; set; } = new();
+    public Biometria Biometria { get; set; } = new();
 
 
-    [ForeignKey(typeof(AmostrasModel))]
+    [ForeignKey(typeof(Amostras))]
     public int AmostrasId { get; set; }
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public AmostrasModel Amostras { get; set; } = new();
+    public Amostras Amostras { get; set; } = new();
 }
 

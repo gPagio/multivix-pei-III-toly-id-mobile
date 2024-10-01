@@ -5,7 +5,7 @@ using SQLiteNetExtensions.Attributes;
 namespace TolyID.MVVM.Models;
 
 [Table("Tatus")]
-public class TatuModel : ObservableObject
+public class Tatu : ObservableObject
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
@@ -13,5 +13,5 @@ public class TatuModel : ObservableObject
     public int NumeroMicrochip { get; set; }
 
     [OneToMany(CascadeOperations = CascadeOperation.All)]
-    public List<CapturaModel> Capturas { get; set; }
+    public List<Captura> Capturas { get; set; }
 }

@@ -2,7 +2,7 @@
 
 namespace TolyID.MVVM.Models;
 
-public class CampoCadastroModel : ObservableObject
+public class CampoCadastro : ObservableObject
 {    
     private string _nome;
     private View _entradaDeDado;    // Define qual View usar para capturar dados digitados pelo usuário (Entry, DatePicker etc.)
@@ -19,7 +19,7 @@ public class CampoCadastroModel : ObservableObject
         set => SetProperty(ref _entradaDeDado, value);         
     }
 
-    public CampoCadastroModel(string nome, View entradaDeDado)
+    public CampoCadastro(string nome, View entradaDeDado)
     {
         Nome = nome;
         EntradaDeDado = entradaDeDado;

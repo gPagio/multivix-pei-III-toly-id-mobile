@@ -19,12 +19,12 @@ public class BaseDatabaseService
         var caminhoDoBanco = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "tatu.db3");
         _bancoDeDados = new SQLiteAsyncConnection(caminhoDoBanco);
 
-        await _bancoDeDados.CreateTableAsync<TatuModel>();
-        await _bancoDeDados.CreateTableAsync<CapturaModel>();
-        await _bancoDeDados.CreateTableAsync<DadosGeraisModel>();
-        await _bancoDeDados.CreateTableAsync<FichaAnestesicaModel>();
-        await _bancoDeDados.CreateTableAsync<ParametroFisiologicoModel>();
-        await _bancoDeDados.CreateTableAsync<BiometriaModel>();
-        await _bancoDeDados.CreateTableAsync<AmostrasModel>();
+        await _bancoDeDados.CreateTableAsync<Tatu>();
+        await _bancoDeDados.CreateTableAsync<Captura>();
+        await _bancoDeDados.CreateTableAsync<DadosGerais>();
+        await _bancoDeDados.CreateTableAsync<FichaAnestesica>();
+        await _bancoDeDados.CreateTableAsync<ParametroFisiologico>();
+        await _bancoDeDados.CreateTableAsync<Biometria>();
+        await _bancoDeDados.CreateTableAsync<Amostras>();
     } 
 }

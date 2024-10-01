@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace TolyID.MVVM.Models;
 
 [Table("DadosGerais")]
-public class DadosGeraisModel
+public class DadosGerais
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }

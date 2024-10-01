@@ -5,12 +5,12 @@ using System.ComponentModel;
 namespace TolyID.MVVM.Models;
 
 [Table("ParametrosFisiologicos")]
-public class ParametroFisiologicoModel
+public class ParametroFisiologico
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    [ForeignKey(typeof(FichaAnestesicaModel))]
+    [ForeignKey(typeof(FichaAnestesica))]
     public int FichaAnestesicaId { get; set; }
 
     [DisplayName("FC")]

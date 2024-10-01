@@ -24,7 +24,7 @@
 
                 <CollectionView ItemsSource="{Binding DadosGerais}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:CampoCadastroModel">
+                        <DataTemplate x:DataType="model:CampoCadastro">
                             <VerticalStackLayout>
                                 <Label Text="{Binding Nome}"
                                        Style="{StaticResource LabelNomeCampo}"/>
@@ -51,7 +51,7 @@
 
                 <CollectionView ItemsSource="{Binding FichaAnestesica}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:CampoCadastroModel">
+                        <DataTemplate x:DataType="model:CampoCadastro">
                             <VerticalStackLayout>
 
                                 <Label Text="{Binding Nome}"
@@ -82,7 +82,7 @@
 
                 <CollectionView Grid.Row="1" ItemsSource="{Binding ParametrosFisiologicos}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:ParametroFisiologicoModel">
+                        <DataTemplate x:DataType="model:ParametroFisiologico">
 
                             <Grid ColumnDefinitions="*, *, *, *"
                                   ColumnSpacing="10"
@@ -137,7 +137,7 @@
 
                 <CollectionView ItemsSource="{Binding Biometria}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:CampoCadastroModel">
+                        <DataTemplate x:DataType="model:CampoCadastro">
                             <VerticalStackLayout>
 
                                 <Label Text="{Binding Nome}"
@@ -175,7 +175,7 @@
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:CampoCadastroModel">
+                        <DataTemplate x:DataType="model:CampoCadastro">
                             <HorizontalStackLayout>
                                 <ContentView Content="{Binding EntradaDeDado}"
                                              HorizontalOptions="Start"

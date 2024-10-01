@@ -5,26 +5,26 @@ namespace TolyID.Services;
 
 public class CapturaService : BaseDatabaseService
 {
-    public async Task SalvaCaptura(CapturaModel novaCaptura, TatuModel tatu)
+    public async Task SalvaCaptura(Captura novaCaptura, Tatu tatu)
     {
         await Init();
         novaCaptura.TatuId = tatu.Id;
         await _bancoDeDados.InsertWithChildrenAsync(novaCaptura, recursive: true);
     }
 
-    public async Task<CapturaModel> GetCaptura(int capturaId)
+    public async Task<Captura> GetCaptura(int capturaId)
     {
         await Init();
-        return await _bancoDeDados.GetWithChildrenAsync<CapturaModel>(capturaId, recursive: true);
+        return await _bancoDeDados.GetWithChildrenAsync<Captura>(capturaId, recursive: true);
     }
 
-    public async Task AtualizaCaptura(CapturaModel capturaAtualizada)
+    public async Task AtualizaCaptura(Captura capturaAtualizada)
     {
         await Init();
         await _bancoDeDados.InsertOrReplaceWithChildrenAsync(capturaAtualizada, recursive: true);
     }
 
-    public async Task DeletaCaptura(CapturaModel captura)
+    public async Task DeletaCaptura(Captura captura)
     {
         await Init();
         await _bancoDeDados.DeleteAsync(captura, recursive: true);

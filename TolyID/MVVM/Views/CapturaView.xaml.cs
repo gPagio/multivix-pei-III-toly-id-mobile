@@ -7,11 +7,11 @@ namespace TolyID.MVVM.Views;
 
 public partial class CapturaView : ContentPage
 {
-    private readonly CapturaModel _captura;
+    private readonly Captura _captura;
     private readonly CapturaViewModel _viewModel;
     private readonly TatuService _tatuService;
 
-	public CapturaView(CapturaModel captura, CapturaViewModel viewModel, TatuService tatuService)
+	public CapturaView(Captura captura, CapturaViewModel viewModel, TatuService tatuService)
 	{
 		InitializeComponent();
         _captura = captura;

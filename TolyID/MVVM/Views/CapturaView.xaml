@@ -33,7 +33,7 @@
             </Frame>
         </DataTemplate>
 
-        <DataTemplate x:Key="TemplateParametrosFisiologicos" x:DataType="models:ParametroFisiologicoModel">
+        <DataTemplate x:Key="TemplateParametrosFisiologicos" x:DataType="models:ParametroFisiologico">
             <Grid ColumnDefinitions="*, *, *, *"
                   ColumnSpacing="10"
                   Margin="0, 0, 0, 10">

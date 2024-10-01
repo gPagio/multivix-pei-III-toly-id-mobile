@@ -13,34 +13,34 @@ public partial class TatuViewModel : ObservableObject
     private readonly TatuService _tatuService;
     private readonly CapturaService _capturaService;
 
-    private TatuModel _tatu;
-    public TatuModel Tatu
+    private Tatu _tatu;
+    public Tatu Tatu
     {
         get => _tatu;
         set => SetProperty(ref _tatu, value);
     }
 
-    public TatuViewModel(TatuModel tatu, TatuService tatuService, CapturaService capturaService)
+    public TatuViewModel(Tatu tatu, TatuService tatuService, CapturaService capturaService)
     {
         Tatu = tatu;
         _tatuService = tatuService;
         _capturaService = capturaService;
     }
 
-    public async Task AtualizaTatu(TatuModel tatu)
+    public async Task AtualizaTatu(Tatu tatu)
     {
         Tatu = await _tatuService.GetTatu(tatu.Id);
     }
 
     [RelayCommand]
-    private async Task VisualizaCaptura(CapturaModel captura)
+    private async Task VisualizaCaptura(Captura captura)
     {
         var viewModel = new CapturaViewModel(_capturaService);
         await Shell.Current.Navigation.PushAsync(new CapturaView(captura, viewModel, _tatuService));
     }
 
     [RelayCommand]
-    private async Task DeletaCaptura(CapturaModel captura)
+    private async Task DeletaCaptura(Captura captura)
     {
         await _capturaService.DeletaCaptura(captura);
         await AtualizaTatu(Tatu);

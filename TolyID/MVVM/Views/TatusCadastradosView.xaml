@@ -20,7 +20,7 @@
 
     <ContentPage.Resources>
 
-        <DataTemplate x:Key="ListaDeTatusTemplate" x:DataType="models:TatuModel">
+        <DataTemplate x:Key="ListaDeTatusTemplate" x:DataType="models:Tatu">
 
             <SwipeView>
                 <SwipeView.RightItems>

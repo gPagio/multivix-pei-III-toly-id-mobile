@@ -5,33 +5,33 @@ namespace TolyID.Services;
 
 public class TatuService : BaseDatabaseService
 {
-    public async Task SalvaTatu(TatuModel tatu)
+    public async Task SalvaTatu(Tatu tatu)
     {
         await Init();
         await _bancoDeDados.InsertWithChildrenAsync(tatu);
     }
 
-    public async Task<List<TatuModel>> GetTatus()
+    public async Task<List<Tatu>> GetTatus()
     {
         await Init();
-        var tatus = await _bancoDeDados.GetAllWithChildrenAsync<TatuModel>();
+        var tatus = await _bancoDeDados.GetAllWithChildrenAsync<Tatu>();
         return tatus.ToList();
     }
 
-    public async Task<TatuModel> GetTatu(int tatuId)
+    public async Task<Tatu> GetTatu(int tatuId)
     {
         await Init();
-        var tatu = await _bancoDeDados.GetWithChildrenAsync<TatuModel>(tatuId, recursive: true);
+        var tatu = await _bancoDeDados.GetWithChildrenAsync<Tatu>(tatuId, recursive: true);
         return tatu;
     }
 
-    public async Task AtualizaTatu(TatuModel tatuAtualizado)
+    public async Task AtualizaTatu(Tatu tatuAtualizado)
     {
         await Init();
         await _bancoDeDados.UpdateWithChildrenAsync(tatuAtualizado);
     }
 
-    public async Task DeletaTatu(TatuModel tatu)
+    public async Task DeletaTatu(Tatu tatu)
     {
         await Init();
         await _bancoDeDados.DeleteAsync(tatu);

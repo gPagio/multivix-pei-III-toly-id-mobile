@@ -12,7 +12,7 @@ namespace TolyID.MVVM.ViewModels;
 public partial class TatusCadastradosViewModel : ObservableObject
 {
     private readonly TatuService _tatuService;
-    public ObservableCollection<TatuModel> Tatus { get; } = new();
+    public ObservableCollection<Tatu> Tatus { get; } = new();
 
     public TatusCadastradosViewModel(TatuService tatuService)
     {
@@ -32,14 +32,14 @@ public partial class TatusCadastradosViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task DeletaTatu(TatuModel tatu)
+    private async Task DeletaTatu(Tatu tatu)
     {
         await _tatuService.DeletaTatu(tatu);
         BuscaTatusNoBanco();
     }
 
     [RelayCommand]
-    private async Task VisualizaTatu(TatuModel tatu)
+    private async Task VisualizaTatu(Tatu tatu)
     {
         var capturaService = ServiceHelper.GetService<CapturaService>();
 

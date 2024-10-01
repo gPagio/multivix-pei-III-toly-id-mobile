@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace TolyID.MVVM.Models;
 
 [Table("Biometrias")]
-public class BiometriaModel
+public class Biometria
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }

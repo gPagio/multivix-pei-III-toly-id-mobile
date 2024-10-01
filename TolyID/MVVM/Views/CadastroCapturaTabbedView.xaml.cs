@@ -9,7 +9,7 @@ public partial class CadastroCapturaTabbedView : TabbedPage
 {
     private CadastroCapturaViewModel _viewModel;
 
-	public CadastroCapturaTabbedView(TatuModel tatu, CapturaService capturaService)
+	public CadastroCapturaTabbedView(Tatu tatu, CapturaService capturaService)
 	{
 		InitializeComponent();
         _viewModel = new CadastroCapturaViewModel(tatu, capturaService);
@@ -18,7 +18,7 @@ public partial class CadastroCapturaTabbedView : TabbedPage
         _viewModel.ParametrosFisiologicos.CollectionChanged += ParametrosFisiologicos_CollectionChanged;
 	}
 
-    public CadastroCapturaTabbedView(TatuModel tatu, CapturaModel captura, CapturaService capturaService)
+    public CadastroCapturaTabbedView(Tatu tatu, Captura captura, CapturaService capturaService)
     {
         InitializeComponent();
         _viewModel = new CadastroCapturaViewModel(tatu, captura, capturaService);

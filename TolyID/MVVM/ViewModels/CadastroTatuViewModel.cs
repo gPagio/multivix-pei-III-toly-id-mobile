@@ -11,7 +11,7 @@ public partial class CadastroTatuViewModel : ObservableObject
 {
     private readonly TatuService _tatuService;
     [ObservableProperty]
-    private TatuModel tatu;
+    private Tatu tatu;
 
     public CadastroTatuViewModel(TatuService tatuService) 
     {

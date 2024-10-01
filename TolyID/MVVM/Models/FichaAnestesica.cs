@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace TolyID.MVVM.Models;
 
 [Table("FichasAnestesicas")]
-public class FichaAnestesicaModel
+public class FichaAnestesica
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
@@ -27,10 +27,10 @@ public class FichaAnestesicaModel
 
     [DisplayName("Parâmetros Fisiológicos a cada 10 min")]
     [OneToMany(CascadeOperations = CascadeOperation.All)]
-    public List<ParametroFisiologicoModel> ParametrosFisiologicos { get; set; }
+    public List<ParametroFisiologico> ParametrosFisiologicos { get; set; }
 
-    public FichaAnestesicaModel()
+    public FichaAnestesica()
     {
-        ParametrosFisiologicos = new List<ParametroFisiologicoModel>();
+        ParametrosFisiologicos = new List<ParametroFisiologico>();
     }
 }
