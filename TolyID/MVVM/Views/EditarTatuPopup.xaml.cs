@@ -1,14 +1,13 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Views;
-using TolyID.MVVM.Models;
 using TolyID.MVVM.ViewModels;
 
 namespace TolyID.MVVM.Views;
 
-public partial class MicrochipPopup : Popup
+public partial class EditarTatuPopup : Popup
 {
-    public MicrochipPopup(MicrochipViewModel viewModel)
+    public EditarTatuPopup(MicrochipViewModel viewModel)
 	{
 		InitializeComponent();
         BindingContext = viewModel;
@@ -17,7 +16,7 @@ public partial class MicrochipPopup : Popup
 
     private async void Atualizar_Clicked(object sender, EventArgs e)
     {
-        if (ChipEntry.Text == "")
+        if (ChipEntry.Text == "" && MicrochipSwitch.IsToggled)
         {
             var toast = Toast.Make("Preencha o número do microchip!", ToastDuration.Short, 14);
             await toast.Show();

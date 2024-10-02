@@ -9,6 +9,9 @@ public partial class MicrochipViewModel : ObservableObject
 {
     private readonly TatuService _tatuService;
 
+    [ObservableProperty]
+    private bool microchipAtivado = false;
+
     private Tatu _tatu;
     public Tatu Tatu
     {

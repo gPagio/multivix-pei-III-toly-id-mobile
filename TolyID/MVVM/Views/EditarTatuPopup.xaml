@@ -1,27 +1,62 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TolyID.MVVM.Views.MicrochipPopup"
+             x:Class="TolyID.MVVM.Views.EditarTatuPopup"
              xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
              x:DataType="viewmodel:MicrochipViewModel"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              xmlns:views="clr-namespace:TolyID.MVVM.Views">
 
     <mct:Popup.Resources>
-        <Style TargetType="{x:Type views:MicrochipPopup}">
+        <Style TargetType="{x:Type views:EditarTatuPopup}">
             <Setter Property="Color" Value="{StaticResource Background}"/>
-            <Setter Property="Size" Value="300, 165"/>
+            <Setter Property="Size" Value="300, 300"/>
         </Style>
     </mct:Popup.Resources>
 
     <VerticalStackLayout Padding="20" Spacing="10">
 
+        <Label Text="Identificação do Animal" Style="{StaticResource LabelNomeCampo}"/>
+        <Frame Style="{StaticResource FrameEntradaDeDados}">
+            <Entry x:Name="IdEntry" 
+                   Placeholder="Digite a nova identificação"
+                   Text="{Binding Tatu.IdentificacaoAnimal}"
+                   TextColor="Black"/>
+        </Frame>
+        
+        <Grid ColumnDefinitions="8*, 2*" Margin="0, -10, 0, -10">
+            <Label Text="Microchip" 
+                   Style="{StaticResource LabelNomeCampo}"
+                   VerticalOptions="Center">
+
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding MicrochipAtivado}" Value="False">
+                        <Setter Property="Opacity" Value=".4"/>
+                    </DataTrigger>
+                </Label.Triggers>
+                
+            </Label>
+            
+            <Switch IsToggled="{Binding MicrochipAtivado}"
+                    Grid.Column="1"
+                    x:Name="MicrochipSwitch"/>
+        </Grid>
+        
         <Frame Style="{StaticResource FrameEntradaDeDados}">
             <Entry x:Name="ChipEntry" 
                    Placeholder="Digite o número do microchip"
                    Keyboard="Numeric"
                    Text="{Binding Tatu.NumeroMicrochip}"
-                   TextColor="Black"/>
+                   TextColor="Black"
+                   IsEnabled="{Binding MicrochipAtivado}">
+
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry" Binding="{Binding MicrochipAtivado}" Value="False">
+                        <Setter Property="Opacity" Value=".4"/>
+                    </DataTrigger>
+                </Entry.Triggers>
+
+            </Entry>
         </Frame>
 
         <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Padding="10">
