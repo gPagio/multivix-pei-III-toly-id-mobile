@@ -88,6 +88,18 @@
 	  <MauiXaml Update="MVVM\Views\CadastroCapturaTabbedView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CadastroDeCaptura\AmostrasView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CadastroDeCaptura\BiometriaView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CadastroDeCaptura\DadosGeraisView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CadastroDeCaptura\FichaAnestesicaView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\CadastroTatuPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

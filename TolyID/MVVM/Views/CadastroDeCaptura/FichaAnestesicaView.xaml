@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TolyID.MVVM.Models"
+             xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
+             x:DataType="viewmodels:CadastroCapturaViewModel"
+             x:Class="TolyID.MVVM.Views.CadastroDeCaptura.FichaAnestesicaView"
+             Title="2">
+
+    <ScrollView x:Name="FichaAnestesicaScrollView">
+        <StackLayout Spacing="20" Padding="20">
+
+            <Label Text="FICHA ANESTÉSICA" 
+                   TextColor="{StaticResource Primary}" 
+                   FontSize="18" FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center"/>
+
+            <CollectionView ItemsSource="{Binding FichaAnestesica}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:CampoCadastro">
+                        <VerticalStackLayout>
+
+                            <Label Text="{Binding Nome}"
+                            Style="{StaticResource LabelNomeCampo}"/>
+
+                            <Frame Style="{StaticResource FrameEntradaDeDados}">
+                                <ContentView Content="{Binding EntradaDeDado}"/>
+                            </Frame>
+
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
+                   TextColor="{StaticResource Primary}"
+                   FontAttributes="Bold"
+                   FontSize="15"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
+
+            <Grid ColumnDefinitions="*, *, *, *">
+                <Label Text="FC" Style="{StaticResource LabelNomeCampo}" FontSize="12" HorizontalTextAlignment="Center"/>
+                <Label Text="FR" Style="{StaticResource LabelNomeCampo}" Grid.Column="1" FontSize="12" HorizontalTextAlignment="Center"/>
+                <Label Text="OXIMETRIA" Style="{StaticResource LabelNomeCampo}" Grid.Column="2" FontSize="12" HorizontalTextAlignment="Center"/>
+                <Label Text="TEMPERATURA" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <CollectionView Grid.Row="1" 
+                            ItemsSource="{Binding ParametrosFisiologicos}" 
+                            x:Name="ParametrosCollectionView"
+                            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ParametroFisiologico">
+
+                        <Grid ColumnDefinitions="*, *, *, *"
+                              ColumnSpacing="10"
+                              Margin="0, 0, 0, 10">
+
+                            <Frame Style="{StaticResource FrameEntradaDeDados}" >
+                                <Entry Text="{Binding Fc}" Style="{StaticResource EntryNumerico}" 
+                                   ReturnType="Next" />
+                            </Frame>
+
+                            <Frame Style="{StaticResource FrameEntradaDeDados}" Grid.Column="1">
+                                <Entry Text="{Binding Fr}" Style="{StaticResource EntryNumerico}" 
+                                   ReturnType="Next" />
+                            </Frame>
+
+                            <Frame Style="{StaticResource FrameEntradaDeDados}" Grid.Column="2">
+                                <Entry Text="{Binding Oximetria}" Style="{StaticResource EntryNumerico}" 
+                                   ReturnType="Next" />
+                            </Frame>
+
+                            <Frame Style="{StaticResource FrameEntradaDeDados}" Grid.Column="3" >
+                                <Entry Text="{Binding Temperatura}" Style="{StaticResource EntryNumerico}" 
+                                   ReturnType="Next" />
+                            </Frame>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Grid.Column="1" 
+                    CornerRadius="30"
+                    WidthRequest="45" 
+                    Scale=".8"
+                    BackgroundColor="{StaticResource Primary}"
+                    ImageSource="icone_mais_branco.png"
+                    Clicked="AdicionarParametro_Clicked"
+                    Command="{Binding AdicionaParametrosFisiologicosCommand}"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

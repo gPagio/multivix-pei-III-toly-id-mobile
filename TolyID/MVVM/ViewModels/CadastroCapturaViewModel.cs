@@ -42,7 +42,7 @@ public partial class CadastroCapturaViewModel
     // ================================= COMANDOS ===============================================
 
     [RelayCommand]
-    private void AdicionaParametrosFisiologicos()
+    private async void AdicionaParametrosFisiologicos()
     {
         if(ParametrosFisiologicos.Count == 10)
         {

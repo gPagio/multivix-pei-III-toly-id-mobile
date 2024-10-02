@@ -14,8 +14,6 @@ public partial class CadastroCapturaTabbedView : TabbedPage
 		InitializeComponent();
         _viewModel = new CadastroCapturaViewModel(tatu, capturaService);
         BindingContext = _viewModel;
-
-        _viewModel.ParametrosFisiologicos.CollectionChanged += ParametrosFisiologicos_CollectionChanged;
 	}
 
     public CadastroCapturaTabbedView(Tatu tatu, Captura captura, CapturaService capturaService)
@@ -23,31 +21,6 @@ public partial class CadastroCapturaTabbedView : TabbedPage
         InitializeComponent();
         _viewModel = new CadastroCapturaViewModel(tatu, captura, capturaService);
         BindingContext = _viewModel;
-
-        _viewModel.ParametrosFisiologicos.CollectionChanged += ParametrosFisiologicos_CollectionChanged;
-    }
-
-    // Apaga o número 0 dos campos ligados a números ao digitar. Solução temporária (apenas para campos 
-    // dos parâmetros fisiológicos da ficha anestésica)
-    private void EntryParametros_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        Entry entry = (Entry)sender;
-
-        if (e.NewTextValue != string.Empty && e.OldTextValue == 0.ToString() && Convert.ToDouble(entry.Text) % 10 == 0)
-        {
-            double numeroDigitado = Convert.ToDouble(entry.Text);
-            numeroDigitado /= 10;
-            entry.Text = numeroDigitado.ToString();
-        }
-    }
-
-    // Rola para o fim da tela caso novos parâmetros fisiológicos sejam adicionados
-    private async void ParametrosFisiologicos_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-    {
-        if (e.Action == NotifyCollectionChangedAction.Add)
-        {
-            await FichaAnestesicaScrollView.ScrollToAsync(0, FichaAnestesicaScrollView.ContentSize.Height, true);
-        }
     }
 
     protected override void OnDisappearing()
