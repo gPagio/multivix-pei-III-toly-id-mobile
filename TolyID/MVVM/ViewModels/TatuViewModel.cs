@@ -42,8 +42,17 @@ public partial class TatuViewModel : ObservableObject
     [RelayCommand]
     private async Task DeletaCaptura(Captura captura)
     {
-        await _capturaService.DeletaCaptura(captura);
-        await AtualizaTatu(Tatu);
+        bool resposta = await Application.Current.MainPage.DisplayAlert
+            ("Confirmação",
+            "Você tem certeza que deseja excluir a captura?",
+            "Sim",
+            "Não");
+        
+        if (resposta) 
+        {
+            await _capturaService.DeletaCaptura(captura);
+            await AtualizaTatu(Tatu);
+        }
     }
 
     [RelayCommand]

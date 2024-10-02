@@ -14,14 +14,14 @@ public class ParametroFisiologico
     public int FichaAnestesicaId { get; set; }
 
     [DisplayName("FC")]
-    public double Fc { get; set; }
+    public double? Fc { get; set; }
 
     [DisplayName("FR")]
-    public double Fr { get; set; }
+    public double? Fr { get; set; }
 
     [DisplayName("Oximetria")]
-    public double Oximetria { get; set; }
+    public double? Oximetria { get; set; }
 
     [DisplayName("Temperatura")]
-    public double Temperatura { get; set; }
+    public double? Temperatura { get; set; }
 }

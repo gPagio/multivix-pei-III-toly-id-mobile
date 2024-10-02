@@ -24,6 +24,7 @@ public class UiFactory
             Keyboard = Keyboard.Numeric,
             ReturnType = ReturnType.Next,
             TextColor = Color.FromArgb("#000000"),
+            Placeholder = "Digite",
             BindingContext = bindingContext
         };
 

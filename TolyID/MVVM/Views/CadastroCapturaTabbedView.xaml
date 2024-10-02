@@ -14,7 +14,7 @@
         <ToolbarItem Text="Voltar" Command="{Binding VoltarCommand}"/>
     </TabbedPage.ToolbarItems>
 
-    <ContentPage Title="1" Padding="20" BackgroundColor="{StaticResource Background}">
+    <ContentPage Title="1" Padding="20">
         <ScrollView>
             <VerticalStackLayout Spacing="20">
                 <Label Text="DADOS GERAIS" 
@@ -40,7 +40,7 @@
         </ScrollView>
     </ContentPage>
 
-    <ContentPage Title="2" Padding="20" BackgroundColor="{StaticResource Background}">
+    <ContentPage Title="2" Padding="20">
         <ScrollView x:Name="FichaAnestesicaScrollView">
             <StackLayout Spacing="20">
 
@@ -126,7 +126,7 @@
         </ScrollView>
     </ContentPage>
 
-    <ContentPage Title="3" Padding="20" BackgroundColor="{StaticResource Background}">
+    <ContentPage Title="3" Padding="20">
         <ScrollView>
             <VerticalStackLayout Spacing="20">
 
@@ -156,7 +156,7 @@
         </ScrollView>
     </ContentPage>
 
-    <ContentPage Title="4" Padding="20" BackgroundColor="{StaticResource Background}">
+    <ContentPage Title="4" Padding="20">
         <StackLayout Spacing="20">
 
             <Label Text="AMOSTRAS" 

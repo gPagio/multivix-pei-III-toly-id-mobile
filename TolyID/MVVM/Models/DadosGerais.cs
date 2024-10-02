@@ -11,7 +11,7 @@ public class DadosGerais
 
     //public string? IdAnimal { get; set; }
     [DisplayName("Número de Identificação")]
-    public int NumeroIdentificacao { get; set; }
+    public int? NumeroIdentificacao { get; set; }
 
     [DisplayName("Local de Captura")]
     public string? LocalDeCaptura { get; set; }
@@ -23,7 +23,7 @@ public class DadosGerais
     public string? Instituicao { get; set; }
 
     [DisplayName("Peso")]
-    public double Peso { get; set; }
+    public double? Peso { get; set; }
 
     [DisplayName("Data de Captura")]
     public DateTime DataDeCaptura { get; set; } = DateTime.Now;

@@ -34,8 +34,17 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     private async Task DeletaTatu(Tatu tatu)
     {
-        await _tatuService.DeletaTatu(tatu);
-        BuscaTatusNoBanco();
+        bool resposta = await Application.Current.MainPage.DisplayAlert
+            ("Confirmação", 
+            $"Você tem certeza que deseja excluir o tatu {tatu.IdentificacaoAnimal}?", 
+            "Sim", 
+            "Não");
+
+        if (resposta) 
+        {
+            await _tatuService.DeletaTatu(tatu);
+            BuscaTatusNoBanco();
+        }
     }
 
     [RelayCommand]
