@@ -76,6 +76,7 @@
 		<PackageReference Include="SQLitePCLRaw.core" Version="2.1.8" />
 		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.8" />
 		<PackageReference Include="SQLitePCLRaw.provider.e_sqlite3" Version="2.1.8" />
+		<PackageReference Include="UraniumUI.Material" Version="2.10.1" />
 	</ItemGroup>
 
 	<ItemGroup>

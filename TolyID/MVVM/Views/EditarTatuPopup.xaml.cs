@@ -7,7 +7,7 @@ namespace TolyID.MVVM.Views;
 
 public partial class EditarTatuPopup : Popup
 {
-    public EditarTatuPopup(MicrochipViewModel viewModel)
+    public EditarTatuPopup(EditarTatuViewModel viewModel)
 	{
 		InitializeComponent();
         BindingContext = viewModel;

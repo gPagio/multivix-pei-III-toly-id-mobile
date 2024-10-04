@@ -5,7 +5,7 @@ using TolyID.Services;
 
 namespace TolyID.MVVM.ViewModels;
 
-public partial class MicrochipViewModel : ObservableObject
+public partial class EditarTatuViewModel : ObservableObject
 {
     private readonly TatuService _tatuService;
 
@@ -19,7 +19,7 @@ public partial class MicrochipViewModel : ObservableObject
         set => SetProperty(ref _tatu, value);
     }
 
-    public MicrochipViewModel(Tatu tatu, TatuService tatuService)
+    public EditarTatuViewModel(Tatu tatu, TatuService tatuService)
     {
         Tatu = tatu;
         _tatuService = tatuService;

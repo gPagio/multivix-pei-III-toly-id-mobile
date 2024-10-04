@@ -2,8 +2,44 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
+    
+    <!-- URANIUM UI -->
 
+    <Style TargetType="material:TextField">
+        <Setter Property="TextColor" Value="{StaticResource Texto}"/>
+        <Setter Property="BorderColor" Value="{StaticResource Texto}"/>
+        <Setter Property="TitleColor" Value="{StaticResource Texto}"/>
+    </Style>
+
+    <Style TargetType="material:EditorField">
+        <Setter Property="TextColor" Value="{StaticResource Texto}"/>
+        <Setter Property="BorderColor" Value="{StaticResource Texto}"/>
+        <Setter Property="TitleColor" Value="{StaticResource Texto}"/>
+    </Style>
+
+    <Style TargetType="material:TimePickerField">
+        <Setter Property="TextColor" Value="{StaticResource Texto}"/>
+        <Setter Property="BorderColor" Value="{StaticResource Texto}"/>
+        <Setter Property="TitleColor" Value="{StaticResource Texto}"/>
+    </Style>
+
+    <Style TargetType="material:DatePickerField">
+        <Setter Property="TextColor" Value="{StaticResource Texto}"/>
+        <Setter Property="BorderColor" Value="{StaticResource Texto}"/>
+        <Setter Property="TitleColor" Value="{StaticResource Texto}"/>
+    </Style>
+
+    <Style TargetType="material:CheckBox">
+        <Setter Property="Scale" Value=".9"/>
+        <Setter Property="BorderColor" Value="{StaticResource Texto}"/>
+        <Setter Property="TextColor" Value="{StaticResource Texto}"/>
+        <Setter Property="FontFamily" Value="Inter-Regular"/>
+        <Setter Property="TextFontSize" Value="17"/>
+    </Style>
+
+    
     <!-- PERSONALIZADAS -->
     
     <Style x:Key="FrameTitulo" TargetType="Frame">

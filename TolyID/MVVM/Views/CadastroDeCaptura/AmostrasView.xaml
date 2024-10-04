@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:models="clr-namespace:TolyID.MVVM.Models"
              xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
              x:DataType="viewmodels:CadastroCapturaViewModel"
              x:Class="TolyID.MVVM.Views.CadastroDeCaptura.AmostrasView"
-             Title="4">
+             Title="4"
+             BackgroundColor="White">
     
     <StackLayout Spacing="20" Padding="20">
 
@@ -14,44 +16,19 @@
            FontSize="18" FontAttributes="Bold" 
            HorizontalTextAlignment="Center"/>
 
-        <Frame BorderColor="Transparent">
-            <CollectionView ItemsSource="{Binding Amostras}">
+        <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *"
+              RowSpacing="30" Margin="0, 20, 0, 20">
+            <material:CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Sangue}" Text="Sangue"/>
+            <material:CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Fezes}" Text="Fezes"/>
 
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                                 Span="2"
-                                 HorizontalItemSpacing="20"
-                                 VerticalItemSpacing="10"/>
-                </CollectionView.ItemsLayout>
+            <material:CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Pelo}" Text="Pelo"/>
+            <material:CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Ectoparasitos}" Text="Ectoparasitos"/>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:CampoCadastro">
-                        <HorizontalStackLayout>
-                            <ContentView Content="{Binding EntradaDeDado}"
-                                     HorizontalOptions="Start"
-                                     VerticalOptions="Center"/>
+            <material:CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Swab}" Text="SWAB"/>
+            <material:CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Local}" Text="Local"/>
+        </Grid>
 
-                            <Label Text="{Binding Nome}"
-                               TextColor="{StaticResource Primary}"
-                               FontAttributes="Bold"
-                               Grid.Column="1"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Start"/>
-
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-        </Frame>
-
-
-        <Label Text="{Binding Outros.Nome}"
-           Style="{StaticResource LabelNomeCampo}"/>
-
-        <Frame Style="{StaticResource FrameEntradaDeDados}">
-            <ContentView Content="{Binding Outros.EntradaDeDado}"/>
-        </Frame>
+        <material:EditorField Title="Outros" Text="{Binding Captura.Amostras.Outros}"/>
 
         <Button Command="{Binding SalvaCapturaNoBancoCommand}"
             Text="Finalizar"
@@ -60,5 +37,6 @@
             BackgroundColor="{StaticResource Primary}"
             CornerRadius="20"
             WidthRequest="200"/>
+        
     </StackLayout>
 </ContentPage>

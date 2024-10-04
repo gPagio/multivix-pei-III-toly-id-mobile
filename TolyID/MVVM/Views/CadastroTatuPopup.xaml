@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
-             xmlns:views="clr-namespace:TolyID.MVVM.Views"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           xmlns:views="clr-namespace:TolyID.MVVM.Views"
            xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
            x:DataType="viewmodels:CadastroTatuViewModel"
-             x:Class="TolyID.MVVM.Views.CadastroTatuPopup">
+           x:Class="TolyID.MVVM.Views.CadastroTatuPopup">
 
     <mct:Popup.Resources>
         <Style TargetType="{x:Type views:CadastroTatuPopup}">
-            <Setter Property="Color" Value="{StaticResource Background}"/>
-            <Setter Property="Size" Value="300, 185"/>
+            <Setter Property="Color" Value="White"/>
+            <Setter Property="Size" Value="300, 165"/>
         </Style>
     </mct:Popup.Resources>
 
     <VerticalStackLayout Padding="20" Spacing="10">
-
-        <Label Text="IDENTIFICAÇÃO DO ANIMAL" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <Frame Style="{StaticResource FrameEntradaDeDados}">
-            <Entry x:Name="IdEntry" Text="{Binding Tatu.IdentificacaoAnimal}" Placeholder="Digite" TextColor="Black"/>
-        </Frame>
+        
+        <material:TextField Title="Identificação do Animal"
+                            Text="{Binding Tatu.IdentificacaoAnimal}"
+                            x:Name="IdEntry"/>
 
         <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Padding="10">
             <Button CornerRadius="20" 

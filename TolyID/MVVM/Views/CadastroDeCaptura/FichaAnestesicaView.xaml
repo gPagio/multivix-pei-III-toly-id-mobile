@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:models="clr-namespace:TolyID.MVVM.Models"
              xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
              x:DataType="viewmodels:CadastroCapturaViewModel"
              x:Class="TolyID.MVVM.Views.CadastroDeCaptura.FichaAnestesicaView"
-             Title="2">
+             Title="2"
+             BackgroundColor="White">
 
     <ScrollView x:Name="FichaAnestesicaScrollView">
         <StackLayout Spacing="20" Padding="20">
@@ -15,22 +17,23 @@
                    FontSize="18" FontAttributes="Bold" 
                    HorizontalTextAlignment="Center"/>
 
-            <CollectionView ItemsSource="{Binding FichaAnestesica}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:CampoCadastro">
-                        <VerticalStackLayout>
+            <material:TextField Title="Tipo de Anestésico ou Dose"
+                                Text="{Binding Captura.FichaAnestesica.TipoAnestesicoOuDose}"/>
 
-                            <Label Text="{Binding Nome}"
-                            Style="{StaticResource LabelNomeCampo}"/>
+            <material:TextField Title="Tipo de Anestésico/Dose"
+                        Text="{Binding Captura.FichaAnestesica.TipoAnestesicoOuDose}"/>
 
-                            <Frame Style="{StaticResource FrameEntradaDeDados}">
-                                <ContentView Content="{Binding EntradaDeDado}"/>
-                            </Frame>
+            <material:TextField Title="Via de Administração"
+                        Text="{Binding Captura.FichaAnestesica.ViaDeAdministracao}"/>
 
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <material:TimePickerField Title="Aplicação"
+                         Time="{Binding Captura.FichaAnestesica.Aplicacao}"/>
+
+            <material:TimePickerField Title="Indução"
+                         Time="{Binding Captura.FichaAnestesica.Inducao}"/>
+
+            <material:TimePickerField Title="Retorno"
+                         Time="{Binding Captura.FichaAnestesica.Retorno}"/>
 
             <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
                    TextColor="{StaticResource Primary}"
@@ -39,17 +42,17 @@
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"/>
 
-            <Grid ColumnDefinitions="*, *, *, *">
-                <Label Text="FC" Style="{StaticResource LabelNomeCampo}" FontSize="12" HorizontalTextAlignment="Center"/>
-                <Label Text="FR" Style="{StaticResource LabelNomeCampo}" Grid.Column="1" FontSize="12" HorizontalTextAlignment="Center"/>
-                <Label Text="OXIMETRIA" Style="{StaticResource LabelNomeCampo}" Grid.Column="2" FontSize="12" HorizontalTextAlignment="Center"/>
-                <Label Text="TEMPERATURA" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Center"/>
+            <Grid ColumnDefinitions="*, *, *, *" Padding="0, 0, 0, 0">
+                <Label Text="  FC" Style="{StaticResource LabelNomeCampo}" FontSize="12" HorizontalTextAlignment="Start"/>
+                <Label Text="   FR" Style="{StaticResource LabelNomeCampo}" Grid.Column="1" FontSize="12" HorizontalTextAlignment="Start"/>
+                <Label Text="   OXIM" Style="{StaticResource LabelNomeCampo}" Grid.Column="2" FontSize="12" HorizontalTextAlignment="Start"/>
+                <Label Text="   TEMP" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Start"/>
             </Grid>
 
             <CollectionView Grid.Row="1" 
                             ItemsSource="{Binding ParametrosFisiologicos}" 
-                            x:Name="ParametrosCollectionView"
-                            >
+                            x:Name="ParametrosCollectionView">
+                
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:ParametroFisiologico">
 
@@ -57,25 +60,10 @@
                               ColumnSpacing="10"
                               Margin="0, 0, 0, 10">
 
-                            <Frame Style="{StaticResource FrameEntradaDeDados}" >
-                                <Entry Text="{Binding Fc}" Style="{StaticResource EntryNumerico}" 
-                                   ReturnType="Next" />
-                            </Frame>
-
-                            <Frame Style="{StaticResource FrameEntradaDeDados}" Grid.Column="1">
-                                <Entry Text="{Binding Fr}" Style="{StaticResource EntryNumerico}" 
-                                   ReturnType="Next" />
-                            </Frame>
-
-                            <Frame Style="{StaticResource FrameEntradaDeDados}" Grid.Column="2">
-                                <Entry Text="{Binding Oximetria}" Style="{StaticResource EntryNumerico}" 
-                                   ReturnType="Next" />
-                            </Frame>
-
-                            <Frame Style="{StaticResource FrameEntradaDeDados}" Grid.Column="3" >
-                                <Entry Text="{Binding Temperatura}" Style="{StaticResource EntryNumerico}" 
-                                   ReturnType="Next" />
-                            </Frame>
+                            <material:TextField Text="{Binding Fr}" Keyboard="Numeric"/>
+                            <material:TextField Text="{Binding Fc}" Keyboard="Numeric" Grid.Column="1"/>
+                            <material:TextField Text="{Binding Oximetria}" Keyboard="Numeric" Grid.Column="2"/>
+                            <material:TextField Text="{Binding Temperatura}" Keyboard="Numeric" Grid.Column="3"/>
 
                         </Grid>
 

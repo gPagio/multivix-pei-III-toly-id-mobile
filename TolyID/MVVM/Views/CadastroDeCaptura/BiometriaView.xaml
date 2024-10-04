@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:models="clr-namespace:TolyID.MVVM.Models"
              xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
              x:DataType="viewmodels:CadastroCapturaViewModel"
              x:Class="TolyID.MVVM.Views.CadastroDeCaptura.BiometriaView"
-             Title="3">
+             Title="3"
+             BackgroundColor="White">
 
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="20">
@@ -15,22 +17,74 @@
                FontSize="18" FontAttributes="Bold" 
                HorizontalTextAlignment="Center"/>
 
-            <CollectionView ItemsSource="{Binding Biometria}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:CampoCadastro">
-                        <VerticalStackLayout>
+            <material:TextField Title="Comprimento Total" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoTotal}"/>
 
-                            <Label Text="{Binding Nome}"
-                                   Style="{StaticResource LabelNomeCampo}"/>
+            <material:TextField Title="Comprimento da Cabeça" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoDaCabeca}"/>
 
-                            <Frame Style="{StaticResource FrameEntradaDeDados}">
-                                <ContentView Content="{Binding EntradaDeDado}"/>
-                            </Frame>
+            <material:TextField Title="Largura da Cabeça" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.LarguraDaCabeca}"/>
 
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <material:TextField Title="Padrão do Escudo Cefálico"
+                    Text="{Binding Captura.Biometria.PadraoEscudoCefalico}"/>
+
+            <material:TextField Title="Comprimento do Escudo Cefálico" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoEscudoCefalico}"/>
+
+            <material:TextField Title="Largura do Escudo Cefálico" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.LarguraEscudoCefalico}"/>
+
+            <material:TextField Title="Largura Inter-Orbital" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.LarguraInterOrbital}"/>
+
+            <material:TextField Title="Comprimento da Orelha" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoDaOrelha}"/>
+
+            <material:TextField Title="Comprimento da Cauda" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoDaCauda}"/>
+
+            <material:TextField Title="Largura da Cauda" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.LarguraDaCauda}"/>
+
+            <material:TextField Title="Comprimento do Escudo Escapular" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoEscudoEscapular}"/>
+
+            <material:TextField Title="Semicircunferência do Escudo Escapular" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.SemicircunferenciaEscudoEscapular}"/>
+
+            <material:TextField Title="Comprimento do Escudo Pélvico" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoEscudoPelvico}"/>
+
+            <material:TextField Title="Semicircunferência do Escudo Pélvico" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.SemicircunferenciaEscudoPelvico}"/>
+
+            <material:TextField Title="Largura na Segunda Cinta" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.LarguraNaSegundaCinta}"/>
+
+            <material:TextField Title="Número de Cintas" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.NumeroDeCintas}"/>
+
+            <material:TextField Title="Comprimento da Mão Sem Unha" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoMaoSemUnha}"/>
+
+            <material:TextField Title="Comprimento da Unha da Mão" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoUnhaDaMao}"/>
+
+            <material:TextField Title="Comprimento do Pé Sem Unha" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoPeSemUnha}"/>
+
+            <material:TextField Title="Comprimento da Unha do Pé" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoUnhaDoPe}"/>
+
+            <material:TextField Title="Comprimento do Pênis" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoDoPenis}"/>
+
+            <material:TextField Title="Largura da Base do Pênis" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.LarguraBasePenis}"/>
+
+            <material:TextField Title="Comprimento do Clitóris" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.ComprimentoDoClitoris}"/>
 
         </VerticalStackLayout>
     </ScrollView>

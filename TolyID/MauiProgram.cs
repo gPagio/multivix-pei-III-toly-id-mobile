@@ -3,6 +3,7 @@ using TolyID.MVVM.Views;
 using TolyID.MVVM.ViewModels;
 using Microsoft.Extensions.Logging;
 using TolyID.Services;
+using UraniumUI;
 
 namespace TolyID
 {
@@ -17,6 +18,8 @@ namespace TolyID
                 .RegisterViewModels()
                 .RegisterViews()
                 .UseMauiCommunityToolkit()
+                .UseUraniumUI()
+                .UseUraniumUIMaterial() 
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

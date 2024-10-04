@@ -26,10 +26,10 @@ public class DadosGerais
     public double? Peso { get; set; }
 
     [DisplayName("Data de Captura")]
-    public DateTime DataDeCaptura { get; set; } = DateTime.Now;
+    public DateTime DataDeCaptura { get; set; } = DateTime.Now; 
 
     [DisplayName("Horário de Captura")]
-    public TimeSpan HorarioDeCaptura { get; set; }
+    public TimeSpan HorarioDeCaptura { get; set; } = DateTime.Now.TimeOfDay;
 
     [DisplayName("Contato do Responsável")]
     public string? ContatoDoResponsavel { get; set; }

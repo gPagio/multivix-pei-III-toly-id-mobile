@@ -59,7 +59,7 @@ public partial class TatuViewModel : ObservableObject
     private async Task EditaTatu()
     {
         var tatuService = ServiceHelper.GetService<TatuService>();
-        var viewModel = new MicrochipViewModel(Tatu, tatuService);
+        var viewModel = new EditarTatuViewModel(Tatu, tatuService);
         var popup = new EditarTatuPopup(viewModel);
         await Shell.Current.CurrentPage.ShowPopupAsync(popup);
         await AtualizaTatu(Tatu);
