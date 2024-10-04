@@ -16,22 +16,7 @@
            FontSize="18" FontAttributes="Bold" 
            HorizontalTextAlignment="Center"/>
 
-            <!--<CollectionView ItemsSource="{Binding DadosGerais}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:CampoCadastro">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Nome}"
-                           Style="{StaticResource LabelNomeCampo}"/>
-
-                            <Frame Style="{StaticResource FrameEntradaDeDados}">
-                                <ContentView Content="{Binding EntradaDeDado}"/>
-                            </Frame>
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>-->
-
-            <material:TextField Title="Número de Identificação"
+            <material:TextField Title="Número de Identificação" Keyboard="Numeric"
                         Text="{Binding Captura.DadosGerais.NumeroIdentificacao}"/>
 
             <material:TextField Title="Local de Captura"
