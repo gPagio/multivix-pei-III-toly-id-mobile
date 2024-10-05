@@ -20,16 +20,37 @@ public partial class TatuViewModel : ObservableObject
         set => SetProperty(ref _tatu, value);
     }
 
+    private int _numeroDeCapturas;
+    public int NumeroDeCapturas
+    {
+        get => _numeroDeCapturas;
+        set => SetProperty(ref _numeroDeCapturas, value);
+    }
+
     public TatuViewModel(Tatu tatu, TatuService tatuService, CapturaService capturaService)
     {
         Tatu = tatu;
         _tatuService = tatuService;
         _capturaService = capturaService;
+        AtualizaNumeroDeCapturas();
+    }
+
+    private void AtualizaNumeroDeCapturas()
+    {
+        if (Tatu != null && Tatu.Capturas != null)
+        {
+            NumeroDeCapturas = Tatu.Capturas.Count;
+        }
+        else
+        {
+            NumeroDeCapturas = 0;
+        }
     }
 
     public async Task AtualizaTatu(Tatu tatu)
     {
         Tatu = await _tatuService.GetTatu(tatu.Id);
+        AtualizaNumeroDeCapturas();
     }
 
     [RelayCommand]
@@ -69,5 +90,6 @@ public partial class TatuViewModel : ObservableObject
     private async Task AdicionaCaptura()
     {
         await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new CadastroCapturaTabbedView(Tatu, _capturaService)), true);
+        AtualizaNumeroDeCapturas();
     }
 }

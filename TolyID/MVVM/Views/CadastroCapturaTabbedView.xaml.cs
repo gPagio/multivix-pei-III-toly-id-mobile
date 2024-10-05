@@ -25,6 +25,6 @@ public partial class CadastroCapturaTabbedView : TabbedPage
 
     protected override void OnDisappearing()
     {
-        _viewModel.InicializaListasECampos();
+        _viewModel.InicializaParametrosFisiologicos();
     }
 }
