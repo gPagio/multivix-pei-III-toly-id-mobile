@@ -20,9 +20,6 @@
             <material:TextField Title="Tipo de Anestésico ou Dose"
                                 Text="{Binding Captura.FichaAnestesica.TipoAnestesicoOuDose}"/>
 
-            <material:TextField Title="Tipo de Anestésico/Dose"
-                        Text="{Binding Captura.FichaAnestesica.TipoAnestesicoOuDose}"/>
-
             <material:TextField Title="Via de Administração"
                         Text="{Binding Captura.FichaAnestesica.ViaDeAdministracao}"/>
 
