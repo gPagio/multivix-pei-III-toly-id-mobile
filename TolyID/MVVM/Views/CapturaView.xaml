@@ -280,7 +280,9 @@
 
                                 </material:TextField>
 
-                                <material:EditorField Title="Outros" Text="{Binding Captura.Amostras.Outros}"/>
+                                <material:EditorField Title="Outros"
+                                                      IsEnabled="False"
+                                                      Text="{Binding Captura.Amostras.Outros}"/>
 
                             </StackLayout>
                         </Border>
