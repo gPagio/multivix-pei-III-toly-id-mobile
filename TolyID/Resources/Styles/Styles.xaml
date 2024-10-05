@@ -3,7 +3,8 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui">
     
     <!-- URANIUM UI -->
 
@@ -11,6 +12,7 @@
         <Setter Property="TextColor" Value="{StaticResource Texto}"/>
         <Setter Property="BorderColor" Value="{StaticResource Texto}"/>
         <Setter Property="TitleColor" Value="{StaticResource Texto}"/>
+        <Setter Property="material:EntryProperties.SelectionHighlightColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}"/>
     </Style>
 
     <Style TargetType="material:EditorField">
@@ -39,7 +41,16 @@
         <Setter Property="TextFontSize" Value="17"/>
     </Style>
 
-    
+    <Style TargetType="material:DataGrid">
+        <Setter Property="LineSeparatorColor" Value="LightGray"/>
+        
+    </Style>
+
+    <Style TargetType="material:TabView">
+        
+    </Style>
+
+
     <!-- PERSONALIZADAS -->
     
     <Style x:Key="FrameTitulo" TargetType="Frame">
@@ -126,15 +137,16 @@
                     Radius="10"/>
         </Setter>
     </Style>
-
+    
+    <!-- ISSO É USADO NO SELECIONADOR DO TABVIEW DO URANIUMUI (????????????????) -->
     <Style TargetType="BoxView">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray500}}" />
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource PrimaryDarkText}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
-        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+        <Setter Property="FontFamily" Value="Inter-Regular"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="BorderWidth" Value="0"/>
         <Setter Property="CornerRadius" Value="8"/>
@@ -244,6 +256,7 @@
         <Setter Property="HasShadow" Value="False" />
         <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="BackgroundColor" Value="White"/>
     </Style>
 
     <Style TargetType="ImageButton">
@@ -269,9 +282,9 @@
     </Style>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Texto}, Dark={StaticResource Texto}}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontFamily" Value="Inter-Regular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>

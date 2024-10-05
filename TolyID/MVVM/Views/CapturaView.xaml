@@ -1,109 +1,296 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:models="clr-namespace:TolyID.MVVM.Models"
+             xmlns:views="clr-namespace:TolyID.MVVM.Views"
              xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
-             x:Class="TolyID.MVVM.Views.CapturaView"
-             Title="{Binding Captura.Id, StringFormat='Captura n° {0}'}"           
+             x:DataType="viewmodels:CapturaViewModel"
+             x:Class="TolyID.MVVM.Views.CapturaView"      
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
              BackgroundColor="{StaticResource Background}">
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="7*, 3*">
-            <Label Text="{Binding Captura.Id, StringFormat='Captura n° {0}'}" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
+            <Label Text="{Binding Captura.DadosGerais.DataDeCaptura,StringFormat='{0:dd/MM/yyyy}'}" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
             <Button Grid.Column="2" ImageSource="icone_editar.png" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="EditarCaptura_Clicked"/>
         </Grid>
     </Shell.TitleView>
 
-    <ContentPage.Resources>
-        <DataTemplate x:Key="TemplateInformacoes">
-            <Frame Padding="10, 2, 10, 4" Margin="0, 0, 0, 10" BorderColor="Transparent">
-                <StackLayout>
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding Key, StringFormat='{0}:'}" FontFamily="Inter-Bold" TextColor="{StaticResource Primary}"/>
-                                <Span Text="{Binding Value, StringFormat=' &#x0a;{0}'}" FontFamily="Inter-Regular" FontSize="20" TextColor="Black"
-                                      LineHeight="2"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
-            </Frame>
-        </DataTemplate>
+    <material:TabView>
+        
+        <material:TabView.TabHeaderItemTemplate>
+            <DataTemplate x:DataType="material:TabItem">
+                <Button Text="{Binding Title}"
+                        Command="{Binding Command}"
+                        CornerRadius="0">
+                    
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsSelected}" Value="True">
+                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                            <Setter Property="TextColor" Value="{StaticResource White}" />
+                           
+                        </DataTrigger>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsSelected}" Value="False">
+                            <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                            <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                            
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </DataTemplate>
+        </material:TabView.TabHeaderItemTemplate>
 
-        <DataTemplate x:Key="TemplateParametrosFisiologicos" x:DataType="models:ParametroFisiologico">
-            <Grid ColumnDefinitions="*, *, *, *"
-                  ColumnSpacing="10"
-                  Margin="0, 0, 0, 10">
+        <!-- DADOS GERAIS -->
+        <material:TabItem Title="Dados Gerais">
+            <material:TabItem.ContentTemplate>
+                <DataTemplate>
+                    <ScrollView Padding="15">
+                        <Border>
+                            <StackLayout Padding="15" Spacing="15">
 
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}" BorderColor="Transparent">
-                    <Label Text="{Binding Fc}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
-                </Frame>
+                                <material:TextField Title="Número de Identificação" IsEnabled="False" 
+                                                    Text="{Binding Captura.DadosGerais.NumeroIdentificacao}" />
 
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="1" BorderColor="Transparent">
-                    <Label Text="{Binding Fr}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
-                </Frame>
+                                <material:TextField Title="Local de Captura" IsEnabled="False"
+                                                    Text="{Binding Captura.DadosGerais.LocalDeCaptura}" />
 
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="2" BorderColor="Transparent">
-                    <Label Text="{Binding Oximetria}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
-                </Frame>
+                                <material:TextField Title="Equipe Responsável" IsEnabled="False"
+                                                    Text="{Binding Captura.DadosGerais.EquipeResponsavel}" />
 
-                <Frame Style="{StaticResource FrameParametrosFisiologicos}" Grid.Column="3" BorderColor="Transparent">
-                    <Label Text="{Binding Temperatura}" Style="{StaticResource LabelParametrosFisiologicos}" HorizontalTextAlignment="Center"/>
-                </Frame>
-                
-            </Grid>
-        </DataTemplate>
-    </ContentPage.Resources>
+                                <material:TextField Title="Instituição" IsEnabled="False"
+                                                    Text="{Binding Captura.DadosGerais.Instituicao}" />
 
-    <ScrollView>
-        <Grid Padding="10" RowSpacing="5" RowDefinitions="*, *, *, *">
-            
-            <StackLayout Spacing="10">
-                <Frame Style="{StaticResource FrameTitulo}">
-                    <Label Text="Dados Gerais" Style="{StaticResource LabelTitulo}"/>
-                </Frame>
-                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding DadosGerais}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
-            </StackLayout>
-            
-            <StackLayout Spacing="10" Grid.Row="1">
-                <Frame Style="{StaticResource FrameTitulo}">
-                    <Label Text="Ficha Anestésica" Style="{StaticResource LabelTitulo}"/>
-                </Frame>
-                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding FichaAnestesica}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
+                                <material:TextField Title="Peso (kg)" IsEnabled="False"
+                                                    Text="{Binding Captura.DadosGerais.Peso}" />
 
-                <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
-                       HorizontalTextAlignment="Center"
-                       FontFamily="Inter-SemiBold"
-                       FontSize="16"
-                       TextColor="{StaticResource Primary}"/>
+                                <material:DatePickerField Title="Data de Captura" IsEnabled="False"
+                                                    Date="{Binding Captura.DadosGerais.DataDeCaptura}" />
 
-                <Grid ColumnDefinitions="*, *, *, *">
-                    <Label Text="FC" FontFamily="Inter-SemiBold" Style="{StaticResource LabelNomeCampo}" FontSize="12" HorizontalTextAlignment="Center"/>
-                    <Label Text="FR" FontFamily="Inter-SemiBold" Style="{StaticResource LabelNomeCampo}" Grid.Column="1" FontSize="12" HorizontalTextAlignment="Center"/>
-                    <Label Text="OXIMETRIA" FontFamily="Inter-SemiBold" Style="{StaticResource LabelNomeCampo}" Grid.Column="2" FontSize="12" HorizontalTextAlignment="Center"/>
-                    <Label Text="TEMPERATURA" FontFamily="Inter-SemiBold" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Center"/>
-                </Grid>
+                                <material:TimePickerField Title="Horário de Captura" IsEnabled="False"
+                                                    Time="{Binding Captura.DadosGerais.HorarioDeCaptura}" />
 
-                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding ParametrosFisiologicos}" ItemTemplate="{StaticResource TemplateParametrosFisiologicos}"/>
-            </StackLayout>
+                                <material:TextField Title="Contato do Responsável" IsEnabled="False"
+                                                    Text="{Binding Captura.DadosGerais.ContatoDoResponsavel}" />
 
-            <StackLayout Spacing="10" Grid.Row="2">
-                <Frame Style="{StaticResource FrameTitulo}">
-                    <Label Text="Biometria" Style="{StaticResource LabelTitulo}"/>
-                </Frame>
-                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding Biometria}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
-            </StackLayout>
+                                <material:TextField Title="Observações" IsEnabled="False"
+                                                    Text="{Binding Captura.DadosGerais.Observacoes}" />
 
-            <StackLayout Spacing="10" Grid.Row="3">
-                <Frame Style="{StaticResource FrameTitulo}">
-                    <Label Text="Amostras" Style="{StaticResource LabelTitulo}"/>
-                </Frame>
-                <CollectionView x:DataType="viewmodels:CapturaViewModel" ItemsSource="{Binding Amostras}" ItemTemplate="{StaticResource TemplateInformacoes}"/>
-            </StackLayout>
+                            </StackLayout>
+                        </Border>
+                    </ScrollView>
+                </DataTemplate>
+            </material:TabItem.ContentTemplate>
+        </material:TabItem>
 
-        </Grid>
-    </ScrollView>
+        <!-- FICHA ANESTÉSICA -->
+        <material:TabItem Title="Ficha Anestésica">
+            <material:TabItem.ContentTemplate>
+                <DataTemplate>
+                    <ScrollView Padding="15">
+                        <Border>
+                            <StackLayout Padding="15" Spacing="15">
+                                <material:TextField Title="Tipo de Anestésico/Dose" IsEnabled="False"
+                                                    Text="{Binding Captura.FichaAnestesica.TipoAnestesicoOuDose}" />
+
+                                <material:TextField Title="Via de Administração" IsEnabled="False"
+                                                    Text="{Binding Captura.FichaAnestesica.ViaDeAdministracao}" />
+
+                                <material:TextField Title="Aplicação" IsEnabled="False"
+                                                    Text="{Binding Captura.FichaAnestesica.Aplicacao}" />
+
+                                <material:TextField Title="Indução" IsEnabled="False"
+                                                    Text="{Binding Captura.FichaAnestesica.Inducao}" />
+
+                                <material:TextField Title="Retorno" IsEnabled="False"
+                                                    Text="{Binding Captura.FichaAnestesica.Retorno}" />
+
+                                <material:DataGrid ItemsSource="{Binding Captura.FichaAnestesica.ParametrosFisiologicos}" 
+                                                   Margin="0, 10, 0, 0" HorizontalOptions="Center" BackgroundColor="White">
+                                    <material:DataGrid.Columns>
+                                        <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="FC" ValueBinding="{Binding Fc}"/>
+                                        <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="FR" ValueBinding="{Binding Fr}"/>
+                                        <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="Oximet." ValueBinding="{Binding Oximetria}"/>
+                                        <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="Temper." ValueBinding="{Binding Temperatura}"/>
+                                    </material:DataGrid.Columns>
+                                </material:DataGrid>
+                            </StackLayout>
+                        </Border>
+                    </ScrollView>
+                </DataTemplate>
+            </material:TabItem.ContentTemplate>
+        </material:TabItem>
+        
+        <!-- BIOMETRIA -->
+        <material:TabItem Title="Biometria">
+            <material:TabItem.ContentTemplate>
+                <DataTemplate>
+                    <ScrollView Padding="15">
+                        <Border>
+                            <StackLayout Padding="15" Spacing="15">
+                               
+                                <material:TextField Title="Comprimento Total" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoTotal}" />
+
+                                <material:TextField Title="Comprimento da Cabeça" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoDaCabeca}" />
+
+                                <material:TextField Title="Largura da Cabeça" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.LarguraDaCabeca}" />
+
+                                <material:TextField Title="Padrão do Escudo Cefálico" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.PadraoEscudoCefalico}" />
+
+                                <material:TextField Title="Comprimento do Escudo Cefálico" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoEscudoCefalico}" />
+
+                                <material:TextField Title="Largura do Escudo Cefálico" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.LarguraEscudoCefalico}" />
+
+                                <material:TextField Title="Largura Inter-Orbital" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.LarguraInterOrbital}" />
+
+                                <material:TextField Title="Comprimento da Orelha" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoDaOrelha}" />
+
+                                <material:TextField Title="Comprimento da Cauda" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoDaCauda}" />
+
+                                <material:TextField Title="Largura da Cauda" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.LarguraDaCauda}" />
+
+                                <material:TextField Title="Comprimento do Escudo Escapular" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoEscudoEscapular}" />
+
+                                <material:TextField Title="Semicircunferência do Escudo Escapular" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.SemicircunferenciaEscudoEscapular}" />
+
+                                <material:TextField Title="Comprimento do Escudo Pélvico" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoEscudoPelvico}" />
+
+                                <material:TextField Title="Semicircunferência do Escudo Pélvico" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.SemicircunferenciaEscudoPelvico}" />
+
+                                <material:TextField Title="Largura na Segunda Cinta" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.LarguraNaSegundaCinta}" />
+
+                                <material:TextField Title="Número de Cintas" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.NumeroDeCintas}" />
+
+                                <material:TextField Title="Comprimento da Mão Sem Unha" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoMaoSemUnha}" />
+
+                                <material:TextField Title="Comprimento da Unha da Mão" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoUnhaDaMao}" />
+
+                                <material:TextField Title="Comprimento do Pé Sem Unha" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoPeSemUnha}" />
+
+                                <material:TextField Title="Comprimento da Unha do Pé" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoUnhaDoPe}" />
+
+                                <material:TextField Title="Comprimento do Pênis" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoDoPenis}" />
+
+                                <material:TextField Title="Largura da Base do Pênis" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.LarguraBasePenis}" />
+
+                                <material:TextField Title="Comprimento do Clitóris" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.ComprimentoDoClitoris}" />
+
+                            </StackLayout>
+                        </Border>
+                    </ScrollView>
+                </DataTemplate>
+            </material:TabItem.ContentTemplate>
+        </material:TabItem>
+
+        <!-- AMOSTRAS -->
+        <material:TabItem Title="Amostras">
+            <material:TabItem.ContentTemplate>
+                <DataTemplate>
+                    <ScrollView Padding="15">
+                        <Border>
+                            <StackLayout Padding="15" Spacing="15">
+
+                                <material:TextField Title="Sangue" IsEnabled="False"
+                                                    Text="Coletado">
+
+                                    <material:TextField.Triggers>
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Sangue}" Value="False">
+                                            <Setter Property="Text" Value="Não coletado"/>
+                                        </DataTrigger>
+                                    </material:TextField.Triggers>
+
+                                </material:TextField>
+
+                                <material:TextField Title="Pelo" IsEnabled="False"
+                                                    Text="Coletado">
+
+                                    <material:TextField.Triggers>
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Pelo}" Value="False">
+                                            <Setter Property="Text" Value="Não coletado"/>
+                                        </DataTrigger>
+                                    </material:TextField.Triggers>
+
+                                </material:TextField>
+
+                                <material:TextField Title="SWAB" IsEnabled="False"
+                                                    Text="Coletado">
+
+                                    <material:TextField.Triggers>
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Swab}" Value="False">
+                                            <Setter Property="Text" Value="Não coletado"/>
+                                        </DataTrigger>
+                                    </material:TextField.Triggers>
+
+                                </material:TextField>
+
+                                <material:TextField Title="Fezes" IsEnabled="False"
+                                                    Text="Coletado">
+
+                                    <material:TextField.Triggers>
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Fezes}" Value="False">
+                                            <Setter Property="Text" Value="Não coletado"/>
+                                        </DataTrigger>
+                                    </material:TextField.Triggers>
+
+                                </material:TextField>
+
+                                <material:TextField Title="Ectoparasitos" IsEnabled="False"
+                                                    Text="Coletado">
+
+                                    <material:TextField.Triggers>
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Ectoparasitos}" Value="False">
+                                            <Setter Property="Text" Value="Não coletado"/>
+                                        </DataTrigger>
+                                    </material:TextField.Triggers>
+
+                                </material:TextField>
+
+                                <material:TextField Title="Local" IsEnabled="False"
+                                                    Text="Coletado">
+
+                                    <material:TextField.Triggers>
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Local}" Value="False">
+                                            <Setter Property="Text" Value="Não coletado"/>
+                                        </DataTrigger>
+                                    </material:TextField.Triggers>
+
+                                </material:TextField>
+
+                                <material:EditorField Title="Outros" Text="{Binding Captura.Amostras.Outros}"/>
+
+                            </StackLayout>
+                        </Border>
+                    </ScrollView>
+                </DataTemplate>
+            </material:TabItem.ContentTemplate>
+        </material:TabItem>
+
+
+
+    </material:TabView>
+
 </ContentPage>

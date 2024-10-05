@@ -12,9 +12,9 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="20">
             <Label Text="DADOS GERAIS" 
-           TextColor="{StaticResource Primary}" 
-           FontSize="18" FontAttributes="Bold" 
-           HorizontalTextAlignment="Center"/>
+               TextColor="{StaticResource Primary}" 
+               FontSize="18" FontAttributes="Bold" 
+               HorizontalTextAlignment="Center"/>
 
             <material:TextField Title="Número de Identificação" Keyboard="Numeric"
                         Text="{Binding Captura.DadosGerais.NumeroIdentificacao}"/>

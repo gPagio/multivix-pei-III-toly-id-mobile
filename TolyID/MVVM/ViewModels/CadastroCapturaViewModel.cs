@@ -3,7 +3,6 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.Services;
 
