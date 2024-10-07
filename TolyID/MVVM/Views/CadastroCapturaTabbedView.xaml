@@ -12,12 +12,12 @@
              SelectedTabColor="{StaticResource Secondary}">
 
     <TabbedPage.ToolbarItems >
-        <ToolbarItem Text="Voltar" Command="{Binding VoltarCommand}"/>
+        <!--<ToolbarItem Text="Voltar" Command="{Binding VoltarCommand}"/>-->
     </TabbedPage.ToolbarItems>
 
-    <views:DadosGeraisView/>
+    <!--<views:DadosGeraisView/>
     <views:FichaAnestesicaView/>
     <views:BiometriaView/>
-    <views:AmostrasView/>
+    <views:AmostrasView/>-->
 
 </TabbedPage>

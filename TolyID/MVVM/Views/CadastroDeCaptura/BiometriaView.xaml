@@ -4,19 +4,21 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:models="clr-namespace:TolyID.MVVM.Models"
              xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              x:DataType="viewmodels:CadastroCapturaViewModel"
              x:Class="TolyID.MVVM.Views.CadastroDeCaptura.BiometriaView"
-             Title="3"
-             BackgroundColor="White">
+             Title="Biometria"
+             BackgroundColor="White"
+             Shell.BackgroundColor="{StaticResource Primary}"
+             Shell.TitleColor="White">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Padding="20">
 
-            <Label Text="BIOMETRIA" 
-               TextColor="{StaticResource Primary}" 
-               FontSize="18" FontAttributes="Bold" 
-               HorizontalTextAlignment="Center"/>
-
+        <input:FormView Spacing="20" Padding="20" SubmitCommand="{Binding IrParaAmostrasCommand}">
+            
+            <!-- TODO: implementar validações -->
+            
             <material:TextField Title="Comprimento Total" Keyboard="Numeric"
                     Text="{Binding Captura.Biometria.ComprimentoTotal}"/>
 
@@ -86,6 +88,13 @@
             <material:TextField Title="Comprimento do Clitóris" Keyboard="Numeric"
                     Text="{Binding Captura.Biometria.ComprimentoDoClitoris}"/>
 
-        </VerticalStackLayout>
+            <Button Text="Próximo"
+                    TextColor="White"
+                    Background="{StaticResource Primary}"
+                    WidthRequest="100"
+                    CornerRadius="25"
+                    input:FormView.IsSubmitButton="True"/>
+        </input:FormView>
+
     </ScrollView>
 </ContentPage>

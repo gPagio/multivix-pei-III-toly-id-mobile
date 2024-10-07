@@ -4,9 +4,10 @@ namespace TolyID.MVVM.Views.CadastroDeCaptura;
 
 public partial class FichaAnestesicaView : ContentPage
 {
-	public FichaAnestesicaView()
+	public FichaAnestesicaView(CadastroCapturaViewModel vm)
 	{
 		InitializeComponent();
+        BindingContext = vm;
     }
 
     private void AdicionarParametro_Clicked(object sender, EventArgs e)

@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using TolyID.Helpers;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
+using TolyID.MVVM.Views.CadastroDeCaptura;
 using TolyID.Services;
 
 namespace TolyID.MVVM.ViewModels;
@@ -89,7 +90,9 @@ public partial class TatuViewModel : ObservableObject
     [RelayCommand]
     private async Task AdicionaCaptura()
     {
-        await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new CadastroCapturaTabbedView(Tatu, _capturaService)), true);
+        //await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new CadastroCapturaTabbedView(Tatu, _capturaService)), true);
+        CadastroCapturaViewModel vm = new(_tatu, _capturaService);
+        await Shell.Current.Navigation.PushAsync(new DadosGeraisView(vm));
         AtualizaNumeroDeCapturas();
     }
 }

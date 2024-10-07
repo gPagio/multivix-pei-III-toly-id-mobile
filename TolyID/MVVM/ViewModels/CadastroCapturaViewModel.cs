@@ -3,7 +3,9 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using TolyID.MVVM.Models;
+using TolyID.MVVM.Views.CadastroDeCaptura;
 using TolyID.Services;
 
 namespace TolyID.MVVM.ViewModels;
@@ -85,12 +87,29 @@ public partial class CadastroCapturaViewModel : ObservableObject
         }
 
         Captura = new Captura();
-        await Shell.Current.Navigation.PopModalAsync(true);
+
+        //TODO: achar melhor forma de navegar de volta à página de tatu
+        await Shell.Current.Navigation.PopAsync(true);
+        await Shell.Current.Navigation.PopAsync(true);
+        await Shell.Current.Navigation.PopAsync(true);
+        await Shell.Current.Navigation.PopAsync(true);
     }
 
     [RelayCommand]
-    private async Task Voltar()
+    private async Task IrParaFichaAnestesica()
     {
-        await Shell.Current.Navigation.PopModalAsync(true);
+        await Shell.Current.Navigation.PushAsync(new FichaAnestesicaView(this));
+    }
+
+    [RelayCommand]
+    private async Task IrParaBiometria()
+    {
+        await Shell.Current.Navigation.PushAsync(new BiometriaView(this));
+    }
+
+    [RelayCommand]
+    private async Task IrParaAmostras()
+    {
+        await Shell.Current.Navigation.PushAsync(new AmostrasView(this));
     }
 }

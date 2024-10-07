@@ -47,6 +47,7 @@ namespace TolyID
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuider)
         {
             mauiAppBuider.Services.AddSingleton<TatusCadastradosViewModel>();
+           //mauiAppBuider.Services.AddSingleton<CadastroCapturaViewModel>();
 
             return mauiAppBuider;
         }

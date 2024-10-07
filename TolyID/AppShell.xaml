@@ -10,5 +10,5 @@
     <ShellContent
         Title="Cadastro"
         ContentTemplate="{DataTemplate views:TatusCadastradosView}"/>
-
+    
 </Shell>

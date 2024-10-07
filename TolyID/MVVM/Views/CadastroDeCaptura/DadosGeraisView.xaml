@@ -2,46 +2,79 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              xmlns:models="clr-namespace:TolyID.MVVM.Models"
              xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
              x:DataType="viewmodels:CadastroCapturaViewModel"
              x:Class="TolyID.MVVM.Views.CadastroDeCaptura.DadosGeraisView"
-             Title="1"
-             BackgroundColor="White">
-    
+             BackgroundColor="White"
+             Title="Dados Gerais"
+             Shell.TitleColor="White"
+             Shell.BackgroundColor="{StaticResource Primary}">
+
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="20">
-            <Label Text="DADOS GERAIS" 
-               TextColor="{StaticResource Primary}" 
-               FontSize="18" FontAttributes="Bold" 
-               HorizontalTextAlignment="Center"/>
 
-            <material:TextField Title="Número de Identificação" Keyboard="Numeric"
-                        Text="{Binding Captura.DadosGerais.NumeroIdentificacao}"/>
+            <!--<Label Text="DADOS GERAIS" 
+                   TextColor="{StaticResource Primary}" 
+                   FontSize="18" FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center"/>-->
 
-            <material:TextField Title="Local de Captura"
-                        Text="{Binding Captura.DadosGerais.LocalDeCaptura}"/>
+            <input:FormView Spacing="20" SubmitCommand="{Binding IrParaFichaAnestesicaCommand}">
 
-            <material:TextField Title="Equipe Responsável"
-                        Text="{Binding Captura.DadosGerais.EquipeResponsavel}"/>
+                <material:TextField Title="Número de Identificação" Keyboard="Numeric"
+                                Text="{Binding Captura.DadosGerais.NumeroIdentificacao}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TextField>
 
-            <material:TextField Title="Instituição"
-                        Text="{Binding Captura.DadosGerais.Instituicao}"/>
+                <material:TextField Title="Local de Captura"
+                            Text="{Binding Captura.DadosGerais.LocalDeCaptura}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TextField>
 
-            <material:TextField Title="Peso" Keyboard="Numeric"
-                        Text="{Binding Captura.DadosGerais.Peso}"/>
+                <material:TextField Title="Equipe Responsável"
+                            Text="{Binding Captura.DadosGerais.EquipeResponsavel}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TextField>
 
-            <material:DatePickerField Title="Data de Captura"
-                         Date="{Binding Captura.DadosGerais.DataDeCaptura}"/>
+                <material:TextField Title="Instituição"
+                            Text="{Binding Captura.DadosGerais.Instituicao}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TextField>
 
-            <material:TimePickerField Title="Horário de Captura"
-                         Time="{Binding Captura.DadosGerais.HorarioDeCaptura}"/>
+                <material:TextField Title="Peso" Keyboard="Numeric"
+                            Text="{Binding Captura.DadosGerais.Peso}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TextField>
 
-            <material:TextField Title="Contato do Responsável"
-                        Text="{Binding Captura.DadosGerais.ContatoDoResponsavel}"/>
+                <material:DatePickerField Title="Data de Captura"
+                                Date="{Binding Captura.DadosGerais.DataDeCaptura}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:DatePickerField>
 
-            <material:EditorField Title="Observações"
-                        Text="{Binding Captura.DadosGerais.Observacoes}"/>
+                <material:TimePickerField Title="Horário de Captura"
+                                Time="{Binding Captura.DadosGerais.HorarioDeCaptura}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TimePickerField>
+
+                <material:TextField Title="Contato do Responsável"
+                            Text="{Binding Captura.DadosGerais.ContatoDoResponsavel}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TextField>
+
+                <material:EditorField Title="Observações"
+                                      Text="{Binding Captura.DadosGerais.Observacoes}"
+                                      MaxLength="50"/>
+
+                <Button Text="Próximo"
+                        TextColor="White"
+                        Background="{StaticResource Primary}"
+                        WidthRequest="100"
+                        CornerRadius="25"
+                        input:FormView.IsSubmitButton="True"/>
+                
+            </input:FormView>
 
         </VerticalStackLayout>
     </ScrollView>

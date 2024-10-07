@@ -6,15 +6,12 @@
              xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
              x:DataType="viewmodels:CadastroCapturaViewModel"
              x:Class="TolyID.MVVM.Views.CadastroDeCaptura.AmostrasView"
-             Title="4"
-             BackgroundColor="White">
-    
-    <StackLayout Spacing="20" Padding="20">
+             Title="Amostras"
+             BackgroundColor="White"
+             Shell.BackgroundColor="{StaticResource Primary}"
+             Shell.TitleColor="White">
 
-        <Label Text="AMOSTRAS" 
-           TextColor="{StaticResource Primary}" 
-           FontSize="18" FontAttributes="Bold" 
-           HorizontalTextAlignment="Center"/>
+    <StackLayout Spacing="20" Padding="20">
 
         <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *"
               RowSpacing="30" Margin="0, 20, 0, 20">
