@@ -14,7 +14,7 @@
     <Shell.TitleView>
         <Grid ColumnDefinitions="7*, 3*">
             <Label Text="{Binding Captura.DadosGerais.DataDeCaptura,StringFormat='{0:dd/MM/yyyy}'}" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
-            <Button Grid.Column="2" ImageSource="icone_editar.png" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="EditarCaptura_Clicked"/>
+            <Button Grid.Column="2" ImageSource="icone_editar.png" HorizontalOptions="End" BackgroundColor="Transparent" Command="{Binding EditaCapturaCommand}"/>
         </Grid>
     </Shell.TitleView>
 

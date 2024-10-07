@@ -58,7 +58,7 @@ public partial class TatuViewModel : ObservableObject
     private async Task VisualizaCaptura(Captura captura)
     {
         var viewModel = new CapturaViewModel(_capturaService);
-        await Shell.Current.Navigation.PushAsync(new CapturaView(captura, viewModel, _tatuService));
+        await Shell.Current.Navigation.PushAsync(new CapturaView(captura, viewModel));
     }
 
     [RelayCommand]
@@ -89,8 +89,7 @@ public partial class TatuViewModel : ObservableObject
 
     [RelayCommand]
     private async Task AdicionaCaptura()
-    {
-        //await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new CadastroCapturaTabbedView(Tatu, _capturaService)), true);
+    {       
         CadastroCapturaViewModel vm = new(_tatu, _capturaService);
         await Shell.Current.Navigation.PushAsync(new DadosGeraisView(vm));
         AtualizaNumeroDeCapturas();
