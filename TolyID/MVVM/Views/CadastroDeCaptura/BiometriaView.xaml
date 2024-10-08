@@ -18,75 +18,122 @@
         <input:FormView Spacing="20" Padding="20" SubmitCommand="{Binding IrParaAmostrasCommand}">
             
             <!-- TODO: implementar validações -->
-            
+
             <material:TextField Title="Comprimento Total" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoTotal}"/>
+                    Text="{Binding Captura.Biometria.ComprimentoTotal}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento da Cabeça" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoDaCabeca}"/>
+                    Text="{Binding Captura.Biometria.ComprimentoDaCabeca}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Largura da Cabeça" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.LarguraDaCabeca}"/>
+                                Text="{Binding Captura.Biometria.LarguraDaCabeca}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Padrão do Escudo Cefálico"
-                    Text="{Binding Captura.Biometria.PadraoEscudoCefalico}"/>
+                                Text="{Binding Captura.Biometria.PadraoEscudoCefalico}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento do Escudo Cefálico" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoEscudoCefalico}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoEscudoCefalico}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Largura do Escudo Cefálico" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.LarguraEscudoCefalico}"/>
+                                Text="{Binding Captura.Biometria.LarguraEscudoCefalico}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Largura Inter-Orbital" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.LarguraInterOrbital}"/>
+                                Text="{Binding Captura.Biometria.LarguraInterOrbital}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento da Orelha" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoDaOrelha}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoDaOrelha}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento da Cauda" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoDaCauda}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoDaCauda}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Largura da Cauda" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.LarguraDaCauda}"/>
+                                Text="{Binding Captura.Biometria.LarguraDaCauda}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento do Escudo Escapular" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoEscudoEscapular}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoEscudoEscapular}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Semicircunferência do Escudo Escapular" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.SemicircunferenciaEscudoEscapular}"/>
+                                Text="{Binding Captura.Biometria.SemicircunferenciaEscudoEscapular}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento do Escudo Pélvico" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoEscudoPelvico}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoEscudoPelvico}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Semicircunferência do Escudo Pélvico" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.SemicircunferenciaEscudoPelvico}"/>
+                                Text="{Binding Captura.Biometria.SemicircunferenciaEscudoPelvico}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Largura na Segunda Cinta" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.LarguraNaSegundaCinta}"/>
+                                Text="{Binding Captura.Biometria.LarguraNaSegundaCinta}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Número de Cintas" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.NumeroDeCintas}"/>
+                                Text="{Binding Captura.Biometria.NumeroDeCintas}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento da Mão Sem Unha" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoMaoSemUnha}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoMaoSemUnha}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento da Unha da Mão" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoUnhaDaMao}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoUnhaDaMao}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento do Pé Sem Unha" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoPeSemUnha}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoPeSemUnha}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento da Unha do Pé" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoUnhaDoPe}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoUnhaDoPe}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento do Pênis" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoDoPenis}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoDoPenis}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Largura da Base do Pênis" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.LarguraBasePenis}"/>
+                                Text="{Binding Captura.Biometria.LarguraBasePenis}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
 
             <material:TextField Title="Comprimento do Clitóris" Keyboard="Numeric"
-                    Text="{Binding Captura.Biometria.ComprimentoDoClitoris}"/>
+                                Text="{Binding Captura.Biometria.ComprimentoDoClitoris}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
+
 
             <Button Text="Próximo"
                     TextColor="White"

@@ -16,11 +16,6 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="20">
 
-            <!--<Label Text="DADOS GERAIS" 
-                   TextColor="{StaticResource Primary}" 
-                   FontSize="18" FontAttributes="Bold" 
-                   HorizontalTextAlignment="Center"/>-->
-
             <input:FormView Spacing="20" SubmitCommand="{Binding IrParaFichaAnestesicaCommand}">
 
                 <material:TextField Title="Número de Identificação" Keyboard="Numeric"
@@ -38,7 +33,7 @@
                     <validation:RequiredValidation Message="Campo obrigatório!"/>
                 </material:TextField>
 
-                <material:TextField Title="Instituição"
+                <material:TextField Title="Instituição" 
                             Text="{Binding Captura.DadosGerais.Instituicao}">
                     <validation:RequiredValidation Message="Campo obrigatório!"/>
                 </material:TextField>

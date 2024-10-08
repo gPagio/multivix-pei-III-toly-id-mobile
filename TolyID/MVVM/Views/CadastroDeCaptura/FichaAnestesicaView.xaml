@@ -22,25 +22,28 @@
             </material:TextField>
 
             <material:TextField Title="Via de Administração"
-                        Text="{Binding Captura.FichaAnestesica.ViaDeAdministracao}">
+                                Text="{Binding Captura.FichaAnestesica.ViaDeAdministracao}">
                 <validation:RequiredValidation Message="Campo obrigatório!"/>
             </material:TextField>
 
-            <material:TimePickerField Title="Aplicação"
-                            Time="{Binding Captura.FichaAnestesica.Aplicacao}">
+            <material:TimePickerField Title="Aplicação" x:Name="aplicacao"
+                                      Time="{Binding Captura.FichaAnestesica.Aplicacao}">
                 <validation:RequiredValidation Message="Campo obrigatório!"/>
             </material:TimePickerField>
 
-            <material:TimePickerField Title="Indução"
-                            Time="{Binding Captura.FichaAnestesica.Inducao}">
+            <material:TimePickerField Title="Indução" x:Name="inducao"
+                                      Time="{Binding Captura.FichaAnestesica.Inducao}">
                 <validation:RequiredValidation Message="Campo obrigatório!"/>
+                <validation:MinValueValidation MinValue="{Binding Source={x:Reference aplicacao}, Path=Time}"
+                                               Message="Valor não pode ser menor que a Aplicação!"/>
             </material:TimePickerField>
 
             <material:TimePickerField Title="Retorno"
-                            Time="{Binding Captura.FichaAnestesica.Retorno}">
+                                      Time="{Binding Captura.FichaAnestesica.Retorno}">
                 <validation:RequiredValidation Message="Campo obrigatório!"/>
+                <validation:MinValueValidation MinValue="{Binding Source={x:Reference inducao}, Path=Time}"
+                                               Message="Valor não pode ser menor que a Indução!"/>
             </material:TimePickerField>
-
 
             <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
                     TextColor="{StaticResource Primary}"

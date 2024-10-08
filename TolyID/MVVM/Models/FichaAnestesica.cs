@@ -17,13 +17,13 @@ public class FichaAnestesica
     public string? ViaDeAdministracao { get; set; }
 
     [DisplayName("Aplicação")]
-    public TimeSpan? Aplicacao { get; set; }
+    public TimeSpan Aplicacao { get; set; } = new();
 
     [DisplayName("Indução")]
-    public TimeSpan? Inducao { get; set; }
+    public TimeSpan Inducao { get; set; } = new();
 
     [DisplayName("Retorno")]
-    public TimeSpan? Retorno { get; set; }
+    public TimeSpan Retorno { get; set; } = new();
 
     [DisplayName("Parâmetros Fisiológicos a cada 10 min")]
     [OneToMany(CascadeOperations = CascadeOperation.All)]
