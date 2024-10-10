@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+             xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
+             xmlns:custom_validations="clr-namespace:TolyID.Validations"
+             x:DataType="viewmodels:CadastroUsuarioViewModel"
+             x:Class="TolyID.MVVM.Views.CadastroUsuarioView"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="White">
+    <ScrollView>
+
+        <VerticalStackLayout Padding="40" VerticalOptions="Center" Spacing="40" >
+
+            <Label Text="Registre-se!"
+                   FontSize="30"
+                   FontFamily="Inter-Medium"/>
+
+            <input:FormView Spacing="20" SubmitCommand="{Binding CadastroCommand}">
+
+                <material:TextField Title="Nome de Usuário">
+                    <validation:RequiredValidation Message="Preencha o usuário"/>
+                </material:TextField>
+
+                <material:TextField Title="Telefone">
+                    <validation:RequiredValidation Message="Preencha o telefone"/>
+                </material:TextField>
+
+                <material:TextField Title="E-mail">
+                    <validation:RequiredValidation Message="Preencha o e-mail"/>
+                    <validation:RegexValidation Pattern="{x:Static input:AdvancedEntry.REGEX_EMAIL}" Message="Email inválido!" />
+                </material:TextField>
+
+                <material:TextField Title="Senha" x:Name="Senha">
+                    <validation:RequiredValidation Message="Preencha a senha"/>
+                    <material:TextField.Attachments>
+                        <material:TextFieldPasswordShowHideAttachment/>
+                    </material:TextField.Attachments>
+                </material:TextField>
+
+                <material:TextField Title="Confirme a senha">
+                    <validation:RequiredValidation Message="Confime a senha"/>
+
+                    <custom_validations:SenhasIguaisValidation SenhaOriginal="{Binding Source={x:Reference Senha}, Path=Text}"
+                                                       Message="As senhas não são iguais!"/>
+
+                    <material:TextField.Attachments>
+                        <material:TextFieldPasswordShowHideAttachment/>
+                    </material:TextField.Attachments>
+                </material:TextField>
+
+                <Button input:FormView.IsSubmitButton="True"
+                        Style="{StaticResource Botao}"
+                        Text="Cadastrar"
+                        WidthRequest="150"
+                        Margin="0, 20, 0, 0"/>
+
+            </input:FormView>
+
+            <BoxView BackgroundColor="LightGray"
+             HeightRequest="1"/>
+
+            <Label HorizontalTextAlignment="Center"
+                   Text="Voltar"
+                   TextColor="{StaticResource Primary}"
+                   TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding VoltaParaLoginCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </VerticalStackLayout>
+        
+    </ScrollView>
+
+</ContentPage>

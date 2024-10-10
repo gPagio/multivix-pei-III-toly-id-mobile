@@ -8,7 +8,20 @@
     Title="TolyID">
 
     <ShellContent
-        Title="Cadastro"
-        ContentTemplate="{DataTemplate views:TatusCadastradosView}"/>
+        Title="Tatus Cadastrados"
+        ContentTemplate="{DataTemplate views:TatusCadastradosView}"
+        Route="MainPage"/>
     
+    <!-- ROTAS -->
+    
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate views:LoginView}"
+        Route="LoginView"/>
+
+    <ShellContent
+        Title="Cadastro"
+        ContentTemplate="{DataTemplate views:CadastroUsuarioView}"
+        Route="CadastroView"/>
+
 </Shell>

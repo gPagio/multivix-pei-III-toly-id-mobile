@@ -12,92 +12,84 @@
              Padding="15">
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="7*, 3*">
+        <Grid ColumnDefinitions="8*, 2*" >
             <Label Text="Início" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
-            <Button Grid.Column="2" ImageSource="icone_adicionar.png" Scale="1.2" HorizontalOptions="End" Command="{Binding NovoTatuCommand}" BackgroundColor="Transparent"/>
+            <Button Grid.Column="1" 
+                    ImageSource="icone_sair.png" 
+                    Scale="1.2" 
+                    HorizontalOptions="End"
+                    BackgroundColor="Transparent"
+                    Command="{Binding DeslogarCommand}"/>
         </Grid>
     </Shell.TitleView>
 
-    <ContentPage.Resources>
-
-        <DataTemplate x:Key="ListaDeTatusTemplate" x:DataType="models:Tatu">
-
-            <SwipeView>
-                <SwipeView.RightItems>
-                    <SwipeItems SwipeBehaviorOnInvoked="Close">
-                        <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=DeletaTatuCommand}" CommandParameter="{Binding .}">
-                            <Frame BorderColor="Transparent" BackgroundColor="LightPink"
-                                   CornerRadius="20" Margin="5"
-                                   WidthRequest="70" Padding="20">
-                                <Image Source="icone_apagar.png" Scale=".6"/>
-                            </Frame>
-                        </SwipeItemView>
-                    </SwipeItems>
-                </SwipeView.RightItems>
-
-                
-
-            </SwipeView>
-        </DataTemplate>
-              
-    </ContentPage.Resources>
-
     <Border>
-        <StackLayout Spacing="17" Padding="0, 20, 0, 10">
-            <Label Text="Tatus" 
-                    Style="{StaticResource LabelTitulo}" 
-                    TextColor="{StaticResource Texto}"
-                    FontSize="16"/>
-
+        <Grid>
             <ScrollView>
-                <CollectionView ItemsSource="{Binding Tatus}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Tatu">
-                            <SwipeView>
-                                
-                                <SwipeView.RightItems>
-                                    <SwipeItems SwipeBehaviorOnInvoked="Close">
-                                        <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=DeletaTatuCommand}" CommandParameter="{Binding .}">
-                                            <Frame BorderColor="Transparent" BackgroundColor="LightPink"
-                                                   CornerRadius="0"
-                                                   Padding="10"
-                                                   WidthRequest="70">
-                                                <Image Source="icone_apagar.png" Scale=".45"/>
-                                            </Frame>
-                                        </SwipeItemView>
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
 
-                                <StackLayout>
-                                    <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="White" InputTransparent="False" CornerRadius="0">
+                <StackLayout Spacing="17" Padding="0, 20, 0, 10">
+                    <Label Text="Tatus" 
+                            Style="{StaticResource LabelTitulo}" 
+                            TextColor="{StaticResource Texto}"
+                            FontSize="16"/>
 
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=VisualizaTatuCommand}"
-                                                                  CommandParameter="{Binding .}"/>
-                                        </Frame.GestureRecognizers>
+                    <CollectionView ItemsSource="{Binding Tatus}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Tatu">
+                                <SwipeView>
 
-                                        <StackLayout>
-                                            <Label Text="{Binding IdentificacaoAnimal, StringFormat='Id: {0}'}" 
-                                                   FontFamily="Inter-Medium" 
-                                                   FontSize="17"  
-                                                   TextColor="{StaticResource Texto}"/>
-                                            <Label Text="{Binding NumeroMicrochip, StringFormat='Chip: {0}'}" 
-                                                   FontFamily="Inter-Regular" 
-                                                   FontSize="15" 
-                                                   TextColor="{StaticResource Texto}"
-                                                   Opacity=".85"/>
-                                        </StackLayout>
-                                    </Frame>
-                                    <BoxView BackgroundColor="Black" Opacity=".25" HeightRequest=".1"/>
-                                </StackLayout>
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems SwipeBehaviorOnInvoked="Close">
+                                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=DeletaTatuCommand}" CommandParameter="{Binding .}">
+                                                <Frame BorderColor="Transparent" BackgroundColor="LightPink"
+                                                        CornerRadius="0"
+                                                        Padding="10"
+                                                        WidthRequest="70">
+                                                    <Image Source="icone_apagar.png" Scale=".45"/>
+                                                </Frame>
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
 
-                            </SwipeView>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                    <StackLayout>
+                                        <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="White" InputTransparent="False" CornerRadius="0">
+
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=VisualizaTatuCommand}"
+                                                                        CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
+
+                                            <StackLayout>
+                                                <Label Text="{Binding IdentificacaoAnimal, StringFormat='Id: {0}'}" 
+                                                        FontFamily="Inter-Medium" 
+                                                        FontSize="17"  
+                                                        TextColor="{StaticResource Texto}"/>
+                                                <Label Text="{Binding NumeroMicrochip, StringFormat='Chip: {0}'}" 
+                                                        FontFamily="Inter-Regular" 
+                                                        FontSize="15" 
+                                                        TextColor="{StaticResource Texto}"
+                                                        Opacity=".85"/>
+                                            </StackLayout>
+                                        </Frame>
+                                        <BoxView BackgroundColor="Black" Opacity=".25" HeightRequest=".1"/>
+                                    </StackLayout>
+
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
             </ScrollView>
-        </StackLayout>
-        
+
+            <Button Grid.Column="1" 
+                    ImageSource="icone_adicionar.png" 
+                    HorizontalOptions="End" 
+                    VerticalOptions="End"
+                    Margin="0, 0, 15, 15"
+                    CornerRadius="25"
+                    BackgroundColor="{StaticResource Primary}" 
+                    Command="{Binding NovoTatuCommand}"/>
+        </Grid>
     </Border>
 
 </ContentPage>

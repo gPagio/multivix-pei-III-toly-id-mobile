@@ -46,11 +46,6 @@
         
     </Style>
 
-    <Style TargetType="material:TabView">
-        
-    </Style>
-
-
     <!-- PERSONALIZADAS -->
     
     <Style x:Key="FrameTitulo" TargetType="Frame">
@@ -113,6 +108,13 @@
 
     <Style x:Key="TimePicker" TargetType="TimePicker">
         <Setter Property="TextColor" Value="Black"/>
+    </Style>
+
+    <Style x:Key="Botao" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="25"/>
+        <Setter Property="FontFamily" Value="Inter-Regular"/>
     </Style>
 
     <!-- PADRÕES DO SISTEMA -->

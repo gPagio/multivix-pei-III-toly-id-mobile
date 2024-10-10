@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+             xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
+             x:DataType="viewmodels:LoginViewModel"
+             x:Class="TolyID.MVVM.Views.LoginView"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="White">
+    
+    <VerticalStackLayout Padding="40" VerticalOptions="Center" Spacing="40" >
+
+        <Label Text="Bem vindo!"
+               FontSize="30"
+               FontFamily="Inter-Medium"/>
+
+        <input:FormView Spacing="20" SubmitCommand="{Binding LoginCommand}">
+
+            <material:TextField Title="Usuário">
+                <validation:RequiredValidation Message="Preencha o usuário"/>
+            </material:TextField>
+            
+            <material:TextField Title="Senha" IsPassword="True">
+                <validation:RequiredValidation Message="Preencha a senha"/>
+                <material:TextField.Attachments>
+                    <material:TextFieldPasswordShowHideAttachment/>
+                </material:TextField.Attachments>
+            </material:TextField>
+
+            <Button input:FormView.IsSubmitButton="True"
+                    Style="{StaticResource Botao}"
+                    Text="Entrar"
+                    WidthRequest="150"
+                    Margin="0, 20, 0, 0"/>
+
+        </input:FormView>
+
+        <BoxView BackgroundColor="LightGray"
+                 HeightRequest="1"/>
+
+        <Label HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Não tem uma conta? " TextColor="{StaticResource Texto}"/>
+                    <Span Text="Cadastre-se." TextColor="{StaticResource Primary}" TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding IrParaTelaDeCadastroCommand}"/>
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+    </VerticalStackLayout>
+</ContentPage>
