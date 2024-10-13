@@ -46,15 +46,18 @@ namespace TolyID
         // REGISTRO DE VIEWMODELS
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuider)
         {
+            mauiAppBuider.Services.AddTransient<LoginViewModel>();
+            mauiAppBuider.Services.AddTransient<CadastroUsuarioViewModel>();
             mauiAppBuider.Services.AddSingleton<TatusCadastradosViewModel>();
-           //mauiAppBuider.Services.AddSingleton<CadastroCapturaViewModel>();
 
             return mauiAppBuider;
         }
 
         // REGISTRO DE TELAS
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuider)
-        {
+        { 
+            mauiAppBuider.Services.AddTransient<LoginView>();
+            mauiAppBuider.Services.AddTransient<CadastroUsuarioView>();
             mauiAppBuider.Services.AddSingleton<TatusCadastradosView>();
 
             return mauiAppBuider;

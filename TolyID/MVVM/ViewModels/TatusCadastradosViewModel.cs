@@ -62,4 +62,19 @@ public partial class TatusCadastradosViewModel : ObservableObject
         await Shell.Current.CurrentPage.ShowPopupAsync(new CadastroTatuPopup(new CadastroTatuViewModel(_tatuService)));
         BuscaTatusNoBanco();
     }
+
+    [RelayCommand]
+    private async Task Deslogar()
+    {
+        bool resposta = await Application.Current.MainPage.DisplayAlert
+            ("Confirmação",
+            $"Você tem certeza que deseja sair?",
+            "Sim",
+            "Não");
+
+        if (resposta)
+        {
+            await Shell.Current.GoToAsync("//LoginView");
+        }
+    }
 }

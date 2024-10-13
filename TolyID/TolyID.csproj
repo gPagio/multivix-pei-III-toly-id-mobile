@@ -61,6 +61,7 @@
 	  <None Remove="MVVM\ViewModels\.gitkeep" />
 	  <None Remove="Resources\Images\icone_adicionar.svg" />
 	  <None Remove="Resources\Images\icone_editar.svg" />
+	  <None Remove="Resources\Images\icone_sair.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -81,6 +82,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="MVVM\Views\CadastroUsuarioView.xaml.cs">
+	    <DependentUpon>CadastroUsuarioView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="MVVM\Views\EditarTatuPopup.xaml.cs">
 	    <DependentUpon>EditarTatuPopup.xaml</DependentUpon>
 	  </Compile>
@@ -105,10 +109,16 @@
 	  <MauiXaml Update="MVVM\Views\CadastroTatuPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CadastroUsuarioView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\CapturaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\EditarTatuPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\LoginView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\TatusCadastradosView.xaml">
