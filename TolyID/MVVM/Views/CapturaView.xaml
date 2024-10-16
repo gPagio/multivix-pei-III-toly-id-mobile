@@ -151,6 +151,9 @@
                                 <material:TextField Title="Largura Inter-Orbital" IsEnabled="False"
                                                     Text="{Binding Captura.Biometria.LarguraInterOrbital}" />
 
+                                <material:TextField Title="Largura Inter-Lacrimal" IsEnabled="False"
+                                                    Text="{Binding Captura.Biometria.LarguraInterLacrimal}" />
+
                                 <material:TextField Title="Comprimento da Orelha" IsEnabled="False"
                                                     Text="{Binding Captura.Biometria.ComprimentoDaOrelha}" />
 

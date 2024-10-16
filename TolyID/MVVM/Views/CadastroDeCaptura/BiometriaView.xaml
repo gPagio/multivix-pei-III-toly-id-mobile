@@ -54,6 +54,11 @@
                 <validation:RequiredValidation Message="Campo obrigatório!"/>
             </material:TextField>
 
+            <material:TextField Title="Largura Inter-Lacrimal" Keyboard="Numeric"
+                    Text="{Binding Captura.Biometria.LarguraInterLacrimal}">
+                <validation:RequiredValidation Message="Campo obrigatório!"/>
+            </material:TextField>
+
             <material:TextField Title="Comprimento da Orelha" Keyboard="Numeric"
                                 Text="{Binding Captura.Biometria.ComprimentoDaOrelha}">
                 <validation:RequiredValidation Message="Campo obrigatório!"/>

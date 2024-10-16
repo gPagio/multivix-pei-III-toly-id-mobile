@@ -21,6 +21,8 @@
                 <material:TextField Title="Número de Identificação" Keyboard="Numeric"
                                 Text="{Binding Captura.DadosGerais.NumeroIdentificacao}">
                     <validation:RequiredValidation Message="Campo obrigatório!"/>
+                    <validation:RegexValidation Message="Não insira vírgulas!" Pattern="^[^.,]+$"/>
+
                 </material:TextField>
 
                 <material:TextField Title="Local de Captura"
