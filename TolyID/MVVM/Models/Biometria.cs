@@ -29,6 +29,8 @@ public class Biometria
 
     [DisplayName("Largura Inter-Orbital")]
     public double? LarguraInterOrbital { get; set; }
+    [DisplayName("Largura Inter-Lacrimal")]
+    public double? LarguraInterLacrimal { get; set; }
 
     [DisplayName("Comprimento da Orelha")]
     public double? ComprimentoDaOrelha { get; set; }
