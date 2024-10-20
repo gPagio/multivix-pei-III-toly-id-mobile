@@ -3,7 +3,6 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views.CadastroDeCaptura;
 using TolyID.Services;
@@ -17,6 +16,9 @@ public partial class CadastroCapturaViewModel : ObservableObject
 
     [ObservableProperty]
     private static Captura captura = new();
+    
+    [ObservableProperty]
+    private bool isBusy = false;
 
     public ObservableCollection<ParametroFisiologico> ParametrosFisiologicos { get; private set; }
 
@@ -75,6 +77,8 @@ public partial class CadastroCapturaViewModel : ObservableObject
     [RelayCommand]
     private async Task SalvaCapturaNoBanco()
     {
+        IsBusy = true;
+
         Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
 
         if (Captura.Id == 0)
@@ -93,6 +97,8 @@ public partial class CadastroCapturaViewModel : ObservableObject
         await Shell.Current.Navigation.PopAsync(true);
         await Shell.Current.Navigation.PopAsync(true);
         await Shell.Current.Navigation.PopAsync(true);
+
+        IsBusy = false;
     }
 
     [RelayCommand]

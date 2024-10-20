@@ -5,6 +5,7 @@
              x:Class="TolyID.MVVM.Views.TatuView"
              xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
              xmlns:model="clr-namespace:TolyID.MVVM.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="viewmodel:TatuViewModel"
              Title="{Binding Tatu.IdentificacaoAnimal}"           
              Shell.BackgroundColor="{StaticResource Primary}"
@@ -80,13 +81,21 @@
                                     </SwipeView.LeftItems>
 
                                     <StackLayout>
-                                        <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="White" InputTransparent="False" CornerRadius="0">
 
-                                            <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatuViewModel}}, Path=VisualizaCapturaCommand}"
-                                                                        CommandParameter="{Binding .}"/>
-                                            </Frame.GestureRecognizers>
+                                        <StackLayout.Behaviors>
+                                            <toolkit:TouchBehavior DefaultAnimationDuration="250"
+                                                                   DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                                                   PressedOpacity="0.6" 
+                                                                   PressedBackgroundColor="{StaticResource Gray100}"/>
+                                        </StackLayout.Behaviors>
 
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatuViewModel}}, Path=VisualizaCapturaCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </StackLayout.GestureRecognizers>
+
+                                        <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="Transparent" InputTransparent="False" CornerRadius="0">
+                                          
                                             <StackLayout Spacing="-16">
                                                 <Label Text="{Binding DadosGerais.DataDeCaptura, StringFormat='Data: {0:dd/MM/yyyy}'}" 
                                                        FontFamily="Inter-Medium" 
@@ -109,6 +118,13 @@
                 </ScrollView>
             </StackLayout>
         </Border>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           Grid.ColumnSpan="2" 
+                           Grid.RowSpan="2" 
+                           VerticalOptions="Center"/>
+
     </Grid>
     
 </ContentPage>

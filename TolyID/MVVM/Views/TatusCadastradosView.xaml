@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:TolyID.MVVM.Models"
              xmlns:viewmodel="clr-namespace:TolyID.MVVM.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="viewmodel:TatusCadastradosViewModel"
              x:Class="TolyID.MVVM.Views.TatusCadastradosView"
              Title="Início"
@@ -26,7 +27,6 @@
     <Border>
         <Grid>
             <ScrollView>
-
                 <StackLayout Spacing="17" Padding="0, 20, 0, 10">
                     <Label Text="Tatus" 
                             Style="{StaticResource LabelTitulo}" 
@@ -52,12 +52,20 @@
                                     </SwipeView.LeftItems>
 
                                     <StackLayout>
-                                        <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="White" InputTransparent="False" CornerRadius="0">
 
-                                            <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=VisualizaTatuCommand}"
-                                                                        CommandParameter="{Binding .}"/>
-                                            </Frame.GestureRecognizers>
+                                        <StackLayout.Behaviors>
+                                            <toolkit:TouchBehavior DefaultAnimationDuration="250"
+                                                                   DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                                                   PressedOpacity="0.6" 
+                                                                   PressedBackgroundColor="{StaticResource Gray100}"/>
+                                        </StackLayout.Behaviors>
+
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=VisualizaTatuCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                                        </StackLayout.GestureRecognizers>
+
+                                        <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="Transparent" InputTransparent="False" CornerRadius="0">
 
                                             <StackLayout>
                                                 <Label Text="{Binding IdentificacaoAnimal, StringFormat='Id: {0}'}" 

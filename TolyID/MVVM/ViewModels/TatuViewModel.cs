@@ -28,6 +28,9 @@ public partial class TatuViewModel : ObservableObject
         set => SetProperty(ref _numeroDeCapturas, value);
     }
 
+    [ObservableProperty]
+    private bool isBusy = false;
+
     public TatuViewModel(Tatu tatu, TatuService tatuService, CapturaService capturaService)
     {
         Tatu = tatu;
@@ -57,8 +60,10 @@ public partial class TatuViewModel : ObservableObject
     [RelayCommand]
     private async Task VisualizaCaptura(Captura captura)
     {
+        IsBusy = true;
         var viewModel = new CapturaViewModel(_capturaService);
         await Shell.Current.Navigation.PushAsync(new CapturaView(captura, viewModel));
+        IsBusy = false;
     }
 
     [RelayCommand]
@@ -89,9 +94,11 @@ public partial class TatuViewModel : ObservableObject
 
     [RelayCommand]
     private async Task AdicionaCaptura()
-    {       
+    {  
+        IsBusy = true;
         CadastroCapturaViewModel vm = new(_tatu, _capturaService);
         await Shell.Current.Navigation.PushAsync(new DadosGeraisView(vm));
         AtualizaNumeroDeCapturas();
+        IsBusy = false;
     }
 }
