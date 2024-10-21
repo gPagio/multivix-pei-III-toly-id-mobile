@@ -13,90 +13,101 @@
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White">
 
-    <ScrollView x:Name="FichaAnestesicaScrollView">
+    <Grid>
 
-        <input:FormView Spacing="20" Padding="20" SubmitCommand="{Binding IrParaBiometriaCommand}">
-            <material:TextField Title="Tipo de Anestésico ou Dose"
-                                Text="{Binding Captura.FichaAnestesica.TipoAnestesicoOuDose}">
-                <validation:RequiredValidation Message="Campo obrigatório!"/>
-            </material:TextField>
+        <ScrollView x:Name="FichaAnestesicaScrollView">
 
-            <material:TextField Title="Via de Administração"
-                                Text="{Binding Captura.FichaAnestesica.ViaDeAdministracao}">
-                <validation:RequiredValidation Message="Campo obrigatório!"/>
-            </material:TextField>
+            <input:FormView Spacing="20" Padding="20" SubmitCommand="{Binding IrParaBiometriaCommand}">
+                <material:TextField Title="Tipo de Anestésico ou Dose"
+                                    Text="{Binding Captura.FichaAnestesica.TipoAnestesicoOuDose}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TextField>
 
-            <material:TimePickerField Title="Aplicação" x:Name="aplicacao"
-                                      Time="{Binding Captura.FichaAnestesica.Aplicacao}">
-                <validation:RequiredValidation Message="Campo obrigatório!"/>
-            </material:TimePickerField>
+                <material:TextField Title="Via de Administração"
+                                    Text="{Binding Captura.FichaAnestesica.ViaDeAdministracao}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TextField>
 
-            <material:TimePickerField Title="Indução" x:Name="inducao"
-                                      Time="{Binding Captura.FichaAnestesica.Inducao}">
-                <validation:RequiredValidation Message="Campo obrigatório!"/>
-                <validation:MinValueValidation MinValue="{Binding Source={x:Reference aplicacao}, Path=Time}"
-                                               Message="Valor não pode ser menor que a Aplicação!"/>
-            </material:TimePickerField>
+                <material:TimePickerField Title="Aplicação" x:Name="aplicacao"
+                                          Time="{Binding Captura.FichaAnestesica.Aplicacao}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                </material:TimePickerField>
 
-            <material:TimePickerField Title="Retorno"
-                                      Time="{Binding Captura.FichaAnestesica.Retorno}">
-                <validation:RequiredValidation Message="Campo obrigatório!"/>
-                <validation:MinValueValidation MinValue="{Binding Source={x:Reference inducao}, Path=Time}"
-                                               Message="Valor não pode ser menor que a Indução!"/>
-            </material:TimePickerField>
+                <material:TimePickerField Title="Indução" x:Name="inducao"
+                                          Time="{Binding Captura.FichaAnestesica.Inducao}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                    <validation:MinValueValidation MinValue="{Binding Source={x:Reference aplicacao}, Path=Time}"
+                                                   Message="Valor não pode ser menor que a Aplicação!"/>
+                </material:TimePickerField>
 
-            <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
-                    TextColor="{StaticResource Primary}"
-                    FontAttributes="Bold"
-                    FontSize="15"
-                    HorizontalTextAlignment="Center"
-                    VerticalTextAlignment="Center"/>
+                <material:TimePickerField Title="Retorno"
+                                          Time="{Binding Captura.FichaAnestesica.Retorno}">
+                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                    <validation:MinValueValidation MinValue="{Binding Source={x:Reference inducao}, Path=Time}"
+                                                   Message="Valor não pode ser menor que a Indução!"/>
+                </material:TimePickerField>
 
-            <Grid ColumnDefinitions="*, *, *, *" Padding="0, 0, 0, 0">
-                <Label Text="  FC" Style="{StaticResource LabelNomeCampo}" FontSize="12" HorizontalTextAlignment="Start"/>
-                <Label Text="   FR" Style="{StaticResource LabelNomeCampo}" Grid.Column="1" FontSize="12" HorizontalTextAlignment="Start"/>
-                <Label Text="   OXIM" Style="{StaticResource LabelNomeCampo}" Grid.Column="2" FontSize="12" HorizontalTextAlignment="Start"/>
-                <Label Text="   TEMP" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Start"/>
-            </Grid>
+                <Label Text="Parâmetros Fisiológicos a cada 10 minutos" 
+                        TextColor="{StaticResource Primary}"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"/>
 
-            <CollectionView Grid.Row="1" 
-                            ItemsSource="{Binding ParametrosFisiologicos}" 
-                            x:Name="ParametrosCollectionView">
+                <Grid ColumnDefinitions="*, *, *, *" Padding="0, 0, 0, 0">
+                    <Label Text="  FC" Style="{StaticResource LabelNomeCampo}" FontSize="12" HorizontalTextAlignment="Start"/>
+                    <Label Text="   FR" Style="{StaticResource LabelNomeCampo}" Grid.Column="1" FontSize="12" HorizontalTextAlignment="Start"/>
+                    <Label Text="   OXIM" Style="{StaticResource LabelNomeCampo}" Grid.Column="2" FontSize="12" HorizontalTextAlignment="Start"/>
+                    <Label Text="   TEMP" Style="{StaticResource LabelNomeCampo}" Grid.Column="3" FontSize="12" HorizontalTextAlignment="Start"/>
+                </Grid>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:ParametroFisiologico">
+                <CollectionView Grid.Row="1" 
+                                ItemsSource="{Binding ParametrosFisiologicos}" 
+                                x:Name="ParametrosCollectionView">
 
-                        <Grid ColumnDefinitions="*, *, *, *"
-                                ColumnSpacing="10"
-                                Margin="0, 0, 0, 10">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:ParametroFisiologico">
 
-                            <material:TextField Text="{Binding Fr}" Keyboard="Numeric"/>
-                            <material:TextField Text="{Binding Fc}" Keyboard="Numeric" Grid.Column="1"/>
-                            <material:TextField Text="{Binding Oximetria}" Keyboard="Numeric" Grid.Column="2"/>
-                            <material:TextField Text="{Binding Temperatura}" Keyboard="Numeric" Grid.Column="3"/>
+                            <Grid ColumnDefinitions="*, *, *, *"
+                                    ColumnSpacing="10"
+                                    Margin="0, 0, 0, 10">
 
-                        </Grid>
+                                <material:TextField Text="{Binding Fr}" Keyboard="Numeric"/>
+                                <material:TextField Text="{Binding Fc}" Keyboard="Numeric" Grid.Column="1"/>
+                                <material:TextField Text="{Binding Oximetria}" Keyboard="Numeric" Grid.Column="2"/>
+                                <material:TextField Text="{Binding Temperatura}" Keyboard="Numeric" Grid.Column="3"/>
 
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </Grid>
 
-            <Button Grid.Column="1" 
-                    CornerRadius="30"
-                    WidthRequest="45" 
-                    Scale=".8"
-                    BackgroundColor="{StaticResource Primary}"
-                    ImageSource="icone_mais_branco.png"
-                    Clicked="AdicionarParametro_Clicked"
-                    Command="{Binding AdicionaParametrosFisiologicosCommand}"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-            <Button Text="Próximo"
-                    TextColor="White"
-                    Background="{StaticResource Primary}"
-                    WidthRequest="100"
-                    CornerRadius="25"
-                    input:FormView.IsSubmitButton="True"/>
-        </input:FormView>
+                <Button Grid.Column="1" 
+                        CornerRadius="30"
+                        WidthRequest="45" 
+                        Scale=".8"
+                        BackgroundColor="{StaticResource Primary}"
+                        ImageSource="icone_mais_branco.png"
+                        Clicked="AdicionarParametro_Clicked"
+                        Command="{Binding AdicionaParametrosFisiologicosCommand}"/>
 
-    </ScrollView>
+                <Button Text="Próximo"
+                        TextColor="White"
+                        Background="{StaticResource Primary}"
+                        WidthRequest="100"
+                        CornerRadius="25"
+                        input:FormView.IsSubmitButton="True"/>
+            </input:FormView>
+
+        </ScrollView>
+
+        <!-- INDICADOR DE SALVAMENTO EM ANDAMENTO -->
+        <BoxView IsVisible="{Binding IsBusy}"
+                 Opacity=".3"/>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           VerticalOptions="Center"/>
+    </Grid>
 </ContentPage>

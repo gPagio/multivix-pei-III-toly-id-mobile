@@ -11,29 +11,40 @@
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White">
 
-    <StackLayout Spacing="20" Padding="20">
+    <Grid>
 
-        <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *"
-              RowSpacing="30" Margin="0, 20, 0, 20">
-            <material:CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Sangue}" Text="Sangue"/>
-            <material:CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Fezes}" Text="Fezes"/>
+        <StackLayout Spacing="20" Padding="20">
 
-            <material:CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Pelo}" Text="Pelo"/>
-            <material:CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Ectoparasitos}" Text="Ectoparasitos"/>
+            <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *"
+                  RowSpacing="30" Margin="0, 20, 0, 20">
+                <material:CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Sangue}" Text="Sangue"/>
+                <material:CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Fezes}" Text="Fezes"/>
 
-            <material:CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Swab}" Text="SWAB"/>
-            <material:CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Local}" Text="Local"/>
-        </Grid>
+                <material:CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Pelo}" Text="Pelo"/>
+                <material:CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Ectoparasitos}" Text="Ectoparasitos"/>
 
-        <material:EditorField Title="Outros" Text="{Binding Captura.Amostras.Outros}"/>
+                <material:CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Swab}" Text="SWAB"/>
+                <material:CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Local}" Text="Local"/>
+            </Grid>
 
-        <Button Command="{Binding SalvaCapturaNoBancoCommand}"
-            Text="Finalizar"
-            TextColor="White"
-            FontAttributes="Bold"
-            BackgroundColor="{StaticResource Primary}"
-            CornerRadius="20"
-            WidthRequest="200"/>
-        
-    </StackLayout>
+            <material:EditorField Title="Outros" Text="{Binding Captura.Amostras.Outros}"/>
+
+            <Button Command="{Binding SalvaCapturaNoBancoCommand}"
+                Text="Finalizar"
+                TextColor="White"
+                FontAttributes="Bold"
+                BackgroundColor="{StaticResource Primary}"
+                CornerRadius="20"
+                WidthRequest="200"/>
+
+        </StackLayout>
+
+        <!-- INDICADOR DE SALVAMENTO EM ANDAMENTO -->
+        <BoxView IsVisible="{Binding IsBusy}"
+                 Opacity=".3"/>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           VerticalOptions="Center"/>
+    </Grid>
 </ContentPage>
