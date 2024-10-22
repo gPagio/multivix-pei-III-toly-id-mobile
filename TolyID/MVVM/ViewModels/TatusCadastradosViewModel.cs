@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ConsoleTolyID;
 using System.Collections.ObjectModel;
 using TolyID.Helpers;
 using TolyID.MVVM.Models;
@@ -76,5 +77,13 @@ public partial class TatusCadastradosViewModel : ObservableObject
         {
             await Shell.Current.GoToAsync("//LoginView");
         }
+    }
+
+    [RelayCommand]
+    private async Task GerarTokenApi()
+    {
+        GerarToken api = new();
+        string token = await api.Gerar();
+        Application.Current.MainPage.DisplayAlert("Token", $"{token}", "ok");
     }
 }

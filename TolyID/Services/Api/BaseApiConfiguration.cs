@@ -11,7 +11,7 @@ namespace TolyID.Services.Api
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("Services\\Api\\appsettings.jsonappsettings.json", optional: false, reloadOnChange: true);
+                .AddJsonFile("Config\\appsettings.jsonappsettings.json", optional: false, reloadOnChange: true);
 
             Configuration = builder.Build();
         }

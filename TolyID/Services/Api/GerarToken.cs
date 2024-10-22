@@ -2,11 +2,11 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TolyID.MVVM.Models;
-using TolyID.Services.Api;
+
 
 namespace ConsoleTolyID
 {
-    public class GerarToken : BaseApiConfiguration
+    public class GerarToken
     {
         public async Task<string> Gerar()
         {
@@ -14,12 +14,15 @@ namespace ConsoleTolyID
             {
                 Usuario usuario = new()
                 {
-                    Email = Configuration["ApiSettings:usuario"],
-                    Senha = Configuration["ApiSettings:senha"]
+                    //Email = Configuration["ApiSettings:usuario"],
+                    //Senha = Configuration["ApiSettings:senha"]
+                    Email = "guilherme@toly.com",
+                    Senha = "123456"
                 };
 
 
-                string url = Configuration["ApiSettings:TokenUrl"]!;
+                //string url = Configuration["ApiSettings:TokenUrl"]!;
+                string url = "http://localhost:8080/login/token";
                 var json = JsonConvert.SerializeObject(usuario);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -35,14 +38,12 @@ namespace ConsoleTolyID
                     }
                     else
                     {
-                        Console.WriteLine("Erro: " + response.StatusCode);
-                        return null!;
+                        return "Erro:"+ response.StatusCode;
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Erro ao enviar a requisição: " + e.Message);
-                    return null!;
+                    return "Erro ao enviar a requisição: " + e.Message;
                 }
             }
         }
