@@ -20,6 +20,8 @@ public class Tatu
     [OneToMany(CascadeOperations = CascadeOperation.All)]
     public List<Captura>? Capturas { get; set; }
 
+    public bool FoiEnviadoParaApi { get; set; } = false;
+
     public override string ToString()
     {
         return $"Id: {Id}\nIdentificacao do Animal: {IdentificacaoAnimal}\nNumero do Microchip: {NumeroMicrochip}\n";

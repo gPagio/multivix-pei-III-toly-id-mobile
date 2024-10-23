@@ -36,4 +36,15 @@ public class TatuService : BaseDatabaseService
         await Init();
         await _bancoDeDados.DeleteAsync(tatu);
     }
+    public async Task<List<Tatu>> GetTatusNaoCadastrados()
+    {
+        await Init();
+
+        // Busca todos os Tatus onde Cadastrado é false
+        var tatusNaoCadastrados = await _bancoDeDados.Table<Tatu>()
+            .Where(t => t.FoiEnviadoParaApi == false)
+            .ToListAsync();
+
+        return tatusNaoCadastrados;
+    }
 }

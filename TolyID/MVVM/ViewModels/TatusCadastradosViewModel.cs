@@ -7,6 +7,7 @@ using TolyID.Helpers;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
 using TolyID.Services;
+using TolyID.Services.Api;
 
 namespace TolyID.MVVM.ViewModels;
 
@@ -82,7 +83,11 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     private async Task GerarTokenApi()
     {
-        string token =await GerarToken.Gerar();
-        Application.Current.MainPage.DisplayAlert("Token", $"{token}", "ok");
+        var banco = new TatuService();
+        List<Tatu> lista = await banco.GetTatusNaoCadastrados();
+        foreach (var tatu in lista)
+        {
+            CadastrarTatuApiService.Cadastrar(tatu);
+        }
     }
 }
