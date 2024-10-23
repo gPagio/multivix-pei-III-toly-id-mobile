@@ -43,5 +43,7 @@ public class Captura
     [OneToOne(CascadeOperations = CascadeOperation.All)]
     [JsonProperty("amostra")]
     public Amostras Amostras { get; set; } = new();
+
+    public bool FoiEnviadoParaApi {  get; set; } = false;
 }
 
