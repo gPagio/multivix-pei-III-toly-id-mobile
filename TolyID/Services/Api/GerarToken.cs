@@ -1,27 +1,53 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ConsoleTolyID
 {
     public class GerarToken
     {
+        public struct TokenResponse
+        {
+            public string token { get; set; } // Corrigido para 'tokenString'
+        }
+
         public static async Task<string> Gerar()
         {
             using (HttpClient client = new HttpClient())
             {
-                string url = "http://172.20.10.6:8080/hello";
-                HttpResponseMessage response = await client.GetAsync(url);
+                try
+                {
+                    using StringContent jsonContent = new(
+                    JsonSerializer.Serialize(new
+                    {
+                        email = "guilherme@toly.com",
+                        senha = "123456"
+                    }),
+                    Encoding.UTF8,
+                    "application/json");
 
-                if (response.IsSuccessStatusCode)
-                {
-                    // Lê a resposta diretamente como uma string
-                    string result = await response.Content.ReadAsStringAsync();
-                    return result; // Retorna a string recebida
+                    string url = "http://172.20.10.6:8080/login/token";
+                    HttpResponseMessage resposta = await client.PostAsync(url, jsonContent);
+
+                    if (resposta.IsSuccessStatusCode)
+                    {
+                        // Lê o conteúdo da resposta e deserializa para a struct TokenResponse
+                        string result = await resposta.Content.ReadAsStringAsync();
+                        TokenResponse token = JsonSerializer.Deserialize<TokenResponse>(result);
+
+                        // Retorna a propriedade tokenString
+                        return token.token;
+                    }
+                    else
+                    {
+                        return "Erro: " + resposta.StatusCode;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    return "Erro: " + response.StatusCode;
+                    return ex.Message;
                 }
             }
         }
