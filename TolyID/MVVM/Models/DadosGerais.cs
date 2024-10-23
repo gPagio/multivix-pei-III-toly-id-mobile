@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using System.ComponentModel;
 
 namespace TolyID.MVVM.Models;
@@ -13,27 +14,27 @@ public class DadosGerais
     [DisplayName("Número de Identificação")]
     public int? NumeroIdentificacao { get; set; }
 
-    [DisplayName("Local de Captura")]
+    [JsonProperty("localDeCaptura")]
     public string? LocalDeCaptura { get; set; }
 
-    [DisplayName("Equipe Responsável")]
+    [JsonProperty("equipeResponsavel")]
     public string? EquipeResponsavel { get; set; }
 
-    [DisplayName("Instituição")]
+    [JsonProperty("instituicao")]
     public string? Instituicao { get; set; }
 
-    [DisplayName("Peso")]
+    [JsonProperty("pesoDoTatu")]
     public double? Peso { get; set; }
 
-    [DisplayName("Data de Captura")]
-    public DateTime DataDeCaptura { get; set; } = DateTime.Now; 
+    [JsonProperty("dataCaptura")]
+    public DateTime DataCaptura { get; set; } = DateTime.Now; 
 
-    [DisplayName("Horário de Captura")]
-    public TimeSpan HorarioDeCaptura { get; set; } = DateTime.Now.TimeOfDay;
+    //[DisplayName("Horário de Captura")]
+   // public TimeSpan HorarioDeCaptura { get; set; } = DateTime.Now.TimeOfDay;
 
-    [DisplayName("Contato do Responsável")]
+    [JsonProperty("contatoDoResponsavel")]
     public string? ContatoDoResponsavel { get; set; }
 
-    [DisplayName("Observações")]
+    [JsonProperty("observacoes")]
     public string? Observacoes { get; set; }
 }

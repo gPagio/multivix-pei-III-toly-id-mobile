@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System.ComponentModel;
 
@@ -10,22 +11,22 @@ public class FichaAnestesica
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    [DisplayName("Tipo de Anestésico/Dose")]
+    [JsonProperty("tipoAnestesicoOuDose")]
     public string? TipoAnestesicoOuDose { get; set; }
 
-    [DisplayName("Via de Administração")]
+    [JsonProperty("viaDeAdministracao")]
     public string? ViaDeAdministracao { get; set; }
 
-    [DisplayName("Aplicação")]
+    [JsonProperty("aplicacao")]
     public TimeSpan Aplicacao { get; set; } = new();
 
-    [DisplayName("Indução")]
+    [JsonProperty("inducao")]
     public TimeSpan Inducao { get; set; } = new();
 
-    [DisplayName("Retorno")]
+    [JsonProperty("retorno")]
     public TimeSpan Retorno { get; set; } = new();
 
-    [DisplayName("Parâmetros Fisiológicos a cada 10 min")]
+    [JsonProperty("parametrosFisiologicos")]
     [OneToMany(CascadeOperations = CascadeOperation.All)]
     public List<ParametroFisiologico> ParametrosFisiologicos { get; set; }
 

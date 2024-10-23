@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 
 namespace TolyID.MVVM.Models;
@@ -17,12 +18,14 @@ public class Captura
     public int DadosGeraisId { get; set; }
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
+    [JsonProperty("dadosGerais")]
     public DadosGerais DadosGerais { get; set; } = new();
 
 
     [ForeignKey(typeof(FichaAnestesica))]
     public int FichaAnestesicaId { get; set; }
     [OneToOne(CascadeOperations = CascadeOperation.All)]
+    [JsonProperty("fichaAnestesica")]
     public FichaAnestesica FichaAnestesica { get; set; } = new();
 
 
@@ -30,6 +33,7 @@ public class Captura
     public int BiometriaId { get; set; }
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
+    [JsonProperty("biometria")]
     public Biometria Biometria { get; set; } = new();
 
 
@@ -37,6 +41,7 @@ public class Captura
     public int AmostrasId { get; set; }
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
+    [JsonProperty("amostra")]
     public Amostras Amostras { get; set; } = new();
 }
 

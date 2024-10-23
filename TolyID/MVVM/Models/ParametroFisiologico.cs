@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System.ComponentModel;
 
@@ -13,15 +14,15 @@ public class ParametroFisiologico
     [ForeignKey(typeof(FichaAnestesica))]
     public int FichaAnestesicaId { get; set; }
 
-    [DisplayName("FC")]
+    [JsonProperty("frequenciaCardiaca")]
     public double? Fc { get; set; }
 
-    [DisplayName("FR")]
+    [JsonProperty("frequenciaRespiratoria")]
     public double? Fr { get; set; }
 
-    [DisplayName("Oximetria")]
+    [JsonProperty("oximetria")]
     public double? Oximetria { get; set; }
 
-    [DisplayName("Temperatura")]
+    [JsonProperty("temperatura")]
     public double? Temperatura { get; set; }
 }
