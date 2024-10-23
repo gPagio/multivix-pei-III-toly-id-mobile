@@ -82,8 +82,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     private async Task GerarTokenApi()
     {
-        GerarToken api = new();
-        string token = await api.Gerar();
+        string token =await GerarToken.Gerar();
         Application.Current.MainPage.DisplayAlert("Token", $"{token}", "ok");
     }
 }
