@@ -2,7 +2,10 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views.CadastroDeCaptura;
 using TolyID.Services;
@@ -16,7 +19,14 @@ public partial class CadastroCapturaViewModel : ObservableObject
 
     [ObservableProperty]
     private static Captura captura = new();
-    
+
+    // Campos de data e hora separados, serão juntados em um só campo de Dados Gerais
+    [ObservableProperty]
+    private DateTime dataDeCaptura = DateTime.Now;
+    [ObservableProperty]
+    private TimeSpan horarioDeCaptura = DateTime.Now.TimeOfDay;
+
+    // Indicador de carregamento
     [ObservableProperty]
     private bool isBusy = false;
 
@@ -38,6 +48,8 @@ public partial class CadastroCapturaViewModel : ObservableObject
         _tatu = tatu;
         _capturaService = capturaService;
         Captura = captura;
+        DataDeCaptura = Captura.DadosGerais.DataHoraDeCaptura;
+        HorarioDeCaptura = Captura.DadosGerais.DataHoraDeCaptura.TimeOfDay;
         InicializaParametrosFisiologicos();
     }
 
@@ -80,6 +92,7 @@ public partial class CadastroCapturaViewModel : ObservableObject
         IsBusy = true;
 
         Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
+        Captura.DadosGerais.DataHoraDeCaptura = DataDeCaptura.Date + HorarioDeCaptura;
 
         if (Captura.Id == 0)
         {

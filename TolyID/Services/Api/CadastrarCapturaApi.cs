@@ -1,12 +1,7 @@
-﻿using ConsoleTolyID;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using TolyID.MVVM.Models;
 
 namespace TolyID.Services.Api

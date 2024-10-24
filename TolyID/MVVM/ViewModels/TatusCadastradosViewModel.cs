@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ConsoleTolyID;
 using System.Collections.ObjectModel;
 using TolyID.Helpers;
 using TolyID.MVVM.Models;
@@ -87,7 +86,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
         List<Tatu> lista = await banco.GetTatusNaoCadastrados();
         foreach (var tatu in lista)
         {
-            CadastrarTatuApiService.Cadastrar(tatu);
+            await CadastrarTatuApiService.Cadastrar(tatu);
         }
     }
 }

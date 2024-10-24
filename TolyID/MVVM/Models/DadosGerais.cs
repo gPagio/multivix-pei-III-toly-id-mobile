@@ -10,7 +10,6 @@ public class DadosGerais
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    //public string? IdAnimal { get; set; }
     [DisplayName("Número de Identificação")]
     public int? NumeroIdentificacao { get; set; }
 
@@ -27,10 +26,10 @@ public class DadosGerais
     public double? Peso { get; set; }
 
     [JsonProperty("dataCaptura")]
-    public DateTime DataCaptura { get; set; } = DateTime.Now; 
+    public DateTime DataHoraDeCaptura { get; set; } = DateTime.Now;
 
     //[DisplayName("Horário de Captura")]
-   // public TimeSpan HorarioDeCaptura { get; set; } = DateTime.Now.TimeOfDay;
+    //public TimeSpan HorarioDeCaptura { get; set; } = DateTime.Now.TimeOfDay;
 
     [JsonProperty("contatoDoResponsavel")]
     public string? ContatoDoResponsavel { get; set; }

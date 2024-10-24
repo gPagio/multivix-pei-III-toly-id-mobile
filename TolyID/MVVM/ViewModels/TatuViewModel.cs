@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Diagnostics;
 using TolyID.Helpers;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
@@ -14,19 +15,11 @@ public partial class TatuViewModel : ObservableObject
     private readonly TatuService _tatuService;
     private readonly CapturaService _capturaService;
 
-    private Tatu _tatu;
-    public Tatu Tatu
-    {
-        get => _tatu;
-        set => SetProperty(ref _tatu, value);
-    }
+    [ObservableProperty]
+    private Tatu tatu;
 
-    private int _numeroDeCapturas;
-    public int NumeroDeCapturas
-    {
-        get => _numeroDeCapturas;
-        set => SetProperty(ref _numeroDeCapturas, value);
-    }
+    [ObservableProperty]
+    private int numeroDeCapturas;
 
     [ObservableProperty]
     private bool isBusy = false;
@@ -61,7 +54,7 @@ public partial class TatuViewModel : ObservableObject
     private async Task VisualizaCaptura(Captura captura)
     {
         IsBusy = true;
-        var viewModel = new CapturaViewModel(_capturaService);
+        var viewModel = new CapturaViewModel(_capturaService, captura);
         await Shell.Current.Navigation.PushAsync(new CapturaView(captura, viewModel));
         IsBusy = false;
     }
@@ -96,7 +89,7 @@ public partial class TatuViewModel : ObservableObject
     private async Task AdicionaCaptura()
     {  
         IsBusy = true;
-        CadastroCapturaViewModel vm = new(_tatu, _capturaService);
+        CadastroCapturaViewModel vm = new(Tatu, _capturaService);
         await Shell.Current.Navigation.PushAsync(new DadosGeraisView(vm));
         AtualizaNumeroDeCapturas();
         IsBusy = false;
