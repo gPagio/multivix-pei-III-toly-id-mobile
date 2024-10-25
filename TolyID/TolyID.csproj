@@ -135,8 +135,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Services\Api\Ler\" />
-	</ItemGroup>
-
 </Project>
