@@ -1,15 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using TolyID.DTO;
 using TolyID.MVVM.Models;
 
-namespace TolyID.Services.Api
+
+namespace TolyID.Services.Api.Cadastrar
 {
-    public class CadastrarTatuApiService
+    public class CadastrarTatuApiService : BaseApi
     {
         public struct RespostaTatu
         {
@@ -18,13 +17,13 @@ namespace TolyID.Services.Api
             public int NumeroMicrochip { get; set; }
         }
 
-        public async Task Cadastrar(Tatu tatu)
+        public async Task Cadastrar(Tatu tatu, string token)
         {
             TatuDTO tatuDTO = new(tatu);
             try
             {
-                string url = "http://172.20.10.6:8080/tatus/cadastrar";
-                string token = await GerarToken.Gerar();
+                string url = $"http://{UrlBaseApi}:8080/tatus/cadastrar";
+
 
                 if (string.IsNullOrEmpty(token))
                 {

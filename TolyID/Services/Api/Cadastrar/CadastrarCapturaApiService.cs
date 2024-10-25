@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 using TolyID.DTO;
 using TolyID.MVVM.Models;
 
-namespace TolyID.Services.Api
+
+namespace TolyID.Services.Api.Cadastrar
 {
-    public class CadastrarCapturaApi
+    public class CadastrarCapturaApiService : BaseApi
     {
         public struct RespostaCaptura
         {
@@ -22,10 +23,11 @@ namespace TolyID.Services.Api
             public Amostras Amostra { get; set; }
         }
 
-        public async Task CadastrarCaptura(CapturaDTO capturaDTO, Captura captura)
+        public  async Task Cadastrar(Captura captura, string token)
         {
             try
             {
+                CapturaDTO capturaDTO = new CapturaDTO(captura);
                 var bancotatu = new TatuService();
                 Tatu tatu = await bancotatu.GetTatu(captura.TatuId);
 
@@ -35,8 +37,7 @@ namespace TolyID.Services.Api
                     return;
                 }
 
-                string url = $"http://172.20.10.6:8080/capturas/cadastrar/{tatu.IdAPI}";
-                string token = await GerarToken.Gerar();
+                string url = $"http://{UrlBaseApi}:8080/capturas/cadastrar/{tatu.IdAPI}";
 
                 if (string.IsNullOrEmpty(token))
                 {

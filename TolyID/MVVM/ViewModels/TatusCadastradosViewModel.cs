@@ -84,41 +84,8 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     private async Task GerarTokenApi()
     {
-        var tatuService = new TatuService();
-        var apiTatu = new CadastrarTatuApiService();
-        List<Tatu> listaTatus = await tatuService.GetTatus();
-        foreach (var tatu in listaTatus)
-        {
-            if (tatu.FoiEnviadoParaApi == false)
-            {
-                await apiTatu.Cadastrar(tatu);
-            }
-            
-        }
-
-        var capturaService = new CapturaService();
-        var apiCaptura = new CadastrarCapturaApi();
-        try
-        {
-
-            List<Captura> listaCaptura = await capturaService.GetCapturas();
-
-            foreach(var captura in listaCaptura) 
-            {
-                if(captura.FoiEnviadoParaApi == false)
-                {
-                    CapturaDTO DTO = new DTO.CapturaDTO(captura);
-                    await apiCaptura.CadastrarCaptura(DTO, captura);
-                }
-            }
-                
-
-        }
-        catch (Exception ex)
-        {
-            // Tratar exceções (log, alertar o usuário, etc.)
-            Console.WriteLine($"Erro: {ex.Message}");
-        }
+        await TatusApiService.Cadastrar();
+        await CapturaApiService.Cadastrar();
 
     }
 }
