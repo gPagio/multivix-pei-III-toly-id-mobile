@@ -29,4 +29,15 @@ public class CapturaService : BaseDatabaseService
         await Init();
         await _bancoDeDados.DeleteAsync(captura, recursive: true);
     }
+    public async Task<List<Captura>> GetCapturaNaoCadastrados()
+    {
+        await Init();
+
+        // Busca todos os Tatus onde Cadastrado é false
+        var CapturaNaoCadastrados = await _bancoDeDados.Table<Captura>()
+            .Where(t => t.FoiEnviadoParaApi == false)
+            .ToListAsync();
+
+        return CapturaNaoCadastrados;
+    }
 }

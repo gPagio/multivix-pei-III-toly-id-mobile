@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Text.Json;
 
 namespace TolyID.Services.Api;
@@ -25,7 +26,7 @@ public class GerarToken
                 Encoding.UTF8,
                 "application/json");
 
-                string url = "http://172.20.10.6:8080/login/token";
+                string url = "http://172.20.10.8:8080/login/token";
                 HttpResponseMessage resposta = await client.PostAsync(url, jsonContent);
 
                 if (resposta.IsSuccessStatusCode)
@@ -44,6 +45,7 @@ public class GerarToken
             }
             catch (Exception ex)
             {
+                Debug.WriteLine($"#####################3 {ex.Message}");
                 return ex.Message;
             }
         }

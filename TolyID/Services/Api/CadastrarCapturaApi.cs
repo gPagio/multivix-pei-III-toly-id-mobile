@@ -2,19 +2,20 @@
 using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text;
+using TolyID.DTO;
 using TolyID.MVVM.Models;
 
 namespace TolyID.Services.Api
 {
     public class CadastrarCapturaApi
     {
-        public async void CadastrarCaptura(Captura captura) 
+        public async Task CadastrarCaptura(CapturaDTO capturaDTO,Captura captura) 
         {
             //string json = JsonConvert.SerializeObject(captura, Formatting.Indented);
 
             try
             {
-                string url = "http://172.20.10.6:8080/captura/cadastrar";
+                string url = $"http://172.20.10.8:8080/capturas/cadastrar/1";
                 string token = await GerarToken.Gerar();
 
                 if (string.IsNullOrEmpty(token))
@@ -23,10 +24,11 @@ namespace TolyID.Services.Api
                     return;
                 }
 
-                var content = new StringContent(JsonConvert.SerializeObject(captura), Encoding.UTF8, "application/json");
+                var content = new StringContent(JsonConvert.SerializeObject(capturaDTO), Encoding.UTF8, "application/json");
 
                 using (HttpClient client = new HttpClient())
                 {
+                    // VERIFICAR SE DTO ESTÁ PREENCHIDO
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                     HttpResponseMessage response = await client.PostAsync(url, content);
 
