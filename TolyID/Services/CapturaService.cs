@@ -17,6 +17,12 @@ public class CapturaService : BaseDatabaseService
         await Init();
         return await _bancoDeDados.GetWithChildrenAsync<Captura>(capturaId, recursive: true);
     }
+    public async Task<List<Captura>> GetCapturas()
+    {
+        await Init();
+        return await _bancoDeDados.GetAllWithChildrenAsync<Captura>();
+
+    }
 
     public async Task AtualizaCaptura(Captura capturaAtualizada)
     {

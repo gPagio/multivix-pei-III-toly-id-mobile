@@ -86,10 +86,14 @@ public partial class TatusCadastradosViewModel : ObservableObject
     {
         var tatuService = new TatuService();
         var apiTatu = new CadastrarTatuApiService();
-        List<Tatu> listaTatus = await tatuService.GetTatusNaoCadastrados();
+        List<Tatu> listaTatus = await tatuService.GetTatus();
         foreach (var tatu in listaTatus)
         {
-            await apiTatu.Cadastrar(tatu);
+            if (tatu.FoiEnviadoParaApi == false)
+            {
+                await apiTatu.Cadastrar(tatu);
+            }
+            
         }
 
         var capturaService = new CapturaService();
@@ -97,10 +101,17 @@ public partial class TatusCadastradosViewModel : ObservableObject
         try
         {
 
-            Captura captura = await capturaService.GetCaptura(1);
-           
-                CapturaDTO DTO = new DTO.CapturaDTO(captura);
-                await apiCaptura.CadastrarCaptura(DTO, captura);
+            List<Captura> listaCaptura = await capturaService.GetCapturas();
+
+            foreach(var captura in listaCaptura) 
+            {
+                if(captura.FoiEnviadoParaApi == false)
+                {
+                    CapturaDTO DTO = new DTO.CapturaDTO(captura);
+                    await apiCaptura.CadastrarCaptura(DTO, captura);
+                }
+            }
+                
 
         }
         catch (Exception ex)

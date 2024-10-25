@@ -8,19 +8,20 @@ namespace TolyID.MVVM.Models;
 [Table("Tatu")]
 public class Tatu
 {
+    #region para realizar sincronizacao com o banco
+    public int? IdAPI { get; set; }
+    public bool FoiEnviadoParaApi { get; set; } = false;
+    #endregion
+
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    [JsonProperty("identificacaoAnimal")]
     public string? IdentificacaoAnimal { get; set; }
 
-    [JsonProperty("numeroMicrochip")]
     public int NumeroMicrochip { get; set; }
 
     [OneToMany(CascadeOperations = CascadeOperation.All)]
     public List<Captura>? Capturas { get; set; }
-
-    public bool FoiEnviadoParaApi { get; set; } = false;
 
     public override string ToString()
     {
