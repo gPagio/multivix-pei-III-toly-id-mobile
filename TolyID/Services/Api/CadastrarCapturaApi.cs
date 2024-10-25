@@ -15,7 +15,7 @@ namespace TolyID.Services.Api
 
             try
             {
-                string url = $"http://172.20.10.8:8080/capturas/cadastrar/1";
+                string url = $"http://172.20.10.6:8080/capturas/cadastrar/6";
                 string token = await GerarToken.Gerar();
 
                 if (string.IsNullOrEmpty(token))
@@ -25,24 +25,30 @@ namespace TolyID.Services.Api
                 }
 
                 var content = new StringContent(JsonConvert.SerializeObject(capturaDTO), Encoding.UTF8, "application/json");
-
+                Debug.Write(JsonConvert.SerializeObject(capturaDTO));
                 using (HttpClient client = new HttpClient())
                 {
-                    // VERIFICAR SE DTO ESTÁ PREENCHIDO
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                    HttpResponseMessage response = await client.PostAsync(url, content);
+                    try
+                    {
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                        HttpResponseMessage response = await client.PostAsync(url, content);
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        captura.FoiEnviadoParaApi = true;
-                        var banco = new CapturaService();
-                        await banco.AtualizaCaptura(captura);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            captura.FoiEnviadoParaApi = true;
+                            var banco = new CapturaService();
+                            await banco.AtualizaCaptura(captura);
+                        }
+                        else
+                        {
+                            var errorMessage = await response.Content.ReadAsStringAsync();
+                            Debug.WriteLine($"Erro: {response.StatusCode} - {errorMessage}");
+                        }
                     }
-                    else
+                    catch(Exception e) 
                     {
-                        var errorMessage = await response.Content.ReadAsStringAsync();
-                        Debug.WriteLine($"Erro: {response.StatusCode} - {errorMessage}");
-                    }
+                        Debug.Write(e.Message);
+                    } 
                 }
 
             }

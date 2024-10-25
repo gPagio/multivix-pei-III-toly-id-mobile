@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using TolyID.DTO;
 using TolyID.Helpers;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
@@ -83,22 +84,30 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     private async Task GerarTokenApi()
     {
-        //var tatuService = new TatuService();
-        //var apiTatu = new CadastrarTatuApiService();
-        //List<Tatu> listaTatus = await tatuService.GetTatusNaoCadastrados();
-        //foreach (var tatu in listaTatus)
-        //{
-        //    await apiTatu.Cadastrar(tatu);
-        //}
-
+        var tatuService = new TatuService();
+        var apiTatu = new CadastrarTatuApiService();
+        List<Tatu> listaTatus = await tatuService.GetTatusNaoCadastrados();
+        foreach (var tatu in listaTatus)
+        {
+            await apiTatu.Cadastrar(tatu);
+        }
 
         var capturaService = new CapturaService();
         var apiCaptura = new CadastrarCapturaApi();
-        List<Captura> lista = await capturaService.GetCapturaNaoCadastrados();
-        foreach (var captura in lista)
+        try
         {
-            var DTO = new DTO.CapturaDTO(captura);
-            await apiCaptura.CadastrarCaptura(DTO,captura);
+
+            Captura captura = await capturaService.GetCaptura(1);
+           
+                CapturaDTO DTO = new DTO.CapturaDTO(captura);
+                await apiCaptura.CadastrarCaptura(DTO, captura);
+
         }
+        catch (Exception ex)
+        {
+            // Tratar exceções (log, alertar o usuário, etc.)
+            Console.WriteLine($"Erro: {ex.Message}");
+        }
+
     }
 }

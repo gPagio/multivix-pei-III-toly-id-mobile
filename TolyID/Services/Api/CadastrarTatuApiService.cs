@@ -12,7 +12,7 @@ namespace TolyID.Services.Api
         {
             try
             {
-                string url = "http://172.20.10.8:8080/tatus/cadastrar";
+                string url = "http://172.20.10.6:8080/tatus/cadastrar";
                 string token = await GerarToken.Gerar();
 
                 if (string.IsNullOrEmpty(token))

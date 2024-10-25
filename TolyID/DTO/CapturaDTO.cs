@@ -10,16 +10,16 @@ namespace TolyID.DTO
 {
     public class CapturaDTO
     {
-        [JsonProperty("dadosGeraisDTO")]
+        [JsonProperty("dadosGerais")]
         public DadosGeraisDTO DadosGeraisDTO { get; set; }
 
-        [JsonProperty("fichaAnestesicaDTO")]
+        [JsonProperty("fichaAnestesica")]
         public FichaAnestesicaDTO FichaAnestesicaDTO { get; set; }
 
-        [JsonProperty("biometriaDTO")]
+        [JsonProperty("biometria")]
         public BiometriaDTO BiometriaDTO { get; set; }
 
-        [JsonProperty("amostraDTO")]
+        [JsonProperty("amostra")]
         public AmostrasDTO AmostraDTO { get; set; }
 
         // Construtor mapeando as propriedades do modelo Captura para o DTO

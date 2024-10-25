@@ -26,7 +26,7 @@ public class GerarToken
                 Encoding.UTF8,
                 "application/json");
 
-                string url = "http://172.20.10.8:8080/login/token";
+                string url = "http://172.20.10.6:8080/login/token";
                 HttpResponseMessage resposta = await client.PostAsync(url, jsonContent);
 
                 if (resposta.IsSuccessStatusCode)

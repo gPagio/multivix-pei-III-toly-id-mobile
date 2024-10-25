@@ -39,6 +39,7 @@ namespace TolyID.DTO
             Ectoparasitos = amostras.Ectoparasitos;
             Swab = amostras.Swab;
             Local = amostras.Local;
+            Outros = amostras.Outros;
         }
     }
 
