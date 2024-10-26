@@ -9,7 +9,8 @@ namespace TolyID.Services.Api
 {
     public class BaseApi
     {
-        public string UrlBaseApi { get; private set; } = "http://172.20.10.6";
+        //formato "192.168.1.111"
+        public string UrlBaseApi { get; private set; } = "192.168.1.111";
         public string EmailBaseApi { get; private set; } = "guilherme@toly.com";
         public string SenhaBaseApi { get; private set; } = "123456";
     }

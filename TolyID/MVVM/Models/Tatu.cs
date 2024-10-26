@@ -11,6 +11,7 @@ public class Tatu
     #region para realizar sincronizacao com o banco
     public int? IdAPI { get; set; }
     public bool FoiEnviadoParaApi { get; set; } = false;
+    public DateTime? ultimaAtualizacao { get; set; }
     #endregion
 
     [PrimaryKey, AutoIncrement]

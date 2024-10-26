@@ -39,7 +39,7 @@ namespace TolyID.DTO
             Instituicao = dadosGerais.Instituicao;
             PesoDoTatu = dadosGerais.Peso;
 
-            // Gerando a string no formato "2024 - 10 - 06T16:30:00"
+            // Gerando a string no formato "2024-10-06T16:30:00"
             var data = dadosGerais.DataHoraDeCaptura;
             DataCaptura = $"{data.Year}-{data.Month:D2}-{data.Day:D2}T{data.Hour:D2}:{data.Minute:D2}:{data.Second:D2}";
 

@@ -1,21 +1,17 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TolyID.MVVM.Models;
-using static System.Net.WebRequestMethods;
 
 namespace TolyID.Services.Api.Ler
 {
-    public class LerTatuApiService:BaseApi
+    public class LerTatuApiService : BaseApi
     {
-        private async Task<List<Tatu>> ReceberTatus(string token)
+        public async Task<List<Tatu>> Ler(string token)
         {
             try
             {
@@ -29,7 +25,8 @@ namespace TolyID.Services.Api.Ler
                     if (response.IsSuccessStatusCode)
                     {
                         var jsonResponse = await response.Content.ReadAsStringAsync();
-                        List<Tatu> res = JsonConvert.DeserializeObject<List<Tatu>>(jsonResponse);
+                        var contentArray = JObject.Parse(jsonResponse)["content"].ToString();
+                        List<Tatu> res = JsonConvert.DeserializeObject<List<Tatu>>(contentArray);
                         return res;
                     }
                     else
@@ -37,13 +34,11 @@ namespace TolyID.Services.Api.Ler
                         return null;
                     }
                 }
-
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return null;
             }
-           
         }
     }
 }

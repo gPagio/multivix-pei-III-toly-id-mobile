@@ -15,7 +15,7 @@ namespace TolyID.Services.Api.Cadastrar
         public struct RespostaCaptura
         {
             public int Id { get; set; }
-            public Usuario Usuario { get; set; }
+            public UsuarioDTO Usuario { get; set; }
             public Tatu Tatu { get; set; }
             public DadosGerais DadosGerais { get; set; }
             public FichaAnestesica FichaAnestesica { get; set; }

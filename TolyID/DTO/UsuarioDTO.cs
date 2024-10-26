@@ -8,11 +8,15 @@ using System.Threading.Tasks;
 
 namespace TolyID.MVVM.Models
 {
-    public class Usuario
+    public class UsuarioDTO
     {
+        [JsonProperty("Id")]
         public int Id { get; set; }
+        [JsonProperty("nome")]
         public string Nome { get; set; }
-        public string Email { get; set; }
+        [JsonProperty("email")]
+        public string? Email { get; set; }
+        [JsonProperty("telefone")]
         public string Telefone { get; set; }
     }
 }
