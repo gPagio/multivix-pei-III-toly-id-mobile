@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using System.ComponentModel;
 
 namespace TolyID.MVVM.Models;
@@ -9,24 +10,24 @@ public class Amostras
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    [DisplayName("Sangue")]
+    [JsonProperty("sangue")]
     public bool Sangue { get; set; }
 
-    [DisplayName("Fezes")]
+    [JsonProperty("fezes")]
     public bool Fezes { get; set; }
 
-    [DisplayName("Pelo")]
+    [JsonProperty("pelo")]
     public bool Pelo { get; set; }
 
-    [DisplayName("Ectoparasitos")]
+    [JsonProperty("ectoparasitos")]
     public bool Ectoparasitos { get; set; }
 
-    [DisplayName("SWAB")]
+    [JsonProperty("swab")]
     public bool Swab { get; set; }
 
-    [DisplayName("Local")]
+    [JsonProperty("local")]
     public bool Local { get; set; }
 
-    [DisplayName("Outros")]
+    [JsonProperty("outros")]
     public string? Outros { get; set; }
 }

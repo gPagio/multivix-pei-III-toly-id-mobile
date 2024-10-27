@@ -48,12 +48,12 @@
                     </material:TextField>
 
                     <material:DatePickerField Title="Data de Captura"
-                                    Date="{Binding Captura.DadosGerais.DataDeCaptura}">
+                                    Date="{Binding DataDeCaptura}">
                         <validation:RequiredValidation Message="Campo obrigatório!"/>
                     </material:DatePickerField>
 
                     <material:TimePickerField Title="Horário de Captura"
-                                    Time="{Binding Captura.DadosGerais.HorarioDeCaptura}">
+                                    Time="{Binding HorarioDeCaptura}">
                         <validation:RequiredValidation Message="Campo obrigatório!"/>
                     </material:TimePickerField>
 

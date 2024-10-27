@@ -23,6 +23,6 @@ public partial class App : Application
     private bool CheckarUsuarioLogado()
     {
         // TODO: IMPLEMENTAR LÓGICA
-        return false;
+        return true;
     }
 }

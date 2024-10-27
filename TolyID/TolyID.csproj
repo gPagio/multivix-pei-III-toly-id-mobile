@@ -57,6 +57,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Services\Api\BaseApiConfiguration.cs" />
+	  <Compile Remove="Services\Api\CadastrarTatuApi.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="MVVM\Models\.gitkeep" />
 	  <None Remove="MVVM\ViewModels\.gitkeep" />
 	  <None Remove="Resources\Images\icone_adicionar.svg" />
@@ -68,6 +73,7 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
 		<PackageReference Include="InputKit.Maui" Version="4.4.7" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.91" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.91" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />

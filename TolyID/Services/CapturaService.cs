@@ -17,6 +17,12 @@ public class CapturaService : BaseDatabaseService
         await Init();
         return await _bancoDeDados.GetWithChildrenAsync<Captura>(capturaId, recursive: true);
     }
+    public async Task<List<Captura>> GetCapturas()
+    {
+        await Init();
+        return await _bancoDeDados.GetAllWithChildrenAsync<Captura>();
+
+    }
 
     public async Task AtualizaCaptura(Captura capturaAtualizada)
     {
@@ -28,5 +34,14 @@ public class CapturaService : BaseDatabaseService
     {
         await Init();
         await _bancoDeDados.DeleteAsync(captura, recursive: true);
+    }
+    public async Task<List<Captura>> GetCapturaNaoCadastrados()
+    {
+        await Init();
+
+        // Busca todos os Tatus onde Cadastrado é false
+        var CapturaNaoCadastrados = await _bancoDeDados.GetAllWithChildrenAsync<Captura>(c => c.FoiEnviadoParaApi == false);
+
+        return CapturaNaoCadastrados;
     }
 }

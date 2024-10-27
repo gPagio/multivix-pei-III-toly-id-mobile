@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 
 namespace TolyID.MVVM.Models;
@@ -6,10 +7,15 @@ namespace TolyID.MVVM.Models;
 [Table("Capturas")]
 public class Captura
 {
+    #region para realizar sincronizacao com o banco
+    public int? IdAPI { get; set; }
+    public bool FoiEnviadoParaApi { get; set; } = false;
+    #endregion
+
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    
+
     [ForeignKey(typeof(Tatu))]
     public int TatuId { get; set; } 
 
@@ -38,5 +44,7 @@ public class Captura
 
     [OneToOne(CascadeOperations = CascadeOperation.All)]
     public Amostras Amostras { get; set; } = new();
+
+    
 }
 

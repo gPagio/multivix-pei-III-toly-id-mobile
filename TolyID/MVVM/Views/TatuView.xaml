@@ -97,11 +97,11 @@
                                         <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="Transparent" InputTransparent="False" CornerRadius="0">
                                           
                                             <StackLayout Spacing="-16">
-                                                <Label Text="{Binding DadosGerais.DataDeCaptura, StringFormat='Data: {0:dd/MM/yyyy}'}" 
+                                                <Label Text="{Binding DadosGerais.DataHoraDeCaptura, StringFormat='Data: {0:dd/MM/yyyy}'}" 
                                                        FontFamily="Inter-Medium" 
                                                        FontSize="17"  
                                                        TextColor="{StaticResource Texto}"/>
-                                                <Label Text="{Binding DadosGerais.HorarioDeCaptura, StringFormat='&#x0a;Horário: {0:hh\\:mm}'}" 
+                                                <Label Text="{Binding DadosGerais.DataHoraDeCaptura.TimeOfDay, StringFormat='&#x0a;Horário: {0:hh\\:mm}'}" 
                                                        FontFamily="Inter-Regular" 
                                                        FontSize="15" 
                                                        TextColor="{StaticResource Texto}"

@@ -97,6 +97,15 @@
                     CornerRadius="25"
                     BackgroundColor="{StaticResource Primary}" 
                     Command="{Binding NovoTatuCommand}"/>
+
+            <Button Grid.Column="1" 
+                    ImageSource="icone_adicionar.png" 
+                    HorizontalOptions="Start" 
+                    VerticalOptions="End"
+                    Margin="15, 15, 15, 15"
+                    CornerRadius="25"
+                    BackgroundColor="{StaticResource Primary}" 
+                    Command="{Binding GerarTokenApiCommand}"/>
         </Grid>
     </Border>
 
