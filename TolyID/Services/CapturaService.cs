@@ -40,9 +40,7 @@ public class CapturaService : BaseDatabaseService
         await Init();
 
         // Busca todos os Tatus onde Cadastrado é false
-        var CapturaNaoCadastrados = await _bancoDeDados.Table<Captura>()
-            .Where(t => t.FoiEnviadoParaApi == false)
-            .ToListAsync();
+        var CapturaNaoCadastrados = await _bancoDeDados.GetAllWithChildrenAsync<Captura>(c => c.FoiEnviadoParaApi == false);
 
         return CapturaNaoCadastrados;
     }
