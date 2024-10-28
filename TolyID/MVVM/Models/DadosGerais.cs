@@ -10,8 +10,8 @@ public class DadosGerais
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    [DisplayName("Número de Identificação")]
-    public int? NumeroIdentificacao { get; set; }
+    //[DisplayName("Número de Identificação")]
+    //public int? NumeroIdentificacao { get; set; }
 
     [JsonProperty("localDeCaptura")]
     public string? LocalDeCaptura { get; set; }

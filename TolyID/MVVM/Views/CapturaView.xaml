@@ -50,8 +50,8 @@
                         <Border>
                             <StackLayout Padding="15" Spacing="15">
 
-                                <material:TextField Title="Número de Identificação" IsEnabled="False" 
-                                                    Text="{Binding Captura.DadosGerais.NumeroIdentificacao}" />
+                                <!--<material:TextField Title="Número de Identificação" IsEnabled="False" 
+                                                    Text="{Binding Captura.DadosGerais.NumeroIdentificacao}" />-->
 
                                 <material:TextField Title="Local de Captura" IsEnabled="False"
                                                     Text="{Binding Captura.DadosGerais.LocalDeCaptura}" />
