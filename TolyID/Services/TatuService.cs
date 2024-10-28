@@ -25,6 +25,13 @@ public class TatuService : BaseDatabaseService
         return tatu;
     }
 
+    public async Task<List<Tatu>> GetTatuPorIdApi(int tatuIdApi)
+    {
+        await Init();
+        var tatu = await _bancoDeDados.GetAllWithChildrenAsync<Tatu>(t => t.IdAPI == tatuIdApi);
+        return tatu;
+    }
+
     public async Task AtualizaTatu(Tatu tatuAtualizado)
     {
         await Init();

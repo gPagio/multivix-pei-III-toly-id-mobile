@@ -20,12 +20,12 @@
 
                 <input:FormView Spacing="20" SubmitCommand="{Binding IrParaFichaAnestesicaCommand}">
 
-                    <material:TextField Title="Número de Identificação" Keyboard="Numeric"
+                    <!--<material:TextField Title="Número de Identificação" Keyboard="Numeric"
                                     Text="{Binding Captura.DadosGerais.NumeroIdentificacao}">
                         <validation:RequiredValidation Message="Campo obrigatório!"/>
                         <validation:RegexValidation Message="Não insira vírgulas!" Pattern="^[^.,]+$"/>
 
-                    </material:TextField>
+                    </material:TextField>-->
 
                     <material:TextField Title="Local de Captura"
                                 Text="{Binding Captura.DadosGerais.LocalDeCaptura}">

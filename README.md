@@ -7,7 +7,7 @@ A espécie se encontra em extinção, restando cerca de apenas 100 indivíduos n
 A catalogação da espécie mencionada se dava por meio do implante de um microchip em cada indivíduo capturado, onde tal processo segue os seguintes passos:
 
  - Capturar o animal
- - Sedar o mesmo, já que o mesmo se fecha para se proteger e sua carcaça é EXTREMAMENTE resistente, suportando até mesmo a mordidas de onça
+ - Sedar o mesmo, já que o mesmo se fecha para se proteger e sua carcaça é EXTREMAMENTE, resistindo até mesmo a mordidas de onça
  - Implantar o microchip
  - Realizar exames
  - Realizar coleta de amostras, fezes por exemplo
@@ -19,7 +19,7 @@ Para realizar os procedimentos em cada indivíduo leva certo tempo, pois para im
 Além do tempo para sedar o animal, para realizar certos exames, intervalos de tempo entre procedimentos é necessário. Além disso, o método atual é invasivo, pois necessita de implantar um microchip no animal para que o mesmo fique `marcado` e possa ser identificado por outros pesquisadores caso o encontrem e realizar a comparação com os dados que já foram anteriormente capturados em outras coletas e tornar possível o acompanhamento do ciclo de vida do indivíduo.
 
 ## 📌 Objetivo Principal
-A ideia inicial do projeto é a construção de uma plataforma onde a porta de entrada seria um smartphone. Com esse dispositivo em mãos, o pesquisador iria capturar o indivíduo e, por mais que o mesmo se feche para se proteger, com uma simples foto do `escudo cefálico` do indivíduo, já seria o suficiente para identificar o animal, sem a necessidade de um microchip, já que as placas do escudo encefálico formam um padrão único para cada indivíduo de espécie.
+A ideia inicial do projeto é a construção de uma plataforma onde a porta de entrada seria um smartphone. Com esse dispositivo em mãos, o pesquisador iria capturar o indivíduo e, por mais que o mesmo se feche para se proteger, com uma simples foto do `escudo cefálico` do indivído, já seria o suficiente para identificar o animal, sem a necessidade de um microchip, já que as placas do escuto encefálico formam um padrão único para cada indivíduo de espécie.
 
 Após capturar o animal, o mesmo seria sedado e submetido aos procedimentos de exames e medidas. Todas as informações coletadas seriam registradas no aplicativo do smartphone. Com as informações cadastradas na plataforma, seria possível realizar uma comparação no local de captura se o animal já foi capturado anteriormente ou se é a sua primeira vez.
 

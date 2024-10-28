@@ -17,17 +17,17 @@
 
             <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *"
                   RowSpacing="30" Margin="0, 20, 0, 20">
-                <material:CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Sangue}" Text="Sangue"/>
-                <material:CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Fezes}" Text="Fezes"/>
+                <material:CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding Captura.Amostra.Sangue}" Text="Sangue"/>
+                <material:CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding Captura.Amostra.Fezes}" Text="Fezes"/>
 
-                <material:CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Pelo}" Text="Pelo"/>
-                <material:CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Ectoparasitos}" Text="Ectoparasitos"/>
+                <material:CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding Captura.Amostra.Pelo}" Text="Pelo"/>
+                <material:CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding Captura.Amostra.Ectoparasitos}" Text="Ectoparasitos"/>
 
-                <material:CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Captura.Amostras.Swab}" Text="SWAB"/>
-                <material:CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Captura.Amostras.Local}" Text="Local"/>
+                <material:CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Captura.Amostra.Swab}" Text="SWAB"/>
+                <material:CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Captura.Amostra.Local}" Text="Local"/>
             </Grid>
 
-            <material:EditorField Title="Outros" Text="{Binding Captura.Amostras.Outros}"/>
+            <material:EditorField Title="Outros" Text="{Binding Captura.Amostra.Outros}"/>
 
             <Button Command="{Binding SalvaCapturaNoBancoCommand}"
                 Text="Finalizar"

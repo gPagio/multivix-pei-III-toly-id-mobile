@@ -1,10 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TolyID.MVVM.Models;
+﻿using TolyID.MVVM.Models;
 using TolyID.Services.Api.Cadastrar;
 using TolyID.Services.Api.Ler;
 
@@ -12,7 +6,6 @@ namespace TolyID.Services.Api
 {
     public static class TatusApiService
     {
-       
         public static async Task Cadastrar()
         {
             try
@@ -35,6 +28,7 @@ namespace TolyID.Services.Api
                 Console.WriteLine($"Erro: {ex.Message}");
             }
         }
+
         public static async Task AtualizarTatus()
         {
             var token = await TokenApiService.Gerar();
@@ -50,11 +44,7 @@ namespace TolyID.Services.Api
             {
                 bool existe = await bancoTatu.VerificarExistencia(tatu);
 
-                if (existe)
-                {
-                    // O Tatu existe no banco de dados
-                }
-                else
+                if (!existe)
                 {
                     tatu.FoiEnviadoParaApi = true;
                     await bancoTatu.SalvaTatu(tatu);

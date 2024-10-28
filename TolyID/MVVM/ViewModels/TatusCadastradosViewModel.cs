@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using TolyID.DTO;
 using TolyID.Helpers;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
@@ -30,6 +29,8 @@ public partial class TatusCadastradosViewModel : ObservableObject
 
         foreach (var tatu in tatus)
         {
+            //Debug.WriteLine($"%%%%%%%%%%% ID DO TATU NO APP => {tatu.IdAPI}");
+
             Tatus.Add(tatu);
         }
     }
@@ -54,6 +55,8 @@ public partial class TatusCadastradosViewModel : ObservableObject
     private async Task VisualizaTatu(Tatu tatu)
     {
         var capturaService = ServiceHelper.GetService<CapturaService>();
+
+        Debug.WriteLine($"%%%%%%%%%%% => {tatu.IdAPI}");
 
         var tatuView = new TatuView(new TatuViewModel(tatu, _tatuService, capturaService), tatu);
         await Shell.Current.Navigation.PushAsync(tatuView);
@@ -87,6 +90,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
         await TatusApiService.Cadastrar();
         await CapturaApiService.Cadastrar();
         await TatusApiService.AtualizarTatus();
+        await CapturaApiService.AtualizarCapturas();
         await BuscaTatusNoBanco();
     }
 }

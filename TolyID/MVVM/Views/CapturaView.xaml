@@ -221,7 +221,7 @@
                                                     Text="Coletado">
 
                                     <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Sangue}" Value="False">
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Sangue}" Value="False">
                                             <Setter Property="Text" Value="Não coletado"/>
                                         </DataTrigger>
                                     </material:TextField.Triggers>
@@ -232,7 +232,7 @@
                                                     Text="Coletado">
 
                                     <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Pelo}" Value="False">
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Pelo}" Value="False">
                                             <Setter Property="Text" Value="Não coletado"/>
                                         </DataTrigger>
                                     </material:TextField.Triggers>
@@ -243,7 +243,7 @@
                                                     Text="Coletado">
 
                                     <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Swab}" Value="False">
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Swab}" Value="False">
                                             <Setter Property="Text" Value="Não coletado"/>
                                         </DataTrigger>
                                     </material:TextField.Triggers>
@@ -254,7 +254,7 @@
                                                     Text="Coletado">
 
                                     <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Fezes}" Value="False">
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Fezes}" Value="False">
                                             <Setter Property="Text" Value="Não coletado"/>
                                         </DataTrigger>
                                     </material:TextField.Triggers>
@@ -265,7 +265,7 @@
                                                     Text="Coletado">
 
                                     <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Ectoparasitos}" Value="False">
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Ectoparasitos}" Value="False">
                                             <Setter Property="Text" Value="Não coletado"/>
                                         </DataTrigger>
                                     </material:TextField.Triggers>
@@ -276,7 +276,7 @@
                                                     Text="Coletado">
 
                                     <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostras.Local}" Value="False">
+                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Local}" Value="False">
                                             <Setter Property="Text" Value="Não coletado"/>
                                         </DataTrigger>
                                     </material:TextField.Triggers>
@@ -285,7 +285,7 @@
 
                                 <material:EditorField Title="Outros"
                                                       IsEnabled="False"
-                                                      Text="{Binding Captura.Amostras.Outros}"/>
+                                                      Text="{Binding Captura.Amostra.Outros}"/>
 
                             </StackLayout>
                         </Border>

@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using TolyID.DTO;
 using TolyID.MVVM.Models;
 
@@ -27,7 +25,7 @@ namespace TolyID.Services.Api.Cadastrar
         {
             try
             {
-                CapturaDTO capturaDTO = new CapturaDTO(captura);
+                CapturaDTO capturaDTO = new(captura);
                 var bancotatu = new TatuService();
                 Tatu tatu = await bancotatu.GetTatu(captura.TatuId);
 
@@ -60,6 +58,7 @@ namespace TolyID.Services.Api.Cadastrar
                         RespostaCaptura res = JsonConvert.DeserializeObject<RespostaCaptura>(jsonResponse);
 
                         captura.IdAPI = res.Id;
+                        captura.TatuIdAPI = tatu.IdAPI;
                         captura.FoiEnviadoParaApi = true;
                         var banco = new CapturaService();
                         await banco.AtualizaCaptura(captura);

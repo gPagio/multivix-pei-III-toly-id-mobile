@@ -1,7 +1,4 @@
-﻿
-
-using System.Text;
-using TolyID.Services.Api.Gerar;
+﻿using TolyID.Services.Api.Gerar;
 
 namespace TolyID.Services.Api;
 
