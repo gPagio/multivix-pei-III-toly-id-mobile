@@ -50,6 +50,8 @@ namespace TolyID
             mauiAppBuider.Services.AddTransient<CadastroUsuarioViewModel>();
             mauiAppBuider.Services.AddSingleton<TatusCadastradosViewModel>();
 
+            mauiAppBuider.Services.AddTransient<ConfiguracoesViewModel>();
+
             return mauiAppBuider;
         }
 
@@ -59,6 +61,8 @@ namespace TolyID
             mauiAppBuider.Services.AddTransient<LoginView>();
             mauiAppBuider.Services.AddTransient<CadastroUsuarioView>();
             mauiAppBuider.Services.AddSingleton<TatusCadastradosView>();
+
+            mauiAppBuider.Services.AddTransient<ConfiguracoesView>();
 
             return mauiAppBuider;
         }

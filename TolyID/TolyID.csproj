@@ -121,6 +121,9 @@
 	  <MauiXaml Update="MVVM\Views\CapturaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\ConfiguracoesView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\EditarTatuPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

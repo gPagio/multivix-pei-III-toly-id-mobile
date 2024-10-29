@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+             x:Class="TolyID.MVVM.Views.ConfiguracoesView"
+             Title="Configurações"
+             Shell.BackgroundColor="{StaticResource Primary}"
+             Shell.TitleColor="White"
+             BackgroundColor="White"
+             Padding="15">
+    
+    <VerticalStackLayout Spacing="10">
+        
+        <!--<toolkit:Expander>
+            <toolkit:Expander.Header>
+                <StackLayout Spacing="10">
+                    <Label Text="Sincronização"
+                           FontSize="Medium" />
+                    <BoxView Style="{StaticResource EstiloDivisor}"/>
+                </StackLayout>
+            </toolkit:Expander.Header>
+
+            <StackLayout RadioButtonGroup.GroupName="Opcoes">
+                <RadioButton/>
+                <RadioButton/>
+                <RadioButton/>
+            </StackLayout>
+            
+        </toolkit:Expander>-->
+
+        <Label Text="Digite aqui o endereço IP onde a API está rodando"
+               FontSize="13"/>
+        
+        <material:TextField Title="Endereço IP"/>
+        
+        <Button Text="Salvar alterações"
+                TextColor="White"
+                BackgroundColor="{StaticResource Primary}"/>
+
+    </VerticalStackLayout>
+</ContentPage>

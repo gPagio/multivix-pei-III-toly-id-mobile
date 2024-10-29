@@ -6,21 +6,27 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="viewmodel:TatusCadastradosViewModel"
              x:Class="TolyID.MVVM.Views.TatusCadastradosView"
-             Title="Início"
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
              BackgroundColor="{StaticResource Background}"
              Padding="15">
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="8*, 2*" >
+        <Grid ColumnDefinitions="7*, 1.5*, 1.5*" ColumnSpacing="-15">
             <Label Text="Início" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
-            <Button Grid.Column="1" 
-                    ImageSource="icone_sair.png" 
-                    Scale="1.2" 
-                    HorizontalOptions="End"
-                    BackgroundColor="Transparent"
-                    Command="{Binding DeslogarCommand}"/>
+            <ImageButton Grid.Column="1" 
+                         Source="icone_sair.png"
+                         Scale=".6"
+                         HorizontalOptions="End"
+                         BackgroundColor="Transparent"
+                         Command="{Binding DeslogarCommand}"/>
+            
+            <ImageButton Grid.Column="2" 
+                         Source="icone_configuracoes.png" 
+                         Scale=".6"
+                         HorizontalOptions="End"
+                         BackgroundColor="Transparent"
+                         Command="{Binding ConfiguracoesCommand}"/>
         </Grid>
     </Shell.TitleView>
 

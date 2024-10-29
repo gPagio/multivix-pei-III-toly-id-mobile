@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using TolyID.Helpers;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
@@ -77,6 +76,12 @@ public partial class TatusCadastradosViewModel : ObservableObject
         {
             await Shell.Current.GoToAsync("//LoginView");
         }
+    }
+
+    [RelayCommand]
+    private async Task Configuracoes()
+    {
+        await Shell.Current.GoToAsync("ConfiguracoesView");
     }
 
     [RelayCommand]

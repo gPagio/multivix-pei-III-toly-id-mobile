@@ -117,6 +117,11 @@
         <Setter Property="FontFamily" Value="Inter-Regular"/>
     </Style>
 
+    <Style x:Key="EstiloDivisor" TargetType="BoxView">
+        <Setter Property="BackgroundColor" Value="LightGray"/>
+        <Setter Property="HeightRequest" Value="1"/>
+    </Style>
+
     <!-- PADRÕES DO SISTEMA -->
 
     <Style TargetType="ActivityIndicator">
@@ -367,7 +372,7 @@
     <Style TargetType="RadioButton">
         <Setter Property="BackgroundColor" Value="Transparent"/>
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
-        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontFamily" Value="InterRegular"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
