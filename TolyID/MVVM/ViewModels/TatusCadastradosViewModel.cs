@@ -29,8 +29,6 @@ public partial class TatusCadastradosViewModel : ObservableObject
 
         foreach (var tatu in tatus)
         {
-            //Debug.WriteLine($"%%%%%%%%%%% ID DO TATU NO APP => {tatu.IdAPI}");
-
             Tatus.Add(tatu);
         }
     }
@@ -38,7 +36,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     private async Task DeletaTatu(Tatu tatu)
     {
-        bool resposta = await Application.Current.MainPage.DisplayAlert
+        bool resposta = await Shell.Current.DisplayAlert
             ("Confirmação", 
             $"Você tem certeza que deseja excluir o tatu {tatu.IdentificacaoAnimal}?", 
             "Sim", 
@@ -55,9 +53,6 @@ public partial class TatusCadastradosViewModel : ObservableObject
     private async Task VisualizaTatu(Tatu tatu)
     {
         var capturaService = ServiceHelper.GetService<CapturaService>();
-
-        Debug.WriteLine($"%%%%%%%%%%% => {tatu.IdAPI}");
-
         var tatuView = new TatuView(new TatuViewModel(tatu, _tatuService, capturaService), tatu);
         await Shell.Current.Navigation.PushAsync(tatuView);
     }
@@ -72,7 +67,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     private async Task Deslogar()
     {
-        bool resposta = await Application.Current.MainPage.DisplayAlert
+        bool resposta = await Shell.Current.DisplayAlert
             ("Confirmação",
             $"Você tem certeza que deseja sair?",
             "Sim",

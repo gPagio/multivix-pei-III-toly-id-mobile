@@ -18,6 +18,7 @@ public class CapturaService : BaseDatabaseService
         await Init();
         return await _bancoDeDados.GetWithChildrenAsync<Captura>(capturaId, recursive: true);
     }
+
     public async Task<List<Captura>> GetCapturas()
     {
         await Init();
@@ -41,9 +42,16 @@ public class CapturaService : BaseDatabaseService
         await Init();
 
         // Busca todos os Tatus onde Cadastrado é false
-        var CapturaNaoCadastrados = await _bancoDeDados.GetAllWithChildrenAsync<Captura>(c => c.FoiEnviadoParaApi == false);
+        var capturasNaoCadastradas = await _bancoDeDados.GetAllWithChildrenAsync<Captura>(c => c.FoiEnviadoParaApi == false);
 
-        return CapturaNaoCadastrados;
+        List<Captura> capturasNaoCadastradasCompletas = new();
+
+        foreach (var captura in capturasNaoCadastradas) 
+        {
+            capturasNaoCadastradasCompletas.Add(await GetCaptura(captura.Id));
+        }
+
+        return capturasNaoCadastradasCompletas;
     }
 
     public async Task<bool> VerificarExistencia(Captura capturaApi)

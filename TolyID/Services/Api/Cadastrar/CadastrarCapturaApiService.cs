@@ -29,6 +29,16 @@ namespace TolyID.Services.Api.Cadastrar
                 var bancotatu = new TatuService();
                 Tatu tatu = await bancotatu.GetTatu(captura.TatuId);
 
+                //Debug.WriteLine($"############ => {captura.FichaAnestesica.ParametrosFisiologicos.Count}");
+
+                //foreach (var parametro in captura.FichaAnestesica.ParametrosFisiologicos) 
+                //{
+                //    Debug.WriteLine($"############ => {parametro.Fc}");
+                //    Debug.WriteLine($"############ => {parametro.Fr}");
+                //    Debug.WriteLine($"############ => {parametro.Oximetria}");
+                //    Debug.WriteLine($"############ => {parametro.Temperatura}");
+                //}
+
                 if (tatu.IdAPI == null)
                 {
                     Debug.WriteLine("Tatu sem ID API.");

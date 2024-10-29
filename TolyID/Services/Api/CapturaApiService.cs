@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.RegularExpressions;
-using TolyID.MVVM.Models;
+﻿using TolyID.MVVM.Models;
 using TolyID.Services.Api.Cadastrar;
 using TolyID.Services.Api.Ler;
 
@@ -43,13 +41,6 @@ public static class CapturaApiService
 
         foreach (var capturaApi in capturasApi)
         {
-            Debug.WriteLine($"##########= => {capturaApi.Amostra.Sangue}");
-            Debug.WriteLine($"##########= => {capturaApi.Amostra.Fezes}");
-            Debug.WriteLine($"##########= => {capturaApi.Amostra.Pelo}");
-            Debug.WriteLine($"##########= => {capturaApi.Amostra.Ectoparasitos}");
-            Debug.WriteLine($"##########= => {capturaApi.Amostra.Swab}");
-            Debug.WriteLine($"##########= => {capturaApi.Amostra.Local}");
-
             bool existe = await _capturaService.VerificarExistencia(capturaApi);
             var tatu = await _tatuService.GetTatuPorIdApi(capturaApi.TatuId);
 
