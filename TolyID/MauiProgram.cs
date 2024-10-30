@@ -4,6 +4,7 @@ using TolyID.MVVM.ViewModels;
 using Microsoft.Extensions.Logging;
 using TolyID.Services;
 using UraniumUI;
+using TolyID.Services.Api;
 
 namespace TolyID
 {
@@ -25,6 +26,8 @@ namespace TolyID
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddSingleton<BaseApi>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

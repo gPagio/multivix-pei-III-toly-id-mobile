@@ -9,6 +9,8 @@ namespace TolyID
             InitializeComponent();
 
             RegisterForRoute<ConfiguracoesView>();
+
+            Preferences.Default.Set("endereco_ip_api", "");
         }
 
         protected void RegisterForRoute<T>()
