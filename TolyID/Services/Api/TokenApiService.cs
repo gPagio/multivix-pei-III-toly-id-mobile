@@ -2,9 +2,9 @@
 
 namespace TolyID.Services.Api;
 
-public class TokenApiService:BaseApi
+public class TokenApiService : BaseApi
 {
-    public async static Task<string> Gerar()
+    public async Task<string> Gerar()
     {
         var token = new GerarTokenApiService();
         return await token.Gerar();

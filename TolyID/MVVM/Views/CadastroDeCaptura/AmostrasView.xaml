@@ -31,10 +31,7 @@
 
             <Button Command="{Binding SalvaCapturaNoBancoCommand}"
                 Text="Finalizar"
-                TextColor="White"
-                FontAttributes="Bold"
-                BackgroundColor="{StaticResource Primary}"
-                CornerRadius="20"
+                Style="{StaticResource Botao}"
                 WidthRequest="200"/>
 
         </StackLayout>

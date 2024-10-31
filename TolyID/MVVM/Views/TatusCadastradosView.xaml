@@ -20,7 +20,7 @@
                          HorizontalOptions="End"
                          BackgroundColor="Transparent"
                          Command="{Binding DeslogarCommand}"/>
-            
+
             <ImageButton Grid.Column="2" 
                          Source="icone_configuracoes.png" 
                          Scale=".6"
@@ -29,7 +29,7 @@
                          Command="{Binding ConfiguracoesCommand}"/>
         </Grid>
     </Shell.TitleView>
-
+    
     <Border>
         <Grid>
             <ScrollView>
@@ -45,8 +45,11 @@
                                 <SwipeView>
 
                                     <SwipeView.LeftItems>
-                                        <SwipeItems SwipeBehaviorOnInvoked="Close">
-                                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=DeletaTatuCommand}" CommandParameter="{Binding .}">
+                                        <SwipeItems SwipeBehaviorOnInvoked="Close" >
+                                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=DeletaTatuCommand}" 
+                                                           CommandParameter="{Binding .}"
+                                                           IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}">
+                                                
                                                 <Frame BorderColor="Transparent" BackgroundColor="LightPink"
                                                         CornerRadius="0"
                                                         Padding="10"
@@ -71,19 +74,28 @@
                                                                   CommandParameter="{Binding .}"/>
                                         </StackLayout.GestureRecognizers>
 
-                                        <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="Transparent" InputTransparent="False" CornerRadius="0">
+                                        <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="Transparent" InputTransparent="True" CornerRadius="0">
+                                            <Grid ColumnDefinitions="8*, 2*">
+                                                
+                                                <StackLayout>
+                                                    <Label Text="{Binding IdentificacaoAnimal, StringFormat='Id: {0}'}" 
+                                                            FontFamily="Inter-Medium" 
+                                                            FontSize="17"  
+                                                            TextColor="{StaticResource Texto}"/>
+                                                    <Label Text="{Binding NumeroMicrochip, StringFormat='Chip: {0}'}" 
+                                                            FontFamily="Inter-Regular" 
+                                                            FontSize="15" 
+                                                            TextColor="{StaticResource Texto}"
+                                                            Opacity=".85"/>
+                                                </StackLayout>
 
-                                            <StackLayout>
-                                                <Label Text="{Binding IdentificacaoAnimal, StringFormat='Id: {0}'}" 
-                                                        FontFamily="Inter-Medium" 
-                                                        FontSize="17"  
-                                                        TextColor="{StaticResource Texto}"/>
-                                                <Label Text="{Binding NumeroMicrochip, StringFormat='Chip: {0}'}" 
-                                                        FontFamily="Inter-Regular" 
-                                                        FontSize="15" 
-                                                        TextColor="{StaticResource Texto}"
-                                                        Opacity=".85"/>
-                                            </StackLayout>
+                                                <Image Grid.Column="1"
+                                                       Source="icone_dessincronizado.png"
+                                                       VerticalOptions="CenterAndExpand"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       Scale="1.3"
+                                                       IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}"/>
+                                            </Grid>
                                         </Frame>
                                         <BoxView BackgroundColor="Black" Opacity=".25" HeightRequest=".1"/>
                                     </StackLayout>
@@ -103,15 +115,6 @@
                     CornerRadius="25"
                     BackgroundColor="{StaticResource Primary}" 
                     Command="{Binding NovoTatuCommand}"/>
-
-            <Button Grid.Column="1" 
-                    ImageSource="icone_adicionar.png" 
-                    HorizontalOptions="Start" 
-                    VerticalOptions="End"
-                    Margin="15, 15, 15, 15"
-                    CornerRadius="25"
-                    BackgroundColor="{StaticResource Primary}" 
-                    Command="{Binding GerarTokenApiCommand}"/>
         </Grid>
     </Border>
 

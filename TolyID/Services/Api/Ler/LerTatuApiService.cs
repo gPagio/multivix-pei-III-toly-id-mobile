@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Diagnostics;
 using System.Net.Http.Headers;
 using TolyID.MVVM.Models;
 
@@ -12,43 +11,40 @@ public class LerTatuApiService : BaseApi
     {
         List<Tatu> tatus = new();
 
-        try
+        using (HttpClient client = new HttpClient())
         {
-            using (HttpClient client = new HttpClient())
+            string url = $"http://{UrlBaseApi}:8080/tatus/listar";
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpResponseMessage resposta = await client.GetAsync(url);
+
+            List<int> tatuIdsApi = new();
+
+            if (resposta.IsSuccessStatusCode)
             {
-                string url = $"http://{UrlBaseApi}:8080/tatus/listar";
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-                HttpResponseMessage response = await client.GetAsync(url);
-
-                List<int> tatuIdsApi = new();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var jsonResponse = await response.Content.ReadAsStringAsync();
-                    var contentArray = JArray.Parse(JObject.Parse(jsonResponse)["content"].ToString());
+                var jsonResponse = await resposta.Content.ReadAsStringAsync();
+                var contentArray = JArray.Parse(JObject.Parse(jsonResponse)["content"].ToString());
                   
-                    foreach (var captura in contentArray)
-                    {
-                        int tatuId = (int)captura["id"];
-                        tatuIdsApi.Add(tatuId);
-                    }
-
-                    tatus = JsonConvert.DeserializeObject<List<Tatu>>(contentArray.ToString());
-                }
-
-                int contador = 0;
-                foreach (var tatu in tatus) 
+                foreach (var captura in contentArray)
                 {
-                    tatu.IdAPI = tatuIdsApi[contador];
-                    contador++;
+                    int tatuId = (int)captura["id"];
+                    tatuIdsApi.Add(tatuId);
                 }
 
-                return tatus;
+                tatus = JsonConvert.DeserializeObject<List<Tatu>>(contentArray.ToString());
             }
-        }
-        catch
-        {
+            else
+            {
+                throw new Exception($"Erro de conexão: {resposta.StatusCode}");
+            }
+
+            int contador = 0;
+            foreach (var tatu in tatus) 
+            {
+                tatu.IdAPI = tatuIdsApi[contador];
+                contador++;
+            }
+
             return tatus;
         }
     }

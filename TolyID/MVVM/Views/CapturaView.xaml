@@ -14,7 +14,13 @@
     <Shell.TitleView>
         <Grid ColumnDefinitions="7*, 3*">
             <Label Text="{Binding Captura.DadosGerais.DataHoraDeCaptura,StringFormat='{0:dd/MM/yyyy}'}" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
-            <Button Grid.Column="2" ImageSource="icone_editar.png" HorizontalOptions="End" BackgroundColor="Transparent" Command="{Binding EditaCapturaCommand}"/>
+            <Button Grid.Column="2" 
+                    ImageSource="icone_editar.png" 
+                    HorizontalOptions="End" 
+                    BackgroundColor="Transparent" 
+                    Command="{Binding EditaCapturaCommand}"
+                    IsEnabled="{Binding Captura.FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}"
+                    IsVisible="{Binding Captura.FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}"/>
         </Grid>
     </Shell.TitleView>
 

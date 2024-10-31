@@ -1,6 +1,4 @@
-﻿
-using System.Diagnostics;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 
 namespace TolyID.Services.Api.Gerar
@@ -14,37 +12,37 @@ namespace TolyID.Services.Api.Gerar
 
         public async Task<string> Gerar()
         {
+            TokenResponse token = new();
+
+            // Reutilização do HttpClient, considere usar uma instância estática ou injetá-la
             using (HttpClient client = new HttpClient())
             {
-                try
+                client.Timeout = TimeSpan.FromSeconds(10); // Define um timeout de 10 segundos
+             
+                var requestBody = new
                 {
-                    using StringContent jsonContent = new(
-                    JsonSerializer.Serialize(new
-                    {
-                        email = EmailBaseApi,
-                        senha = SenhaBaseApi
-                    }),
-                    Encoding.UTF8,
-                    "application/json");
+                    email = EmailBaseApi,
+                    senha = SenhaBaseApi
+                };
 
-                    string url = $"http://{UrlBaseApi}:8080/login/token";
-                    HttpResponseMessage resposta = await client.PostAsync(url, jsonContent);
+                using StringContent jsonContent = new(
+                      JsonSerializer.Serialize(requestBody),
+                      Encoding.UTF8,
+                      "application/json");
 
-                    if (resposta.IsSuccessStatusCode)
-                    {
-                        string result = await resposta.Content.ReadAsStringAsync();
-                        TokenResponse token = JsonSerializer.Deserialize<TokenResponse>(result);
-                        return token.token;
-                    }
-                    else
-                    {
-                        return "Erro: " + resposta.StatusCode;
-                    }
+                string url = $"http://{UrlBaseApi}:8080/login/token";
+
+                HttpResponseMessage resposta = await client.PostAsync(url, jsonContent);
+
+                if (resposta.IsSuccessStatusCode)
+                {
+                    string result = await resposta.Content.ReadAsStringAsync();
+                    token = JsonSerializer.Deserialize<TokenResponse>(result);
+                    return token.token;
                 }
-                catch (Exception ex)
+                else
                 {
-                    Debug.WriteLine($"#####################3 {ex.Message}");
-                    return ex.Message;
+                    throw new Exception($"Erro de conexão: {resposta.StatusCode}");
                 }
             }
         }

@@ -2,6 +2,8 @@
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 #endif
 
+using TolyID.MVVM.Views.CadastroDeCaptura;
+
 namespace TolyID;
 
 public partial class App : Application
@@ -11,6 +13,7 @@ public partial class App : Application
         InitializeComponent();
 
         MainPage = new AppShell();
+        //MainPage = new BiometriaView(new MVVM.ViewModels.CadastroCapturaViewModel(new MVVM.Models.Tatu(), new Services.CapturaService())); 
 
         bool usuarioEstaLogado = CheckarUsuarioLogado();
 

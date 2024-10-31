@@ -6,11 +6,14 @@ using TolyID.Services;
 namespace TolyID.MVVM.ViewModels;
 
 public partial class EditarTatuViewModel : ObservableObject
-{
+{ 
     private readonly TatuService _tatuService;
 
     [ObservableProperty]
     private bool microchipAtivado = false;
+
+    [ObservableProperty]
+    private int numeroMicrochip;
 
     private Tatu _tatu;
     public Tatu Tatu
@@ -22,11 +25,13 @@ public partial class EditarTatuViewModel : ObservableObject
     public EditarTatuViewModel(Tatu tatu, TatuService tatuService)
     {
         Tatu = tatu;
+        NumeroMicrochip = tatu.NumeroMicrochip;
         _tatuService = tatuService;
     }
 
     private async Task AtualizaMicrochip()
     {
+        Tatu.NumeroMicrochip = NumeroMicrochip;
        await _tatuService.AtualizaTatu(Tatu);
     }
 

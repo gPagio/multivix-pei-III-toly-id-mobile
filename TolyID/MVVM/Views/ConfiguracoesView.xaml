@@ -1,44 +1,71 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TolyID.MVVM.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
              xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+             x:DataType="vm:ConfiguracoesViewModel"
              x:Class="TolyID.MVVM.Views.ConfiguracoesView"
              Title="Configurações"
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
-             BackgroundColor="White"
+             BackgroundColor="{StaticResource Background}"
              Padding="15">
+
+    <Grid>
+
+        <VerticalStackLayout Spacing="10">
+
+            <Border Padding="15">
+
+                <toolkit:Expander>
+                    <toolkit:Expander.Header>
+                        <Grid ColumnDefinitions="1*, 7*, 2*">
+
+                            <Image Source="icone_sincronizacao.png"
+                                   Scale="1"
+                                   HorizontalOptions="Start"/>
+
+                            <Label Grid.Column="1"
+                                   Text="Sincronização"
+                                   FontFamily="Inter-SemiBold"
+                                   FontSize="16"
+                                   VerticalTextAlignment="Center"/>
+
+                            <Image Source="icone_seta_baixo.png"
+                                   Grid.Column="2"
+                                   Scale="1"
+                                   HorizontalOptions="End"/>
+                        </Grid>
+                    </toolkit:Expander.Header>
+
+                    <StackLayout Margin="0, 10, 0, 0">
+
+                        <input:FormView SubmitCommand="{Binding SincronizaCommand}" Spacing="15">
+
+                            <material:TextField Title="Endereço IP da API" Text="{Binding Ip}">
+                                <validation:RequiredValidation Message="Preencha o campo!"/>
+                            </material:TextField>
+
+                            <Button Text="Sincronizar Dados"
+                                    Style="{StaticResource Botao}"
+                                    WidthRequest="170"
+                                    input:FormView.IsSubmitButton="True"/>
+
+                        </input:FormView>
+                    </StackLayout>
+                </toolkit:Expander>
+
+            </Border>
+        </VerticalStackLayout>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           Scale=".14"
+                           Color="{StaticResource Primary}"/>
+
+    </Grid>
     
-    <VerticalStackLayout Spacing="10">
-        
-        <!--<toolkit:Expander>
-            <toolkit:Expander.Header>
-                <StackLayout Spacing="10">
-                    <Label Text="Sincronização"
-                           FontSize="Medium" />
-                    <BoxView Style="{StaticResource EstiloDivisor}"/>
-                </StackLayout>
-            </toolkit:Expander.Header>
-
-            <StackLayout RadioButtonGroup.GroupName="Opcoes">
-                <RadioButton/>
-                <RadioButton/>
-                <RadioButton/>
-            </StackLayout>
-            
-        </toolkit:Expander>-->
-
-        <Label Text="Digite aqui o endereço IP onde a API está rodando"
-               FontSize="13"/>
-        
-        <material:TextField Title="Endereço IP"/>
-        
-        <Button Text="Salvar alterações"
-                TextColor="White"
-                BackgroundColor="{StaticResource Primary}"/>
-
-    </VerticalStackLayout>
 </ContentPage>
