@@ -43,7 +43,7 @@ public class FemeaValidation : BindableObject, IValidation
         {
             if (campoAtualPreenchido)
             {
-                Message = "Este campo não pode ser preenchido caso Comprimento do Pênis ou Largura da Base do Pênis estejam preenchidos.";
+                Message = "Atenção: este campo não pode ser preenchido quando os dados de Comprimento do Pênis ou Largura da Base do Pênis estão preenchidos.";
                 return false;
             }
             return true; // Campo atual pode ficar vazio

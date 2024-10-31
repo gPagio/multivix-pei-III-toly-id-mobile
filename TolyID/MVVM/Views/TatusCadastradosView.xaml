@@ -30,6 +30,8 @@
         </Grid>
     </Shell.TitleView>
     
+ 
+    
     <Border>
         <Grid>
             <ScrollView>
@@ -87,6 +89,11 @@
                                                             FontSize="15" 
                                                             TextColor="{StaticResource Texto}"
                                                             Opacity=".85"/>
+                                                    <Label Text="{Binding Capturas.Count, StringFormat='N° de Capturas: {0}'}" 
+                                                           FontFamily="Inter-Regular" 
+                                                           FontSize="15" 
+                                                           TextColor="{StaticResource Texto}"
+                                                           Opacity=".85"/>
                                                 </StackLayout>
 
                                                 <Image Grid.Column="1"

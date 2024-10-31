@@ -28,7 +28,7 @@ public class MachoValidation : BindableObject, IValidation
         {
             if (campoMachoPreenchido)
             {
-                Message = "Este campo não pode ser preenchido caso Comprimento do Clitóris esteja preenchido.";
+                Message = "Atenção: este campo não pode ser preenchido quando o Comprimento do Clitóris está preenchido.";
                 return false; // Ambos os campos preenchidos
             }
             return true; // Apenas CampoFemea Preenchido
