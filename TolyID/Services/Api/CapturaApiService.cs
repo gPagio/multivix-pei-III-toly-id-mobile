@@ -1,40 +1,54 @@
-﻿using TolyID.MVVM.Models;
+﻿using TolyID.Helpers;
+using TolyID.MVVM.Models;
 using TolyID.Services.Api.Cadastrar;
 using TolyID.Services.Api.Ler;
 
 namespace TolyID.Services.Api;
 
-public static class CapturaApiService
-{
-    private static CapturaService _capturaService = new();
-    private static CadastrarCapturaApiService _cadastrarCapturaApiService = new();
-    private static LerCapturasApiService _lerCapturasApiService = new();
-    private static TatuService _tatuService = new();
+public class CapturaApiService
+{ 
+    private readonly CapturaService _capturaService;
+    private readonly CadastrarCapturaApiService _cadastrarCapturaApiService;
+    private readonly LerCapturasApiService _lerCapturasApiService;
+    private readonly TatuService _tatuService;
 
-    public static async Task Cadastrar()
+    public CapturaApiService(CapturaService capturaService, CadastrarCapturaApiService cadastrarCapturaApiService, LerCapturasApiService lerCapturasApiService, TatuService tatuService)
     {
-        try
-        {
-            var token = await TokenApiService.Gerar();
-            List<Captura> listaCaptura = await _capturaService.GetCapturasNaoCadastradas();
-
-            foreach (var captura in listaCaptura)
-            {
-                if (captura.FoiEnviadoParaApi == false)
-                {
-                    await _cadastrarCapturaApiService.Cadastrar(captura, token);
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Erro: {ex.Message}");
-        }
+        _capturaService = capturaService;
+        _cadastrarCapturaApiService = cadastrarCapturaApiService;
+        _lerCapturasApiService = lerCapturasApiService;
+        _tatuService = tatuService;
     }
 
-    public static async Task AtualizarCapturas()
+    public async Task Cadastrar()
+    {    
+        var token = await SecureStorage.GetAsync("token_api");
+
+        if (string.IsNullOrEmpty(token))
+        {
+            throw new Exception("Token inválido!");
+        }
+
+        List<Captura> listaCaptura = await _capturaService.GetCapturasNaoCadastradas();
+
+        foreach (var captura in listaCaptura)
+        {
+            if (captura.FoiEnviadoParaApi == false)
+            {
+                await _cadastrarCapturaApiService.Cadastrar(captura, token);
+            }
+        }       
+    }
+
+    public async Task AtualizarCapturas()
     {
-        var token = await TokenApiService.Gerar();
+        var token = await SecureStorage.GetAsync("token_api");
+
+        if (string.IsNullOrEmpty(token))
+        {
+            throw new Exception("Token inválido!");
+        }
+
         var capturasApi = await _lerCapturasApiService.Ler(token);
 
         await DeletarCapturas(capturasApi);
@@ -49,11 +63,11 @@ public static class CapturaApiService
                 capturaApi.FoiEnviadoParaApi = true;
                 await _capturaService.SalvaCaptura(capturaApi, tatu[0]);
             }
-        }
+        } 
     }
 
-    private static async Task DeletarCapturas(List<Captura> capturasRecebidasPelaApi)
+    private async Task DeletarCapturas(List<Captura> capturasRecebidasPelaApi)
     {
-        await _capturaService.DeletarCapturasForaDaApi(capturasRecebidasPelaApi); //deve-se enviar a lista de capturas que estão na api
+        await _capturaService.DeletarCapturasForaDaApi(capturasRecebidasPelaApi); //deve-se enviar a lista de capturas que estão na api 
     }
 }

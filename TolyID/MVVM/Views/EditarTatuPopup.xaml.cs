@@ -6,7 +6,7 @@ using TolyID.MVVM.ViewModels;
 namespace TolyID.MVVM.Views;
 
 public partial class EditarTatuPopup : Popup
-{
+{ 
     public EditarTatuPopup(EditarTatuViewModel viewModel)
 	{
 		InitializeComponent();

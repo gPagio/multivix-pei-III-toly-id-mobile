@@ -6,59 +6,56 @@ using TolyID.DTO;
 using TolyID.MVVM.Models;
 
 
-namespace TolyID.Services.Api.Cadastrar
+namespace TolyID.Services.Api.Cadastrar;
+
+public class CadastrarTatuApiService : BaseApi
 {
-    public class CadastrarTatuApiService : BaseApi
+    public struct RespostaTatu
     {
-        public struct RespostaTatu
+        public int Id { get; set; }
+        public string IdentificacaoAnimal { get; set; }
+        public int NumeroMicrochip { get; set; }
+    }
+
+    private readonly TatuService _tatuService;
+
+    public CadastrarTatuApiService(TatuService tatuService)
+    {
+        _tatuService = tatuService;
+    }
+
+    public async Task Cadastrar(Tatu tatu, string token)
+    {
+        TatuDTO tatuDTO = new(tatu);
+
+        if (string.IsNullOrEmpty(token))
         {
-            public int Id { get; set; }
-            public string IdentificacaoAnimal { get; set; }
-            public int NumeroMicrochip { get; set; }
+            throw new Exception("Token Inválido");
         }
 
-        public async Task Cadastrar(Tatu tatu, string token)
+        string url = $"http://{UrlBaseApi}:8080/tatus/cadastrar";
+
+        var content = new StringContent(JsonConvert.SerializeObject(tatuDTO), Encoding.UTF8, "application/json");
+
+        using (HttpClient client = new HttpClient())
         {
-            TatuDTO tatuDTO = new(tatu);
-            try
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
             {
-                string url = $"http://{UrlBaseApi}:8080/tatus/cadastrar";
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                RespostaTatu resposta = JsonConvert.DeserializeObject<RespostaTatu>(jsonResponse);
 
+                tatu.FoiEnviadoParaApi = true;
+                tatu.IdAPI = resposta.Id;
 
-                if (string.IsNullOrEmpty(token))
-                {
-                    Debug.WriteLine("Token inválido.");
-                    return;
-                }
-
-                var content = new StringContent(JsonConvert.SerializeObject(tatuDTO), Encoding.UTF8, "application/json");
-
-                using (HttpClient client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                    HttpResponseMessage response = await client.PostAsync(url, content);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var jsonResponse = await response.Content.ReadAsStringAsync();
-                        RespostaTatu res = JsonConvert.DeserializeObject<RespostaTatu>(jsonResponse);
-
-                        tatu.FoiEnviadoParaApi = true;
-                        tatu.IdAPI = res.Id;
-
-                        var banco = new TatuService();
-                        await banco.AtualizaTatu(tatu);
-                    }
-                    else
-                    {
-                        var errorMessage = await response.Content.ReadAsStringAsync();
-                        Debug.WriteLine($"Erro: {response.StatusCode} - {errorMessage}");
-                    }
-                }
+                await _tatuService.AtualizaTatu(tatu);
             }
-            catch (Exception e)
+            else
             {
-                Debug.WriteLine($"Exception: {e.Message}");
+                var mensagemDeErro = await response.Content.ReadAsStringAsync();
+                throw new Exception($"{response.StatusCode} - {mensagemDeErro}");
             }
         }
     }

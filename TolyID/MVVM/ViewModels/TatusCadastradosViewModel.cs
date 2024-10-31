@@ -2,11 +2,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using TolyID.Helpers;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
 using TolyID.Services;
-using TolyID.Services.Api;
 
 namespace TolyID.MVVM.ViewModels;
 
@@ -51,6 +51,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
     [RelayCommand]
     private async Task VisualizaTatu(Tatu tatu)
     {
+        Debug.WriteLine(tatu.FoiEnviadoParaApi);
         var capturaService = ServiceHelper.GetService<CapturaService>();
         var tatuView = new TatuView(new TatuViewModel(tatu, _tatuService, capturaService), tatu);
         await Shell.Current.Navigation.PushAsync(tatuView);
@@ -82,15 +83,5 @@ public partial class TatusCadastradosViewModel : ObservableObject
     private async Task Configuracoes()
     {
         await Shell.Current.GoToAsync("ConfiguracoesView");
-    }
-
-    [RelayCommand]
-    private async Task GerarTokenApi()
-    {
-        await TatusApiService.Cadastrar();
-        await CapturaApiService.Cadastrar();
-        await TatusApiService.AtualizarTatus();
-        await CapturaApiService.AtualizarCapturas();
-        await BuscaTatusNoBanco();
     }
 }

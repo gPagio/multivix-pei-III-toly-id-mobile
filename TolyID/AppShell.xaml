@@ -4,24 +4,27 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:TolyID.MVVM.Views"
-    Shell.FlyoutBehavior="Disabled"
-    Title="TolyID">
+    Title="TolyID"
+    Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="Tatus Cadastrados"
         ContentTemplate="{DataTemplate views:TatusCadastradosView}"
-        Route="MainPage"/>
+        Route="MainPage"
+        FlyoutItemIsVisible="False"/>
     
     <!-- ROTAS -->
     
     <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate views:LoginView}"
-        Route="LoginView"/>
+        Route="LoginView"
+        FlyoutItemIsVisible="False"/>
 
     <ShellContent
         Title="Cadastro"
         ContentTemplate="{DataTemplate views:CadastroUsuarioView}"
-        Route="CadastroView"/>
-
+        Route="CadastroView"
+        FlyoutItemIsVisible="False"/>
+    
 </Shell>

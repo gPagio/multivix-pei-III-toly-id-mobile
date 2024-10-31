@@ -2,10 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Newtonsoft.Json;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views.CadastroDeCaptura;
 using TolyID.Services;
@@ -25,6 +22,17 @@ public partial class CadastroCapturaViewModel : ObservableObject
     private DateTime dataDeCaptura = DateTime.Now;
     [ObservableProperty]
     private TimeSpan horarioDeCaptura = DateTime.Now.TimeOfDay;
+
+
+    // Esses campos necessitam de tratamento especial
+    [ObservableProperty]
+    private double? comprimentoDoPenis;
+    [ObservableProperty]
+    private double? larguraBasePenis;
+    [ObservableProperty]
+    private double? comprimentoDoClitoris;
+
+
 
     // Indicador de carregamento
     [ObservableProperty]

@@ -67,10 +67,8 @@
                                           MaxLength="50"/>
 
                     <Button Text="Próximo"
-                            TextColor="White"
-                            Background="{StaticResource Primary}"
                             WidthRequest="100"
-                            CornerRadius="25"
+                            Style="{StaticResource Botao}"
                             input:FormView.IsSubmitButton="True"/>
 
                 </input:FormView>

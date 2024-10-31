@@ -25,7 +25,7 @@
             <material:TextField x:Name="ChipEntry"
                     Title="Microchip"
                     Keyboard="Numeric"
-                    Text="{Binding Tatu.NumeroMicrochip}"
+                    Text="{Binding NumeroMicrochip}"
                     IsEnabled="{Binding MicrochipAtivado}">
 
 

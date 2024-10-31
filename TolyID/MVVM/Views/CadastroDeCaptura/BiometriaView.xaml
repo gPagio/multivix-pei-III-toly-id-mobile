@@ -6,6 +6,7 @@
              xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels"
              xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
              xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+             xmlns:custom_validation="clr-namespace:TolyID.Validations"
              x:DataType="viewmodels:CadastroCapturaViewModel"
              x:Class="TolyID.MVVM.Views.CadastroDeCaptura.BiometriaView"
              Title="Biometria"
@@ -126,21 +127,24 @@
                     <validation:RequiredValidation Message="Campo obrigatório!"/>
                 </material:TextField>
 
-                <material:TextField Title="Comprimento do Pênis" Keyboard="Numeric"
-                                    Text="{Binding Captura.Biometria.ComprimentoDoPenis}">
-                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                <material:TextField x:Name="ComprimentoPenis"
+                                    Title="Comprimento do Pênis" Keyboard="Numeric" 
+                                    Text="{Binding ComprimentoDoPenis}">
+                    <custom_validation:MachoValidation CampoFemea="{Binding Source={x:Reference ComprimentoClitoris}, Path=Text}"/>
                 </material:TextField>
 
-                <material:TextField Title="Largura da Base do Pênis" Keyboard="Numeric"
-                                    Text="{Binding Captura.Biometria.LarguraBasePenis}">
-                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                <material:TextField x:Name="LarguraBasePenis" 
+                                    Title="Largura da Base do Pênis" Keyboard="Numeric"
+                                    Text="{Binding LarguraBasePenis}">
+                    <custom_validation:MachoValidation CampoFemea="{Binding Source={x:Reference ComprimentoClitoris}, Path=Text}"/>
                 </material:TextField>
 
-                <material:TextField Title="Comprimento do Clitóris" Keyboard="Numeric"
-                                    Text="{Binding Captura.Biometria.ComprimentoDoClitoris}">
-                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                <material:TextField x:Name="ComprimentoClitoris"
+                                    Title="Comprimento do Clitóris" Keyboard="Numeric"
+                                    Text="{Binding ComprimentoDoClitoris}">
+                    <custom_validation:FemeaValidation Campo1="{Binding Source={x:Reference ComprimentoPenis}, Path=Text}"
+                                                       Campo2="{Binding Source={x:Reference LarguraBasePenis}, Path=Text}"/>
                 </material:TextField>
-
 
                 <Button Text="Próximo"
                         Style="{StaticResource Botao}"

@@ -113,7 +113,7 @@
     <Style x:Key="Botao" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
         <Setter Property="TextColor" Value="White"/>
-        <Setter Property="CornerRadius" Value="25"/>
+        <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="FontFamily" Value="Inter-Regular"/>
     </Style>
 
@@ -125,7 +125,7 @@
     <!-- PADRÕES DO SISTEMA -->
 
     <Style TargetType="ActivityIndicator">
-        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
     </Style>
 
     <Style TargetType="IndicatorView">

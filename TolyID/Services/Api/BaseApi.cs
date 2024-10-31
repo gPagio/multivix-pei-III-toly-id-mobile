@@ -1,19 +1,18 @@
-﻿namespace TolyID.Services.Api
+﻿namespace TolyID.Services.Api;
+
+public class BaseApi
 {
-    public class BaseApi
+    public string UrlBaseApi { get; private set; } 
+    public string EmailBaseApi { get; private set; } = "guilherme@toly.com";
+    public string SenhaBaseApi { get; private set; } = "123456";
+
+    public BaseApi() 
     {
-        public string UrlBaseApi { get; private set; } 
-        public string EmailBaseApi { get; private set; } = "guilherme@toly.com";
-        public string SenhaBaseApi { get; private set; } = "123456";
+        ReceberRota();
+    }
 
-        public BaseApi() 
-        {
-            ReceberRota();
-        }
-
-        public void ReceberRota()
-        {
-            UrlBaseApi = Preferences.Default.Get("endereco_ip_api", "");
-        }
+    public void ReceberRota()
+    {
+        UrlBaseApi = Preferences.Get("endereco_ip_api", "");
     }
 }
