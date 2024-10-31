@@ -22,23 +22,17 @@
                             x:Name="IdEntry"/>
 
         <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Padding="10">
-            <Button CornerRadius="20" 
-                    Text="Cancelar" 
-                    TextColor="White" 
-                    Clicked="Cancelar_Clicked"
-                    BackgroundColor="{StaticResource Primary}"
-                    WidthRequest="90"
-                    HeightRequest="40"/>
             
-            <Button CornerRadius="20" 
-                    Grid.Column="1" 
-                    Text="Adicionar" 
-                    TextColor="White" 
+            <Button Text="Cancelar" 
+                    Style="{StaticResource BotaoSecundario}"
+                    Clicked="Cancelar_Clicked"/>
+            
+            <Button Grid.Column="1" 
+                    Text="Adicionar"
+                    Style="{StaticResource Botao}"
                     Command="{Binding AdicionaCommand}"
-                    Clicked="Adicionar_Clicked" 
-                    BackgroundColor="{StaticResource Primary}"
-                    WidthRequest="90"
-                    HeightRequest="40"/>
+                    Clicked="Adicionar_Clicked"/>
+            
         </Grid>
 
     </VerticalStackLayout>

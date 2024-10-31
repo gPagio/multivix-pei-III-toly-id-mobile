@@ -117,6 +117,15 @@
         <Setter Property="FontFamily" Value="Inter-Regular"/>
     </Style>
 
+    <Style x:Key="BotaoSecundario" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="TextColor" Value="{StaticResource Texto}"/>
+        <Setter Property="BorderColor" Value="{StaticResource Texto}"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="FontFamily" Value="Inter-Regular"/>
+    </Style>
+
     <Style x:Key="EstiloDivisor" TargetType="BoxView">
         <Setter Property="BackgroundColor" Value="LightGray"/>
         <Setter Property="HeightRequest" Value="1"/>
