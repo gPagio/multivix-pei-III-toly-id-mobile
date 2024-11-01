@@ -14,6 +14,19 @@
              BackgroundColor="{StaticResource Background}"
              Padding="15">
 
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="8*, 2*">
+            <Label Text="Configurações" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
+
+            <ImageButton Grid.Column="1" 
+                         Source="icone_sair.png"
+                         Scale=".6"
+                         HorizontalOptions="End"
+                         BackgroundColor="Transparent"
+                         Command="{Binding DeslogarCommand}"/>
+        </Grid>
+    </Shell.TitleView>
+
     <Grid>
 
         <VerticalStackLayout Spacing="10">

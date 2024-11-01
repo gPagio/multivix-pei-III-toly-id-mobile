@@ -6,6 +6,7 @@ using System.Diagnostics;
 using TolyID.Helpers;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
+using TolyID.MVVM.Views.BottomSheet;
 using TolyID.Services;
 
 namespace TolyID.MVVM.ViewModels;
@@ -65,23 +66,15 @@ public partial class TatusCadastradosViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task Deslogar()
-    {
-        bool resposta = await Shell.Current.DisplayAlert
-            ("Confirmação",
-            $"Você tem certeza que deseja sair?",
-            "Sim",
-            "Não");
-
-        if (resposta)
-        {
-            await Shell.Current.GoToAsync("//LoginView");
-        }
-    }
-
-    [RelayCommand]
     private async Task Configuracoes()
     {
         await Shell.Current.GoToAsync("ConfiguracoesView");
+    }
+
+    [RelayCommand]
+    private async Task Filtros()
+    {
+        var filtros = new FiltrosBottomSheet(this);
+        await filtros.ShowAsync();
     }
 }

@@ -86,6 +86,7 @@
 		<PackageReference Include="SQLitePCLRaw.core" Version="2.1.10" />
 		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.10" />
 		<PackageReference Include="SQLitePCLRaw.provider.e_sqlite3" Version="2.1.10" />
+		<PackageReference Include="The49.Maui.BottomSheet" Version="8.0.3" />
 		<PackageReference Include="UraniumUI.Material" Version="2.10.2" />
 	</ItemGroup>
 
@@ -102,6 +103,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="MVVM\Views\BottomSheet\FiltrosBottomSheet.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\CadastroDeCaptura\AmostrasView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

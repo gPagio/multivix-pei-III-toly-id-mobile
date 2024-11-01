@@ -8,6 +8,7 @@ using TolyID.Services.Api;
 using TolyID.Services.Api.Cadastrar;
 using TolyID.Services.Api.Ler;
 using TolyID.Services.Api.Gerar;
+using The49.Maui.BottomSheet;
 
 namespace TolyID
 {
@@ -24,6 +25,7 @@ namespace TolyID
                 .UseMauiCommunityToolkit()
                 .UseUraniumUI()
                 .UseUraniumUIMaterial() 
+                .UseBottomSheet()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

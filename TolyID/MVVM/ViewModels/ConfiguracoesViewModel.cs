@@ -57,4 +57,19 @@ public partial class ConfiguracoesViewModel : ObservableObject
     {
         Preferences.Set("endereco_ip_api", Ip);
     }
+
+    [RelayCommand]
+    private async Task Deslogar()
+    {
+        bool resposta = await Shell.Current.DisplayAlert
+            ("Confirmação",
+            $"Você tem certeza que deseja sair?",
+            "Sim",
+            "Não");
+
+        if (resposta)
+        {
+            await Shell.Current.GoToAsync("//LoginView");
+        }
+    }
 }

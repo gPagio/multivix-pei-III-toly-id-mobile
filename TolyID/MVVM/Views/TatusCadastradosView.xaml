@@ -14,12 +14,13 @@
     <Shell.TitleView>
         <Grid ColumnDefinitions="7*, 1.5*, 1.5*" ColumnSpacing="-15">
             <Label Text="Início" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
+            
             <ImageButton Grid.Column="1" 
-                         Source="icone_sair.png"
-                         Scale=".6"
+                         Source="icone_filtro.png"
+                         Scale=".65"
                          HorizontalOptions="End"
                          BackgroundColor="Transparent"
-                         Command="{Binding DeslogarCommand}"/>
+                         Command="{Binding FiltrosCommand}"/>
 
             <ImageButton Grid.Column="2" 
                          Source="icone_configuracoes.png" 
@@ -29,10 +30,8 @@
                          Command="{Binding ConfiguracoesCommand}"/>
         </Grid>
     </Shell.TitleView>
-    
- 
-    
-    <Border>
+
+    <Border Grid.Row="2">
         <Grid>
             <ScrollView>
                 <StackLayout Spacing="17" Padding="0, 20, 0, 10">
@@ -49,9 +48,9 @@
                                     <SwipeView.LeftItems>
                                         <SwipeItems SwipeBehaviorOnInvoked="Close" >
                                             <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=DeletaTatuCommand}" 
-                                                           CommandParameter="{Binding .}"
-                                                           IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}">
-                                                
+                                                            CommandParameter="{Binding .}"
+                                                            IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}">
+
                                                 <Frame BorderColor="Transparent" BackgroundColor="LightPink"
                                                         CornerRadius="0"
                                                         Padding="10"
@@ -66,19 +65,19 @@
 
                                         <StackLayout.Behaviors>
                                             <toolkit:TouchBehavior DefaultAnimationDuration="250"
-                                                                   DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
-                                                                   PressedOpacity="0.6" 
-                                                                   PressedBackgroundColor="{StaticResource Gray100}"/>
+                                                                    DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                                                    PressedOpacity="0.6" 
+                                                                    PressedBackgroundColor="{StaticResource Gray100}"/>
                                         </StackLayout.Behaviors>
 
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatusCadastradosViewModel}}, Path=VisualizaTatuCommand}"
-                                                                  CommandParameter="{Binding .}"/>
+                                                                    CommandParameter="{Binding .}"/>
                                         </StackLayout.GestureRecognizers>
 
                                         <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="Transparent" InputTransparent="True" CornerRadius="0">
                                             <Grid ColumnDefinitions="8*, 2*">
-                                                
+
                                                 <StackLayout>
                                                     <Label Text="{Binding IdentificacaoAnimal, StringFormat='Id: {0}'}" 
                                                             FontFamily="Inter-Medium" 
@@ -90,18 +89,18 @@
                                                             TextColor="{StaticResource Texto}"
                                                             Opacity=".85"/>
                                                     <Label Text="{Binding Capturas.Count, StringFormat='N° de Capturas: {0}'}" 
-                                                           FontFamily="Inter-Regular" 
-                                                           FontSize="15" 
-                                                           TextColor="{StaticResource Texto}"
-                                                           Opacity=".85"/>
+                                                            FontFamily="Inter-Regular" 
+                                                            FontSize="15" 
+                                                            TextColor="{StaticResource Texto}"
+                                                            Opacity=".85"/>
                                                 </StackLayout>
 
                                                 <Image Grid.Column="1"
-                                                       Source="icone_dessincronizado.png"
-                                                       VerticalOptions="CenterAndExpand"
-                                                       HorizontalOptions="CenterAndExpand"
-                                                       Scale="1.3"
-                                                       IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}"/>
+                                                        Source="icone_dessincronizado.png"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Scale="1.3"
+                                                        IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}"/>
                                             </Grid>
                                         </Frame>
                                         <BoxView BackgroundColor="Black" Opacity=".25" HeightRequest=".1"/>
