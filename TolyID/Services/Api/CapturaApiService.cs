@@ -1,4 +1,5 @@
-﻿using TolyID.Helpers;
+﻿using TolyID.Constants;
+using TolyID.Helpers;
 using TolyID.MVVM.Models;
 using TolyID.Services.Api.Cadastrar;
 using TolyID.Services.Api.Ler;
@@ -20,7 +21,7 @@ public class CapturaApiService
         _tatuService = tatuService;
     }
 
-    public async Task Cadastrar()
+    public async Task CadastraCaptura()
     {    
         var token = await SecureStorage.GetAsync("token_api");
 
@@ -40,18 +41,18 @@ public class CapturaApiService
         }       
     }
 
-    public async Task AtualizarCapturas()
+    public async Task AtualizaCapturas()
     {
-        var token = await SecureStorage.GetAsync("token_api");
+        var token = await SecureStorage.GetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY);
 
         if (string.IsNullOrEmpty(token))
         {
             throw new Exception("Token inválido!");
         }
 
-        var capturasApi = await _lerCapturasApiService.Ler(token);
+        var capturasApi = await _lerCapturasApiService.GetCapturas(token);
 
-        await DeletarCapturas(capturasApi);
+        await DeletaCapturas(capturasApi);
 
         foreach (var capturaApi in capturasApi)
         {
@@ -66,7 +67,7 @@ public class CapturaApiService
         } 
     }
 
-    private async Task DeletarCapturas(List<Captura> capturasRecebidasPelaApi)
+    private async Task DeletaCapturas(List<Captura> capturasRecebidasPelaApi)
     {
         await _capturaService.DeletarCapturasForaDaApi(capturasRecebidasPelaApi); //deve-se enviar a lista de capturas que estão na api 
     }

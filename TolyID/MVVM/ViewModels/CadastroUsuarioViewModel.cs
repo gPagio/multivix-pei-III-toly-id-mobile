@@ -1,10 +1,19 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using TolyID.MVVM.Models;
 
 namespace TolyID.MVVM.ViewModels;
 
 public partial class CadastroUsuarioViewModel : ObservableObject
 {
+    [ObservableProperty]
+    private Usuario usuario;
+
+    public CadastroUsuarioViewModel()
+    {
+        usuario = new Usuario();
+    }
+
     private bool ConfirmaCadastro()
     {
         // TODO: IMPLEMENTAR LÓGICA
@@ -19,10 +28,11 @@ public partial class CadastroUsuarioViewModel : ObservableObject
         if (cadastroConfirmado)
         {
             await Shell.Current.GoToAsync("//LoginView");
+            await Shell.Current.DisplayAlert("Sucesso", "Cadastro realizado. Faça login para continuar.", "OK");
         }
         else
         {
-            await Application.Current.MainPage.DisplayAlert("Erro", "Cadastro inválido", "OK");
+            await Shell.Current.DisplayAlert("Erro", "Cadastro inválido.", "OK");
         }
     }
 

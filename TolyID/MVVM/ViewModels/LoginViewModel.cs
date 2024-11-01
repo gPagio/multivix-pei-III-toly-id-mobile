@@ -1,19 +1,39 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Diagnostics;
+using TolyID.Services.Api;
 
 namespace TolyID.MVVM.ViewModels;
 
 public partial class LoginViewModel : ObservableObject
 {
-    [RelayCommand]
-    private async Task Login()
+    [ObservableProperty]
+    private string email;
+    [ObservableProperty]
+    private string senha;
+
+    private readonly TokenApiService _tokenApiService;
+
+    public LoginViewModel(TokenApiService tokenApiService)
     {
-        await Shell.Current.GoToAsync("//MainPage");
+        _tokenApiService = tokenApiService;
+    }
+
+    [RelayCommand]
+    private async Task RealizaLogin()
+    {
+        try
+        {
+            await _tokenApiService.GeraToken(email, senha);
+            await Shell.Current.GoToAsync("//MainPage");
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Erro", $"Erro ao realizar login: {ex.Message}", "Ok");
+        }       
     }
     
     [RelayCommand]
-    private async Task IrParaTelaDeCadastro()
+    private async Task NavegaParaParaTelaDeCadastro()
     {
         await Shell.Current.GoToAsync("//CadastroView");
     }

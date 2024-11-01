@@ -7,7 +7,7 @@ namespace TolyID.Services.Api.Ler;
 
 public class LerTatuApiService : BaseApi
 {
-    public async Task<List<Tatu>> Ler(string token)
+    public async Task<List<Tatu>> GetTatus(string token)
     {
         List<Tatu> tatus = new();
 

@@ -10,19 +10,19 @@ namespace TolyID.Services.Api.Gerar
             public string token { get; set; }
         }
 
-        public async Task<string> Gerar()
+        public async Task<string> Gerar(string email, string senha)
         {
             TokenResponse token = new();
 
-            // Reutilização do HttpClient, considere usar uma instância estática ou injetá-la
             using (HttpClient client = new HttpClient())
             {
-                client.Timeout = TimeSpan.FromSeconds(10); // Define um timeout de 10 segundos
-             
+                client.Timeout = TimeSpan.FromSeconds(10);
+
+                // Usa os parâmetros de email e senha fornecidos na chamada do método
                 var requestBody = new
                 {
-                    email = EmailBaseApi,
-                    senha = SenhaBaseApi
+                    email,
+                    senha
                 };
 
                 using StringContent jsonContent = new(

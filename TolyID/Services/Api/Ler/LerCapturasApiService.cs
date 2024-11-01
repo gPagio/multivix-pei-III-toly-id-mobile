@@ -8,7 +8,7 @@ namespace TolyID.Services.Api.Ler;
 
 public class LerCapturasApiService : BaseApi
 { 
-    public async Task<List<Captura>> Ler(string token)
+    public async Task<List<Captura>> GetCapturas(string token)
     {
         List<Captura> capturas = new();
 

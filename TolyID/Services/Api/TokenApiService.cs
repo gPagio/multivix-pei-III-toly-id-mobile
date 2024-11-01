@@ -1,12 +1,20 @@
-﻿using TolyID.Services.Api.Gerar;
+﻿using TolyID.Constants;
+using TolyID.Services.Api.Gerar;
 
 namespace TolyID.Services.Api;
 
 public class TokenApiService : BaseApi
 {
-    public async Task<string> Gerar()
+    private readonly GerarTokenApiService _gerarTokenApiService;
+
+    public TokenApiService(GerarTokenApiService gerarTokenApiService)
     {
-        var token = new GerarTokenApiService();
-        return await token.Gerar();
+        _gerarTokenApiService = gerarTokenApiService;
+    }
+
+    public async Task GeraToken(string email, string senha)
+    {
+        string token = await _gerarTokenApiService.Gerar(email, senha);
+        await SecureStorage.SetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY, token);
     }
 }

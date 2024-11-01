@@ -16,13 +16,13 @@
                FontSize="30"
                FontFamily="Inter-Medium"/>
 
-        <input:FormView Spacing="20" SubmitCommand="{Binding LoginCommand}">
+        <input:FormView Spacing="20" SubmitCommand="{Binding RealizaLoginCommand}">
 
-            <material:TextField Title="Usuário">
-                <validation:RequiredValidation Message="Preencha o usuário"/>
+            <material:TextField Title="Email" Text="{Binding Email}">
+                <validation:RequiredValidation Message="Preencha o e-mail"/>
             </material:TextField>
             
-            <material:TextField Title="Senha" IsPassword="True">
+            <material:TextField Title="Senha" Text="{Binding Senha}" IsPassword="True">
                 <validation:RequiredValidation Message="Preencha a senha"/>
                 <material:TextField.Attachments>
                     <material:TextFieldPasswordShowHideAttachment/>
@@ -46,7 +46,7 @@
                     <Span Text="Não tem uma conta? " TextColor="{StaticResource Texto}"/>
                     <Span Text="Cadastre-se." TextColor="{StaticResource Primary}" TextDecorations="Underline">
                         <Span.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding IrParaTelaDeCadastroCommand}"/>
+                            <TapGestureRecognizer Command="{Binding NavegaParaParaTelaDeCadastroCommand}"/>
                         </Span.GestureRecognizers>
                     </Span>
                 </FormattedString>

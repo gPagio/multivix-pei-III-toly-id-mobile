@@ -1,4 +1,5 @@
-﻿using TolyID.MVVM.Models;
+﻿using TolyID.Constants;
+using TolyID.MVVM.Models;
 using TolyID.Services.Api.Cadastrar;
 using TolyID.Services.Api.Ler;
 
@@ -19,7 +20,7 @@ public class TatusApiService
         _tatuService = tatuService;
     }
 
-    public async Task Cadastrar()
+    public async Task CadastraTatu()
     {
         var token = await SecureStorage.GetAsync("token_api");
 
@@ -38,9 +39,9 @@ public class TatusApiService
         }
     }
 
-    public async Task AtualizarTatus()
+    public async Task AtualizaTatus()
     {
-        var token = await SecureStorage.GetAsync("token_api");
+        var token = await SecureStorage.GetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY);
 
         if (string.IsNullOrEmpty(token))
         {
@@ -48,9 +49,9 @@ public class TatusApiService
         }
 
         var lista = await _tatuService.GetTatus();
-        var listaApi = await _lerTatuApiService.Ler(token);
+        var listaApi = await _lerTatuApiService.GetTatus(token);
 
-        await DeletarTatus(listaApi);
+        await DeletaTatus(listaApi);
 
         foreach (var tatu in listaApi)
         {
@@ -64,7 +65,7 @@ public class TatusApiService
         }        
     }
 
-    private async Task DeletarTatus(List<Tatu> tatusRecebidosPelaApi)
+    private async Task DeletaTatus(List<Tatu> tatusRecebidosPelaApi)
     {
         await _tatuService.DeletarTatusForaDaApi(tatusRecebidosPelaApi); //deve-se enviar a lista de Tatus que estao na api
     }

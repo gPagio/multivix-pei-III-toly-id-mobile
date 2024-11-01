@@ -9,7 +9,7 @@
              x:Class="TolyID.MVVM.Views.CapturaView"      
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
-             BackgroundColor="{StaticResource Background}">
+             BackgroundColor="White">
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="7*, 3*">
@@ -52,39 +52,39 @@
         <material:TabItem Title="Dados Gerais">
             <material:TabItem.ContentTemplate>
                 <DataTemplate>
-                    <ScrollView Padding="15">
-                        <Border>
-                            <StackLayout Padding="15" Spacing="15">
+                    <ScrollView Margin="0, 10, 0, 0">
 
-                                <!--<material:TextField Title="Número de Identificação" IsEnabled="False" 
-                                                    Text="{Binding Captura.DadosGerais.NumeroIdentificacao}" />-->
+                        <StackLayout Padding="15" Spacing="15">
 
-                                <material:TextField Title="Local de Captura" IsEnabled="False"
-                                                    Text="{Binding Captura.DadosGerais.LocalDeCaptura}" />
+                            <!--<material:TextField Title="Número de Identificação" IsEnabled="False" 
+                                                Text="{Binding Captura.DadosGerais.NumeroIdentificacao}" />-->
 
-                                <material:TextField Title="Equipe Responsável" IsEnabled="False"
-                                                    Text="{Binding Captura.DadosGerais.EquipeResponsavel}" />
+                            <material:TextField Title="Local de Captura" IsEnabled="False"
+                                                Text="{Binding Captura.DadosGerais.LocalDeCaptura}" />
 
-                                <material:TextField Title="Instituição" IsEnabled="False"
-                                                    Text="{Binding Captura.DadosGerais.Instituicao}" />
+                            <material:TextField Title="Equipe Responsável" IsEnabled="False"
+                                                Text="{Binding Captura.DadosGerais.EquipeResponsavel}" />
 
-                                <material:TextField Title="Peso (kg)" IsEnabled="False"
-                                                    Text="{Binding Captura.DadosGerais.Peso}" />
+                            <material:TextField Title="Instituição" IsEnabled="False"
+                                                Text="{Binding Captura.DadosGerais.Instituicao}" />
 
-                                <material:DatePickerField Title="Data de Captura" IsEnabled="False"
-                                                    Date="{Binding Captura.DadosGerais.DataHoraDeCaptura}" />
+                            <material:TextField Title="Peso (kg)" IsEnabled="False"
+                                                Text="{Binding Captura.DadosGerais.Peso}" />
 
-                                <material:TimePickerField Title="Horário de Captura" IsEnabled="False"
-                                                    Time="{Binding HorarioDeCaptura}" />
+                            <material:DatePickerField Title="Data de Captura" IsEnabled="False"
+                                                Date="{Binding Captura.DadosGerais.DataHoraDeCaptura}" />
 
-                                <material:TextField Title="Contato do Responsável" IsEnabled="False"
-                                                    Text="{Binding Captura.DadosGerais.ContatoDoResponsavel}" />
+                            <material:TimePickerField Title="Horário de Captura" IsEnabled="False"
+                                                Time="{Binding HorarioDeCaptura}" />
 
-                                <material:TextField Title="Observações" IsEnabled="False"
-                                                    Text="{Binding Captura.DadosGerais.Observacoes}" />
+                            <material:TextField Title="Contato do Responsável" IsEnabled="False"
+                                                Text="{Binding Captura.DadosGerais.ContatoDoResponsavel}" />
 
-                            </StackLayout>
-                        </Border>
+                            <material:TextField Title="Observações" IsEnabled="False"
+                                                Text="{Binding Captura.DadosGerais.Observacoes}" />
+
+                        </StackLayout>
+
                     </ScrollView>
                 </DataTemplate>
             </material:TabItem.ContentTemplate>
@@ -94,35 +94,48 @@
         <material:TabItem Title="Ficha Anestésica">
             <material:TabItem.ContentTemplate>
                 <DataTemplate>
-                    <ScrollView Padding="15">
-                        <Border>
-                            <StackLayout Padding="15" Spacing="15">
-                                <material:TextField Title="Tipo de Anestésico/Dose" IsEnabled="False"
-                                                    Text="{Binding Captura.FichaAnestesica.TipoAnestesicoOuDose}" />
+                    <ScrollView Margin="0, 10, 0, 0">
 
-                                <material:TextField Title="Via de Administração" IsEnabled="False"
-                                                    Text="{Binding Captura.FichaAnestesica.ViaDeAdministracao}" />
+                        <StackLayout Padding="15" Spacing="15">
+                            <material:TextField Title="Tipo de Anestésico/Dose" IsEnabled="False"
+                                                Text="{Binding Captura.FichaAnestesica.TipoAnestesicoOuDose}" />
 
-                                <material:TextField Title="Aplicação" IsEnabled="False"
-                                                    Text="{Binding Captura.FichaAnestesica.Aplicacao}" />
+                            <material:TextField Title="Via de Administração" IsEnabled="False"
+                                                Text="{Binding Captura.FichaAnestesica.ViaDeAdministracao}" />
 
-                                <material:TextField Title="Indução" IsEnabled="False"
-                                                    Text="{Binding Captura.FichaAnestesica.Inducao}" />
+                            <material:TextField Title="Aplicação" IsEnabled="False"
+                                                Text="{Binding Captura.FichaAnestesica.Aplicacao}" />
 
-                                <material:TextField Title="Retorno" IsEnabled="False"
-                                                    Text="{Binding Captura.FichaAnestesica.Retorno}" />
+                            <material:TextField Title="Indução" IsEnabled="False"
+                                                Text="{Binding Captura.FichaAnestesica.Inducao}" />
 
-                                <material:DataGrid ItemsSource="{Binding Captura.FichaAnestesica.ParametrosFisiologicos}" 
-                                                   Margin="0, 10, 0, 0" HorizontalOptions="Center" BackgroundColor="White">
-                                    <material:DataGrid.Columns>
-                                        <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="FC" ValueBinding="{Binding Fc}"/>
-                                        <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="FR" ValueBinding="{Binding Fr}"/>
-                                        <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="Oximet." ValueBinding="{Binding Oximetria}"/>
-                                        <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="Temper." ValueBinding="{Binding Temperatura}"/>
-                                    </material:DataGrid.Columns>
-                                </material:DataGrid>
-                            </StackLayout>
-                        </Border>
+                            <material:TextField Title="Retorno" IsEnabled="False"
+                                                Text="{Binding Captura.FichaAnestesica.Retorno}" />
+
+                            <Frame Margin="0, 5, 0, 0"
+                                   BorderColor="{StaticResource Texto}">
+                                <StackLayout>
+                                    <Label Text="Parâmetros Fisiológicos"
+                                           FontFamily="Inter-Medium"
+                                           FontSize="15"
+                                           HorizontalTextAlignment="Center"
+                                           Margin="0, 10, 0, 0"/>
+
+                                    <material:DataGrid ItemsSource="{Binding Captura.FichaAnestesica.ParametrosFisiologicos}" 
+                                                       HorizontalOptions="Center" BackgroundColor="White">
+                                        <material:DataGrid.Columns>
+                                            <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="FC" ValueBinding="{Binding Fc}"/>
+                                            <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="FR" ValueBinding="{Binding Fr}"/>
+                                            <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="Oximet." ValueBinding="{Binding Oximetria}"/>
+                                            <material:DataGridColumn x:DataType="models:ParametroFisiologico" Title="Temper." ValueBinding="{Binding Temperatura}"/>
+                                        </material:DataGrid.Columns>
+                                    </material:DataGrid>
+
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+                    
                     </ScrollView>
                 </DataTemplate>
             </material:TabItem.ContentTemplate>
@@ -132,84 +145,84 @@
         <material:TabItem Title="Biometria">
             <material:TabItem.ContentTemplate>
                 <DataTemplate>
-                    <ScrollView Padding="15">
-                        <Border>
-                            <StackLayout Padding="15" Spacing="15">
+                    <ScrollView Margin="0, 10, 0, 0">
+        
+                        <StackLayout Padding="15" Spacing="15">
                                
-                                <material:TextField Title="Comprimento Total" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoTotal}" />
+                            <material:TextField Title="Comprimento Total" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoTotal}" />
 
-                                <material:TextField Title="Comprimento da Cabeça" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoDaCabeca}" />
+                            <material:TextField Title="Comprimento da Cabeça" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoDaCabeca}" />
 
-                                <material:TextField Title="Largura da Cabeça" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.LarguraDaCabeca}" />
+                            <material:TextField Title="Largura da Cabeça" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.LarguraDaCabeca}" />
 
-                                <material:TextField Title="Padrão do Escudo Cefálico" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.PadraoEscudoCefalico}" />
+                            <material:TextField Title="Padrão do Escudo Cefálico" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.PadraoEscudoCefalico}" />
 
-                                <material:TextField Title="Comprimento do Escudo Cefálico" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoEscudoCefalico}" />
+                            <material:TextField Title="Comprimento do Escudo Cefálico" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoEscudoCefalico}" />
 
-                                <material:TextField Title="Largura do Escudo Cefálico" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.LarguraEscudoCefalico}" />
+                            <material:TextField Title="Largura do Escudo Cefálico" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.LarguraEscudoCefalico}" />
 
-                                <material:TextField Title="Largura Inter-Orbital" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.LarguraInterOrbital}" />
+                            <material:TextField Title="Largura Inter-Orbital" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.LarguraInterOrbital}" />
 
-                                <material:TextField Title="Largura Inter-Lacrimal" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.LarguraInterLacrimal}" />
+                            <material:TextField Title="Largura Inter-Lacrimal" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.LarguraInterLacrimal}" />
 
-                                <material:TextField Title="Comprimento da Orelha" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoDaOrelha}" />
+                            <material:TextField Title="Comprimento da Orelha" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoDaOrelha}" />
 
-                                <material:TextField Title="Comprimento da Cauda" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoDaCauda}" />
+                            <material:TextField Title="Comprimento da Cauda" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoDaCauda}" />
 
-                                <material:TextField Title="Largura da Cauda" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.LarguraDaCauda}" />
+                            <material:TextField Title="Largura da Cauda" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.LarguraDaCauda}" />
 
-                                <material:TextField Title="Comprimento do Escudo Escapular" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoEscudoEscapular}" />
+                            <material:TextField Title="Comprimento do Escudo Escapular" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoEscudoEscapular}" />
 
-                                <material:TextField Title="Semicircunferência do Escudo Escapular" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.SemicircunferenciaEscudoEscapular}" />
+                            <material:TextField Title="Semicircunferência do Escudo Escapular" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.SemicircunferenciaEscudoEscapular}" />
 
-                                <material:TextField Title="Comprimento do Escudo Pélvico" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoEscudoPelvico}" />
+                            <material:TextField Title="Comprimento do Escudo Pélvico" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoEscudoPelvico}" />
 
-                                <material:TextField Title="Semicircunferência do Escudo Pélvico" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.SemicircunferenciaEscudoPelvico}" />
+                            <material:TextField Title="Semicircunferência do Escudo Pélvico" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.SemicircunferenciaEscudoPelvico}" />
 
-                                <material:TextField Title="Largura na Segunda Cinta" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.LarguraNaSegundaCinta}" />
+                            <material:TextField Title="Largura na Segunda Cinta" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.LarguraNaSegundaCinta}" />
 
-                                <material:TextField Title="Número de Cintas" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.NumeroDeCintas}" />
+                            <material:TextField Title="Número de Cintas" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.NumeroDeCintas}" />
 
-                                <material:TextField Title="Comprimento da Mão Sem Unha" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoMaoSemUnha}" />
+                            <material:TextField Title="Comprimento da Mão Sem Unha" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoMaoSemUnha}" />
 
-                                <material:TextField Title="Comprimento da Unha da Mão" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoUnhaDaMao}" />
+                            <material:TextField Title="Comprimento da Unha da Mão" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoUnhaDaMao}" />
 
-                                <material:TextField Title="Comprimento do Pé Sem Unha" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoPeSemUnha}" />
+                            <material:TextField Title="Comprimento do Pé Sem Unha" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoPeSemUnha}" />
 
-                                <material:TextField Title="Comprimento da Unha do Pé" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoUnhaDoPe}" />
+                            <material:TextField Title="Comprimento da Unha do Pé" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoUnhaDoPe}" />
 
-                                <material:TextField Title="Comprimento do Pênis" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoDoPenis}" />
+                            <material:TextField Title="Comprimento do Pênis" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoDoPenis}" />
 
-                                <material:TextField Title="Largura da Base do Pênis" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.LarguraBasePenis}" />
+                            <material:TextField Title="Largura da Base do Pênis" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.LarguraBasePenis}" />
 
-                                <material:TextField Title="Comprimento do Clitóris" IsEnabled="False"
-                                                    Text="{Binding Captura.Biometria.ComprimentoDoClitoris}" />
+                            <material:TextField Title="Comprimento do Clitóris" IsEnabled="False"
+                                                Text="{Binding Captura.Biometria.ComprimentoDoClitoris}" />
 
-                            </StackLayout>
-                        </Border>
+                        </StackLayout>
+      
                     </ScrollView>
                 </DataTemplate>
             </material:TabItem.ContentTemplate>
@@ -219,82 +232,82 @@
         <material:TabItem Title="Amostras">
             <material:TabItem.ContentTemplate>
                 <DataTemplate>
-                    <ScrollView Padding="15">
-                        <Border>
-                            <StackLayout Padding="15" Spacing="15">
+                    <ScrollView Margin="0, 10, 0, 0">
+            
+                        <StackLayout Padding="15" Spacing="15">
 
-                                <material:TextField Title="Sangue" IsEnabled="False"
-                                                    Text="Coletado">
+                            <material:TextField Title="Sangue" IsEnabled="False"
+                                                Text="Coletado">
 
-                                    <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Sangue}" Value="False">
-                                            <Setter Property="Text" Value="Não coletado"/>
-                                        </DataTrigger>
-                                    </material:TextField.Triggers>
+                                <material:TextField.Triggers>
+                                    <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Sangue}" Value="False">
+                                        <Setter Property="Text" Value="Não coletado"/>
+                                    </DataTrigger>
+                                </material:TextField.Triggers>
 
-                                </material:TextField>
+                            </material:TextField>
 
-                                <material:TextField Title="Pelo" IsEnabled="False"
-                                                    Text="Coletado">
+                            <material:TextField Title="Pelo" IsEnabled="False"
+                                                Text="Coletado">
 
-                                    <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Pelo}" Value="False">
-                                            <Setter Property="Text" Value="Não coletado"/>
-                                        </DataTrigger>
-                                    </material:TextField.Triggers>
+                                <material:TextField.Triggers>
+                                    <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Pelo}" Value="False">
+                                        <Setter Property="Text" Value="Não coletado"/>
+                                    </DataTrigger>
+                                </material:TextField.Triggers>
 
-                                </material:TextField>
+                            </material:TextField>
 
-                                <material:TextField Title="SWAB" IsEnabled="False"
-                                                    Text="Coletado">
+                            <material:TextField Title="SWAB" IsEnabled="False"
+                                                Text="Coletado">
 
-                                    <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Swab}" Value="False">
-                                            <Setter Property="Text" Value="Não coletado"/>
-                                        </DataTrigger>
-                                    </material:TextField.Triggers>
+                                <material:TextField.Triggers>
+                                    <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Swab}" Value="False">
+                                        <Setter Property="Text" Value="Não coletado"/>
+                                    </DataTrigger>
+                                </material:TextField.Triggers>
 
-                                </material:TextField>
+                            </material:TextField>
 
-                                <material:TextField Title="Fezes" IsEnabled="False"
-                                                    Text="Coletado">
+                            <material:TextField Title="Fezes" IsEnabled="False"
+                                                Text="Coletado">
 
-                                    <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Fezes}" Value="False">
-                                            <Setter Property="Text" Value="Não coletado"/>
-                                        </DataTrigger>
-                                    </material:TextField.Triggers>
+                                <material:TextField.Triggers>
+                                    <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Fezes}" Value="False">
+                                        <Setter Property="Text" Value="Não coletado"/>
+                                    </DataTrigger>
+                                </material:TextField.Triggers>
 
-                                </material:TextField>
+                            </material:TextField>
 
-                                <material:TextField Title="Ectoparasitos" IsEnabled="False"
-                                                    Text="Coletado">
+                            <material:TextField Title="Ectoparasitos" IsEnabled="False"
+                                                Text="Coletado">
 
-                                    <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Ectoparasitos}" Value="False">
-                                            <Setter Property="Text" Value="Não coletado"/>
-                                        </DataTrigger>
-                                    </material:TextField.Triggers>
+                                <material:TextField.Triggers>
+                                    <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Ectoparasitos}" Value="False">
+                                        <Setter Property="Text" Value="Não coletado"/>
+                                    </DataTrigger>
+                                </material:TextField.Triggers>
 
-                                </material:TextField>
+                            </material:TextField>
 
-                                <material:TextField Title="Local" IsEnabled="False"
-                                                    Text="Coletado">
+                            <material:TextField Title="Local" IsEnabled="False"
+                                                Text="Coletado">
 
-                                    <material:TextField.Triggers>
-                                        <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Local}" Value="False">
-                                            <Setter Property="Text" Value="Não coletado"/>
-                                        </DataTrigger>
-                                    </material:TextField.Triggers>
+                                <material:TextField.Triggers>
+                                    <DataTrigger TargetType="material:TextField" Binding="{Binding Captura.Amostra.Local}" Value="False">
+                                        <Setter Property="Text" Value="Não coletado"/>
+                                    </DataTrigger>
+                                </material:TextField.Triggers>
 
-                                </material:TextField>
+                            </material:TextField>
 
-                                <material:EditorField Title="Outros"
-                                                      IsEnabled="False"
-                                                      Text="{Binding Captura.Amostra.Outros}"/>
+                            <material:EditorField Title="Outros"
+                                                    IsEnabled="False"
+                                                    Text="{Binding Captura.Amostra.Outros}"/>
 
-                            </StackLayout>
-                        </Border>
+                        </StackLayout>
+                        
                     </ScrollView>
                 </DataTemplate>
             </material:TabItem.ContentTemplate>

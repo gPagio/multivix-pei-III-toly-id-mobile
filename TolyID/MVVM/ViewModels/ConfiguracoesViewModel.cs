@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using TolyID.Constants;
 using TolyID.Helpers;
 using TolyID.Services.Api;
 using TolyID.Services.Api.Gerar;
@@ -37,12 +38,12 @@ public partial class ConfiguracoesViewModel : ObservableObject
             var tatuApiService = ServiceHelper.GetService<TatusApiService>();
             var capturaApiService = ServiceHelper.GetService<CapturaApiService>();
 
-            await SecureStorage.SetAsync("token_api", await gerarToken.Gerar());
+            await SecureStorage.GetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY);
 
-            await tatuApiService.Cadastrar();
-            await capturaApiService.Cadastrar();
-            await tatuApiService.AtualizarTatus();
-            await capturaApiService.AtualizarCapturas();
+            await tatuApiService.CadastraTatu();
+            await capturaApiService.CadastraCaptura();
+            await tatuApiService.AtualizaTatus();
+            await capturaApiService.AtualizaCapturas();
 
             await Shell.Current.DisplayAlert("Sucesso", "Dados Sincronizados!", "Ok");
         }
@@ -69,6 +70,7 @@ public partial class ConfiguracoesViewModel : ObservableObject
 
         if (resposta)
         {
+            await SecureStorage.SetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY, "");
             await Shell.Current.GoToAsync("//LoginView");
         }
     }

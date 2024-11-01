@@ -20,15 +20,15 @@
 
             <input:FormView Spacing="20" SubmitCommand="{Binding CadastroCommand}">
 
-                <material:TextField Title="Nome de Usuário">
+                <material:TextField Title="Nome de Usuário" Text="{Binding Usuario.Nome}">
                     <validation:RequiredValidation Message="Preencha o usuário"/>
                 </material:TextField>
 
-                <material:TextField Title="Telefone">
+                <material:TextField Title="Telefone" Text="{Binding Usuario.Telefone}">
                     <validation:RequiredValidation Message="Preencha o telefone"/>
                 </material:TextField>
 
-                <material:TextField Title="E-mail">
+                <material:TextField Title="E-mail" Text="{Binding Usuario.Email}">
                     <validation:RequiredValidation Message="Preencha o e-mail"/>
                     <validation:RegexValidation Pattern="{x:Static input:AdvancedEntry.REGEX_EMAIL}" Message="Email inválido!" />
                 </material:TextField>
@@ -40,7 +40,7 @@
                     </material:TextField.Attachments>
                 </material:TextField>
 
-                <material:TextField Title="Confirme a senha">
+                <material:TextField Title="Confirme a senha" Text="{Binding Usuario.Senha}">
                     <validation:RequiredValidation Message="Confime a senha"/>
 
                     <custom_validations:SenhasIguaisValidation SenhaOriginal="{Binding Source={x:Reference Senha}, Path=Text}"

@@ -2,6 +2,8 @@
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 #endif
 
+using System.IdentityModel.Tokens.Jwt;
+using TolyID.Constants;
 using TolyID.MVVM.Views.CadastroDeCaptura;
 
 namespace TolyID;
@@ -14,18 +16,35 @@ public partial class App : Application
 
         MainPage = new AppShell();
         //MainPage = new BiometriaView(new MVVM.ViewModels.CadastroCapturaViewModel(new MVVM.Models.Tatu(), new Services.CapturaService())); 
+    }
 
-        bool usuarioEstaLogado = CheckarUsuarioLogado();
+    protected override async void OnStart()
+    {
+        bool usuarioEstaLogado = await CheckarUsuarioLogado();
 
         if (!usuarioEstaLogado)
         {
-            Shell.Current.GoToAsync("//LoginView");
+            await Shell.Current.GoToAsync("//LoginView");
         }
     }
 
-    private bool CheckarUsuarioLogado()
+    private async Task<bool> CheckarUsuarioLogado()
     {
-        // TODO: IMPLEMENTAR LÓGICA
+        var token = await SecureStorage.GetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY);
+
+        if (string.IsNullOrEmpty(token)) 
+        {
+            return false;
+        }
+
+        JwtSecurityTokenHandler jwtHandler = new();
+        var jwtToken = jwtHandler.ReadJwtToken(token);
+
+        if (jwtToken.ValidTo < DateTime.UtcNow) 
+        {
+            return false;
+        }
+
         return true;
     }
 }

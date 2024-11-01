@@ -16,8 +16,8 @@
             <Label Text="Início" TextColor="White" FontSize="20" FontFamily="Inter-Medium" VerticalOptions="Center"/>
             
             <ImageButton Grid.Column="1" 
-                         Source="icone_filtro.png"
-                         Scale=".65"
+                         Source="icone_ordenar.png"
+                         Scale=".7"
                          HorizontalOptions="End"
                          BackgroundColor="Transparent"
                          Command="{Binding FiltrosCommand}"/>
