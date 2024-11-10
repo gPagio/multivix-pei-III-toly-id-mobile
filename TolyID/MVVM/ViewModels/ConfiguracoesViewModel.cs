@@ -15,7 +15,7 @@ public partial class ConfiguracoesViewModel : ObservableObject
     private string ip;
 
     [ObservableProperty]
-    private bool isBusy = false;
+    private bool estaCarregando = false;
 
     public ConfiguracoesViewModel()
     {
@@ -26,7 +26,7 @@ public partial class ConfiguracoesViewModel : ObservableObject
     [RelayCommand]
     private async Task Sincroniza()
     {
-        IsBusy = true;
+        EstaCarregando = true;
         try
         {
             AtualizaIp();
@@ -38,7 +38,21 @@ public partial class ConfiguracoesViewModel : ObservableObject
             var tatuApiService = ServiceHelper.GetService<TatusApiService>();
             var capturaApiService = ServiceHelper.GetService<CapturaApiService>();
 
-            await SecureStorage.GetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY);
+            var token = await SecureStorage.GetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY);
+
+            // Confere se usuário está logado ou não
+            if (string.IsNullOrEmpty(token))
+            {
+                EstaCarregando = false;
+                bool resposta = await Shell.Current.DisplayAlert("Erro", "Você está offline. Realize login para sincronizar os dados", "Fazer Login", "Cancelar");
+
+                if (resposta) 
+                {
+                    await Shell.Current.GoToAsync("//LoginView");
+                }
+
+                return;
+            }
 
             await tatuApiService.CadastraTatu();
             await capturaApiService.CadastraCaptura();
@@ -49,9 +63,9 @@ public partial class ConfiguracoesViewModel : ObservableObject
         }
         catch (Exception ex) 
         {
-            await Shell.Current.DisplayAlert("Erro", $"Ocorreu um erro ao sincronizar os dados: {ex.Message}!", "Ok");
+            await Shell.Current.DisplayAlert("Erro", $"{ex.Message}", "Ok");
         }
-        IsBusy = false;
+        EstaCarregando = false;
     }
 
     private void AtualizaIp()

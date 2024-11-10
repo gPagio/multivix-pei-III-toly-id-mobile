@@ -1,9 +1,12 @@
 ﻿#if ANDROID
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 #endif
-
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using TolyID.Constants;
+using TolyID.Helpers;
+using TolyID.MVVM.ViewModels;
+using TolyID.MVVM.Views;
 using TolyID.MVVM.Views.CadastroDeCaptura;
 
 namespace TolyID;
@@ -14,7 +17,10 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        MainPage = new AppShell();
+        MainPage = new CarregamentoView();
+
+        //Shell.Current.GoToAsync("CarregamentoView");
+        //Shell.Current.GoToAsync("..");
         //MainPage = new BiometriaView(new MVVM.ViewModels.CadastroCapturaViewModel(new MVVM.Models.Tatu(), new Services.CapturaService())); 
     }
 
@@ -22,9 +28,14 @@ public partial class App : Application
     {
         bool usuarioEstaLogado = await CheckarUsuarioLogado();
 
-        if (!usuarioEstaLogado)
+        if (usuarioEstaLogado)
         {
-            await Shell.Current.GoToAsync("//LoginView");
+            MainPage = new AppShell();
+        }
+        else
+        {
+            var loginView = ServiceHelper.GetService<LoginView>();
+            MainPage = loginView;
         }
     }
 
@@ -32,19 +43,23 @@ public partial class App : Application
     {
         var token = await SecureStorage.GetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY);
 
-        if (string.IsNullOrEmpty(token)) 
+        if (!string.IsNullOrEmpty(token) && TokenValido(token))
+        {
+            return true;
+        }
+        else
         {
             return false;
         }
+    }
 
+    private bool TokenValido(string token)
+    {
         JwtSecurityTokenHandler jwtHandler = new();
         var jwtToken = jwtHandler.ReadJwtToken(token);
 
-        if (jwtToken.ValidTo < DateTime.UtcNow) 
-        {
-            return false;
-        }
+        Debug.WriteLine(jwtToken.ValidTo);
 
-        return true;
+        return jwtToken.ValidTo > DateTime.UtcNow;
     }
 }

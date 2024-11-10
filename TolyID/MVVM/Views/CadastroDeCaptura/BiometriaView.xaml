@@ -129,19 +129,19 @@
 
                 <material:TextField x:Name="ComprimentoPenis"
                                     Title="Comprimento do Pênis" Keyboard="Numeric" 
-                                    Text="{Binding ComprimentoDoPenis}">
+                                    Text="{Binding Captura.Biometria.ComprimentoDoPenis}">
                     <custom_validation:MachoValidation CampoFemea="{Binding Source={x:Reference ComprimentoClitoris}, Path=Text}"/>
                 </material:TextField>
 
                 <material:TextField x:Name="LarguraBasePenis" 
                                     Title="Largura da Base do Pênis" Keyboard="Numeric"
-                                    Text="{Binding LarguraBasePenis}">
+                                    Text="{Binding Captura.Biometria.LarguraBasePenis}">
                     <custom_validation:MachoValidation CampoFemea="{Binding Source={x:Reference ComprimentoClitoris}, Path=Text}"/>
                 </material:TextField>
 
                 <material:TextField x:Name="ComprimentoClitoris"
                                     Title="Comprimento do Clitóris" Keyboard="Numeric"
-                                    Text="{Binding ComprimentoDoClitoris}">
+                                    Text="{Binding Captura.Biometria.ComprimentoDoClitoris}">
                     <custom_validation:FemeaValidation Campo1="{Binding Source={x:Reference ComprimentoPenis}, Path=Text}"
                                                        Campo2="{Binding Source={x:Reference LarguraBasePenis}, Path=Text}"/>
                 </material:TextField>

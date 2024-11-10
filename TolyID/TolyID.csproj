@@ -128,6 +128,9 @@
 	  <MauiXaml Update="MVVM\Views\CapturaView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CarregamentoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\ConfiguracoesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

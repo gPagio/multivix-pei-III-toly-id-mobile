@@ -14,7 +14,7 @@ namespace TolyID.DTO
         public string? IdentificacaoAnimal { get; set; }
 
         [JsonProperty("numeroMicrochip")]
-        public int NumeroMicrochip { get; set; }
+        public int? NumeroMicrochip { get; set; }
         public TatuDTO(Tatu tatu)
         {
             IdentificacaoAnimal = tatu.IdentificacaoAnimal;

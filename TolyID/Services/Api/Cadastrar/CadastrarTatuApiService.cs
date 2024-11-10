@@ -14,7 +14,7 @@ public class CadastrarTatuApiService : BaseApi
     {
         public int Id { get; set; }
         public string IdentificacaoAnimal { get; set; }
-        public int NumeroMicrochip { get; set; }
+        public int? NumeroMicrochip { get; set; }
     }
 
     private readonly TatuService _tatuService;
@@ -31,7 +31,7 @@ public class CadastrarTatuApiService : BaseApi
         if (string.IsNullOrEmpty(token))
         {
             throw new Exception("Token Inválido");
-        }
+        } 
 
         string url = $"http://{UrlBaseApi}:8080/tatus/cadastrar";
 

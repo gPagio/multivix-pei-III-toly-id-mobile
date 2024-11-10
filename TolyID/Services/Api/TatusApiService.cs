@@ -22,7 +22,7 @@ public class TatusApiService
 
     public async Task CadastraTatu()
     {
-        var token = await SecureStorage.GetAsync("token_api");
+        var token = await SecureStorage.GetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY);
 
         if (string.IsNullOrEmpty(token)) 
         {

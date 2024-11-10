@@ -13,7 +13,7 @@ public partial class EditarTatuViewModel : ObservableObject
     private bool microchipAtivado = false;
 
     [ObservableProperty]
-    private int numeroMicrochip;
+    private int? numeroMicrochip;
 
     private Tatu _tatu;
     public Tatu Tatu

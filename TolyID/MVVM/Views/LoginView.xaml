@@ -9,49 +9,55 @@
              x:Class="TolyID.MVVM.Views.LoginView"
              Shell.NavBarIsVisible="False"
              BackgroundColor="White">
+
+    <Grid>
+
+        <VerticalStackLayout Padding="40" VerticalOptions="Center" Spacing="40" >
+
+            <Label Text="Bem vindo!"
+                   FontSize="30"
+                   FontFamily="Inter-Medium"/>
+
+            <input:FormView Spacing="20" SubmitCommand="{Binding RealizaLoginCommand}">
+
+                <material:TextField Title="Email" Text="{Binding Email}">
+                    <validation:RequiredValidation Message="Preencha o e-mail"/>
+                    <validation:RegexValidation Pattern="{x:Static input:AdvancedEntry.REGEX_EMAIL}" Message="Email inválido"/>
+                </material:TextField>
+
+                <material:TextField Title="Senha" Text="{Binding Senha}" IsPassword="True">
+                    <validation:RequiredValidation Message="Preencha a senha"/>
+                    <material:TextField.Attachments>
+                        <material:TextFieldPasswordShowHideAttachment/>
+                    </material:TextField.Attachments>
+                </material:TextField>
+
+                <Button input:FormView.IsSubmitButton="True"
+                        Style="{StaticResource Botao}"
+                        Text="Entrar"
+                        WidthRequest="150"
+                        Margin="0, 20, 0, 0"/>
+
+            </input:FormView>
+
+            <BoxView BackgroundColor="LightGray"
+                     HeightRequest="1"/>
+
+            <Label HorizontalTextAlignment="Center"
+                   Text="Usar modo offline"
+                   TextColor="{StaticResource Primary}"
+                   TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ModoOfflineCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+
+        </VerticalStackLayout>
+
+        <ActivityIndicator IsVisible="{Binding EstaCarregando}"
+                           IsRunning="{Binding EstaCarregando}"
+                           Scale=".13"/>
+    </Grid>
     
-    <VerticalStackLayout Padding="40" VerticalOptions="Center" Spacing="40" >
-
-        <Label Text="Bem vindo!"
-               FontSize="30"
-               FontFamily="Inter-Medium"/>
-
-        <input:FormView Spacing="20" SubmitCommand="{Binding RealizaLoginCommand}">
-
-            <material:TextField Title="Email" Text="{Binding Email}">
-                <validation:RequiredValidation Message="Preencha o e-mail"/>
-            </material:TextField>
-            
-            <material:TextField Title="Senha" Text="{Binding Senha}" IsPassword="True">
-                <validation:RequiredValidation Message="Preencha a senha"/>
-                <material:TextField.Attachments>
-                    <material:TextFieldPasswordShowHideAttachment/>
-                </material:TextField.Attachments>
-            </material:TextField>
-
-            <Button input:FormView.IsSubmitButton="True"
-                    Style="{StaticResource Botao}"
-                    Text="Entrar"
-                    WidthRequest="150"
-                    Margin="0, 20, 0, 0"/>
-
-        </input:FormView>
-
-        <BoxView BackgroundColor="LightGray"
-                 HeightRequest="1"/>
-
-        <Label HorizontalTextAlignment="Center">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Não tem uma conta? " TextColor="{StaticResource Texto}"/>
-                    <Span Text="Cadastre-se." TextColor="{StaticResource Primary}" TextDecorations="Underline">
-                        <Span.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding NavegaParaParaTelaDeCadastroCommand}"/>
-                        </Span.GestureRecognizers>
-                    </Span>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-
-    </VerticalStackLayout>
 </ContentPage>

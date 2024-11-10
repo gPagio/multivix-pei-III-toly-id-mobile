@@ -59,8 +59,8 @@
 
     <Style x:Key="LabelTitulo" TargetType="Label">
         <Setter Property="TextColor" Value="White"/>
-        <Setter Property="HorizontalOptions" Value="Center"/>
-        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Inter-SemiBold"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>

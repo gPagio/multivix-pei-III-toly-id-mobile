@@ -3,6 +3,7 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views.CadastroDeCaptura;
 using TolyID.Services;
@@ -31,8 +32,6 @@ public partial class CadastroCapturaViewModel : ObservableObject
     private double? larguraBasePenis;
     [ObservableProperty]
     private double? comprimentoDoClitoris;
-
-
 
     // Indicador de carregamento
     [ObservableProperty]
@@ -101,6 +100,10 @@ public partial class CadastroCapturaViewModel : ObservableObject
 
         Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
         Captura.DadosGerais.DataHoraDeCaptura = DataDeCaptura.Date + HorarioDeCaptura;
+
+        Debug.WriteLine(Captura.Biometria.ComprimentoDoPenis);
+        Debug.WriteLine(Captura.Biometria.LarguraBasePenis);
+        Debug.WriteLine(Captura.Biometria.ComprimentoDoClitoris);
 
         if (Captura.Id == 0)
         {

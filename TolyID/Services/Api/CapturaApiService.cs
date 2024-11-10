@@ -23,7 +23,7 @@ public class CapturaApiService
 
     public async Task CadastraCaptura()
     {    
-        var token = await SecureStorage.GetAsync("token_api");
+        var token = await SecureStorage.GetAsync(AppConstants.SECURE_STORAGE_API_TOKEN_KEY);
 
         if (string.IsNullOrEmpty(token))
         {

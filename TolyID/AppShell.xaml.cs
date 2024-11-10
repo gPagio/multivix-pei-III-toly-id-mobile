@@ -11,6 +11,7 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         RegisterForRoute<ConfiguracoesView>();
+        RegisterForRoute<CarregamentoView>();
     }
 
     protected void RegisterForRoute<T>()

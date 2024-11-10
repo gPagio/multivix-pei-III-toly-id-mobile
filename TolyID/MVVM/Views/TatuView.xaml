@@ -10,8 +10,7 @@
              Title="{Binding Tatu.IdentificacaoAnimal}"           
              Shell.BackgroundColor="{StaticResource Primary}"
              Shell.TitleColor="White"
-             BackgroundColor="{StaticResource Background}"
-             Padding="15">
+             BackgroundColor="White">
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="7*, 1.5*, 1.5*">
@@ -21,114 +20,129 @@
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="1.5*,8.5*" ColumnDefinitions="*, *" RowSpacing="15" ColumnSpacing="15">
+    <Grid RowDefinitions="2.5*, 7.5*" RowSpacing="15" Margin="25, 10, 25, 0">
 
-        <Border>
-            <StackLayout VerticalOptions="Center" Spacing="5">
-                <Label Text="Chip"
-                       TextColor="{StaticResource Texto}"
-                       FontFamily="Inter-Regular"
-                       FontSize="15"
-                       HorizontalTextAlignment="Center"
-                       Opacity=".8"/>
-                <Label Text="{Binding Tatu.NumeroMicrochip}" 
-                       TextColor="{StaticResource Texto}"
-                       FontFamily="Inter-SemiBold"
-                       FontSize="20"
-                       HorizontalTextAlignment="Center"/>
-            </StackLayout>
-        </Border>
+        <StackLayout VerticalOptions="Center" Spacing="25">
 
-        <Border Grid.Column="1">
-            <StackLayout VerticalOptions="Center" Spacing="5">
-                <Label Text="N° de Capturas"
-                       TextColor="{StaticResource Texto}"
-                       FontFamily="Inter-Regular"
-                       FontSize="15"
-                       HorizontalTextAlignment="Center"
-                       Opacity=".8"/>
-                <Label Text="{Binding NumeroDeCapturas}" 
-                       TextColor="{StaticResource Texto}"
-                       FontFamily="Inter-SemiBold"
-                       FontSize="20"
-                       HorizontalTextAlignment="Center"/>
-            </StackLayout>
-        </Border>
+            <Label Text="Dados" 
+                   Style="{StaticResource LabelTitulo}" 
+                   TextColor="{StaticResource Texto}"
+                   FontSize="16"/>
 
-        <Border Grid.Row="1" Grid.ColumnSpan="2">
-            <StackLayout Spacing="17" Padding="0, 20, 0, 10">
-                <Label Text="Capturas" 
-                       Style="{StaticResource LabelTitulo}" 
-                       TextColor="{StaticResource Texto}"
-                       FontSize="16"/>
-                <ScrollView>
-                    <CollectionView ItemsSource="{Binding Tatu.Capturas}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:Captura">
+            <Grid ColumnDefinitions="2*, 8*" RowDefinitions="*, *" ColumnSpacing="5" Margin="-20, 0, 0, 0">
+                <Image Grid.RowSpan="2"
+                       Source="icone_microchip.png" 
+                       Opacity=".6"/>
 
-                                <SwipeView>
-                                    <SwipeView.LeftItems>
-                                        <SwipeItems SwipeBehaviorOnInvoked="Close">
-                                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatuViewModel}}, Path=DeletaCapturaCommand}" 
-                                                           CommandParameter="{Binding .}"
-                                                           IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}">
-                                                <Frame BorderColor="Transparent" BackgroundColor="LightPink"
-                                                       CornerRadius="0"
-                                                       Padding="10"
-                                                       WidthRequest="70">
-                                                    <Image Source="icone_apagar.png" Scale=".45"/>
-                                                </Frame>
-                                            </SwipeItemView>
-                                        </SwipeItems>
-                                    </SwipeView.LeftItems>
+                <Label Grid.Column="1" 
+                       Text="Microchip"
+                       Opacity=".6"
+                       FontSize="13"/>
 
-                                    <StackLayout>
+                <Label Grid.Column="1" Grid.Row="1"
+                       Text="{Binding Tatu.NumeroMicrochip, TargetNullValue='Não cadastrado'}"
+                       FontFamily="Inter-Medium"
+                       FontSize="17"/>
+            </Grid>
 
-                                        <StackLayout.Behaviors>
-                                            <toolkit:TouchBehavior DefaultAnimationDuration="250"
-                                                                   DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
-                                                                   PressedOpacity="0.6" 
-                                                                   PressedBackgroundColor="{StaticResource Gray100}"/>
-                                        </StackLayout.Behaviors>
+            <Grid ColumnDefinitions="2*, 8*" RowDefinitions="*, *" ColumnSpacing="5" Margin="-20, 0, 0, 0">
+                <Image Grid.RowSpan="2"
+                       Source="icone_lista.png" 
+                       Opacity=".6"/>
 
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatuViewModel}}, Path=VisualizaCapturaCommand}"
-                                                                  CommandParameter="{Binding .}"/>
-                                        </StackLayout.GestureRecognizers>
+                <Label Grid.Column="1" 
+                       Text="N° de Capturas"
+                       Opacity=".6"
+                       FontSize="13"/>
 
-                                        <Frame Padding="20, 10, 10, 10" BorderColor="Transparent" BackgroundColor="Transparent" InputTransparent="False" CornerRadius="0">
-                                            <Grid ColumnDefinitions="8*, 2*">
+                <Label Grid.Column="1" Grid.Row="1"
+                       Text="{Binding Tatu.Capturas.Count}"
+                       FontFamily="Inter-Medium"
+                       FontSize="17"/>
+            </Grid>
 
-                                                <StackLayout Spacing="-16">
-                                                    <Label Text="{Binding DadosGerais.DataHoraDeCaptura, StringFormat='Data: {0:dd/MM/yyyy}'}" 
-                                                           FontFamily="Inter-Medium" 
-                                                           FontSize="17"  
-                                                           TextColor="{StaticResource Texto}"/>
-                                                    <Label Text="{Binding DadosGerais.DataHoraDeCaptura.TimeOfDay, StringFormat='&#x0a;Horário: {0:hh\\:mm}'}" 
-                                                           FontFamily="Inter-Regular" 
-                                                           FontSize="15" 
-                                                           TextColor="{StaticResource Texto}"
-                                                           Opacity=".85"/>
-                                                </StackLayout>
+        </StackLayout>
 
-                                                <Image Grid.Column="1"
-                                                       VerticalOptions="CenterAndExpand"
-                                                       HorizontalOptions="CenterAndExpand"
-                                                       Scale="1.3"                                                       
-                                                       Source="icone_dessincronizado.png"
-                                                       IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}"/>
-                                            </Grid>
-                                        </Frame>
-                                        <BoxView BackgroundColor="Black" Opacity=".25" HeightRequest=".1"/>
-                                    </StackLayout>
-                                </SwipeView>
+        <StackLayout Spacing="17" Padding="0, 20, 0, 10"
+                        Grid.Row="1" Grid.ColumnSpan="2">
+            <Label Text="Capturas" 
+                    Style="{StaticResource LabelTitulo}" 
+                    TextColor="{StaticResource Texto}"
+                    FontSize="16"/>
+            <ScrollView>
+                <CollectionView ItemsSource="{Binding Tatu.Capturas}">
 
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </ScrollView>
-            </StackLayout>
-        </Border>
+                    <CollectionView.EmptyView>
+                        <Label Text="Nenhuma captura registrada"
+                               TextColor="{StaticResource Texto}"/>
+                    </CollectionView.EmptyView>
+                    
+                    
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Captura">
+
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems SwipeBehaviorOnInvoked="Close">
+                                        <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatuViewModel}}, Path=DeletaCapturaCommand}" 
+                                                        CommandParameter="{Binding .}"
+                                                        IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}">
+                                            <Frame BorderColor="Transparent" BackgroundColor="LightPink"
+                                                    CornerRadius="0"
+                                                    Padding="10"
+                                                    WidthRequest="70">
+                                                <Image Source="icone_apagar.png" Scale=".45"/>
+                                            </Frame>
+                                        </SwipeItemView>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+
+                                <StackLayout>
+
+                                    <StackLayout.Behaviors>
+                                        <toolkit:TouchBehavior DefaultAnimationDuration="250"
+                                                                DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                                                PressedOpacity="0.6" 
+                                                                PressedBackgroundColor="{StaticResource Gray100}"/>
+                                    </StackLayout.Behaviors>
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TatuViewModel}}, Path=VisualizaCapturaCommand}"
+                                                                CommandParameter="{Binding .}"/>
+                                    </StackLayout.GestureRecognizers>
+
+
+                                    <Grid ColumnDefinitions="8*, 2*" HeightRequest="57">
+
+                                        <StackLayout Spacing="-16">
+                                            <Label Text="{Binding DadosGerais.DataHoraDeCaptura, StringFormat='Data: {0:dd/MM/yyyy}'}" 
+                                                    FontFamily="Inter-Medium" 
+                                                    FontSize="17"  
+                                                    TextColor="{StaticResource Texto}"/>
+                                            <Label Text="{Binding DadosGerais.DataHoraDeCaptura.TimeOfDay, StringFormat='&#x0a;Horário: {0:hh\\:mm}'}" 
+                                                    FontFamily="Inter-Regular" 
+                                                    FontSize="15" 
+                                                    TextColor="{StaticResource Texto}"
+                                                    Opacity=".85"/>
+                                        </StackLayout>
+
+                                        <Image Grid.Column="1"
+                                                VerticalOptions="CenterAndExpand"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Scale="1.3"                                                       
+                                                Source="icone_dessincronizado.png"
+                                                IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}"/>
+                                    </Grid>
+
+                                    <BoxView BackgroundColor="Black" Opacity=".25" HeightRequest=".1"/>
+                                </StackLayout>
+                            </SwipeView>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </StackLayout>
 
         <ActivityIndicator IsRunning="{Binding IsBusy}"
                            IsVisible="{Binding IsBusy}"

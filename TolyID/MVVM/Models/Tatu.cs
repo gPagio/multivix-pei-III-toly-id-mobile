@@ -17,7 +17,7 @@ public class Tatu
 
     public string? IdentificacaoAnimal { get; set; }
 
-    public int NumeroMicrochip { get; set; }
+    public int? NumeroMicrochip { get; set; }
 
     [OneToMany(CascadeOperations = CascadeOperation.All)]
     public List<Captura>? Capturas { get; set; }

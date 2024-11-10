@@ -74,8 +74,8 @@
             </Border>
         </VerticalStackLayout>
 
-        <ActivityIndicator IsRunning="{Binding IsBusy}"
-                           IsVisible="{Binding IsBusy}"
+        <ActivityIndicator IsRunning="{Binding EstaCarregando}"
+                           IsVisible="{Binding EstaCarregando}"
                            Scale=".14"
                            Color="{StaticResource Primary}"/>
 
