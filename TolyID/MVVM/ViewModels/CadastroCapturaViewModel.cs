@@ -24,12 +24,15 @@ public partial class CadastroCapturaViewModel : ObservableObject
     [ObservableProperty]
     private TimeSpan horarioDeCaptura = DateTime.Now.TimeOfDay;
 
-    // Indicador de carregamento
-    [ObservableProperty]
-    private bool isBusy = false;
-
     public ObservableCollection<ParametroFisiologico> ParametrosFisiologicos { get; private set; }
 
+
+    // Indicador de carregamento
+    [ObservableProperty]
+    private bool estaCarregando = false;
+
+    [ObservableProperty]
+    private bool botaoProximoBloqueado = false;
 
     // Construtor da classe para criação de uma nova captura
     public CadastroCapturaViewModel(Tatu tatu, CapturaService capturaService)
@@ -87,7 +90,7 @@ public partial class CadastroCapturaViewModel : ObservableObject
     [RelayCommand]
     private async Task SalvaCapturaNoBanco()
     {
-        IsBusy = true;
+        EstaCarregando = true;
 
         Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
         Captura.DadosGerais.DataHoraDeCaptura = DataDeCaptura.Date + HorarioDeCaptura;
@@ -113,24 +116,34 @@ public partial class CadastroCapturaViewModel : ObservableObject
         await Shell.Current.Navigation.PopAsync(true);
         await Shell.Current.Navigation.PopAsync(true);
 
-        IsBusy = false;
+        EstaCarregando = false;
     }
 
     [RelayCommand]
     private async Task IrParaFichaAnestesica()
     {
+        Task.Run(() => AlternaHabilitacaoBotaoProximo());
         await Shell.Current.Navigation.PushAsync(new FichaAnestesicaView(this));
     }
 
     [RelayCommand]
     private async Task IrParaBiometria()
     {
+        Task.Run(() => AlternaHabilitacaoBotaoProximo());
         await Shell.Current.Navigation.PushAsync(new BiometriaView(this));
     }
 
     [RelayCommand]
     private async Task IrParaAmostras()
     {
+        Task.Run(() => AlternaHabilitacaoBotaoProximo());
         await Shell.Current.Navigation.PushAsync(new AmostrasView(this));
+    }
+
+    private async Task AlternaHabilitacaoBotaoProximo()
+    {
+        BotaoProximoBloqueado = true;
+        await Task.Delay(2000);
+        BotaoProximoBloqueado = false;
     }
 }

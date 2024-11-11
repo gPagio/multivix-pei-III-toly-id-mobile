@@ -37,11 +37,11 @@
         </StackLayout>
 
         <!-- INDICADOR DE SALVAMENTO EM ANDAMENTO -->
-        <BoxView IsVisible="{Binding IsBusy}"
+        <BoxView IsVisible="{Binding EstaCarregando}"
                  Opacity=".3"/>
 
-        <ActivityIndicator IsRunning="{Binding IsBusy}"
-                           IsVisible="{Binding IsBusy}"
+        <ActivityIndicator IsRunning="{Binding EstaCarregando}"
+                           IsVisible="{Binding EstaCarregando}"
                            VerticalOptions="Center"/>
     </Grid>
 </ContentPage>
