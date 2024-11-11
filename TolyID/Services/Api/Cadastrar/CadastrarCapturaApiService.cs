@@ -48,7 +48,7 @@ public class CadastrarCapturaApiService : BaseApi
 
         var content = new StringContent(JsonConvert.SerializeObject(capturaDTO), Encoding.UTF8, "application/json");
 
-        using (HttpClient client = new HttpClient())
+        using (HttpClient client = new HttpClient()) 
         {
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
