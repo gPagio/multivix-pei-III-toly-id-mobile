@@ -22,7 +22,7 @@
 
     <Grid RowDefinitions="2.5*, 7.5*" RowSpacing="15" Margin="25, 10, 25, 0">
 
-        <StackLayout VerticalOptions="Center" Spacing="25">
+        <StackLayout VerticalOptions="Center" Spacing="20">
 
             <Label Text="Dados" 
                    Style="{StaticResource LabelTitulo}" 
@@ -134,7 +134,7 @@
                                                 IsVisible="{Binding FoiEnviadoParaApi, Converter={StaticResource InvertedBoolConverter}}"/>
                                     </Grid>
 
-                                    <BoxView BackgroundColor="Black" Opacity=".25" HeightRequest=".1"/>
+                                    <BoxView BackgroundColor="Black" Opacity=".25" HeightRequest=".1" Margin="0, 0, 0, 5"/>
                                 </StackLayout>
                             </SwipeView>
 

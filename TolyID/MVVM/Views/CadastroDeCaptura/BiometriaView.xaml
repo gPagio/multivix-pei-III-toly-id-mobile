@@ -124,7 +124,7 @@
 
                 <material:TextField Title="Comprimento da Unha do Pé" Keyboard="Numeric"
                                     Text="{Binding Captura.Biometria.ComprimentoUnhaDoPe}">
-                    <validation:RequiredValidation Message="Campo obrigatório!"/>
+                    <!--<validation:RequiredValidation Message="Campo obrigatório!"/>-->
                 </material:TextField>
 
                 <material:TextField x:Name="ComprimentoPenis"

@@ -104,7 +104,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MVVM\Views\BottomSheet\FiltrosBottomSheet.xaml">
+	  <MauiXaml Update="MVVM\Views\BottomSheet\OrdenarTatusBottomSheet.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\CadastroDeCaptura\AmostrasView.xaml">

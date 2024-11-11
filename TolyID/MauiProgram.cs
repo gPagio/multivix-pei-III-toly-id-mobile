@@ -9,6 +9,8 @@ using TolyID.Services.Api.Cadastrar;
 using TolyID.Services.Api.Ler;
 using TolyID.Services.Api.Gerar;
 using The49.Maui.BottomSheet;
+using TolyID.MVVM.ViewModels.BottomSheet;
+using TolyID.MVVM.Views.BottomSheet;
 
 namespace TolyID
 {
@@ -77,6 +79,8 @@ namespace TolyID
             mauiAppBuider.Services.AddTransient<CadastroUsuarioViewModel>();
             mauiAppBuider.Services.AddTransient<ConfiguracoesViewModel>();
 
+            mauiAppBuider.Services.AddTransient<OrdenarTatusViewModel>();
+
             return mauiAppBuider;
         }
 
@@ -88,6 +92,8 @@ namespace TolyID
             mauiAppBuider.Services.AddTransient<LoginView>();
             mauiAppBuider.Services.AddTransient<CadastroUsuarioView>();
             mauiAppBuider.Services.AddTransient<ConfiguracoesView>();
+
+            mauiAppBuider.Services.AddTransient<OrdenarTatusBottomSheet>();
 
             return mauiAppBuider;
         }

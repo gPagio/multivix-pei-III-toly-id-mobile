@@ -20,7 +20,7 @@
                          Scale=".7"
                          HorizontalOptions="End"
                          BackgroundColor="Transparent"
-                         Command="{Binding FiltrosCommand}"/>
+                         Command="{Binding FiltrosDeOrdenacaoCommand}"/>
 
             <ImageButton Grid.Column="2" 
                          Source="icone_configuracoes.png" 

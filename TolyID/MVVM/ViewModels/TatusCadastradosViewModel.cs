@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using TolyID.Helpers;
+using TolyID.Messages;
 using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
 using TolyID.MVVM.Views.BottomSheet;
@@ -18,6 +20,15 @@ public partial class TatusCadastradosViewModel : ObservableObject
 
     public TatusCadastradosViewModel(TatuService tatuService)
     {
+        // Mensagem de ordenação, que é enviada do OrdenarBottomSheet
+        WeakReferenceMessenger.Default.Register<OrdenarTatusMessage>(this, (r, m) =>
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                OrdenaTatus(m.Value);
+            });
+        });
+
         _tatuService = tatuService;
         Task.Run(() => BuscaTatusNoBanco());
     }
@@ -72,9 +83,51 @@ public partial class TatusCadastradosViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task Filtros()
+    private async Task FiltrosDeOrdenacao()
     {
-        var filtros = new FiltrosBottomSheet(this);
-        await filtros.ShowAsync();
+        var ordenar = ServiceHelper.GetService<OrdenarTatusBottomSheet>();
+        await ordenar.ShowAsync();
+    }
+
+    private void OrdenaTatus(Dictionary<int, int> ordemEParametro)
+    {
+        // Key (ordem): 0 = decrescente, 1 = crescente
+        // Value (parâmetro): 0 = nome, 1 = qtd de capturas, 2 = data da última captura
+
+        int ordem = ordemEParametro.Keys.FirstOrDefault();
+        int parametro = ordemEParametro.Values.FirstOrDefault();
+
+        var listaDeTatus = Tatus.ToList();
+
+        switch (parametro) 
+        {
+            case 0: // Ordenar por nome
+
+                listaDeTatus = ordem == 1 
+                    ? listaDeTatus.OrderBy(t => t.IdentificacaoAnimal).ToList()
+                    : listaDeTatus.OrderByDescending(t => t.IdentificacaoAnimal).ToList();
+                break;
+
+            case 1: // Ordenar por qtd de capturas
+
+                listaDeTatus = ordem == 1
+                    ? listaDeTatus.OrderBy(t => t.Capturas.Count).ToList()
+                    : listaDeTatus.OrderByDescending(t => t.Capturas.Count).ToList();
+                break;
+
+            case 2: // Ordenar por data da última captura
+
+                listaDeTatus = ordem == 1
+                    ? listaDeTatus.OrderBy(t => t.Capturas.LastOrDefault()?.DadosGerais.DataHoraDeCaptura).ToList()
+                    : listaDeTatus.OrderByDescending(t => t.Capturas.LastOrDefault()?.DadosGerais.DataHoraDeCaptura).ToList();
+                break;
+        }
+
+        Tatus.Clear();
+
+        foreach (var tatu in listaDeTatus)
+        {
+            Tatus.Add(tatu);
+        }
     }
 }

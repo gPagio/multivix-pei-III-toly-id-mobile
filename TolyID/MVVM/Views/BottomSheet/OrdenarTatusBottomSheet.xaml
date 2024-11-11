@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<the49:BottomSheet xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+                   xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+                   xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels.BottomSheet"
+                   x:DataType="viewmodels:OrdenarTatusViewModel"
+                   x:Class="TolyID.MVVM.Views.BottomSheet.OrdenarTatusBottomSheet" 
+                   IsCancelable="True"
+                   HasBackdrop="True"
+                   HasHandle="True"
+                   HandleColor="LightGray"
+                   CornerRadius="20">
+
+    <VerticalStackLayout BackgroundColor="White" HeightRequest="400" Padding="25" Spacing="20">
+        
+        <Label Text="Ordem"
+               HorizontalOptions="Start" 
+               TextColor="{StaticResource Texto}"
+               FontSize="18"
+               FontFamily="Inter-Medium"/>
+
+        <material:RadioButtonGroupView Orientation="Horizontal" Spacing="50" SelectedIndex="{Binding Ordem}">
+            <material:RadioButton Text="Crescente" 
+                                  Style="{StaticResource EstiloRadioButton}"/>
+            <material:RadioButton Text="Decrescente" 
+                                  Style="{StaticResource EstiloRadioButton}"/>
+        </material:RadioButtonGroupView>
+
+        <BoxView HeightRequest="1"
+                 BackgroundColor="LightGray"/>
+
+        <Label Text="Parâmetro"
+               HorizontalOptions="Start" 
+               TextColor="{StaticResource Texto}"
+               FontSize="18"
+               FontFamily="Inter-Medium"/>
+
+        <material:RadioButtonGroupView Spacing="20" SelectedIndex="{Binding Parametro}">
+            <material:RadioButton Text="Nome"
+                                  Style="{StaticResource EstiloRadioButton}"/>
+            <material:RadioButton Text="Quantidade de Capturas" 
+                                  Style="{StaticResource EstiloRadioButton}"/>
+            <material:RadioButton Text="Data da Última Captura" 
+                                  Style="{StaticResource EstiloRadioButton}"/>
+        </material:RadioButtonGroupView>
+
+        <Button Text="Aplicar"
+                Style="{StaticResource Botao}"
+                Margin="0, 10, 0, 0"
+                Command="{Binding OrdenaCommand}"/>
+
+    </VerticalStackLayout>
+</the49:BottomSheet>

@@ -46,7 +46,14 @@
         
     </Style>
 
-    <!-- PERSONALIZADAS -->
+    <Style x:Key="EstiloRadioButton" TargetType="material:RadioButton">
+        <Setter Property="TextColor" Value="{StaticResource Texto}"/>
+        <Setter Property="FontFamily" Value="Inter-Regular"/>
+        <Setter Property="TextFontSize" Value="15"/>
+        <Setter Property="Color" Value="{StaticResource Primary}"/>
+    </Style>
+
+            <!-- PERSONALIZADAS -->
     
     <Style x:Key="FrameTitulo" TargetType="Frame">
         <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>

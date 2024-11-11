@@ -24,15 +24,6 @@ public partial class CadastroCapturaViewModel : ObservableObject
     [ObservableProperty]
     private TimeSpan horarioDeCaptura = DateTime.Now.TimeOfDay;
 
-
-    // Esses campos necessitam de tratamento especial
-    [ObservableProperty]
-    private double? comprimentoDoPenis;
-    [ObservableProperty]
-    private double? larguraBasePenis;
-    [ObservableProperty]
-    private double? comprimentoDoClitoris;
-
     // Indicador de carregamento
     [ObservableProperty]
     private bool isBusy = false;
