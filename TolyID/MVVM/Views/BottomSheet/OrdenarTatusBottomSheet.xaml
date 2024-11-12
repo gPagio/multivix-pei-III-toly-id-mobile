@@ -6,7 +6,7 @@
                    xmlns:viewmodels="clr-namespace:TolyID.MVVM.ViewModels.BottomSheet"
                    x:DataType="viewmodels:OrdenarTatusViewModel"
                    x:Class="TolyID.MVVM.Views.BottomSheet.OrdenarTatusBottomSheet" 
-                   IsCancelable="True"
+                   IsCancelable="False"
                    HasBackdrop="True"
                    HasHandle="True"
                    HandleColor="LightGray"
@@ -45,10 +45,20 @@
                                   Style="{StaticResource EstiloRadioButton}"/>
         </material:RadioButtonGroupView>
 
-        <Button Text="Aplicar"
-                Style="{StaticResource Botao}"
-                Margin="0, 10, 0, 0"
-                Command="{Binding OrdenaCommand}"/>
+        <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+
+            <Button Grid.Column="2" 
+                    Text="Aplicar"
+                    Style="{StaticResource Botao}"
+                    Margin="0, 10, 0, 0"
+                    Command="{Binding OrdenaCommand}"
+                    Clicked="Aplicar_Clicked"/>
+
+            <Button Text="Cancelar"
+                    Margin="0, 10, 0, 0"
+                    Style="{StaticResource BotaoSecundario}"
+                    Clicked="Aplicar_Clicked"/>
+        </Grid>
 
     </VerticalStackLayout>
 </the49:BottomSheet>

@@ -9,4 +9,9 @@ public partial class OrdenarTatusBottomSheet
 		InitializeComponent();
         BindingContext = vm;
 	}
+
+    private void Aplicar_Clicked(object sender, EventArgs e)
+    {
+        DismissAsync();
+    }
 }
