@@ -31,6 +31,13 @@ public partial class ConfiguracoesViewModel : ObservableObject
         {
             AtualizaIp();
 
+            NetworkAccess accessType = Connectivity.Current.NetworkAccess;
+
+            if (accessType != NetworkAccess.Internet)
+            {
+                throw new Exception("Não há conexão com internet disponível. Tente novamente mais tarde.");
+            }
+
             var baseApi = ServiceHelper.GetService<BaseApi>();
             baseApi.ReceberRota();
 

@@ -55,6 +55,13 @@ public class CadastrarTatuApiService : BaseApi
             else
             {
                 var mensagemDeErro = await response.Content.ReadAsStringAsync();
+                if(mensagemDeErro == "Já existe um animal cadastrado com o identificador informado!")
+                {
+                    tatu.FoiEnviadoParaApi = true;
+                    await _tatuService.AtualizaTatu(tatu);
+                    await Cadastrar(tatu, token);
+                    return;
+                }
                 throw new Exception($"{response.StatusCode} - {mensagemDeErro}");
             }
         }
