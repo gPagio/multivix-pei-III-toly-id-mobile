@@ -12,8 +12,10 @@ namespace TolyID.MVVM.ViewModels;
 
 public partial class CadastroCapturaViewModel : ObservableObject
 {
-    private readonly Tatu _tatu;
     private readonly CapturaService _capturaService;
+
+    [ObservableProperty]
+    private Tatu _tatu;
 
     [ObservableProperty]
     private static Captura captura = new();
@@ -25,7 +27,6 @@ public partial class CadastroCapturaViewModel : ObservableObject
     private TimeSpan horarioDeCaptura = DateTime.Now.TimeOfDay;
 
     public ObservableCollection<ParametroFisiologico> ParametrosFisiologicos { get; private set; }
-
 
     // Indicador de carregamento
     [ObservableProperty]

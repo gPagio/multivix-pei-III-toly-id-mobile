@@ -20,7 +20,7 @@
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="2.5*, 7.5*" RowSpacing="15" Margin="25, 10, 25, 0">
+    <Grid RowDefinitions="3*, 6*" RowSpacing="15" Margin="25, 10, 25, 0">
 
         <StackLayout VerticalOptions="Center" Spacing="20">
 
@@ -61,6 +61,48 @@
                        FontSize="17"/>
             </Grid>
 
+            <Grid ColumnDefinitions="2*, 8*" RowDefinitions="*, *" ColumnSpacing="5" Margin="-20, 0, 0, 0">
+                <Image Grid.RowSpan="2"
+                       Opacity=".6">
+                    <Image.Triggers>
+
+                        <DataTrigger TargetType="Image"
+                                     Binding="{Binding Tatu.Sexo}"
+                                     Value="Macho">
+                            <Setter Property="Source" Value="icone_macho.png" />
+                        </DataTrigger>
+
+                        <DataTrigger TargetType="Image"
+                                     Binding="{Binding Tatu.Sexo}"
+                                     Value="Femea">
+                            <Setter Property="Source" Value="icone_femea.png" />
+                        </DataTrigger>
+                        
+                    </Image.Triggers>
+                </Image>
+
+                <Label Grid.Column="1" 
+                       Text="Sexo"
+                       Opacity=".6"
+                       FontSize="13"/>
+
+                <Label Grid.Column="1" Grid.Row="1"
+                       Text="Macho"
+                       FontFamily="Inter-Medium"
+                       FontSize="17">
+
+                    <Label.Triggers>
+
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding Tatu.Sexo}"
+                                     Value="Femea">
+                            <Setter Property="Text" Value="Fêmea"/>
+                        </DataTrigger>
+
+                    </Label.Triggers>
+                    
+                </Label>
+            </Grid>
         </StackLayout>
 
         <StackLayout Spacing="17" Padding="0, 20, 0, 10"

@@ -131,12 +131,30 @@
                                     Title="Comprimento do Pênis" Keyboard="Numeric" 
                                     Text="{Binding Captura.Biometria.ComprimentoDoPenis}">
                     <custom_validation:MachoValidation CampoFemea="{Binding Source={x:Reference ComprimentoClitoris}, Path=Text}"/>
+
+                    <material:TextField.Triggers>
+                        <DataTrigger TargetType="material:TextField"
+                                     Binding="{Binding Tatu.Sexo}"
+                                     Value="Femea">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                    </material:TextField.Triggers>
+
                 </material:TextField>
 
                 <material:TextField x:Name="LarguraBasePenis" 
                                     Title="Largura da Base do Pênis" Keyboard="Numeric"
                                     Text="{Binding Captura.Biometria.LarguraBasePenis}">
                     <custom_validation:MachoValidation CampoFemea="{Binding Source={x:Reference ComprimentoClitoris}, Path=Text}"/>
+
+                    <material:TextField.Triggers>
+                        <DataTrigger TargetType="material:TextField"
+                                     Binding="{Binding Tatu.Sexo}"
+                                     Value="Femea">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                    </material:TextField.Triggers>
+
                 </material:TextField>
 
                 <material:TextField x:Name="ComprimentoClitoris"
@@ -144,6 +162,15 @@
                                     Text="{Binding Captura.Biometria.ComprimentoDoClitoris}">
                     <custom_validation:FemeaValidation Campo1="{Binding Source={x:Reference ComprimentoPenis}, Path=Text}"
                                                        Campo2="{Binding Source={x:Reference LarguraBasePenis}, Path=Text}"/>
+
+                    <material:TextField.Triggers>
+                        <DataTrigger TargetType="material:TextField"
+                                     Binding="{Binding Tatu.Sexo}"
+                                     Value="Macho">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                    </material:TextField.Triggers>
+
                 </material:TextField>
 
                 <Button Text="Próximo"

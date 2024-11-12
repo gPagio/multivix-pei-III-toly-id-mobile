@@ -19,8 +19,18 @@ public class Tatu
 
     public int? NumeroMicrochip { get; set; }
 
+    public string? Sexo { get; set; }
+
     [OneToMany(CascadeOperations = CascadeOperation.All)]
     public List<Captura>? Capturas { get; set; }
+
+
+    [Ignore]
+    public SexoTatu SexoTatu
+    {
+        get => Enum.TryParse(Sexo, out SexoTatu result) ? result : SexoTatu.Macho;
+        set => Sexo = value.ToString();
+    }
 
     public override string ToString()
     {

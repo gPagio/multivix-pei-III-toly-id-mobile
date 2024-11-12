@@ -10,8 +10,15 @@ namespace TolyID.MVVM.ViewModels;
 public partial class CadastroTatuViewModel : ObservableObject
 {
     private readonly TatuService _tatuService;
+
     [ObservableProperty]
     private Tatu tatu;
+
+    public List<SexoTatu> sexosTatu { get; set; } = new()
+    {
+        SexoTatu.Macho,
+        SexoTatu.Femea
+    };
 
     public CadastroTatuViewModel(TatuService tatuService) 
     {

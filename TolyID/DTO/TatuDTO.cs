@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TolyID.MVVM.Models;
 
 namespace TolyID.DTO
@@ -15,11 +10,14 @@ namespace TolyID.DTO
 
         [JsonProperty("numeroMicrochip")]
         public int? NumeroMicrochip { get; set; }
+
+        [JsonProperty("sexo")]
+        public string? Sexo {  get; set; }
         public TatuDTO(Tatu tatu)
         {
             IdentificacaoAnimal = tatu.IdentificacaoAnimal;
             NumeroMicrochip = tatu.NumeroMicrochip;
+            Sexo = tatu.Sexo;
         }
-
     }
 }

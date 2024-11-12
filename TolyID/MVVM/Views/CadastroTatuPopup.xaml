@@ -11,7 +11,7 @@
     <mct:Popup.Resources>
         <Style TargetType="{x:Type views:CadastroTatuPopup}">
             <Setter Property="Color" Value="White"/>
-            <Setter Property="Size" Value="300, 165"/>
+            <Setter Property="Size" Value="300, 225"/>
         </Style>
     </mct:Popup.Resources>
 
@@ -20,6 +20,13 @@
         <material:TextField Title="Identificação do Animal"
                             Text="{Binding Tatu.IdentificacaoAnimal}"
                             x:Name="IdEntry"/>
+
+        <material:PickerField Title="Selecione o Sexo"
+                              ItemsSource="{Binding sexosTatu}"
+                              SelectedItem="{Binding Tatu.SexoTatu}"
+                              ItemDisplayBinding="{Binding .}"
+                              TextColor="{StaticResource Texto}"
+                              />
 
         <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Padding="10">
             
