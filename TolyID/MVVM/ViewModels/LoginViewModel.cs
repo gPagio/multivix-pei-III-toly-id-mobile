@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using TolyID.Constants;
 using TolyID.Services.Api;
+using Microsoft.Maui.Storage;
+using Microsoft.Maui.ApplicationModel.Communication;
 
 namespace TolyID.MVVM.ViewModels;
 

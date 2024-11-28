@@ -135,7 +135,7 @@
                     <material:TextField.Triggers>
                         <DataTrigger TargetType="material:TextField"
                                      Binding="{Binding Tatu.Sexo}"
-                                     Value="Femea">
+                                     Value="F">
                             <Setter Property="IsVisible" Value="False"/>
                         </DataTrigger>
                     </material:TextField.Triggers>
@@ -150,7 +150,7 @@
                     <material:TextField.Triggers>
                         <DataTrigger TargetType="material:TextField"
                                      Binding="{Binding Tatu.Sexo}"
-                                     Value="Femea">
+                                     Value="F">
                             <Setter Property="IsVisible" Value="False"/>
                         </DataTrigger>
                     </material:TextField.Triggers>
@@ -166,7 +166,7 @@
                     <material:TextField.Triggers>
                         <DataTrigger TargetType="material:TextField"
                                      Binding="{Binding Tatu.Sexo}"
-                                     Value="Macho">
+                                     Value="M">
                             <Setter Property="IsVisible" Value="False"/>
                         </DataTrigger>
                     </material:TextField.Triggers>

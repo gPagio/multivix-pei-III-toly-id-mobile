@@ -95,10 +95,7 @@ public partial class CadastroCapturaViewModel : ObservableObject
 
         Captura.FichaAnestesica.ParametrosFisiologicos = ParametrosFisiologicos.ToList();
         Captura.DadosGerais.DataHoraDeCaptura = DataDeCaptura.Date + HorarioDeCaptura;
-
-        Debug.WriteLine(Captura.Biometria.ComprimentoDoPenis);
-        Debug.WriteLine(Captura.Biometria.LarguraBasePenis);
-        Debug.WriteLine(Captura.Biometria.ComprimentoDoClitoris);
+        Captura.TatuId = _tatu.Id;
 
         if (Captura.Id == 0)
         {

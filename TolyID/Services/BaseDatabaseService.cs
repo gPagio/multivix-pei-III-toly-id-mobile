@@ -12,7 +12,7 @@ public class BaseDatabaseService
 
     }
 
-    protected async Task Init()
+    public async Task Init()
     {
         if (_bancoDeDados != null) { return; }
        

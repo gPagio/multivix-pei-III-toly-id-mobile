@@ -10,6 +10,7 @@ using TolyID.MVVM.Models;
 using TolyID.MVVM.Views;
 using TolyID.MVVM.Views.BottomSheet;
 using TolyID.Services;
+using Microsoft.Maui.ApplicationModel;
 
 namespace TolyID.MVVM.ViewModels;
 
@@ -40,6 +41,7 @@ public partial class TatusCadastradosViewModel : ObservableObject
 
         foreach (var tatu in tatus)
         {
+            Debug.WriteLine(tatu.Id);
             Tatus.Add(tatu);
         }
     }

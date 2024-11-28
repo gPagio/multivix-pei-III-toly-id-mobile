@@ -4,6 +4,8 @@ using TolyID.Constants;
 using TolyID.Helpers;
 using TolyID.Services.Api;
 using TolyID.Services.Api.Gerar;
+using Microsoft.Maui.Networking;
+using Microsoft.Maui.Storage;
 
 namespace TolyID.MVVM.ViewModels;
 

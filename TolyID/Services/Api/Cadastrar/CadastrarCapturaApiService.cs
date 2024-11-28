@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text;
 using TolyID.DTO;
@@ -24,9 +23,10 @@ public class CadastrarCapturaApiService : BaseApi
     private readonly TatuService _tatuService;
     private readonly CapturaService _capturaService;
 
-    public CadastrarCapturaApiService(TatuService tatuService)
+    public CadastrarCapturaApiService(TatuService tatuService, CapturaService capturaService)
     {
         _tatuService = tatuService;
+        _capturaService = capturaService;
     }
 
     public async Task Cadastrar(Captura captura, string token)

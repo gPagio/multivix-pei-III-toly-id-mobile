@@ -1,5 +1,4 @@
 ﻿using SQLiteNetExtensionsAsync.Extensions;
-using System.Diagnostics;
 using TolyID.MVVM.Models;
 
 namespace TolyID.Services;

@@ -1,5 +1,6 @@
 ﻿using TolyID.Constants;
 using TolyID.Services.Api.Gerar;
+using Microsoft.Maui.Storage;
 
 namespace TolyID.Services.Api;
 

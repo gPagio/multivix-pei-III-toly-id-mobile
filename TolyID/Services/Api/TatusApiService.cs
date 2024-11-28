@@ -2,6 +2,7 @@
 using TolyID.MVVM.Models;
 using TolyID.Services.Api.Cadastrar;
 using TolyID.Services.Api.Ler;
+using Microsoft.Maui.Storage;
 
 namespace TolyID.Services.Api;
 

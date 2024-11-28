@@ -8,20 +8,27 @@ using TolyID.Helpers;
 using TolyID.MVVM.ViewModels;
 using TolyID.MVVM.Views;
 using TolyID.MVVM.Views.CadastroDeCaptura;
+using Microsoft.Maui.Storage;
+using Microsoft.Maui.ApplicationModel;
+using TolyID.Services;
 
 namespace TolyID;
 
 public partial class App : Application
 {
-    public App()
+    private readonly BaseDatabaseService _baseDatabaseService;
+
+    public App(BaseDatabaseService baseDatabaseService)
     {
         InitializeComponent();
+        _baseDatabaseService = baseDatabaseService;
+        IniciarBancoDeDados();
+        MainPage = new CarregamentoView();  
+    }
 
-        MainPage = new CarregamentoView();
-
-        //Shell.Current.GoToAsync("CarregamentoView");
-        //Shell.Current.GoToAsync("..");
-        //MainPage = new BiometriaView(new MVVM.ViewModels.CadastroCapturaViewModel(new MVVM.Models.Tatu(), new Services.CapturaService())); 
+    private async void IniciarBancoDeDados()
+    {
+        await _baseDatabaseService.Init();
     }
 
     protected override async void OnStart()
